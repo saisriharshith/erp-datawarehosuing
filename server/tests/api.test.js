@@ -1,12 +1,14 @@
 import { test, describe, before, after } from 'node:test';
 import assert from 'node:assert';
-import { startServer } from '../src/index.js';
+import app from '../src/app.js';
+import { dbManager } from '../src/config/db.js';
 
 let server;
 let baseUrl;
 
 before(async () => {
-  server = await startServer(0);
+  await dbManager.connect();
+  server = app.listen(0);
   const port = server.address().port;
   baseUrl = `http://localhost:${port}/api`;
 });

@@ -3,13 +3,13 @@
   "version": "2.0.0",
   "description": "Institutional ERP Data Warehouse & Decision Support System (MERN Stack: MongoDB Atlas, Express, React, Node)",
   "scripts": {
-    "start": "node server/src/index.js",
-    "server": "node server/src/index.js",
-    "server:watch": "node --watch server/src/index.js",
+    "start": "node server/server.js",
+    "server": "node server/server.js",
+    "server:watch": "node --watch server/server.js",
     "client": "npm run dev --prefix frontend",
     "client:build": "npm run build --prefix frontend",
     "build": "npm run client:build",
-    "dev": "node server/src/index.js",
+    "dev": "node server/server.js",
     "seed": "node server/src/scripts/seed.js",
     "etl": "node server/src/etl/pipeline.js",
     "test": "NODE_ENV=test node --test server/tests/api.test.js"
