@@ -60,8 +60,8 @@ describe('MERN Backend API Test Suite', () => {
     assert.ok(json.data.department_breakdown.length > 0);
   });
 
-  test('GET /api/student/portal-summary for STU20210001 should return student hub', async () => {
-    const res = await fetch(`${baseUrl}/student/portal-summary?student_id=STU20210001`);
+  test('GET /api/student/portal-summary for STU20220013 should return student hub', async () => {
+    const res = await fetch(`${baseUrl}/student/portal-summary?student_id=STU20220013`);
     assert.strictEqual(res.status, 200);
     const json = await res.json();
     assert.strictEqual(json.success, true);

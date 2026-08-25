@@ -35,7 +35,7 @@ export default function StudentPortal() {
   const isDean = user?.role === 'ADMIN';
 
   // For students, locked to their own student ID; for Dean, can inspect any student
-  const [selectedStudentId, setSelectedStudentId] = useState(user?.student_id || 'STU20210001');
+  const [selectedStudentId, setSelectedStudentId] = useState(user?.student_id || '');
   const [studentData, setStudentData] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -53,6 +53,18 @@ export default function StudentPortal() {
     }
   }, [user, isDean]);
 
+  // Dean default: dynamically load the first enrolled student from the registry
+  useEffect(() => {
+    if (isDean && !selectedStudentId) {
+      fetchAPI('/students?page=1&limit=1')
+        .then(res => {
+          const first = res.students && res.students[0];
+          if (first) setSelectedStudentId(first.student_id);
+        })
+        .catch(() => {});
+    }
+  }, [isDean, selectedStudentId]);
+
   const loadProfile = () => {
     setLoading(true);
     fetchAPI(`/student/portal-summary?student_id=${selectedStudentId}`)
@@ -65,6 +77,7 @@ export default function StudentPortal() {
   };
 
   useEffect(() => {
+    if (!selectedStudentId) return undefined;
     loadProfile();
   }, [selectedStudentId]);
 

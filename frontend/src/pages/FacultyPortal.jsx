@@ -45,9 +45,9 @@ export default function FacultyPortal() {
       return saved ? JSON.parse(saved) : [
         {
           id: 1,
-          faculty_name: 'Dr. R. Ramanujan',
+          faculty_name: 'Dr. Rajeshwar Rao',
           student_id: 'STU20210016',
-          student_name: 'Rohan Verma',
+          student_name: 'Shaurya Joshi',
           course_code: 'CS501',
           date: '2026-08-24',
           topic: 'Attendance Shortage & Lab Make-up',

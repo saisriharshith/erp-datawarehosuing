@@ -107,7 +107,7 @@ export default function StudentsDirectory() {
               <input
                 type="text"
                 className="form-control border-start-0"
-                placeholder="Type name, ID (e.g. STU20210001), or email to filter..."
+                placeholder="Type name, ID (e.g. STU20220013), or email to filter..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />

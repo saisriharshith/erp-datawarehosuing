@@ -15,10 +15,7 @@ export async function getStudentProfile(studentId) {
   const students = await dbManager.getCollectionData('dim_students');
   let student = students.find(s => s.student_id === studentId);
   if (!student) {
-    student = students.find(s => s.student_id && s.student_id.toUpperCase().includes(studentId.toUpperCase()));
-  }
-  if (!student && students.length > 0) {
-    student = students[0];
+    student = students.find(s => s.student_id && s.student_id.toUpperCase() === studentId.toUpperCase());
   }
   if (!student) return null;
 
