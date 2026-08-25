@@ -1,5 +1,8 @@
 /**
  * Personalized Student Hub & Goal Planner Routes
+ * -----------------------------------------------
+ * Returns strictly student-scoped profile, attendance compliance, examination history,
+ * fee transactions, library loans, and plain-English academic health.
  */
 
 import express from 'express';
@@ -108,7 +111,9 @@ router.get('/student/portal-summary', async (req, res) => {
         department_name: st.department_name,
         semester: st.current_semester,
         batch_year: st.batch_year,
-        email: st.email
+        email: st.email,
+        admission_year: st.admission_year,
+        admission_quota: st.admission_quota
       },
       summary_cards: {
         attendance_percentage: att.overall_percentage,
@@ -117,6 +122,8 @@ router.get('/student/portal-summary', async (req, res) => {
         backlogs_count: exams.backlogs,
         fee_status: fees.status,
         fee_outstanding: fees.outstanding_balance,
+        total_fee_due: fees.total_due,
+        total_fee_paid: fees.total_paid,
         books_borrowed: lib.total_books_borrowed || 0,
         unpaid_fines: lib.unpaid_fines || 0,
         risk_level: evaluatedRisk
@@ -125,7 +132,8 @@ router.get('/student/portal-summary', async (req, res) => {
       shortage_alerts: shortageAlerts,
       examination_records: exams.exam_records || [],
       sgpa_trend: sgpaTrend,
-      fee_transactions: fees.transaction_records || [],
+      fee_summary: fees,
+      fee_transactions: fees.transactions || [],
       library_summary: lib,
       personalized_recommendations: recs
     }, 'Personal student portal summary fetched');

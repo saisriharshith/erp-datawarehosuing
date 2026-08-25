@@ -92,67 +92,7 @@ export default function FacultyPortal() {
 
   const facultyList = facultySummary?.faculty_list || [];
   const currentFaculty = facultyList.find(f => f.faculty_id === selectedFacultyId) || facultyList[0] || {};
-  const handledCourses = (currentFaculty.handled_courses && currentFaculty.handled_courses.length > 0)
-    ? currentFaculty.handled_courses
-    : [
-        {
-          course_code: currentFaculty.department_id === 'DEPT_ECE' ? 'EC301' : currentFaculty.department_id === 'DEPT_MECH' ? 'ME301' : currentFaculty.department_id === 'DEPT_CIVIL' ? 'CE301' : currentFaculty.department_id === 'DEPT_AIDS' ? 'AD501' : 'CS501',
-          course_title: currentFaculty.department_id === 'DEPT_ECE' ? 'Signals & Systems' : currentFaculty.department_id === 'DEPT_MECH' ? 'Thermodynamics' : currentFaculty.department_id === 'DEPT_CIVIL' ? 'Structural Analysis' : currentFaculty.department_id === 'DEPT_AIDS' ? 'Deep Learning' : 'Operating Systems',
-          semester: 5,
-          credits: 4,
-          section: 'Section A',
-          class_schedule: 'Mon / Wed / Fri 09:00 AM - 10:00 AM',
-          classroom: 'Hall 201, Academic Block',
-          total_classes_conducted: 48,
-          total_enrolled: 25,
-          average_attendance: 84.5,
-          shortage_alerts_count: 3,
-          students: [
-            {
-              student_id: 'STU20210001',
-              student_name: 'Aarav Sharma',
-              email: 'aarav@univ.edu',
-              department_name: currentFaculty.department_name,
-              section: 'Section A',
-              classes_attended: 42,
-              total_classes: 48,
-              attendance_percentage: 87.5,
-              is_shortage: false,
-              internal_marks: 28,
-              grade_letter: 'A+',
-              risk_level: 'LOW'
-            },
-            {
-              student_id: 'STU20220013',
-              student_name: 'Sneha Verma',
-              email: 'sneha@univ.edu',
-              department_name: currentFaculty.department_name,
-              section: 'Section A',
-              classes_attended: 31,
-              total_classes: 48,
-              attendance_percentage: 64.5,
-              is_shortage: true,
-              internal_marks: 14,
-              grade_letter: 'C',
-              risk_level: 'HIGH'
-            },
-            {
-              student_id: 'STU20230018',
-              student_name: 'Karthik Nair',
-              email: 'karthik@univ.edu',
-              department_name: currentFaculty.department_name,
-              section: 'Section A',
-              classes_attended: 46,
-              total_classes: 48,
-              attendance_percentage: 95.8,
-              is_shortage: false,
-              internal_marks: 29,
-              grade_letter: 'O',
-              risk_level: 'LOW'
-            }
-          ]
-        }
-      ];
+  const handledCourses = currentFaculty.handled_courses || [];
   const activeCourse = handledCourses[selectedCourseIndex] || handledCourses[0] || {};
   const enrolledStudents = activeCourse.students || [];
 
@@ -310,6 +250,7 @@ export default function FacultyPortal() {
                 value={deptFilter}
                 onChange={(e) => { setDeptFilter(e.target.value); setSelectedCourseIndex(0); }}
               >
+                <option value="">All Departments ({facultySummary?.total_faculty || 30} Faculty)</option>
                 <option value="DEPT_CSE">Computer Science (CSE)</option>
                 <option value="DEPT_ECE">Electronics (ECE)</option>
                 <option value="DEPT_MECH">Mechanical (MECH)</option>

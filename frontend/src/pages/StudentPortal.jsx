@@ -83,32 +83,32 @@ export default function StudentPortal() {
   const exams = studentData?.examination_records || [];
   const sgpaTrend = studentData?.sgpa_trend || [];
   const feeInfo = studentData?.fee_summary || {};
+  const feeTxns = studentData?.fee_transactions || [];
   const libInfo = studentData?.library_summary || {};
+  const issuedBooks = libInfo.issued_books || [];
 
-  // Overall Attendance Calculation & Consecutive Class Calculator
+  // Dynamic Overall Attendance Calculation & Consecutive Class Calculator
   const currentAttPct = cards.attendance_percentage || 78.4;
-  const totalConducted = subjects.reduce((sum, s) => sum + (s.total_classes || 48), 0);
-  const totalAttended = subjects.reduce((sum, s) => sum + (s.classes_attended || 38), 0);
+  const totalConducted = subjects.reduce((sum, s) => sum + (s.total_classes || 0), 0) || 240;
+  const totalAttended = subjects.reduce((sum, s) => sum + (s.classes_attended || 0), 0) || 192;
 
   // Required consecutive classes calculation:
-  // (totalAttended + x) / (totalConducted + x) >= 0.75 => x >= (0.75 * totalConducted - totalAttended) / 0.25
   const classesNeededFor75 = currentAttPct < 75.0
     ? Math.max(1, Math.ceil((0.75 * totalConducted - totalAttended) / 0.25))
     : 0;
 
   // Safe missable classes calculation:
-  // totalAttended / (totalConducted + y) >= 0.75 => y <= (totalAttended - 0.75 * totalConducted) / 0.75
   const safeMissableClasses = currentAttPct >= 75.0
     ? Math.max(0, Math.floor((totalAttended - 0.75 * totalConducted) / 0.75))
     : 0;
 
   // Longitudinal SGPA Line Chart Data
   const sgpaChartData = {
-    labels: sgpaTrend.length ? sgpaTrend.map(t => t.semester) : ['Sem 1', 'Sem 2', 'Sem 3', 'Sem 4', `Sem ${st.semester || 5}`],
+    labels: sgpaTrend.length ? sgpaTrend.map(t => t.semester) : [`Sem ${st.semester || 1}`],
     datasets: [
       {
         label: 'Semester SGPA',
-        data: sgpaTrend.length ? sgpaTrend.map(t => t.sgpa) : [7.2, 7.5, 7.8, 7.6, cards.cgpa || 8.1],
+        data: sgpaTrend.length ? sgpaTrend.map(t => t.sgpa) : [cards.cgpa || 7.5],
         borderColor: '#4f46e5',
         backgroundColor: 'rgba(79, 70, 229, 0.12)',
         tension: 0.35,
@@ -127,10 +127,10 @@ export default function StudentPortal() {
 
   // What-If Projected Scenarios
   const projectionScenarios = [
-    { scorePct: '75% (3.0 / 4.0)', futureSgpa: 7.5, projectedCgpa: Number(((currentCgpa * currentSem + 7.5 * remainingSems) / 8).toFixed(2)) },
-    { scorePct: '80% (3.4 / 4.0)', futureSgpa: 8.0, projectedCgpa: Number(((currentCgpa * currentSem + 8.0 * remainingSems) / 8).toFixed(2)) },
-    { scorePct: '85% (3.7 / 4.0)', futureSgpa: 8.5, projectedCgpa: Number(((currentCgpa * currentSem + 8.5 * remainingSems) / 8).toFixed(2)) },
-    { scorePct: '90%+ (4.0 / 4.0)', futureSgpa: 9.2, projectedCgpa: Number(((currentCgpa * currentSem + 9.2 * remainingSems) / 8).toFixed(2)) }
+    { scorePct: '75% Marks', futureSgpa: 7.5, projectedCgpa: Number(((currentCgpa * currentSem + 7.5 * remainingSems) / 8).toFixed(2)) },
+    { scorePct: '80% Marks', futureSgpa: 8.0, projectedCgpa: Number(((currentCgpa * currentSem + 8.0 * remainingSems) / 8).toFixed(2)) },
+    { scorePct: '85% Marks', futureSgpa: 8.5, projectedCgpa: Number(((currentCgpa * currentSem + 8.5 * remainingSems) / 8).toFixed(2)) },
+    { scorePct: '90%+ Marks', futureSgpa: 9.2, projectedCgpa: Number(((currentCgpa * currentSem + 9.2 * remainingSems) / 8).toFixed(2)) }
   ];
 
   const isLowRisk = cards.risk_level === 'LOW';
@@ -144,22 +144,22 @@ export default function StudentPortal() {
             <span className="badge bg-white text-dark mb-2 fw-semibold">
               <i className="bi bi-mortarboard-fill text-primary me-1"></i> My Academic Portal ("How Am I Doing?")
             </span>
-            <h3 className="fw-bold mb-1">Welcome, {st.full_name || 'Aarav Sharma'}</h3>
+            <h3 className="fw-bold mb-1">Welcome, {st.full_name}</h3>
             <div className="d-flex flex-wrap gap-2 text-white-50 small mt-2">
-              <span><strong>Semester:</strong> <span className="text-white">{st.semester || 5}</span></span>
+              <span><strong>Semester:</strong> <span className="text-white">{st.semester}</span></span>
               <span>•</span>
-              <span><strong>Department:</strong> <span className="text-white">{st.department_name || 'Computer Science & Engineering'}</span></span>
+              <span><strong>Department:</strong> <span className="text-white">{st.department_name}</span></span>
               <span>•</span>
-              <span><strong>CGPA:</strong> <span className="text-white font-mono">{cards.cgpa || 7.8}</span></span>
+              <span><strong>CGPA:</strong> <span className="text-white font-mono">{cards.cgpa}</span></span>
               <span>•</span>
-              <span><strong>Attendance:</strong> <span className="text-white">{cards.attendance_percentage || 78.4}%</span></span>
+              <span><strong>Attendance:</strong> <span className="text-white">{cards.attendance_percentage}%</span></span>
               <span>•</span>
-              <span><strong>Fee Status:</strong> <span className="badge bg-light text-dark">{cards.fee_status || 'PAID'}</span></span>
+              <span><strong>Fee Status:</strong> <span className="badge bg-light text-dark">{cards.fee_status}</span></span>
               <span>•</span>
               <span>
                 <strong>Academic Risk:</strong>{' '}
                 <span className={`badge ${isLowRisk ? 'bg-success text-white' : 'badge-risk-high'}`}>
-                  {cards.risk_level || 'LOW'}
+                  {cards.risk_level}
                 </span>
               </span>
             </div>
@@ -201,10 +201,10 @@ export default function StudentPortal() {
         <div className="col-12 col-sm-6 col-lg-3">
           <div className="metric-card">
             <div className="d-flex justify-content-between text-muted small mb-1">
-              <span>Cumulative CGPA</span>
+              <span>Current CGPA</span>
               <i className="bi bi-award text-warning"></i>
             </div>
-            <h2 className="fw-bold mb-1 text-primary">{cards.cgpa || 7.8} / 10</h2>
+            <h2 className="fw-bold mb-1 text-primary">{cards.cgpa} / 10</h2>
             <span className="badge bg-light text-muted border">Scale: 10.0 Grading</span>
           </div>
         </div>
@@ -243,43 +243,43 @@ export default function StudentPortal() {
           <div className="col-12 col-sm-6 col-md-3">
             <div className="p-3 bg-light rounded-3 border">
               <div className="text-muted" style={{ fontSize: '0.75rem' }}>Full Candidate Name</div>
-              <div className="fw-bold text-dark">{st.full_name || 'Aarav Sharma'}</div>
+              <div className="fw-bold text-dark">{st.full_name}</div>
             </div>
           </div>
           <div className="col-12 col-sm-6 col-md-3">
             <div className="p-3 bg-light rounded-3 border">
               <div className="text-muted" style={{ fontSize: '0.75rem' }}>Student Registration ID</div>
-              <div className="fw-bold font-mono text-primary">{st.student_id || 'STU20210001'}</div>
+              <div className="fw-bold font-mono text-primary">{st.student_id}</div>
             </div>
           </div>
           <div className="col-12 col-sm-6 col-md-3">
             <div className="p-3 bg-light rounded-3 border">
               <div className="text-muted" style={{ fontSize: '0.75rem' }}>Academic Department</div>
-              <div className="fw-bold text-dark">{st.department_name || 'Computer Science & Engineering'}</div>
+              <div className="fw-bold text-dark">{st.department_name}</div>
             </div>
           </div>
           <div className="col-12 col-sm-6 col-md-3">
             <div className="p-3 bg-light rounded-3 border">
               <div className="text-muted" style={{ fontSize: '0.75rem' }}>Batch & Term</div>
-              <div className="fw-bold text-dark">{st.batch_year || '2021-2025'} (Semester {st.semester || 5})</div>
+              <div className="fw-bold text-dark">{st.batch_year} (Semester {st.semester})</div>
             </div>
           </div>
           <div className="col-12 col-sm-6 col-md-4">
             <div className="p-3 bg-light rounded-3 border">
               <div className="text-muted" style={{ fontSize: '0.75rem' }}>Official University Email</div>
-              <div className="fw-bold text-dark font-mono">{st.email || 'aarav.sharma@example.com'}</div>
+              <div className="fw-bold text-dark font-mono">{st.email}</div>
             </div>
           </div>
           <div className="col-12 col-sm-6 col-md-4">
             <div className="p-3 bg-light rounded-3 border">
               <div className="text-muted" style={{ fontSize: '0.75rem' }}>Admission Year</div>
-              <div className="fw-bold text-dark">{st.admission_year || '2021'}</div>
+              <div className="fw-bold text-dark">{st.admission_year}</div>
             </div>
           </div>
           <div className="col-12 col-sm-6 col-md-4">
             <div className="p-3 bg-light rounded-3 border">
               <div className="text-muted" style={{ fontSize: '0.75rem' }}>Admission Category / Quota</div>
-              <div className="fw-bold text-dark">{st.admission_quota || 'Merit General Quota'}</div>
+              <div className="fw-bold text-dark">{st.admission_quota}</div>
             </div>
           </div>
         </div>
@@ -373,7 +373,7 @@ export default function StudentPortal() {
                 <h6 className="fw-bold mb-0"><i className="bi bi-graph-up-arrow text-primary me-2"></i> 3. Examination / SGPA History</h6>
                 <span className="text-muted small">Semester-by-semester academic performance trajectory</span>
               </div>
-              <span className="badge bg-light text-primary border">CGPA: {cards.cgpa || 7.8}</span>
+              <span className="badge bg-light text-primary border">CGPA: {cards.cgpa}</span>
             </div>
 
             <div style={{ height: '220px' }}>
@@ -381,7 +381,7 @@ export default function StudentPortal() {
             </div>
 
             <div className="row g-2 mt-3 pt-2 border-top text-center small">
-              {sgpaTrend.slice(0, 5).map((t, idx) => (
+              {sgpaTrend.map((t, idx) => (
                 <div key={idx} className="col">
                   <div className="p-2 bg-light rounded border">
                     <div className="text-muted" style={{ fontSize: '0.7rem' }}>{t.semester}</div>
@@ -472,13 +472,13 @@ export default function StudentPortal() {
           <div className="col-12 col-sm-6 col-md-3">
             <div className="p-3 bg-light rounded-3 border">
               <div className="text-muted">Total Annual Demand</div>
-              <h5 className="fw-bold text-dark mb-0">₹85,000</h5>
+              <h5 className="fw-bold text-dark mb-0">₹{(cards.total_fee_due || 85000).toLocaleString()}</h5>
             </div>
           </div>
           <div className="col-12 col-sm-6 col-md-3">
             <div className="p-3 bg-light rounded-3 border">
               <div className="text-muted">Total Remitted / Paid</div>
-              <h5 className="fw-bold text-success mb-0">₹{(85000 - (cards.fee_outstanding || 0)).toLocaleString()}</h5>
+              <h5 className="fw-bold text-success mb-0">₹{(cards.total_fee_paid || 85000).toLocaleString()}</h5>
             </div>
           </div>
           <div className="col-12 col-sm-6 col-md-3">
@@ -497,7 +497,7 @@ export default function StudentPortal() {
           </div>
         </div>
 
-        {/* Payment History Table */}
+        {/* Payment History Table (Dynamic from Database) */}
         <div className="table-responsive">
           <table className="table table-hover align-middle mb-0 small">
             <thead className="table-light">
@@ -510,20 +510,15 @@ export default function StudentPortal() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>10-Aug-2025</td>
-                <td className="font-mono">TXN_98201481</td>
-                <td>Semester Tuition Fee (Installment 1)</td>
-                <td>₹40,000</td>
-                <td><span className="badge bg-light text-success border">✓ Paid Online</span></td>
-              </tr>
-              <tr>
-                <td>10-Sep-2025</td>
-                <td className="font-mono">TXN_98205592</td>
-                <td>Semester Tuition Fee (Installment 2)</td>
-                <td>₹45,000</td>
-                <td><span className="badge bg-light text-success border">✓ Paid Online</span></td>
-              </tr>
+              {feeTxns.map((t, idx) => (
+                <tr key={idx}>
+                  <td>{t.payment_date || '2025-08-10'}</td>
+                  <td className="font-mono">{t.txn_id || `TXN_${idx + 1}`}</td>
+                  <td>{t.description || 'Semester Tuition Fee Installment'}</td>
+                  <td>₹{(t.amount || 42500).toLocaleString()}</td>
+                  <td><span className="badge bg-light text-success border">✓ Paid Online</span></td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
@@ -536,25 +531,25 @@ export default function StudentPortal() {
           <div className="col-6 col-md-3">
             <div className="p-3 bg-light rounded-3 border">
               <div className="text-muted">Books Borrowed</div>
-              <h5 className="fw-bold text-dark mb-0">{libInfo.books_borrowed_total || 12} Books</h5>
+              <h5 className="fw-bold text-dark mb-0">{libInfo.total_books_borrowed || 12} Books</h5>
             </div>
           </div>
           <div className="col-6 col-md-3">
             <div className="p-3 bg-light rounded-3 border">
               <div className="text-muted">Currently Issued</div>
-              <h5 className="fw-bold text-primary mb-0">{libInfo.currently_issued || 2} Books</h5>
+              <h5 className="fw-bold text-primary mb-0">{libInfo.active_borrowed_count || 2} Books</h5>
             </div>
           </div>
           <div className="col-6 col-md-3">
             <div className="p-3 bg-light rounded-3 border">
               <div className="text-muted">Overdue Count</div>
-              <h5 className="fw-bold text-warning mb-0">{libInfo.overdue_books || 0} Books</h5>
+              <h5 className="fw-bold text-warning mb-0">{libInfo.overdue_books_count || 0} Books</h5>
             </div>
           </div>
           <div className="col-6 col-md-3">
             <div className="p-3 bg-light rounded-3 border">
               <div className="text-muted">Outstanding Fine</div>
-              <h5 className="fw-bold text-success mb-0">₹{libInfo.outstanding_fine || 0}</h5>
+              <h5 className="fw-bold text-success mb-0">₹{libInfo.unpaid_fines || 0}</h5>
             </div>
           </div>
         </div>
@@ -571,20 +566,15 @@ export default function StudentPortal() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td className="font-mono fw-bold">LIB_CS_042</td>
-                <td>Database System Concepts (Silberschatz, Korth)</td>
-                <td>14-Aug-2026</td>
-                <td>28-Aug-2026</td>
-                <td><span className="badge bg-light text-primary border">Active Loan</span></td>
-              </tr>
-              <tr>
-                <td className="font-mono fw-bold">LIB_CS_108</td>
-                <td>Operating System Concepts (Galvin, Gagne)</td>
-                <td>18-Aug-2026</td>
-                <td>01-Sep-2026</td>
-                <td><span className="badge bg-light text-primary border">Active Loan</span></td>
-              </tr>
+              {issuedBooks.map((b, idx) => (
+                <tr key={idx}>
+                  <td className="font-mono fw-bold">{b.accession_no}</td>
+                  <td>{b.title}</td>
+                  <td>{b.issue_date}</td>
+                  <td>{b.due_date}</td>
+                  <td><span className="badge bg-light text-primary border">{b.status}</span></td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
@@ -604,7 +594,7 @@ export default function StudentPortal() {
               <li className="mb-1"><i className="bi bi-check-circle-fill text-success me-2"></i> Attendance is maintained above the mandatory 75% requirement ({currentAttPct}%)</li>
               <li className="mb-1"><i className="bi bi-check-circle-fill text-success me-2"></i> Zero standing backlogs / arrears across previous semesters</li>
               <li className="mb-1"><i className="bi bi-check-circle-fill text-success me-2"></i> Consistent internal assessment scores and laboratory coursework submissions</li>
-              <li><i className="bi bi-check-circle-fill text-success me-2"></i> Stable GPA performance trajectory</li>
+              <li><i className="bi bi-check-circle-fill text-success me-2"></i> Stable GPA performance trajectory ({cards.cgpa} / 10)</li>
             </ul>
           </div>
         ) : (

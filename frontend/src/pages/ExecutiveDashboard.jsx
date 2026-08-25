@@ -365,36 +365,42 @@ export default function ExecutiveDashboard() {
             <h6 className="fw-bold mb-0"><i className="bi bi-wallet2 text-success me-2"></i> Institutional Finance & Fee Collection</h6>
             <span className="text-muted small">Tuition realization and department-wise fee arrears</span>
           </div>
-          <span className="badge bg-light text-success border">89.8% Realization Rate</span>
+          <span className="badge bg-light text-success border">{kpis.fee_collection_rate || 89.2}% Realization Rate</span>
         </div>
 
         <div className="row g-3 text-center small mb-3">
           <div className="col-6 col-md-3">
             <div className="p-3 bg-light rounded-3 border">
               <div className="text-muted">Total Fees Due</div>
-              <h4 className="fw-bold text-dark my-1">₹18.25 Cr</h4>
+              <h4 className="fw-bold text-dark my-1">
+                ₹{(((kpis.total_fees_collected || 164000000) + (kpis.total_outstanding_fees || 18500000)) / 10000000).toFixed(2)} Cr
+              </h4>
               <span className="text-muted" style={{ fontSize: '0.72rem' }}>Total Demand</span>
             </div>
           </div>
           <div className="col-6 col-md-3">
             <div className="p-3 bg-light rounded-3 border border-success">
               <div className="text-muted">Total Collected</div>
-              <h4 className="fw-bold text-success my-1">₹16.40 Cr</h4>
-              <span className="text-success fw-bold" style={{ fontSize: '0.72rem' }}>89.8% Realized</span>
+              <h4 className="fw-bold text-success my-1">
+                ₹{((kpis.total_fees_collected || 164000000) / 10000000).toFixed(2)} Cr
+              </h4>
+              <span className="text-success fw-bold" style={{ fontSize: '0.72rem' }}>{kpis.fee_collection_rate || 89.2}% Realized</span>
             </div>
           </div>
           <div className="col-6 col-md-3">
             <div className="p-3 bg-light rounded-3 border border-danger">
               <div className="text-muted">Total Outstanding</div>
-              <h4 className="fw-bold text-danger my-1">₹1.85 Cr</h4>
-              <span className="text-danger" style={{ fontSize: '0.72rem' }}>72 Overdue Accounts</span>
+              <h4 className="fw-bold text-danger my-1">
+                ₹{((kpis.total_outstanding_fees || 18500000) / 10000000).toFixed(2)} Cr
+              </h4>
+              <span className="text-danger" style={{ fontSize: '0.72rem' }}>Arrears Flagged</span>
             </div>
           </div>
           <div className="col-6 col-md-3">
             <div className="p-3 bg-light rounded-3 border">
-              <div className="text-muted">Payment Split</div>
-              <h4 className="fw-bold text-dark my-1">88% Paid</h4>
-              <span className="text-muted" style={{ fontSize: '0.72rem' }}>8% Partial | 4% Unpaid</span>
+              <div className="text-muted">Payment Efficiency</div>
+              <h4 className="fw-bold text-dark my-1">{kpis.fee_collection_rate || 89.2}%</h4>
+              <span className="text-muted" style={{ fontSize: '0.72rem' }}>Settled Collections</span>
             </div>
           </div>
         </div>
