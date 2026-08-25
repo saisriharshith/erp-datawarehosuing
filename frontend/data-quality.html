@@ -75,7 +75,11 @@
           <div>
             <div class="small text-uppercase fw-bold tracking-wider text-indigo-light mb-1" style="color: #a5b4fc;">Automated ETL Quality Assessment</div>
             <h2 class="fw-bold mb-1">Composite Data Health: <span id="dqOverallScore" class="text-success">99.68%</span></h2>
-            <p class="small text-secondary mb-0">Audited across 5 enterprise quality dimensions during automated warehouse extraction & loading.</p>
+            <p class="small text-secondary mb-2">Audited across 5 enterprise quality dimensions during automated warehouse extraction & loading.</p>
+            <div class="d-flex gap-2">
+              <button class="btn btn-sm btn-light fw-semibold text-dark" onclick="window.print()"><i class="bi bi-printer-fill text-indigo me-1"></i> Print Audit Certificate</button>
+              <button class="btn btn-sm btn-outline-light" onclick="exportQualityReportJSON()"><i class="bi bi-filetype-json me-1"></i> Export JSON</button>
+            </div>
           </div>
           <div class="d-flex gap-4">
             <div class="text-center">
@@ -222,9 +226,12 @@
 <script>
   let dqRadarChartInst = null;
 
+  let cachedQualityData = null;
+
   async function loadDataQuality() {
     try {
       const data = await fetchAPI("/data-quality");
+      cachedQualityData = data;
       const report = data.latest_report || {};
       const metrics = report.metrics || report.dimensions || {};
 
@@ -243,6 +250,18 @@
     } catch (err) {
       showAlert("Could not load data quality audit reports.", "danger");
     }
+  }
+
+  function exportQualityReportJSON() {
+    if (!cachedQualityData) return;
+    const blob = new Blob([JSON.stringify(cachedQualityData, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.setAttribute("href", url);
+    link.setAttribute("download", "data_quality_audit_certification.json");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 
   function renderRadarChart(metrics) {

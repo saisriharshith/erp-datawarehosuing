@@ -64,6 +64,12 @@
           <option value="8">Semester 8</option>
         </select>
 
+        <!-- Live ETL Trigger Button -->
+        <button class="btn btn-sm btn-outline-indigo d-flex align-items-center gap-1" onclick="openETLModal()" style="border-color: #4f46e5; color: #4f46e5;">
+          <i class="bi bi-lightning-charge-fill text-warning"></i>
+          <span class="fw-semibold">Run Live ETL</span>
+        </button>
+
         <!-- Quick Role Switcher for Demo Evaluator -->
         <div class="dropdown">
           <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
@@ -252,34 +258,72 @@
   </div>
 </div>
 
-<!-- Reusable Data Lineage Modal -->
+<!-- Reusable Data Lineage Modal (Enhanced with MongoDB Aggregation Query Inspector) -->
 <div class="modal fade" id="lineageModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content border-0 shadow-lg rounded-4">
       <div class="modal-header bg-dark text-white">
         <h6 class="modal-title fw-bold" id="lineageModalTitle"><i class="bi bi-diagram-3-fill text-indigo me-2"></i> Data Lineage & Origin</h6>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
       </div>
-      <div class="modal-body p-4">
+      <div class="modal-body p-4 bg-light">
         
-        <div class="lineage-step">
-          <div class="small text-uppercase fw-bold text-muted mb-1"><i class="bi bi-database me-1"></i> 1. Source Collection (erp_source)</div>
-          <div id="lineageSourceCol" class="fw-semibold text-dark font-monospace small">--</div>
+        <!-- Interactive Visual Flow Breadcrumb -->
+        <div class="p-3 bg-white rounded-3 border mb-3 shadow-sm">
+          <div class="small fw-bold text-uppercase text-muted mb-2">End-to-End Data Provenance Flow</div>
+          <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 text-center small font-monospace">
+            <span class="badge bg-light text-dark border p-2"><i class="bi bi-database me-1"></i> Raw Silo</span>
+            <i class="bi bi-arrow-right text-indigo fw-bold"></i>
+            <span class="badge bg-light text-indigo border p-2"><i class="bi bi-cpu me-1"></i> Python ETL</span>
+            <i class="bi bi-arrow-right text-indigo fw-bold"></i>
+            <span class="badge bg-light text-success border p-2"><i class="bi bi-box-seam me-1"></i> Star Fact/Dim</span>
+            <i class="bi bi-arrow-right text-indigo fw-bold"></i>
+            <span class="badge bg-dark text-white p-2"><i class="bi bi-lightning me-1"></i> Mongo Aggregate</span>
+            <i class="bi bi-arrow-right text-indigo fw-bold"></i>
+            <span class="badge bg-primary text-white p-2"><i class="bi bi-graph-up me-1"></i> REST & Chart.js</span>
+          </div>
         </div>
 
-        <div class="lineage-step">
-          <div class="small text-uppercase fw-bold text-muted mb-1"><i class="bi bi-cpu me-1"></i> 2. ETL Processing & Cleansing</div>
-          <ul id="lineageTransformationsList" class="small mb-0 ps-3"></ul>
-        </div>
+        <!-- Lineage Tabs -->
+        <ul class="nav nav-pills mb-3" id="lineageTabs" role="tablist">
+          <li class="nav-item"><button class="nav-link active btn-sm" data-bs-toggle="pill" data-bs-target="#tabLineageSteps">1. ETL Cleansing & Lineage</button></li>
+          <li class="nav-item"><button class="nav-link btn-sm" data-bs-toggle="pill" data-bs-target="#tabMongoPipeline">2. Raw MongoDB Aggregation Pipeline</button></li>
+        </ul>
 
-        <div class="lineage-step">
-          <div class="small text-uppercase fw-bold text-muted mb-1"><i class="bi bi-box-seam me-1"></i> 3. Warehouse Collection (erp_warehouse)</div>
-          <div id="lineageWarehouseCol" class="fw-semibold text-dark font-monospace small">--</div>
-        </div>
+        <div class="tab-content bg-white p-3 rounded-3 border shadow-sm" id="lineageTabsContent">
+          
+          <!-- Tab 1: Lineage Steps -->
+          <div class="tab-pane fade show active" id="tabLineageSteps">
+            <div class="lineage-step">
+              <div class="small text-uppercase fw-bold text-muted mb-1"><i class="bi bi-database me-1"></i> 1. Source Collection (erp_source)</div>
+              <div id="lineageSourceCol" class="fw-semibold text-dark font-monospace small">--</div>
+            </div>
 
-        <div class="p-3 bg-light rounded-3 border">
-          <div class="small text-uppercase fw-bold text-indigo mb-1"><i class="bi bi-calculator me-1"></i> Analytical Formula</div>
-          <code id="lineageFormula" class="fw-bold text-dark small">--</code>
+            <div class="lineage-step">
+              <div class="small text-uppercase fw-bold text-muted mb-1"><i class="bi bi-cpu me-1"></i> 2. ETL Processing & Cleansing Rules</div>
+              <ul id="lineageTransformationsList" class="small mb-0 ps-3"></ul>
+            </div>
+
+            <div class="lineage-step">
+              <div class="small text-uppercase fw-bold text-muted mb-1"><i class="bi bi-box-seam me-1"></i> 3. Warehouse Star Collection (erp_warehouse)</div>
+              <div id="lineageWarehouseCol" class="fw-semibold text-dark font-monospace small">--</div>
+            </div>
+
+            <div class="p-3 bg-light rounded-3 border">
+              <div class="small text-uppercase fw-bold text-indigo mb-1"><i class="bi bi-calculator me-1"></i> Calculation / Metric Formula</div>
+              <code id="lineageFormula" class="fw-bold text-dark small">--</code>
+            </div>
+          </div>
+
+          <!-- Tab 2: MongoDB Pipeline Inspector -->
+          <div class="tab-pane fade" id="tabMongoPipeline">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <span class="small text-muted fw-semibold"><i class="bi bi-code-square me-1"></i> PyMongo Server-Side Aggregation Query</span>
+              <button class="btn btn-sm btn-outline-primary py-0 px-2" onclick="Lineage.copyMongoQuery()"><i class="bi bi-clipboard me-1"></i> Copy Query</button>
+            </div>
+            <pre class="bg-dark text-light p-3 rounded-3 small font-monospace mb-0" style="max-height: 250px; overflow-y: auto;"><code id="lineageMongoQuery">// MongoDB Aggregation Pipeline query...</code></pre>
+          </div>
+
         </div>
 
       </div>
@@ -419,6 +463,122 @@
         scales: { y: { min: 50, max: 100 } }
       }
     });
+  }
+
+<!-- Live ETL Pipeline Trigger Modal -->
+<div class="modal fade" id="etlModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg rounded-4">
+      <div class="modal-header bg-dark text-white">
+        <h6 class="modal-title fw-bold"><i class="bi bi-lightning-charge-fill text-warning me-2"></i> Trigger Real-Time ETL Pipeline</h6>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body p-4 bg-light">
+        <p class="small text-secondary mb-3">
+          Execute the end-to-end Python ETL Pipeline: extract heterogeneous records from <code>erp_source</code>, apply normalization and range clamping, compute 5-dimension Data Quality scores, and bulk load into <code>erp_warehouse</code> with index rebuilds.
+        </p>
+
+        <div class="form-check form-switch mb-3">
+          <input class="form-check-input" type="checkbox" id="regenerateRawCheck">
+          <label class="form-check-label small fw-semibold" for="regenerateRawCheck">Synthesize fresh raw ERP batch with new anomalies</label>
+        </div>
+
+        <div id="etlProgressBox" class="p-3 bg-white rounded-3 border d-none">
+          <div class="d-flex align-items-center justify-content-between mb-2">
+            <span id="etlStepLabel" class="small fw-bold text-indigo">Starting ETL Pipeline...</span>
+            <span class="spinner-border spinner-border-sm text-indigo" role="status"></span>
+          </div>
+          <div class="progress" style="height: 6px;">
+            <div id="etlProgressBar" class="progress-bar progress-bar-striped progress-bar-animated bg-indigo" style="width: 25%"></div>
+          </div>
+        </div>
+
+        <div id="etlResultBox" class="p-3 bg-success-subtle rounded-3 border border-success d-none mt-3">
+          <div class="d-flex align-items-center text-success fw-bold small mb-1">
+            <i class="bi bi-check-circle-fill me-2"></i> Pipeline Execution Complete!
+          </div>
+          <div id="etlResultDetails" class="small text-secondary">
+            • Extracted: <strong>16,932 records</strong><br>
+            • Warehouse Loaded: <strong>10,235 docs</strong><br>
+            • Data Quality Score: <strong>99.68%</strong>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer bg-light">
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" id="startEtlBtn" class="btn btn-primary btn-sm fw-semibold" onclick="executeLiveETL()" style="background: #4f46e5; border-color: #4f46e5;">
+          <i class="bi bi-play-circle me-1"></i> Start Pipeline
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openETLModal() {
+    document.getElementById("etlProgressBox").classList.add("d-none");
+    document.getElementById("etlResultBox").classList.add("d-none");
+    document.getElementById("startEtlBtn").disabled = false;
+    const modal = new bootstrap.Modal(document.getElementById("etlModal"));
+    modal.show();
+  }
+
+  async function executeLiveETL() {
+    const regen = document.getElementById("regenerateRawCheck").checked;
+    const btn = document.getElementById("startEtlBtn");
+    const pBox = document.getElementById("etlProgressBox");
+    const pBar = document.getElementById("etlProgressBar");
+    const pLabel = document.getElementById("etlStepLabel");
+    const rBox = document.getElementById("etlResultBox");
+
+    btn.disabled = true;
+    pBox.classList.remove("d-none");
+    rBox.classList.add("d-none");
+
+    pLabel.textContent = "1/4: Extracting raw erp_source collections...";
+    pBar.style.width = "25%";
+
+    setTimeout(() => {
+      pLabel.textContent = "2/4: Transforming and deduplicating Star Schema...";
+      pBar.style.width = "50%";
+    }, 400);
+
+    setTimeout(() => {
+      pLabel.textContent = "3/4: Validating 5 Data Quality Dimensions...";
+      pBar.style.width = "75%";
+    }, 800);
+
+    try {
+      const res = await fetchAPI("/etl/trigger", {
+        method: "POST",
+        body: JSON.stringify({ regenerate_raw: regen })
+      });
+
+      pLabel.textContent = "4/4: Synchronizing warehouse indexes & ML models...";
+      pBar.style.width = "100%";
+
+      setTimeout(() => {
+        pBox.classList.add("d-none");
+        rBox.classList.remove("d-none");
+        document.getElementById("etlResultDetails").innerHTML = `
+          • Extracted: <strong>${res.records_ingested.toLocaleString()} documents</strong><br>
+          • Loaded to Warehouse: <strong>${res.records_loaded.toLocaleString()} documents</strong><br>
+          • Data Quality Score: <strong>${res.quality_score}%</strong><br>
+          • ML Model Accuracy: <strong>${res.ml_accuracy}%</strong><br>
+          • Execution Time: <strong>${res.elapsed_seconds}s</strong>
+        `;
+        btn.disabled = false;
+        
+        // Refresh dashboard
+        loadDashboardData();
+      }, 500);
+
+    } catch (err) {
+      pBox.classList.add("d-none");
+      btn.disabled = false;
+      showAlert("ETL Execution Error: " + err.message, "danger");
+    }
   }
 
   document.addEventListener("DOMContentLoaded", () => {

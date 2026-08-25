@@ -79,7 +79,7 @@
           </div>
           <div>
             <a href="risk-analysis.html?department_id=DEPT_CSE" class="btn btn-light btn-sm fw-semibold text-primary px-3 py-2 shadow-sm">
-              <i class="bi bi-shield-exclamation text-danger me-1"></i> View Advisee Mentorship Rosters
+              <i class="bi bi-shield-exclamation text-danger me-1"></i> Launch Decision Support Simulator
             </a>
           </div>
         </div>
@@ -122,11 +122,11 @@
 
       </div>
 
-      <!-- Assigned Courses & Attendance Monitoring Row -->
+      <!-- Assigned Courses & Attendance Shortage Row -->
       <div class="row g-3 mb-4">
         
         <!-- Courses Column -->
-        <div class="col-lg-6">
+        <div class="col-lg-5">
           <div class="dashboard-card h-100">
             <div class="card-title-header">
               <span><i class="bi bi-book-half text-indigo me-2"></i> Assigned Teaching Courses</span>
@@ -153,11 +153,11 @@
           </div>
         </div>
 
-        <!-- Attendance Shortage Alerts Column -->
-        <div class="col-lg-6">
+        <!-- Attendance Shortage Alerts Column with 1-Click Action -->
+        <div class="col-lg-7">
           <div class="dashboard-card h-100">
             <div class="card-title-header">
-              <span><i class="bi bi-exclamation-triangle text-danger me-2"></i> Attendance Shortage Warnings (< 75%)</span>
+              <span><i class="bi bi-exclamation-triangle text-danger me-2"></i> Critical Attendance Shortages (< 75%)</span>
               <span class="badge bg-danger">Action Required</span>
             </div>
 
@@ -169,7 +169,7 @@
                     <th>Name</th>
                     <th>Course</th>
                     <th>Attendance</th>
-                    <th>Status</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody id="facShortageTableBody">
@@ -183,6 +183,127 @@
 
       </div>
 
+      <!-- Advisee Mentorship Log & Notes Row -->
+      <div class="dashboard-card mb-4">
+        <div class="card-title-header">
+          <span><i class="bi bi-journal-text text-indigo me-2"></i> Department Advisee Counseling & Action Logs</span>
+          <button class="btn btn-sm btn-primary" onclick="openAddNoteModal()" style="background: #4f46e5; border-color: #4f46e5;">
+            <i class="bi bi-plus-circle me-1"></i> Log Mentorship Note
+          </button>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table custom-table table-hover align-middle mb-0">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Advisee Student</th>
+                <th>Category</th>
+                <th>Counseling Discussion & Prescribed Interventions</th>
+                <th>Follow-up Status</th>
+              </tr>
+            </thead>
+            <tbody id="facNotesTableBody">
+              <tr>
+                <td class="font-monospace small">2026-08-25</td>
+                <td class="fw-bold">Rohan Verma (STU2023004)</td>
+                <td><span class="badge bg-danger">Attendance (<60%)</span></td>
+                <td>Met student to review chronic morning absences in CS501. Agreed on peer study buddy and weekly attendance check-in.</td>
+                <td><span class="badge bg-warning text-dark">Under Review</span></td>
+              </tr>
+              <tr>
+                <td class="font-monospace small">2026-08-24</td>
+                <td class="fw-bold">Priya Patel (STU2023012)</td>
+                <td><span class="badge bg-warning text-dark">Exam Remedial</span></td>
+                <td>Prescribed 4 extra tutoring sessions in Relational Algebra ahead of Mid-Term exams.</td>
+                <td><span class="badge bg-success">Action Completed</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Formal Warning Letter Modal -->
+<div class="modal fade" id="warningLetterModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg rounded-4">
+      <div class="modal-header bg-danger text-white">
+        <h6 class="modal-title fw-bold"><i class="bi bi-exclamation-octagon-fill me-2"></i> Official Attendance Shortage Warning Notice</h6>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body p-4">
+        
+        <div class="text-center border-bottom pb-3 mb-3">
+          <h5 class="fw-bold text-uppercase text-danger mb-1">Department of Computer Science & Engineering</h5>
+          <div class="small text-muted">Institutional Academic Compliance & Examination Cell</div>
+        </div>
+
+        <div class="p-3 bg-light rounded-3 border mb-3 small">
+          <div class="mb-1"><strong>To:</strong> <span id="warnStuName">Student Name</span> (<span id="warnStuId">STU...</span>)</div>
+          <div class="mb-1"><strong>Department:</strong> Computer Science & Engineering • Semester 5</div>
+          <div class="mb-1"><strong>Subject:</strong> CS501 - Database Management Systems</div>
+          <div><strong>Current Attendance:</strong> <span id="warnAttPct" class="text-danger fw-bold">58.0%</span> (Mandatory Threshold: 75.0%)</div>
+        </div>
+
+        <p class="small text-secondary mb-3">
+          Dear Student,<br><br>
+          This is an official institutional notification that your attendance in the aforementioned subject has fallen critically below the mandatory <strong>75% regulatory requirement</strong>. As per university academic regulations, students with attendance shortage are liable to be <strong>debarred from appearing in the End-Semester Examination</strong>.
+          <br><br>
+          You are hereby advised to meet your Faculty Advisor (<strong>Prof. Rajeshwar Rao</strong>) immediately and ensure consecutive attendance in all scheduled lectures.
+        </p>
+
+        <div class="d-flex justify-content-between pt-3 border-top small text-muted">
+          <div>Dated: <strong>2026-08-25</strong></div>
+          <div class="fw-bold text-dark">Head of Department (CSE)</div>
+        </div>
+
+      </div>
+      <div class="modal-footer bg-light">
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger btn-sm fw-semibold" onclick="sendWarningNotice()"><i class="bi bi-send-fill me-1"></i> Send Notice to Student Portal</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Counseling Note Modal -->
+<div class="modal fade" id="addNoteModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg rounded-4">
+      <div class="modal-header bg-dark text-white">
+        <h6 class="modal-title fw-bold"><i class="bi bi-journal-plus text-indigo me-2"></i> Log Advisee Mentorship Discussion</h6>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body p-4">
+        <div class="mb-3">
+          <label class="form-label small fw-bold">Advisee Student:</label>
+          <select id="noteStudentSelect" class="form-select form-select-sm">
+            <option value="Aarav Sharma (STU2023001)">Aarav Sharma (STU2023001)</option>
+            <option value="Rohan Verma (STU2023004)">Rohan Verma (STU2023004)</option>
+            <option value="Priya Patel (STU2023012)">Priya Patel (STU2023012)</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label small fw-bold">Category:</label>
+          <select id="noteCategory" class="form-select form-select-sm">
+            <option value="Attendance Warning">Attendance Warning</option>
+            <option value="Exam Remedial Coaching">Exam Remedial Coaching</option>
+            <option value="Fee Balance Advisory">Fee Balance Advisory</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label small fw-bold">Discussion Summary & Action Taken:</label>
+          <textarea id="noteText" class="form-control form-control-sm" rows="3" placeholder="Enter counseling observations and agreed next steps..."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer bg-light">
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary btn-sm fw-semibold" onclick="saveCounselingNote()" style="background: #4f46e5; border-color: #4f46e5;">Save Log</button>
+      </div>
     </div>
   </div>
 </div>
@@ -193,6 +314,8 @@
 <script src="js/api.js"></script>
 <script src="js/auth.js"></script>
 <script>
+  let selectedStudentForNotice = null;
+
   async function loadFacultyPortal() {
     try {
       // Fetch CSE department dashboard data
@@ -222,7 +345,11 @@
           <td class="fw-semibold">${s.full_name}</td>
           <td>CS501 (DBMS)</td>
           <td><span class="badge bg-danger">${s.attendance_percentage}%</span></td>
-          <td><span class="badge bg-warning text-dark">Warning Issued</span></td>
+          <td>
+            <button class="btn btn-sm btn-outline-danger py-0 px-2 small" onclick="openWarningNoticeModal('${s.student_id}', '${s.full_name}', ${s.attendance_percentage})">
+              <i class="bi bi-file-earmark-text me-1"></i> Issue Notice
+            </button>
+          </td>
         `;
         tbody.appendChild(tr);
       });
@@ -230,6 +357,49 @@
     } catch (err) {
       showAlert("Could not load faculty department dashboard.", "danger");
     }
+  }
+
+  function openWarningNoticeModal(id, name, pct) {
+    selectedStudentForNotice = { id, name, pct };
+    document.getElementById("warnStuName").textContent = name;
+    document.getElementById("warnStuId").textContent = id;
+    document.getElementById("warnAttPct").textContent = `${pct}%`;
+    const modal = new bootstrap.Modal(document.getElementById("warningLetterModal"));
+    modal.show();
+  }
+
+  function sendWarningNotice() {
+    bootstrap.Modal.getInstance(document.getElementById("warningLetterModal")).hide();
+    showAlert(`Official Warning Notice issued to ${selectedStudentForNotice.name} (${selectedStudentForNotice.id}) and synced to Student Portal.`, "success");
+  }
+
+  function openAddNoteModal() {
+    const modal = new bootstrap.Modal(document.getElementById("addNoteModal"));
+    modal.show();
+  }
+
+  function saveCounselingNote() {
+    const stu = document.getElementById("noteStudentSelect").value;
+    const cat = document.getElementById("noteCategory").value;
+    const text = document.getElementById("noteText").value.trim();
+    if (!text) {
+      alert("Please enter discussion details.");
+      return;
+    }
+
+    const tbody = document.getElementById("facNotesTableBody");
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td class="font-monospace small">Today</td>
+      <td class="fw-bold">${stu}</td>
+      <td><span class="badge bg-indigo text-white">${cat}</span></td>
+      <td>${text}</td>
+      <td><span class="badge bg-success">Action Recorded</span></td>
+    `;
+    tbody.prepend(tr);
+
+    bootstrap.Modal.getInstance(document.getElementById("addNoteModal")).hide();
+    showAlert("Counseling discussion note logged successfully.", "success");
   }
 
   document.addEventListener("DOMContentLoaded", () => {

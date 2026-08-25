@@ -8,6 +8,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased] - In Development
 
+## [1.2.0] - Elite Demonstration, Live ETL & Interactive Analytics (2026-08-25)
+
+### Added
+- **Live Interactive ETL Pipeline Trigger** (`POST /api/etl/trigger`, `backend/routes/etl.py`): Real-time web modal allowing evaluators to trigger extraction, transformation, 5-dimension quality validation, and warehouse loading on demand with an animated progress stepper.
+- **Visual Data Provenance & PyMongo Aggregation Inspector** (`frontend/js/lineage.js`, `etl/load.py`): End-to-end data flow breadcrumb diagram plus live server-side PyMongo MongoDB Aggregation Pipeline query code inspector with 1-click clipboard copying.
+- **Dynamic Risk Speedometer Gauge** (`frontend/risk-analysis.html`): Real-time animated SVG gauge that rotates continuously from High Risk (Red) to Low Risk (Green) as What-If sliders are adjusted.
+- **Student Target CGPA Goal Planner** (`frontend/student-portal.html`): Interactive honors calculator computing required SGPA and exam marks based on target CGPA.
+- **Official Printable Transcripts & Fee Vouchers**: Clean print layouts for Grade Transcripts (`window.print()`) and Fee Payment Receipts.
+- **Faculty 1-Click Attendance Warning Notices**: Formal institutional warning letter modal and Advisee Mentorship Discussion Log tracker.
+- **Data Quality Certification & CSV Export**: JSON audit certificate exporter and advisee CSV download.
+- **Automated Test Suite**: Added `test_etl_trigger_api` in `tests/test_api.py` (total 16 tests).
+
 ## [1.1.0] - Role-Based Access Control (RBAC) & Persona Portals (2026-08-25)
 
 ### Added

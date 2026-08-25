@@ -29,6 +29,7 @@ from backend.routes.faculty import faculty_bp
 from backend.routes.prediction import prediction_bp
 from backend.routes.quality import quality_bp
 from backend.routes.auth import auth_bp
+from backend.routes.etl import etl_bp
 
 
 def create_app(config_class=Config) -> Flask:
@@ -58,6 +59,7 @@ def create_app(config_class=Config) -> Flask:
     app.register_blueprint(prediction_bp, url_prefix="/api")
     app.register_blueprint(quality_bp, url_prefix="/api")
     app.register_blueprint(auth_bp, url_prefix="/api")
+    app.register_blueprint(etl_bp, url_prefix="/api")
 
     # Global Error Handlers
     @app.errorhandler(400)

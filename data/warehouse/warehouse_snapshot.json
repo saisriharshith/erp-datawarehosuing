@@ -804,7 +804,7 @@
         "admission_quota": "Merit",
         "merit_rank": 44420,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050473"
+        "created_at": "2026-08-25T21:15:55.113529"
       },
       {
         "_id": "STU20230002",
@@ -823,7 +823,7 @@
         "admission_quota": "Merit",
         "merit_rank": 15510,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050495"
+        "created_at": "2026-08-25T21:15:55.113565"
       },
       {
         "_id": "STU20240003",
@@ -842,7 +842,7 @@
         "admission_quota": "Management",
         "merit_rank": 78242,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050504"
+        "created_at": "2026-08-25T21:15:55.113574"
       },
       {
         "_id": "STU20210004",
@@ -861,7 +861,7 @@
         "admission_quota": "Management",
         "merit_rank": 74676,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050510"
+        "created_at": "2026-08-25T21:15:55.113580"
       },
       {
         "_id": "STU20220005",
@@ -880,7 +880,7 @@
         "admission_quota": "Sports",
         "merit_rank": 89935,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050517"
+        "created_at": "2026-08-25T21:15:55.113588"
       },
       {
         "_id": "STU20230006",
@@ -899,7 +899,7 @@
         "admission_quota": "Merit",
         "merit_rank": 32521,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050522"
+        "created_at": "2026-08-25T21:15:55.113599"
       },
       {
         "_id": "STU20240007",
@@ -918,7 +918,7 @@
         "admission_quota": "Sports",
         "merit_rank": 50821,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050527"
+        "created_at": "2026-08-25T21:15:55.113604"
       },
       {
         "_id": "STU20210008",
@@ -937,7 +937,7 @@
         "admission_quota": "Merit",
         "merit_rank": 1878,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050532"
+        "created_at": "2026-08-25T21:15:55.113609"
       },
       {
         "_id": "STU20220009",
@@ -956,7 +956,7 @@
         "admission_quota": "Management",
         "merit_rank": 55925,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050537"
+        "created_at": "2026-08-25T21:15:55.113614"
       },
       {
         "_id": "STU20230010",
@@ -975,7 +975,7 @@
         "admission_quota": "Merit",
         "merit_rank": 12965,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050609"
+        "created_at": "2026-08-25T21:15:55.113692"
       },
       {
         "_id": "STU20240011",
@@ -994,7 +994,7 @@
         "admission_quota": "Merit",
         "merit_rank": 11399,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050617"
+        "created_at": "2026-08-25T21:15:55.113700"
       },
       {
         "_id": "STU20210012",
@@ -1013,7 +1013,7 @@
         "admission_quota": "Merit",
         "merit_rank": 12945,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050623"
+        "created_at": "2026-08-25T21:15:55.113706"
       },
       {
         "_id": "STU20220013",
@@ -1032,7 +1032,7 @@
         "admission_quota": "Merit",
         "merit_rank": 4990,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050628"
+        "created_at": "2026-08-25T21:15:55.113710"
       },
       {
         "_id": "STU20230014",
@@ -1051,7 +1051,7 @@
         "admission_quota": "Merit",
         "merit_rank": 13886,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050633"
+        "created_at": "2026-08-25T21:15:55.113715"
       },
       {
         "_id": "STU20240015",
@@ -1070,7 +1070,7 @@
         "admission_quota": "Merit",
         "merit_rank": 33653,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050637"
+        "created_at": "2026-08-25T21:15:55.113720"
       },
       {
         "_id": "STU20210016",
@@ -1089,7 +1089,7 @@
         "admission_quota": "Merit",
         "merit_rank": 43975,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050643"
+        "created_at": "2026-08-25T21:15:55.113726"
       },
       {
         "_id": "STU20220017",
@@ -1108,7 +1108,7 @@
         "admission_quota": "Merit",
         "merit_rank": 6548,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050648"
+        "created_at": "2026-08-25T21:15:55.113731"
       },
       {
         "_id": "STU20230018",
@@ -1127,7 +1127,7 @@
         "admission_quota": "Sports",
         "merit_rank": 42361,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050653"
+        "created_at": "2026-08-25T21:15:55.113736"
       },
       {
         "_id": "STU20240019",
@@ -1146,7 +1146,7 @@
         "admission_quota": "NRI",
         "merit_rank": 50128,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050660"
+        "created_at": "2026-08-25T21:15:55.113743"
       },
       {
         "_id": "STU20210020",
@@ -1165,7 +1165,7 @@
         "admission_quota": "Merit",
         "merit_rank": 30666,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050665"
+        "created_at": "2026-08-25T21:15:55.113748"
       },
       {
         "_id": "STU20220021",
@@ -1184,7 +1184,7 @@
         "admission_quota": "Merit",
         "merit_rank": 2308,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050670"
+        "created_at": "2026-08-25T21:15:55.113756"
       },
       {
         "_id": "STU20230022",
@@ -1203,7 +1203,7 @@
         "admission_quota": "Sports",
         "merit_rank": 92855,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050675"
+        "created_at": "2026-08-25T21:15:55.113760"
       },
       {
         "_id": "STU20240023",
@@ -1222,7 +1222,7 @@
         "admission_quota": "Management",
         "merit_rank": 85692,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050679"
+        "created_at": "2026-08-25T21:15:55.113765"
       },
       {
         "_id": "STU20210024",
@@ -1241,7 +1241,7 @@
         "admission_quota": "Sports",
         "merit_rank": 82906,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050684"
+        "created_at": "2026-08-25T21:15:55.113770"
       },
       {
         "_id": "STU20220025",
@@ -1260,7 +1260,7 @@
         "admission_quota": "Merit",
         "merit_rank": 3528,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050688"
+        "created_at": "2026-08-25T21:15:55.113774"
       },
       {
         "_id": "STU20230026",
@@ -1279,7 +1279,7 @@
         "admission_quota": "Merit",
         "merit_rank": 12026,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050693"
+        "created_at": "2026-08-25T21:15:55.113779"
       },
       {
         "_id": "STU20240027",
@@ -1298,7 +1298,7 @@
         "admission_quota": "Sports",
         "merit_rank": 69223,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050698"
+        "created_at": "2026-08-25T21:15:55.113785"
       },
       {
         "_id": "STU20210028",
@@ -1317,7 +1317,7 @@
         "admission_quota": "Merit",
         "merit_rank": 35899,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050702"
+        "created_at": "2026-08-25T21:15:55.113790"
       },
       {
         "_id": "STU20220029",
@@ -1336,7 +1336,7 @@
         "admission_quota": "Sports",
         "merit_rank": 64928,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050707"
+        "created_at": "2026-08-25T21:15:55.113795"
       },
       {
         "_id": "STU20230030",
@@ -1355,7 +1355,7 @@
         "admission_quota": "NRI",
         "merit_rank": 84508,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050711"
+        "created_at": "2026-08-25T21:15:55.113799"
       },
       {
         "_id": "STU20240031",
@@ -1374,7 +1374,7 @@
         "admission_quota": "Merit",
         "merit_rank": 25344,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050716"
+        "created_at": "2026-08-25T21:15:55.113804"
       },
       {
         "_id": "STU20210032",
@@ -1393,7 +1393,7 @@
         "admission_quota": "NRI",
         "merit_rank": 44496,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050721"
+        "created_at": "2026-08-25T21:15:55.113808"
       },
       {
         "_id": "STU20220033",
@@ -1412,7 +1412,7 @@
         "admission_quota": "Merit",
         "merit_rank": 40207,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050725"
+        "created_at": "2026-08-25T21:15:55.113813"
       },
       {
         "_id": "STU20230034",
@@ -1431,7 +1431,7 @@
         "admission_quota": "Merit",
         "merit_rank": 20264,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050730"
+        "created_at": "2026-08-25T21:15:55.113818"
       },
       {
         "_id": "STU20240035",
@@ -1450,7 +1450,7 @@
         "admission_quota": "NRI",
         "merit_rank": 94310,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050735"
+        "created_at": "2026-08-25T21:15:55.113823"
       },
       {
         "_id": "STU20210036",
@@ -1469,7 +1469,7 @@
         "admission_quota": "Merit",
         "merit_rank": 30043,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050740"
+        "created_at": "2026-08-25T21:15:55.113828"
       },
       {
         "_id": "STU20220037",
@@ -1488,7 +1488,7 @@
         "admission_quota": "Sports",
         "merit_rank": 40665,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050745"
+        "created_at": "2026-08-25T21:15:55.113833"
       },
       {
         "_id": "STU20230038",
@@ -1507,7 +1507,7 @@
         "admission_quota": "Merit",
         "merit_rank": 31515,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050749"
+        "created_at": "2026-08-25T21:15:55.113838"
       },
       {
         "_id": "STU20240039",
@@ -1526,7 +1526,7 @@
         "admission_quota": "Merit",
         "merit_rank": 14680,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050754"
+        "created_at": "2026-08-25T21:15:55.113842"
       },
       {
         "_id": "STU20210040",
@@ -1545,7 +1545,7 @@
         "admission_quota": "Merit",
         "merit_rank": 18477,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050759"
+        "created_at": "2026-08-25T21:15:55.113848"
       },
       {
         "_id": "STU20220041",
@@ -1564,7 +1564,7 @@
         "admission_quota": "Management",
         "merit_rank": 47476,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050764"
+        "created_at": "2026-08-25T21:15:55.113852"
       },
       {
         "_id": "STU20230042",
@@ -1583,7 +1583,7 @@
         "admission_quota": "Sports",
         "merit_rank": 54790,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050768"
+        "created_at": "2026-08-25T21:15:55.113857"
       },
       {
         "_id": "STU20240043",
@@ -1602,7 +1602,7 @@
         "admission_quota": "Merit",
         "merit_rank": 43781,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050773"
+        "created_at": "2026-08-25T21:15:55.113861"
       },
       {
         "_id": "STU20210044",
@@ -1621,7 +1621,7 @@
         "admission_quota": "NRI",
         "merit_rank": 55297,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050778"
+        "created_at": "2026-08-25T21:15:55.113866"
       },
       {
         "_id": "STU20220045",
@@ -1640,7 +1640,7 @@
         "admission_quota": "Merit",
         "merit_rank": 39496,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050782"
+        "created_at": "2026-08-25T21:15:55.113870"
       },
       {
         "_id": "STU20230046",
@@ -1659,7 +1659,7 @@
         "admission_quota": "Merit",
         "merit_rank": 2195,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050787"
+        "created_at": "2026-08-25T21:15:55.113875"
       },
       {
         "_id": "STU20240047",
@@ -1678,7 +1678,7 @@
         "admission_quota": "Management",
         "merit_rank": 81601,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050791"
+        "created_at": "2026-08-25T21:15:55.113879"
       },
       {
         "_id": "STU20210048",
@@ -1697,7 +1697,7 @@
         "admission_quota": "Merit",
         "merit_rank": 21112,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050796"
+        "created_at": "2026-08-25T21:15:55.113884"
       },
       {
         "_id": "STU20220049",
@@ -1716,7 +1716,7 @@
         "admission_quota": "Merit",
         "merit_rank": 13840,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050801"
+        "created_at": "2026-08-25T21:15:55.113889"
       },
       {
         "_id": "STU20230050",
@@ -1735,7 +1735,7 @@
         "admission_quota": "Management",
         "merit_rank": 47698,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050806"
+        "created_at": "2026-08-25T21:15:55.113894"
       },
       {
         "_id": "STU20240051",
@@ -1754,7 +1754,7 @@
         "admission_quota": "Merit",
         "merit_rank": 18604,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050811"
+        "created_at": "2026-08-25T21:15:55.113898"
       },
       {
         "_id": "STU20210052",
@@ -1773,7 +1773,7 @@
         "admission_quota": "Sports",
         "merit_rank": 64720,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050816"
+        "created_at": "2026-08-25T21:15:55.113903"
       },
       {
         "_id": "STU20220053",
@@ -1792,7 +1792,7 @@
         "admission_quota": "Management",
         "merit_rank": 42426,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050821"
+        "created_at": "2026-08-25T21:15:55.113907"
       },
       {
         "_id": "STU20230054",
@@ -1811,7 +1811,7 @@
         "admission_quota": "Management",
         "merit_rank": 91218,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050826"
+        "created_at": "2026-08-25T21:15:55.113912"
       },
       {
         "_id": "STU20240055",
@@ -1830,7 +1830,7 @@
         "admission_quota": "Merit",
         "merit_rank": 6423,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050831"
+        "created_at": "2026-08-25T21:15:55.113917"
       },
       {
         "_id": "STU20210056",
@@ -1849,7 +1849,7 @@
         "admission_quota": "Sports",
         "merit_rank": 84682,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050835"
+        "created_at": "2026-08-25T21:15:55.113921"
       },
       {
         "_id": "STU20220057",
@@ -1868,7 +1868,7 @@
         "admission_quota": "NRI",
         "merit_rank": 75821,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050843"
+        "created_at": "2026-08-25T21:15:55.113925"
       },
       {
         "_id": "STU20230058",
@@ -1887,7 +1887,7 @@
         "admission_quota": "Sports",
         "merit_rank": 63524,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050849"
+        "created_at": "2026-08-25T21:15:55.113930"
       },
       {
         "_id": "STU20240059",
@@ -1906,7 +1906,7 @@
         "admission_quota": "Merit",
         "merit_rank": 42221,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050854"
+        "created_at": "2026-08-25T21:15:55.113935"
       },
       {
         "_id": "STU20210060",
@@ -1925,7 +1925,7 @@
         "admission_quota": "NRI",
         "merit_rank": 67230,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050859"
+        "created_at": "2026-08-25T21:15:55.113940"
       },
       {
         "_id": "STU20220061",
@@ -1944,7 +1944,7 @@
         "admission_quota": "Merit",
         "merit_rank": 44823,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050864"
+        "created_at": "2026-08-25T21:15:55.113944"
       },
       {
         "_id": "STU20230062",
@@ -1963,7 +1963,7 @@
         "admission_quota": "NRI",
         "merit_rank": 64344,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050868"
+        "created_at": "2026-08-25T21:15:55.113949"
       },
       {
         "_id": "STU20240063",
@@ -1982,7 +1982,7 @@
         "admission_quota": "Merit",
         "merit_rank": 3471,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050873"
+        "created_at": "2026-08-25T21:15:55.113953"
       },
       {
         "_id": "STU20210064",
@@ -2001,7 +2001,7 @@
         "admission_quota": "Merit",
         "merit_rank": 2644,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050878"
+        "created_at": "2026-08-25T21:15:55.113958"
       },
       {
         "_id": "STU20220065",
@@ -2020,7 +2020,7 @@
         "admission_quota": "NRI",
         "merit_rank": 53900,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050883"
+        "created_at": "2026-08-25T21:15:55.113963"
       },
       {
         "_id": "STU20230066",
@@ -2039,7 +2039,7 @@
         "admission_quota": "Merit",
         "merit_rank": 39558,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050887"
+        "created_at": "2026-08-25T21:15:55.113970"
       },
       {
         "_id": "STU20240067",
@@ -2058,7 +2058,7 @@
         "admission_quota": "Merit",
         "merit_rank": 8807,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050892"
+        "created_at": "2026-08-25T21:15:55.113977"
       },
       {
         "_id": "STU20210068",
@@ -2077,7 +2077,7 @@
         "admission_quota": "Merit",
         "merit_rank": 30518,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050896"
+        "created_at": "2026-08-25T21:15:55.113982"
       },
       {
         "_id": "STU20220069",
@@ -2096,7 +2096,7 @@
         "admission_quota": "Sports",
         "merit_rank": 86671,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050901"
+        "created_at": "2026-08-25T21:15:55.113986"
       },
       {
         "_id": "STU20230070",
@@ -2115,7 +2115,7 @@
         "admission_quota": "Management",
         "merit_rank": 87815,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050905"
+        "created_at": "2026-08-25T21:15:55.113991"
       },
       {
         "_id": "STU20240071",
@@ -2134,7 +2134,7 @@
         "admission_quota": "Merit",
         "merit_rank": 38934,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050910"
+        "created_at": "2026-08-25T21:15:55.113995"
       },
       {
         "_id": "STU20210072",
@@ -2153,7 +2153,7 @@
         "admission_quota": "Merit",
         "merit_rank": 7592,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050914"
+        "created_at": "2026-08-25T21:15:55.114000"
       },
       {
         "_id": "STU20220073",
@@ -2172,7 +2172,7 @@
         "admission_quota": "Merit",
         "merit_rank": 20749,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050919"
+        "created_at": "2026-08-25T21:15:55.114005"
       },
       {
         "_id": "STU20230074",
@@ -2191,7 +2191,7 @@
         "admission_quota": "Sports",
         "merit_rank": 79074,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050924"
+        "created_at": "2026-08-25T21:15:55.114010"
       },
       {
         "_id": "STU20240075",
@@ -2210,7 +2210,7 @@
         "admission_quota": "NRI",
         "merit_rank": 84465,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050931"
+        "created_at": "2026-08-25T21:15:55.114015"
       },
       {
         "_id": "STU20210076",
@@ -2229,7 +2229,7 @@
         "admission_quota": "Merit",
         "merit_rank": 33096,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050937"
+        "created_at": "2026-08-25T21:15:55.114019"
       },
       {
         "_id": "STU20220077",
@@ -2248,7 +2248,7 @@
         "admission_quota": "Sports",
         "merit_rank": 66504,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050943"
+        "created_at": "2026-08-25T21:15:55.114025"
       },
       {
         "_id": "STU20230078",
@@ -2267,7 +2267,7 @@
         "admission_quota": "Merit",
         "merit_rank": 26436,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050948"
+        "created_at": "2026-08-25T21:15:55.114034"
       },
       {
         "_id": "STU20240079",
@@ -2286,7 +2286,7 @@
         "admission_quota": "Merit",
         "merit_rank": 7237,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050953"
+        "created_at": "2026-08-25T21:15:55.114039"
       },
       {
         "_id": "STU20210080",
@@ -2305,7 +2305,7 @@
         "admission_quota": "Management",
         "merit_rank": 81378,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050958"
+        "created_at": "2026-08-25T21:15:55.114043"
       },
       {
         "_id": "STU20220081",
@@ -2324,7 +2324,7 @@
         "admission_quota": "Sports",
         "merit_rank": 73231,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050962"
+        "created_at": "2026-08-25T21:15:55.114048"
       },
       {
         "_id": "STU20230082",
@@ -2343,7 +2343,7 @@
         "admission_quota": "Sports",
         "merit_rank": 82344,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050966"
+        "created_at": "2026-08-25T21:15:55.114052"
       },
       {
         "_id": "STU20240083",
@@ -2362,7 +2362,7 @@
         "admission_quota": "Merit",
         "merit_rank": 41845,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050971"
+        "created_at": "2026-08-25T21:15:55.114057"
       },
       {
         "_id": "STU20210084",
@@ -2381,7 +2381,7 @@
         "admission_quota": "Merit",
         "merit_rank": 39496,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050976"
+        "created_at": "2026-08-25T21:15:55.114062"
       },
       {
         "_id": "STU20220085",
@@ -2400,7 +2400,7 @@
         "admission_quota": "Management",
         "merit_rank": 52583,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050981"
+        "created_at": "2026-08-25T21:15:55.114067"
       },
       {
         "_id": "STU20230086",
@@ -2419,7 +2419,7 @@
         "admission_quota": "Merit",
         "merit_rank": 29183,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050985"
+        "created_at": "2026-08-25T21:15:55.114071"
       },
       {
         "_id": "STU20240087",
@@ -2438,7 +2438,7 @@
         "admission_quota": "Management",
         "merit_rank": 70256,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050990"
+        "created_at": "2026-08-25T21:15:55.114076"
       },
       {
         "_id": "STU20210088",
@@ -2457,7 +2457,7 @@
         "admission_quota": "Merit",
         "merit_rank": 19181,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050995"
+        "created_at": "2026-08-25T21:15:55.114080"
       },
       {
         "_id": "STU20220089",
@@ -2476,7 +2476,7 @@
         "admission_quota": "Merit",
         "merit_rank": 15215,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.050999"
+        "created_at": "2026-08-25T21:15:55.114085"
       },
       {
         "_id": "STU20230090",
@@ -2495,7 +2495,7 @@
         "admission_quota": "Merit",
         "merit_rank": 14633,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051004"
+        "created_at": "2026-08-25T21:15:55.114089"
       },
       {
         "_id": "STU20240091",
@@ -2514,7 +2514,7 @@
         "admission_quota": "Merit",
         "merit_rank": 33256,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051009"
+        "created_at": "2026-08-25T21:15:55.114094"
       },
       {
         "_id": "STU20210092",
@@ -2533,7 +2533,7 @@
         "admission_quota": "Sports",
         "merit_rank": 75656,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051013"
+        "created_at": "2026-08-25T21:15:55.114099"
       },
       {
         "_id": "STU20220093",
@@ -2552,7 +2552,7 @@
         "admission_quota": "Sports",
         "merit_rank": 88181,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051018"
+        "created_at": "2026-08-25T21:15:55.114104"
       },
       {
         "_id": "STU20230094",
@@ -2571,7 +2571,7 @@
         "admission_quota": "Merit",
         "merit_rank": 21182,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051023"
+        "created_at": "2026-08-25T21:15:55.114109"
       },
       {
         "_id": "STU20240095",
@@ -2590,7 +2590,7 @@
         "admission_quota": "Management",
         "merit_rank": 88713,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051028"
+        "created_at": "2026-08-25T21:15:55.114114"
       },
       {
         "_id": "STU20210096",
@@ -2609,7 +2609,7 @@
         "admission_quota": "Merit",
         "merit_rank": 5747,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051032"
+        "created_at": "2026-08-25T21:15:55.114118"
       },
       {
         "_id": "STU20220097",
@@ -2628,7 +2628,7 @@
         "admission_quota": "Merit",
         "merit_rank": 44486,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051037"
+        "created_at": "2026-08-25T21:15:55.114123"
       },
       {
         "_id": "STU20230098",
@@ -2647,7 +2647,7 @@
         "admission_quota": "Sports",
         "merit_rank": 50055,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051041"
+        "created_at": "2026-08-25T21:15:55.114127"
       },
       {
         "_id": "STU20240099",
@@ -2666,7 +2666,7 @@
         "admission_quota": "Management",
         "merit_rank": 73930,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051046"
+        "created_at": "2026-08-25T21:15:55.114132"
       },
       {
         "_id": "STU20210100",
@@ -2685,7 +2685,7 @@
         "admission_quota": "NRI",
         "merit_rank": 60944,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051051"
+        "created_at": "2026-08-25T21:15:55.114137"
       },
       {
         "_id": "STU20220101",
@@ -2704,7 +2704,7 @@
         "admission_quota": "Merit",
         "merit_rank": 36808,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051055"
+        "created_at": "2026-08-25T21:15:55.114141"
       },
       {
         "_id": "STU20230102",
@@ -2723,7 +2723,7 @@
         "admission_quota": "Management",
         "merit_rank": 70528,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051060"
+        "created_at": "2026-08-25T21:15:55.114146"
       },
       {
         "_id": "STU20240103",
@@ -2742,7 +2742,7 @@
         "admission_quota": "NRI",
         "merit_rank": 54776,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051064"
+        "created_at": "2026-08-25T21:15:55.114150"
       },
       {
         "_id": "STU20210104",
@@ -2761,7 +2761,7 @@
         "admission_quota": "Merit",
         "merit_rank": 11719,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051069"
+        "created_at": "2026-08-25T21:15:55.114155"
       },
       {
         "_id": "STU20220105",
@@ -2780,7 +2780,7 @@
         "admission_quota": "Sports",
         "merit_rank": 81876,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051073"
+        "created_at": "2026-08-25T21:15:55.114159"
       },
       {
         "_id": "STU20230106",
@@ -2799,7 +2799,7 @@
         "admission_quota": "Management",
         "merit_rank": 53370,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051078"
+        "created_at": "2026-08-25T21:15:55.114164"
       },
       {
         "_id": "STU20240107",
@@ -2818,7 +2818,7 @@
         "admission_quota": "Merit",
         "merit_rank": 3816,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051083"
+        "created_at": "2026-08-25T21:15:55.114173"
       },
       {
         "_id": "STU20210108",
@@ -2837,7 +2837,7 @@
         "admission_quota": "Merit",
         "merit_rank": 33095,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051087"
+        "created_at": "2026-08-25T21:15:55.114178"
       },
       {
         "_id": "STU20220109",
@@ -2856,7 +2856,7 @@
         "admission_quota": "Sports",
         "merit_rank": 40535,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051092"
+        "created_at": "2026-08-25T21:15:55.114183"
       },
       {
         "_id": "STU20230110",
@@ -2875,7 +2875,7 @@
         "admission_quota": "Merit",
         "merit_rank": 41344,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051097"
+        "created_at": "2026-08-25T21:15:55.114188"
       },
       {
         "_id": "STU20240111",
@@ -2894,7 +2894,7 @@
         "admission_quota": "NRI",
         "merit_rank": 61826,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051102"
+        "created_at": "2026-08-25T21:15:55.114193"
       },
       {
         "_id": "STU20210112",
@@ -2913,7 +2913,7 @@
         "admission_quota": "Sports",
         "merit_rank": 74887,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051107"
+        "created_at": "2026-08-25T21:15:55.114198"
       },
       {
         "_id": "STU20220113",
@@ -2932,7 +2932,7 @@
         "admission_quota": "Management",
         "merit_rank": 57401,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051111"
+        "created_at": "2026-08-25T21:15:55.114202"
       },
       {
         "_id": "STU20230114",
@@ -2951,7 +2951,7 @@
         "admission_quota": "Merit",
         "merit_rank": 1741,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051119"
+        "created_at": "2026-08-25T21:15:55.114208"
       },
       {
         "_id": "STU20240115",
@@ -2970,7 +2970,7 @@
         "admission_quota": "Management",
         "merit_rank": 60562,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051126"
+        "created_at": "2026-08-25T21:15:55.114212"
       },
       {
         "_id": "STU20210116",
@@ -2989,7 +2989,7 @@
         "admission_quota": "NRI",
         "merit_rank": 53584,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051131"
+        "created_at": "2026-08-25T21:15:55.114217"
       },
       {
         "_id": "STU20220117",
@@ -3008,7 +3008,7 @@
         "admission_quota": "Merit",
         "merit_rank": 19350,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051138"
+        "created_at": "2026-08-25T21:15:55.114221"
       },
       {
         "_id": "STU20230118",
@@ -3027,7 +3027,7 @@
         "admission_quota": "Merit",
         "merit_rank": 16389,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051143"
+        "created_at": "2026-08-25T21:15:55.114226"
       },
       {
         "_id": "STU20240119",
@@ -3046,7 +3046,7 @@
         "admission_quota": "NRI",
         "merit_rank": 71175,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051148"
+        "created_at": "2026-08-25T21:15:55.114231"
       },
       {
         "_id": "STU20210120",
@@ -3065,7 +3065,7 @@
         "admission_quota": "Management",
         "merit_rank": 91639,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051153"
+        "created_at": "2026-08-25T21:15:55.114236"
       },
       {
         "_id": "STU20220121",
@@ -3084,7 +3084,7 @@
         "admission_quota": "Management",
         "merit_rank": 57880,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051158"
+        "created_at": "2026-08-25T21:15:55.114241"
       },
       {
         "_id": "STU20230122",
@@ -3103,7 +3103,7 @@
         "admission_quota": "Merit",
         "merit_rank": 26769,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051163"
+        "created_at": "2026-08-25T21:15:55.114246"
       },
       {
         "_id": "STU20240123",
@@ -3122,7 +3122,7 @@
         "admission_quota": "Merit",
         "merit_rank": 43339,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051167"
+        "created_at": "2026-08-25T21:15:55.114251"
       },
       {
         "_id": "STU20210124",
@@ -3141,7 +3141,7 @@
         "admission_quota": "Management",
         "merit_rank": 89003,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051172"
+        "created_at": "2026-08-25T21:15:55.114256"
       },
       {
         "_id": "STU20220125",
@@ -3160,7 +3160,7 @@
         "admission_quota": "Merit",
         "merit_rank": 36390,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051177"
+        "created_at": "2026-08-25T21:15:55.114260"
       },
       {
         "_id": "STU20230126",
@@ -3179,7 +3179,7 @@
         "admission_quota": "Sports",
         "merit_rank": 67225,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051181"
+        "created_at": "2026-08-25T21:15:55.114267"
       },
       {
         "_id": "STU20240127",
@@ -3198,7 +3198,7 @@
         "admission_quota": "Merit",
         "merit_rank": 5023,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051185"
+        "created_at": "2026-08-25T21:15:55.114271"
       },
       {
         "_id": "STU20210128",
@@ -3217,7 +3217,7 @@
         "admission_quota": "Merit",
         "merit_rank": 43330,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051190"
+        "created_at": "2026-08-25T21:15:55.114276"
       },
       {
         "_id": "STU20220129",
@@ -3236,7 +3236,7 @@
         "admission_quota": "Merit",
         "merit_rank": 7895,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051194"
+        "created_at": "2026-08-25T21:15:55.114280"
       },
       {
         "_id": "STU20230130",
@@ -3255,7 +3255,7 @@
         "admission_quota": "NRI",
         "merit_rank": 42899,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051199"
+        "created_at": "2026-08-25T21:15:55.114285"
       },
       {
         "_id": "STU20240131",
@@ -3274,7 +3274,7 @@
         "admission_quota": "Merit",
         "merit_rank": 20276,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051204"
+        "created_at": "2026-08-25T21:15:55.114290"
       },
       {
         "_id": "STU20210132",
@@ -3293,7 +3293,7 @@
         "admission_quota": "NRI",
         "merit_rank": 67284,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051208"
+        "created_at": "2026-08-25T21:15:55.114294"
       },
       {
         "_id": "STU20220133",
@@ -3312,7 +3312,7 @@
         "admission_quota": "Merit",
         "merit_rank": 25955,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051213"
+        "created_at": "2026-08-25T21:15:55.114298"
       },
       {
         "_id": "STU20230134",
@@ -3331,7 +3331,7 @@
         "admission_quota": "Sports",
         "merit_rank": 87468,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051217"
+        "created_at": "2026-08-25T21:15:55.114303"
       },
       {
         "_id": "STU20240135",
@@ -3350,7 +3350,7 @@
         "admission_quota": "Merit",
         "merit_rank": 36681,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051222"
+        "created_at": "2026-08-25T21:15:55.114308"
       },
       {
         "_id": "STU20210136",
@@ -3369,7 +3369,7 @@
         "admission_quota": "Merit",
         "merit_rank": 21007,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051227"
+        "created_at": "2026-08-25T21:15:55.114312"
       },
       {
         "_id": "STU20220137",
@@ -3388,7 +3388,7 @@
         "admission_quota": "Management",
         "merit_rank": 76086,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051231"
+        "created_at": "2026-08-25T21:15:55.114317"
       },
       {
         "_id": "STU20230138",
@@ -3407,7 +3407,7 @@
         "admission_quota": "Sports",
         "merit_rank": 42216,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051235"
+        "created_at": "2026-08-25T21:15:55.114321"
       },
       {
         "_id": "STU20240139",
@@ -3426,7 +3426,7 @@
         "admission_quota": "Management",
         "merit_rank": 83206,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051240"
+        "created_at": "2026-08-25T21:15:55.114326"
       },
       {
         "_id": "STU20210140",
@@ -3445,7 +3445,7 @@
         "admission_quota": "Merit",
         "merit_rank": 13078,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051244"
+        "created_at": "2026-08-25T21:15:55.114330"
       },
       {
         "_id": "STU20220141",
@@ -3464,7 +3464,7 @@
         "admission_quota": "Merit",
         "merit_rank": 27060,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051248"
+        "created_at": "2026-08-25T21:15:55.114335"
       },
       {
         "_id": "STU20230142",
@@ -3483,7 +3483,7 @@
         "admission_quota": "NRI",
         "merit_rank": 77144,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051257"
+        "created_at": "2026-08-25T21:15:55.114340"
       },
       {
         "_id": "STU20240143",
@@ -3502,7 +3502,7 @@
         "admission_quota": "Merit",
         "merit_rank": 11146,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051261"
+        "created_at": "2026-08-25T21:15:55.114344"
       },
       {
         "_id": "STU20210144",
@@ -3521,7 +3521,7 @@
         "admission_quota": "Sports",
         "merit_rank": 79033,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051266"
+        "created_at": "2026-08-25T21:15:55.114349"
       },
       {
         "_id": "STU20220145",
@@ -3540,7 +3540,7 @@
         "admission_quota": "Merit",
         "merit_rank": 16651,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051279"
+        "created_at": "2026-08-25T21:15:55.114354"
       },
       {
         "_id": "STU20230146",
@@ -3559,7 +3559,7 @@
         "admission_quota": "Merit",
         "merit_rank": 6221,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051284"
+        "created_at": "2026-08-25T21:15:55.114358"
       },
       {
         "_id": "STU20240147",
@@ -3578,7 +3578,7 @@
         "admission_quota": "Management",
         "merit_rank": 91063,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051288"
+        "created_at": "2026-08-25T21:15:55.114364"
       },
       {
         "_id": "STU20210148",
@@ -3597,7 +3597,7 @@
         "admission_quota": "Management",
         "merit_rank": 59644,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051293"
+        "created_at": "2026-08-25T21:15:55.114370"
       },
       {
         "_id": "STU20220149",
@@ -3616,7 +3616,7 @@
         "admission_quota": "Merit",
         "merit_rank": 29350,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051298"
+        "created_at": "2026-08-25T21:15:55.114374"
       },
       {
         "_id": "STU20230150",
@@ -3635,7 +3635,7 @@
         "admission_quota": "Sports",
         "merit_rank": 91247,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051303"
+        "created_at": "2026-08-25T21:15:55.114379"
       },
       {
         "_id": "STU20240151",
@@ -3654,7 +3654,7 @@
         "admission_quota": "Management",
         "merit_rank": 92277,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051307"
+        "created_at": "2026-08-25T21:15:55.114384"
       },
       {
         "_id": "STU20210152",
@@ -3673,7 +3673,7 @@
         "admission_quota": "Sports",
         "merit_rank": 66267,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051320"
+        "created_at": "2026-08-25T21:15:55.114388"
       },
       {
         "_id": "STU20220153",
@@ -3692,7 +3692,7 @@
         "admission_quota": "Merit",
         "merit_rank": 37411,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051324"
+        "created_at": "2026-08-25T21:15:55.114392"
       },
       {
         "_id": "STU20230154",
@@ -3711,7 +3711,7 @@
         "admission_quota": "Management",
         "merit_rank": 64518,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051329"
+        "created_at": "2026-08-25T21:15:55.114397"
       },
       {
         "_id": "STU20240155",
@@ -3730,7 +3730,7 @@
         "admission_quota": "Merit",
         "merit_rank": 22983,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051335"
+        "created_at": "2026-08-25T21:15:55.114401"
       },
       {
         "_id": "STU20210156",
@@ -3749,7 +3749,7 @@
         "admission_quota": "NRI",
         "merit_rank": 47167,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051341"
+        "created_at": "2026-08-25T21:15:55.114407"
       },
       {
         "_id": "STU20220157",
@@ -3768,7 +3768,7 @@
         "admission_quota": "Management",
         "merit_rank": 41913,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051346"
+        "created_at": "2026-08-25T21:15:55.114411"
       },
       {
         "_id": "STU20230158",
@@ -3787,7 +3787,7 @@
         "admission_quota": "Merit",
         "merit_rank": 17693,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051350"
+        "created_at": "2026-08-25T21:15:55.114416"
       },
       {
         "_id": "STU20240159",
@@ -3806,7 +3806,7 @@
         "admission_quota": "Merit",
         "merit_rank": 40770,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051355"
+        "created_at": "2026-08-25T21:15:55.114420"
       },
       {
         "_id": "STU20210160",
@@ -3825,7 +3825,7 @@
         "admission_quota": "NRI",
         "merit_rank": 75217,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051359"
+        "created_at": "2026-08-25T21:15:55.114424"
       },
       {
         "_id": "STU20220161",
@@ -3844,7 +3844,7 @@
         "admission_quota": "Sports",
         "merit_rank": 73124,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051364"
+        "created_at": "2026-08-25T21:15:55.114429"
       },
       {
         "_id": "STU20230162",
@@ -3863,7 +3863,7 @@
         "admission_quota": "Sports",
         "merit_rank": 58918,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051369"
+        "created_at": "2026-08-25T21:15:55.114434"
       },
       {
         "_id": "STU20240163",
@@ -3882,7 +3882,7 @@
         "admission_quota": "Management",
         "merit_rank": 46711,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051373"
+        "created_at": "2026-08-25T21:15:55.114438"
       },
       {
         "_id": "STU20210164",
@@ -3901,7 +3901,7 @@
         "admission_quota": "NRI",
         "merit_rank": 62978,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051377"
+        "created_at": "2026-08-25T21:15:55.114443"
       },
       {
         "_id": "STU20220165",
@@ -3920,7 +3920,7 @@
         "admission_quota": "Sports",
         "merit_rank": 57520,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051382"
+        "created_at": "2026-08-25T21:15:55.114447"
       },
       {
         "_id": "STU20230166",
@@ -3939,7 +3939,7 @@
         "admission_quota": "Management",
         "merit_rank": 49317,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051387"
+        "created_at": "2026-08-25T21:15:55.114452"
       },
       {
         "_id": "STU20240167",
@@ -3958,7 +3958,7 @@
         "admission_quota": "Merit",
         "merit_rank": 6604,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051391"
+        "created_at": "2026-08-25T21:15:55.114456"
       },
       {
         "_id": "STU20210168",
@@ -3977,7 +3977,7 @@
         "admission_quota": "Sports",
         "merit_rank": 77875,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051396"
+        "created_at": "2026-08-25T21:15:55.114461"
       },
       {
         "_id": "STU20220169",
@@ -3996,7 +3996,7 @@
         "admission_quota": "NRI",
         "merit_rank": 48645,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051401"
+        "created_at": "2026-08-25T21:15:55.114466"
       },
       {
         "_id": "STU20230170",
@@ -4015,7 +4015,7 @@
         "admission_quota": "Merit",
         "merit_rank": 6737,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051406"
+        "created_at": "2026-08-25T21:15:55.114471"
       },
       {
         "_id": "STU20240171",
@@ -4034,7 +4034,7 @@
         "admission_quota": "Management",
         "merit_rank": 45854,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051411"
+        "created_at": "2026-08-25T21:15:55.114475"
       },
       {
         "_id": "STU20210172",
@@ -4053,7 +4053,7 @@
         "admission_quota": "NRI",
         "merit_rank": 49920,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051415"
+        "created_at": "2026-08-25T21:15:55.114480"
       },
       {
         "_id": "STU20220173",
@@ -4072,7 +4072,7 @@
         "admission_quota": "Merit",
         "merit_rank": 36767,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051420"
+        "created_at": "2026-08-25T21:15:55.114484"
       },
       {
         "_id": "STU20230174",
@@ -4091,7 +4091,7 @@
         "admission_quota": "Management",
         "merit_rank": 47388,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051425"
+        "created_at": "2026-08-25T21:15:55.114489"
       },
       {
         "_id": "STU20240175",
@@ -4110,7 +4110,7 @@
         "admission_quota": "Management",
         "merit_rank": 90486,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051430"
+        "created_at": "2026-08-25T21:15:55.114494"
       },
       {
         "_id": "STU20210176",
@@ -4129,7 +4129,7 @@
         "admission_quota": "Merit",
         "merit_rank": 42478,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051434"
+        "created_at": "2026-08-25T21:15:55.114500"
       },
       {
         "_id": "STU20220177",
@@ -4148,7 +4148,7 @@
         "admission_quota": "Merit",
         "merit_rank": 29171,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051438"
+        "created_at": "2026-08-25T21:15:55.114505"
       },
       {
         "_id": "STU20230178",
@@ -4167,7 +4167,7 @@
         "admission_quota": "Merit",
         "merit_rank": 1243,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051443"
+        "created_at": "2026-08-25T21:15:55.114509"
       },
       {
         "_id": "STU20240179",
@@ -4186,7 +4186,7 @@
         "admission_quota": "Management",
         "merit_rank": 57824,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051450"
+        "created_at": "2026-08-25T21:15:55.114514"
       },
       {
         "_id": "STU20210180",
@@ -4205,7 +4205,7 @@
         "admission_quota": "NRI",
         "merit_rank": 87368,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051454"
+        "created_at": "2026-08-25T21:15:55.114518"
       },
       {
         "_id": "STU20220181",
@@ -4224,7 +4224,7 @@
         "admission_quota": "Merit",
         "merit_rank": 21589,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051459"
+        "created_at": "2026-08-25T21:15:55.114523"
       },
       {
         "_id": "STU20230182",
@@ -4243,7 +4243,7 @@
         "admission_quota": "Merit",
         "merit_rank": 20861,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051463"
+        "created_at": "2026-08-25T21:15:55.114528"
       },
       {
         "_id": "STU20240183",
@@ -4262,7 +4262,7 @@
         "admission_quota": "Merit",
         "merit_rank": 917,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051468"
+        "created_at": "2026-08-25T21:15:55.114532"
       },
       {
         "_id": "STU20210184",
@@ -4281,7 +4281,7 @@
         "admission_quota": "Management",
         "merit_rank": 72245,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051472"
+        "created_at": "2026-08-25T21:15:55.114536"
       },
       {
         "_id": "STU20220185",
@@ -4300,7 +4300,7 @@
         "admission_quota": "Merit",
         "merit_rank": 39290,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051477"
+        "created_at": "2026-08-25T21:15:55.114543"
       },
       {
         "_id": "STU20230186",
@@ -4319,7 +4319,7 @@
         "admission_quota": "Merit",
         "merit_rank": 10684,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051481"
+        "created_at": "2026-08-25T21:15:55.114548"
       },
       {
         "_id": "STU20240187",
@@ -4338,7 +4338,7 @@
         "admission_quota": "NRI",
         "merit_rank": 85670,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051486"
+        "created_at": "2026-08-25T21:15:55.114556"
       },
       {
         "_id": "STU20210188",
@@ -4357,7 +4357,7 @@
         "admission_quota": "NRI",
         "merit_rank": 76052,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051490"
+        "created_at": "2026-08-25T21:15:55.114561"
       },
       {
         "_id": "STU20220189",
@@ -4376,7 +4376,7 @@
         "admission_quota": "Merit",
         "merit_rank": 1928,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051495"
+        "created_at": "2026-08-25T21:15:55.114566"
       },
       {
         "_id": "STU20230190",
@@ -4395,7 +4395,7 @@
         "admission_quota": "Merit",
         "merit_rank": 25582,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051500"
+        "created_at": "2026-08-25T21:15:55.114571"
       },
       {
         "_id": "STU20240191",
@@ -4414,7 +4414,7 @@
         "admission_quota": "Merit",
         "merit_rank": 18835,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051504"
+        "created_at": "2026-08-25T21:15:55.114575"
       },
       {
         "_id": "STU20210192",
@@ -4433,7 +4433,7 @@
         "admission_quota": "Management",
         "merit_rank": 57723,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051509"
+        "created_at": "2026-08-25T21:15:55.114580"
       },
       {
         "_id": "STU20220193",
@@ -4452,7 +4452,7 @@
         "admission_quota": "NRI",
         "merit_rank": 43664,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051513"
+        "created_at": "2026-08-25T21:15:55.114584"
       },
       {
         "_id": "STU20230194",
@@ -4471,7 +4471,7 @@
         "admission_quota": "Sports",
         "merit_rank": 76936,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051518"
+        "created_at": "2026-08-25T21:15:55.114589"
       },
       {
         "_id": "STU20240195",
@@ -4490,7 +4490,7 @@
         "admission_quota": "Merit",
         "merit_rank": 9051,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051524"
+        "created_at": "2026-08-25T21:15:55.114594"
       },
       {
         "_id": "STU20210196",
@@ -4509,7 +4509,7 @@
         "admission_quota": "Merit",
         "merit_rank": 9442,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051529"
+        "created_at": "2026-08-25T21:15:55.114598"
       },
       {
         "_id": "STU20220197",
@@ -4528,7 +4528,7 @@
         "admission_quota": "Merit",
         "merit_rank": 12146,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051534"
+        "created_at": "2026-08-25T21:15:55.114603"
       },
       {
         "_id": "STU20230198",
@@ -4547,7 +4547,7 @@
         "admission_quota": "Merit",
         "merit_rank": 22203,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051539"
+        "created_at": "2026-08-25T21:15:55.114607"
       },
       {
         "_id": "STU20240199",
@@ -4566,7 +4566,7 @@
         "admission_quota": "NRI",
         "merit_rank": 40083,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051543"
+        "created_at": "2026-08-25T21:15:55.114612"
       },
       {
         "_id": "STU20210200",
@@ -4585,7 +4585,7 @@
         "admission_quota": "Merit",
         "merit_rank": 30075,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051548"
+        "created_at": "2026-08-25T21:15:55.114617"
       },
       {
         "_id": "STU20220201",
@@ -4604,7 +4604,7 @@
         "admission_quota": "Sports",
         "merit_rank": 80215,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051553"
+        "created_at": "2026-08-25T21:15:55.114621"
       },
       {
         "_id": "STU20230202",
@@ -4623,7 +4623,7 @@
         "admission_quota": "NRI",
         "merit_rank": 58449,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051557"
+        "created_at": "2026-08-25T21:15:55.114626"
       },
       {
         "_id": "STU20240203",
@@ -4642,7 +4642,7 @@
         "admission_quota": "Merit",
         "merit_rank": 14062,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051562"
+        "created_at": "2026-08-25T21:15:55.114631"
       },
       {
         "_id": "STU20210204",
@@ -4661,7 +4661,7 @@
         "admission_quota": "Merit",
         "merit_rank": 29714,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051567"
+        "created_at": "2026-08-25T21:15:55.114635"
       },
       {
         "_id": "STU20220205",
@@ -4680,7 +4680,7 @@
         "admission_quota": "Sports",
         "merit_rank": 43996,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051571"
+        "created_at": "2026-08-25T21:15:55.114640"
       },
       {
         "_id": "STU20230206",
@@ -4699,7 +4699,7 @@
         "admission_quota": "NRI",
         "merit_rank": 80650,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051576"
+        "created_at": "2026-08-25T21:15:55.114645"
       },
       {
         "_id": "STU20240207",
@@ -4718,7 +4718,7 @@
         "admission_quota": "Sports",
         "merit_rank": 56900,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051580"
+        "created_at": "2026-08-25T21:15:55.114649"
       },
       {
         "_id": "STU20210208",
@@ -4737,7 +4737,7 @@
         "admission_quota": "Management",
         "merit_rank": 49806,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051585"
+        "created_at": "2026-08-25T21:15:55.114654"
       },
       {
         "_id": "STU20220209",
@@ -4756,7 +4756,7 @@
         "admission_quota": "Management",
         "merit_rank": 42455,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051589"
+        "created_at": "2026-08-25T21:15:55.114658"
       },
       {
         "_id": "STU20230210",
@@ -4775,7 +4775,7 @@
         "admission_quota": "Merit",
         "merit_rank": 20878,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051593"
+        "created_at": "2026-08-25T21:15:55.114663"
       },
       {
         "_id": "STU20240211",
@@ -4794,7 +4794,7 @@
         "admission_quota": "Merit",
         "merit_rank": 29448,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051598"
+        "created_at": "2026-08-25T21:15:55.114667"
       },
       {
         "_id": "STU20210212",
@@ -4813,7 +4813,7 @@
         "admission_quota": "Merit",
         "merit_rank": 11886,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051602"
+        "created_at": "2026-08-25T21:15:55.114671"
       },
       {
         "_id": "STU20220213",
@@ -4832,7 +4832,7 @@
         "admission_quota": "Merit",
         "merit_rank": 24909,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051607"
+        "created_at": "2026-08-25T21:15:55.114676"
       },
       {
         "_id": "STU20230214",
@@ -4851,7 +4851,7 @@
         "admission_quota": "NRI",
         "merit_rank": 54752,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051612"
+        "created_at": "2026-08-25T21:15:55.114680"
       },
       {
         "_id": "STU20240215",
@@ -4870,7 +4870,7 @@
         "admission_quota": "Management",
         "merit_rank": 64672,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051616"
+        "created_at": "2026-08-25T21:15:55.114685"
       },
       {
         "_id": "STU20210216",
@@ -4889,7 +4889,7 @@
         "admission_quota": "Sports",
         "merit_rank": 58525,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051621"
+        "created_at": "2026-08-25T21:15:55.114690"
       },
       {
         "_id": "STU20220217",
@@ -4908,7 +4908,7 @@
         "admission_quota": "NRI",
         "merit_rank": 60944,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051626"
+        "created_at": "2026-08-25T21:15:55.114694"
       },
       {
         "_id": "STU20230218",
@@ -4927,7 +4927,7 @@
         "admission_quota": "NRI",
         "merit_rank": 91439,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051630"
+        "created_at": "2026-08-25T21:15:55.114699"
       },
       {
         "_id": "STU20240219",
@@ -4946,7 +4946,7 @@
         "admission_quota": "NRI",
         "merit_rank": 61996,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051635"
+        "created_at": "2026-08-25T21:15:55.114704"
       },
       {
         "_id": "STU20210220",
@@ -4965,7 +4965,7 @@
         "admission_quota": "Sports",
         "merit_rank": 80675,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051639"
+        "created_at": "2026-08-25T21:15:55.114708"
       },
       {
         "_id": "STU20220221",
@@ -4984,7 +4984,7 @@
         "admission_quota": "Merit",
         "merit_rank": 12319,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051644"
+        "created_at": "2026-08-25T21:15:55.114712"
       },
       {
         "_id": "STU20230222",
@@ -5003,7 +5003,7 @@
         "admission_quota": "Sports",
         "merit_rank": 68423,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051648"
+        "created_at": "2026-08-25T21:15:55.114717"
       },
       {
         "_id": "STU20240223",
@@ -5022,7 +5022,7 @@
         "admission_quota": "NRI",
         "merit_rank": 88077,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051653"
+        "created_at": "2026-08-25T21:15:55.114722"
       },
       {
         "_id": "STU20210224",
@@ -5041,7 +5041,7 @@
         "admission_quota": "Sports",
         "merit_rank": 74348,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051658"
+        "created_at": "2026-08-25T21:15:55.114726"
       },
       {
         "_id": "STU20220225",
@@ -5060,7 +5060,7 @@
         "admission_quota": "Sports",
         "merit_rank": 73071,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051662"
+        "created_at": "2026-08-25T21:15:55.114731"
       },
       {
         "_id": "STU20230226",
@@ -5079,7 +5079,7 @@
         "admission_quota": "NRI",
         "merit_rank": 47588,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051667"
+        "created_at": "2026-08-25T21:15:55.114735"
       },
       {
         "_id": "STU20240227",
@@ -5098,7 +5098,7 @@
         "admission_quota": "Management",
         "merit_rank": 94437,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051672"
+        "created_at": "2026-08-25T21:15:55.114741"
       },
       {
         "_id": "STU20210228",
@@ -5117,7 +5117,7 @@
         "admission_quota": "Merit",
         "merit_rank": 3082,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051676"
+        "created_at": "2026-08-25T21:15:55.114746"
       },
       {
         "_id": "STU20220229",
@@ -5136,7 +5136,7 @@
         "admission_quota": "Merit",
         "merit_rank": 7138,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051680"
+        "created_at": "2026-08-25T21:15:55.114751"
       },
       {
         "_id": "STU20230230",
@@ -5155,7 +5155,7 @@
         "admission_quota": "Merit",
         "merit_rank": 9569,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051685"
+        "created_at": "2026-08-25T21:15:55.114756"
       },
       {
         "_id": "STU20240231",
@@ -5174,7 +5174,7 @@
         "admission_quota": "Management",
         "merit_rank": 82522,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051690"
+        "created_at": "2026-08-25T21:15:55.114761"
       },
       {
         "_id": "STU20210232",
@@ -5193,7 +5193,7 @@
         "admission_quota": "Management",
         "merit_rank": 47401,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051695"
+        "created_at": "2026-08-25T21:15:55.114766"
       },
       {
         "_id": "STU20220233",
@@ -5212,7 +5212,7 @@
         "admission_quota": "Merit",
         "merit_rank": 28867,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051700"
+        "created_at": "2026-08-25T21:15:55.114770"
       },
       {
         "_id": "STU20230234",
@@ -5231,7 +5231,7 @@
         "admission_quota": "Merit",
         "merit_rank": 32720,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051705"
+        "created_at": "2026-08-25T21:15:55.114776"
       },
       {
         "_id": "STU20240235",
@@ -5250,7 +5250,7 @@
         "admission_quota": "Merit",
         "merit_rank": 8279,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051722"
+        "created_at": "2026-08-25T21:15:55.114781"
       },
       {
         "_id": "STU20210236",
@@ -5269,7 +5269,7 @@
         "admission_quota": "Merit",
         "merit_rank": 4056,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051729"
+        "created_at": "2026-08-25T21:15:55.114785"
       },
       {
         "_id": "STU20220237",
@@ -5288,7 +5288,7 @@
         "admission_quota": "Sports",
         "merit_rank": 74208,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051735"
+        "created_at": "2026-08-25T21:15:55.114790"
       },
       {
         "_id": "STU20230238",
@@ -5307,7 +5307,7 @@
         "admission_quota": "Merit",
         "merit_rank": 27662,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051739"
+        "created_at": "2026-08-25T21:15:55.114795"
       },
       {
         "_id": "STU20240239",
@@ -5326,7 +5326,7 @@
         "admission_quota": "Management",
         "merit_rank": 73314,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051746"
+        "created_at": "2026-08-25T21:15:55.114799"
       },
       {
         "_id": "STU20210240",
@@ -5345,7 +5345,7 @@
         "admission_quota": "Management",
         "merit_rank": 79487,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051751"
+        "created_at": "2026-08-25T21:15:55.114804"
       },
       {
         "_id": "STU20220241",
@@ -5364,7 +5364,7 @@
         "admission_quota": "NRI",
         "merit_rank": 82604,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051755"
+        "created_at": "2026-08-25T21:15:55.114809"
       },
       {
         "_id": "STU20230242",
@@ -5383,7 +5383,7 @@
         "admission_quota": "Sports",
         "merit_rank": 46977,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051760"
+        "created_at": "2026-08-25T21:15:55.114814"
       },
       {
         "_id": "STU20240243",
@@ -5402,7 +5402,7 @@
         "admission_quota": "Management",
         "merit_rank": 46716,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051765"
+        "created_at": "2026-08-25T21:15:55.114818"
       },
       {
         "_id": "STU20210244",
@@ -5421,7 +5421,7 @@
         "admission_quota": "Sports",
         "merit_rank": 43525,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051770"
+        "created_at": "2026-08-25T21:15:55.114823"
       },
       {
         "_id": "STU20220245",
@@ -5440,7 +5440,7 @@
         "admission_quota": "Merit",
         "merit_rank": 11889,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051775"
+        "created_at": "2026-08-25T21:15:55.114828"
       },
       {
         "_id": "STU20230246",
@@ -5459,7 +5459,7 @@
         "admission_quota": "Sports",
         "merit_rank": 43332,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051780"
+        "created_at": "2026-08-25T21:15:55.114833"
       },
       {
         "_id": "STU20240247",
@@ -5478,7 +5478,7 @@
         "admission_quota": "Sports",
         "merit_rank": 75195,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051785"
+        "created_at": "2026-08-25T21:15:55.114839"
       },
       {
         "_id": "STU20210248",
@@ -5497,7 +5497,7 @@
         "admission_quota": "Merit",
         "merit_rank": 42591,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051790"
+        "created_at": "2026-08-25T21:15:55.114844"
       },
       {
         "_id": "STU20220249",
@@ -5516,7 +5516,7 @@
         "admission_quota": "Management",
         "merit_rank": 71903,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051794"
+        "created_at": "2026-08-25T21:15:55.114848"
       },
       {
         "_id": "STU20230250",
@@ -5535,7 +5535,7 @@
         "admission_quota": "Merit",
         "merit_rank": 13972,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051799"
+        "created_at": "2026-08-25T21:15:55.114853"
       },
       {
         "_id": "STU20240251",
@@ -5554,7 +5554,7 @@
         "admission_quota": "Merit",
         "merit_rank": 38180,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051803"
+        "created_at": "2026-08-25T21:15:55.114858"
       },
       {
         "_id": "STU20210252",
@@ -5573,7 +5573,7 @@
         "admission_quota": "NRI",
         "merit_rank": 44757,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051808"
+        "created_at": "2026-08-25T21:15:55.114863"
       },
       {
         "_id": "STU20220253",
@@ -5592,7 +5592,7 @@
         "admission_quota": "NRI",
         "merit_rank": 49442,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051813"
+        "created_at": "2026-08-25T21:15:55.114867"
       },
       {
         "_id": "STU20230254",
@@ -5611,7 +5611,7 @@
         "admission_quota": "Merit",
         "merit_rank": 14266,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051817"
+        "created_at": "2026-08-25T21:15:55.114872"
       },
       {
         "_id": "STU20240255",
@@ -5630,7 +5630,7 @@
         "admission_quota": "Merit",
         "merit_rank": 36469,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051822"
+        "created_at": "2026-08-25T21:15:55.114876"
       },
       {
         "_id": "STU20210256",
@@ -5649,7 +5649,7 @@
         "admission_quota": "Merit",
         "merit_rank": 13181,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051826"
+        "created_at": "2026-08-25T21:15:55.114880"
       },
       {
         "_id": "STU20220257",
@@ -5668,7 +5668,7 @@
         "admission_quota": "Merit",
         "merit_rank": 42497,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051844"
+        "created_at": "2026-08-25T21:15:55.114886"
       },
       {
         "_id": "STU20230258",
@@ -5687,7 +5687,7 @@
         "admission_quota": "Merit",
         "merit_rank": 18890,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051849"
+        "created_at": "2026-08-25T21:15:55.114891"
       },
       {
         "_id": "STU20240259",
@@ -5706,7 +5706,7 @@
         "admission_quota": "Management",
         "merit_rank": 82854,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051854"
+        "created_at": "2026-08-25T21:15:55.114895"
       },
       {
         "_id": "STU20210260",
@@ -5725,7 +5725,7 @@
         "admission_quota": "Sports",
         "merit_rank": 49199,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051859"
+        "created_at": "2026-08-25T21:15:55.114900"
       },
       {
         "_id": "STU20220261",
@@ -5744,7 +5744,7 @@
         "admission_quota": "Management",
         "merit_rank": 69795,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051863"
+        "created_at": "2026-08-25T21:15:55.114905"
       },
       {
         "_id": "STU20230262",
@@ -5763,7 +5763,7 @@
         "admission_quota": "Merit",
         "merit_rank": 25163,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051868"
+        "created_at": "2026-08-25T21:15:55.114909"
       },
       {
         "_id": "STU20240263",
@@ -5782,7 +5782,7 @@
         "admission_quota": "Merit",
         "merit_rank": 12749,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051873"
+        "created_at": "2026-08-25T21:15:55.114914"
       },
       {
         "_id": "STU20210264",
@@ -5801,7 +5801,7 @@
         "admission_quota": "Merit",
         "merit_rank": 3327,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051877"
+        "created_at": "2026-08-25T21:15:55.114918"
       },
       {
         "_id": "STU20220265",
@@ -5820,7 +5820,7 @@
         "admission_quota": "NRI",
         "merit_rank": 41220,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051882"
+        "created_at": "2026-08-25T21:15:55.114923"
       },
       {
         "_id": "STU20230266",
@@ -5839,7 +5839,7 @@
         "admission_quota": "Sports",
         "merit_rank": 83230,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051887"
+        "created_at": "2026-08-25T21:15:55.114928"
       },
       {
         "_id": "STU20240267",
@@ -5858,7 +5858,7 @@
         "admission_quota": "Merit",
         "merit_rank": 40182,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051891"
+        "created_at": "2026-08-25T21:15:55.114934"
       },
       {
         "_id": "STU20210268",
@@ -5877,7 +5877,7 @@
         "admission_quota": "NRI",
         "merit_rank": 68278,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051896"
+        "created_at": "2026-08-25T21:15:55.114939"
       },
       {
         "_id": "STU20220269",
@@ -5896,7 +5896,7 @@
         "admission_quota": "Sports",
         "merit_rank": 75633,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051901"
+        "created_at": "2026-08-25T21:15:55.114944"
       },
       {
         "_id": "STU20230270",
@@ -5915,7 +5915,7 @@
         "admission_quota": "Sports",
         "merit_rank": 67758,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051906"
+        "created_at": "2026-08-25T21:15:55.114948"
       },
       {
         "_id": "STU20240271",
@@ -5934,7 +5934,7 @@
         "admission_quota": "Merit",
         "merit_rank": 26591,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051910"
+        "created_at": "2026-08-25T21:15:55.114953"
       },
       {
         "_id": "STU20210272",
@@ -5953,7 +5953,7 @@
         "admission_quota": "Management",
         "merit_rank": 81672,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051915"
+        "created_at": "2026-08-25T21:15:55.114958"
       },
       {
         "_id": "STU20220273",
@@ -5972,7 +5972,7 @@
         "admission_quota": "NRI",
         "merit_rank": 74144,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051920"
+        "created_at": "2026-08-25T21:15:55.114962"
       },
       {
         "_id": "STU20230274",
@@ -5991,7 +5991,7 @@
         "admission_quota": "Sports",
         "merit_rank": 85773,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051925"
+        "created_at": "2026-08-25T21:15:55.114968"
       },
       {
         "_id": "STU20240275",
@@ -6010,7 +6010,7 @@
         "admission_quota": "NRI",
         "merit_rank": 86112,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051931"
+        "created_at": "2026-08-25T21:15:55.114972"
       },
       {
         "_id": "STU20210276",
@@ -6029,7 +6029,7 @@
         "admission_quota": "Management",
         "merit_rank": 73176,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051937"
+        "created_at": "2026-08-25T21:15:55.114978"
       },
       {
         "_id": "STU20220277",
@@ -6048,7 +6048,7 @@
         "admission_quota": "Management",
         "merit_rank": 84668,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051941"
+        "created_at": "2026-08-25T21:15:55.114982"
       },
       {
         "_id": "STU20230278",
@@ -6067,7 +6067,7 @@
         "admission_quota": "Merit",
         "merit_rank": 19327,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051946"
+        "created_at": "2026-08-25T21:15:55.114987"
       },
       {
         "_id": "STU20240279",
@@ -6086,7 +6086,7 @@
         "admission_quota": "NRI",
         "merit_rank": 53085,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051951"
+        "created_at": "2026-08-25T21:15:55.114991"
       },
       {
         "_id": "STU20210280",
@@ -6105,7 +6105,7 @@
         "admission_quota": "Sports",
         "merit_rank": 40434,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051955"
+        "created_at": "2026-08-25T21:15:55.114997"
       },
       {
         "_id": "STU20220281",
@@ -6124,7 +6124,7 @@
         "admission_quota": "Merit",
         "merit_rank": 34954,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051960"
+        "created_at": "2026-08-25T21:15:55.115001"
       },
       {
         "_id": "STU20230282",
@@ -6143,7 +6143,7 @@
         "admission_quota": "Merit",
         "merit_rank": 21827,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051964"
+        "created_at": "2026-08-25T21:15:55.115006"
       },
       {
         "_id": "STU20240283",
@@ -6162,7 +6162,7 @@
         "admission_quota": "Management",
         "merit_rank": 58325,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051969"
+        "created_at": "2026-08-25T21:15:55.115010"
       },
       {
         "_id": "STU20210284",
@@ -6181,7 +6181,7 @@
         "admission_quota": "Merit",
         "merit_rank": 12074,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051974"
+        "created_at": "2026-08-25T21:15:55.115015"
       },
       {
         "_id": "STU20220285",
@@ -6200,7 +6200,7 @@
         "admission_quota": "Management",
         "merit_rank": 88797,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051978"
+        "created_at": "2026-08-25T21:15:55.115019"
       },
       {
         "_id": "STU20230286",
@@ -6219,7 +6219,7 @@
         "admission_quota": "Merit",
         "merit_rank": 19152,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051983"
+        "created_at": "2026-08-25T21:15:55.115023"
       },
       {
         "_id": "STU20240287",
@@ -6238,7 +6238,7 @@
         "admission_quota": "NRI",
         "merit_rank": 80128,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051987"
+        "created_at": "2026-08-25T21:15:55.115028"
       },
       {
         "_id": "STU20210288",
@@ -6257,7 +6257,7 @@
         "admission_quota": "Sports",
         "merit_rank": 69510,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051992"
+        "created_at": "2026-08-25T21:15:55.115033"
       },
       {
         "_id": "STU20220289",
@@ -6276,7 +6276,7 @@
         "admission_quota": "Sports",
         "merit_rank": 90134,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.051997"
+        "created_at": "2026-08-25T21:15:55.115037"
       },
       {
         "_id": "STU20230290",
@@ -6295,7 +6295,7 @@
         "admission_quota": "Merit",
         "merit_rank": 31705,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052001"
+        "created_at": "2026-08-25T21:15:55.115042"
       },
       {
         "_id": "STU20240291",
@@ -6314,7 +6314,7 @@
         "admission_quota": "Merit",
         "merit_rank": 23252,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052006"
+        "created_at": "2026-08-25T21:15:55.115047"
       },
       {
         "_id": "STU20210292",
@@ -6333,7 +6333,7 @@
         "admission_quota": "NRI",
         "merit_rank": 72239,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052011"
+        "created_at": "2026-08-25T21:15:55.115052"
       },
       {
         "_id": "STU20220293",
@@ -6352,7 +6352,7 @@
         "admission_quota": "Management",
         "merit_rank": 54456,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052015"
+        "created_at": "2026-08-25T21:15:55.115056"
       },
       {
         "_id": "STU20230294",
@@ -6371,7 +6371,7 @@
         "admission_quota": "Sports",
         "merit_rank": 69672,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052020"
+        "created_at": "2026-08-25T21:15:55.115061"
       },
       {
         "_id": "STU20240295",
@@ -6390,7 +6390,7 @@
         "admission_quota": "Merit",
         "merit_rank": 10375,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052024"
+        "created_at": "2026-08-25T21:15:55.115065"
       },
       {
         "_id": "STU20210296",
@@ -6409,7 +6409,7 @@
         "admission_quota": "Sports",
         "merit_rank": 70811,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052029"
+        "created_at": "2026-08-25T21:15:55.115070"
       },
       {
         "_id": "STU20220297",
@@ -6428,7 +6428,7 @@
         "admission_quota": "NRI",
         "merit_rank": 53660,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052033"
+        "created_at": "2026-08-25T21:15:55.115074"
       },
       {
         "_id": "STU20230298",
@@ -6447,7 +6447,7 @@
         "admission_quota": "Merit",
         "merit_rank": 15964,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052038"
+        "created_at": "2026-08-25T21:15:55.115079"
       },
       {
         "_id": "STU20240299",
@@ -6466,7 +6466,7 @@
         "admission_quota": "Merit",
         "merit_rank": 16800,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052045"
+        "created_at": "2026-08-25T21:15:55.115084"
       },
       {
         "_id": "STU20210300",
@@ -6485,7 +6485,7 @@
         "admission_quota": "NRI",
         "merit_rank": 52646,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052049"
+        "created_at": "2026-08-25T21:15:55.115088"
       },
       {
         "_id": "STU20220301",
@@ -6504,7 +6504,7 @@
         "admission_quota": "Sports",
         "merit_rank": 76341,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052053"
+        "created_at": "2026-08-25T21:15:55.115093"
       },
       {
         "_id": "STU20230302",
@@ -6523,7 +6523,7 @@
         "admission_quota": "Merit",
         "merit_rank": 4651,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052058"
+        "created_at": "2026-08-25T21:15:55.115097"
       },
       {
         "_id": "STU20240303",
@@ -6542,7 +6542,7 @@
         "admission_quota": "Merit",
         "merit_rank": 9004,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052063"
+        "created_at": "2026-08-25T21:15:55.115102"
       },
       {
         "_id": "STU20210304",
@@ -6561,7 +6561,7 @@
         "admission_quota": "NRI",
         "merit_rank": 72204,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052068"
+        "created_at": "2026-08-25T21:15:55.115107"
       },
       {
         "_id": "STU20220305",
@@ -6580,7 +6580,7 @@
         "admission_quota": "Sports",
         "merit_rank": 46364,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052072"
+        "created_at": "2026-08-25T21:15:55.115112"
       },
       {
         "_id": "STU20230306",
@@ -6599,7 +6599,7 @@
         "admission_quota": "Merit",
         "merit_rank": 11432,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052079"
+        "created_at": "2026-08-25T21:15:55.115116"
       },
       {
         "_id": "STU20240307",
@@ -6618,7 +6618,7 @@
         "admission_quota": "NRI",
         "merit_rank": 61197,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052088"
+        "created_at": "2026-08-25T21:15:55.115142"
       },
       {
         "_id": "STU20210308",
@@ -6637,7 +6637,7 @@
         "admission_quota": "Sports",
         "merit_rank": 41068,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052093"
+        "created_at": "2026-08-25T21:15:55.115148"
       },
       {
         "_id": "STU20220309",
@@ -6656,7 +6656,7 @@
         "admission_quota": "Sports",
         "merit_rank": 56374,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052098"
+        "created_at": "2026-08-25T21:15:55.115152"
       },
       {
         "_id": "STU20230310",
@@ -6675,7 +6675,7 @@
         "admission_quota": "NRI",
         "merit_rank": 59686,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052103"
+        "created_at": "2026-08-25T21:15:55.115169"
       },
       {
         "_id": "STU20240311",
@@ -6694,7 +6694,7 @@
         "admission_quota": "Merit",
         "merit_rank": 42042,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052116"
+        "created_at": "2026-08-25T21:15:55.115174"
       },
       {
         "_id": "STU20210312",
@@ -6713,7 +6713,7 @@
         "admission_quota": "Merit",
         "merit_rank": 15054,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052121"
+        "created_at": "2026-08-25T21:15:55.115178"
       },
       {
         "_id": "STU20220313",
@@ -6732,7 +6732,7 @@
         "admission_quota": "Management",
         "merit_rank": 76654,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052125"
+        "created_at": "2026-08-25T21:15:55.115183"
       },
       {
         "_id": "STU20230314",
@@ -6751,7 +6751,7 @@
         "admission_quota": "Merit",
         "merit_rank": 44523,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052130"
+        "created_at": "2026-08-25T21:15:55.115187"
       },
       {
         "_id": "STU20240315",
@@ -6770,7 +6770,7 @@
         "admission_quota": "Merit",
         "merit_rank": 24998,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052136"
+        "created_at": "2026-08-25T21:15:55.115192"
       },
       {
         "_id": "STU20210316",
@@ -6789,7 +6789,7 @@
         "admission_quota": "Merit",
         "merit_rank": 35758,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052141"
+        "created_at": "2026-08-25T21:15:55.115196"
       },
       {
         "_id": "STU20220317",
@@ -6808,7 +6808,7 @@
         "admission_quota": "Merit",
         "merit_rank": 3978,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052146"
+        "created_at": "2026-08-25T21:15:55.115201"
       },
       {
         "_id": "STU20230318",
@@ -6827,7 +6827,7 @@
         "admission_quota": "NRI",
         "merit_rank": 46527,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052151"
+        "created_at": "2026-08-25T21:15:55.115205"
       },
       {
         "_id": "STU20240319",
@@ -6846,7 +6846,7 @@
         "admission_quota": "Merit",
         "merit_rank": 1704,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052155"
+        "created_at": "2026-08-25T21:15:55.115210"
       },
       {
         "_id": "STU20210320",
@@ -6865,7 +6865,7 @@
         "admission_quota": "Merit",
         "merit_rank": 26245,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052160"
+        "created_at": "2026-08-25T21:15:55.115214"
       },
       {
         "_id": "STU20220321",
@@ -6884,7 +6884,7 @@
         "admission_quota": "Merit",
         "merit_rank": 43260,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052164"
+        "created_at": "2026-08-25T21:15:55.115219"
       },
       {
         "_id": "STU20230322",
@@ -6903,7 +6903,7 @@
         "admission_quota": "NRI",
         "merit_rank": 47758,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052169"
+        "created_at": "2026-08-25T21:15:55.115223"
       },
       {
         "_id": "STU20240323",
@@ -6922,7 +6922,7 @@
         "admission_quota": "Merit",
         "merit_rank": 12607,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052174"
+        "created_at": "2026-08-25T21:15:55.115228"
       },
       {
         "_id": "STU20210324",
@@ -6941,7 +6941,7 @@
         "admission_quota": "Sports",
         "merit_rank": 79630,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052178"
+        "created_at": "2026-08-25T21:15:55.115233"
       },
       {
         "_id": "STU20220325",
@@ -6960,7 +6960,7 @@
         "admission_quota": "Merit",
         "merit_rank": 4834,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052183"
+        "created_at": "2026-08-25T21:15:55.115237"
       },
       {
         "_id": "STU20230326",
@@ -6979,7 +6979,7 @@
         "admission_quota": "Sports",
         "merit_rank": 75137,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052187"
+        "created_at": "2026-08-25T21:15:55.115242"
       },
       {
         "_id": "STU20240327",
@@ -6998,7 +6998,7 @@
         "admission_quota": "Merit",
         "merit_rank": 19582,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052191"
+        "created_at": "2026-08-25T21:15:55.115246"
       },
       {
         "_id": "STU20210328",
@@ -7017,7 +7017,7 @@
         "admission_quota": "Merit",
         "merit_rank": 38867,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052196"
+        "created_at": "2026-08-25T21:15:55.115250"
       },
       {
         "_id": "STU20220329",
@@ -7036,7 +7036,7 @@
         "admission_quota": "Merit",
         "merit_rank": 7981,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052200"
+        "created_at": "2026-08-25T21:15:55.115255"
       },
       {
         "_id": "STU20230330",
@@ -7055,7 +7055,7 @@
         "admission_quota": "NRI",
         "merit_rank": 49836,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052205"
+        "created_at": "2026-08-25T21:15:55.115260"
       },
       {
         "_id": "STU20240331",
@@ -7074,7 +7074,7 @@
         "admission_quota": "Management",
         "merit_rank": 72612,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052210"
+        "created_at": "2026-08-25T21:15:55.115264"
       },
       {
         "_id": "STU20210332",
@@ -7093,7 +7093,7 @@
         "admission_quota": "Merit",
         "merit_rank": 41116,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052215"
+        "created_at": "2026-08-25T21:15:55.115269"
       },
       {
         "_id": "STU20220333",
@@ -7112,7 +7112,7 @@
         "admission_quota": "Merit",
         "merit_rank": 27825,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052219"
+        "created_at": "2026-08-25T21:15:55.115274"
       },
       {
         "_id": "STU20230334",
@@ -7131,7 +7131,7 @@
         "admission_quota": "Merit",
         "merit_rank": 25334,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052224"
+        "created_at": "2026-08-25T21:15:55.115278"
       },
       {
         "_id": "STU20240335",
@@ -7150,7 +7150,7 @@
         "admission_quota": "NRI",
         "merit_rank": 81220,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052228"
+        "created_at": "2026-08-25T21:15:55.115283"
       },
       {
         "_id": "STU20210336",
@@ -7169,7 +7169,7 @@
         "admission_quota": "Sports",
         "merit_rank": 72531,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052233"
+        "created_at": "2026-08-25T21:15:55.115287"
       },
       {
         "_id": "STU20220337",
@@ -7188,7 +7188,7 @@
         "admission_quota": "Management",
         "merit_rank": 67134,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052237"
+        "created_at": "2026-08-25T21:15:55.115293"
       },
       {
         "_id": "STU20230338",
@@ -7207,7 +7207,7 @@
         "admission_quota": "Merit",
         "merit_rank": 22871,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052242"
+        "created_at": "2026-08-25T21:15:55.115297"
       },
       {
         "_id": "STU20240339",
@@ -7226,7 +7226,7 @@
         "admission_quota": "Management",
         "merit_rank": 91379,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052247"
+        "created_at": "2026-08-25T21:15:55.115302"
       },
       {
         "_id": "STU20210340",
@@ -7245,7 +7245,7 @@
         "admission_quota": "Merit",
         "merit_rank": 25091,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052252"
+        "created_at": "2026-08-25T21:15:55.115307"
       },
       {
         "_id": "STU20220341",
@@ -7264,7 +7264,7 @@
         "admission_quota": "Merit",
         "merit_rank": 14664,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052257"
+        "created_at": "2026-08-25T21:15:55.115312"
       },
       {
         "_id": "STU20230342",
@@ -7283,7 +7283,7 @@
         "admission_quota": "Sports",
         "merit_rank": 60339,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052261"
+        "created_at": "2026-08-25T21:15:55.115317"
       },
       {
         "_id": "STU20240343",
@@ -7302,7 +7302,7 @@
         "admission_quota": "NRI",
         "merit_rank": 78947,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052266"
+        "created_at": "2026-08-25T21:15:55.115322"
       },
       {
         "_id": "STU20210344",
@@ -7321,7 +7321,7 @@
         "admission_quota": "Merit",
         "merit_rank": 10285,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052271"
+        "created_at": "2026-08-25T21:15:55.115327"
       },
       {
         "_id": "STU20220345",
@@ -7340,7 +7340,7 @@
         "admission_quota": "Merit",
         "merit_rank": 9024,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052276"
+        "created_at": "2026-08-25T21:15:55.115332"
       },
       {
         "_id": "STU20230346",
@@ -7359,7 +7359,7 @@
         "admission_quota": "Merit",
         "merit_rank": 31019,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052280"
+        "created_at": "2026-08-25T21:15:55.115336"
       },
       {
         "_id": "STU20240347",
@@ -7378,7 +7378,7 @@
         "admission_quota": "NRI",
         "merit_rank": 83593,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052285"
+        "created_at": "2026-08-25T21:15:55.115342"
       },
       {
         "_id": "STU20210348",
@@ -7397,7 +7397,7 @@
         "admission_quota": "Merit",
         "merit_rank": 33788,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052290"
+        "created_at": "2026-08-25T21:15:55.115347"
       },
       {
         "_id": "STU20220349",
@@ -7416,7 +7416,7 @@
         "admission_quota": "Management",
         "merit_rank": 44329,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052294"
+        "created_at": "2026-08-25T21:15:55.115351"
       },
       {
         "_id": "STU20230350",
@@ -7435,7 +7435,7 @@
         "admission_quota": "Merit",
         "merit_rank": 39308,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052299"
+        "created_at": "2026-08-25T21:15:55.115356"
       },
       {
         "_id": "STU20240351",
@@ -7454,7 +7454,7 @@
         "admission_quota": "NRI",
         "merit_rank": 83264,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052303"
+        "created_at": "2026-08-25T21:15:55.115361"
       },
       {
         "_id": "STU20210352",
@@ -7473,7 +7473,7 @@
         "admission_quota": "NRI",
         "merit_rank": 60748,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052308"
+        "created_at": "2026-08-25T21:15:55.115365"
       },
       {
         "_id": "STU20220353",
@@ -7492,7 +7492,7 @@
         "admission_quota": "Merit",
         "merit_rank": 36471,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052312"
+        "created_at": "2026-08-25T21:15:55.115369"
       },
       {
         "_id": "STU20230354",
@@ -7511,7 +7511,7 @@
         "admission_quota": "Merit",
         "merit_rank": 43916,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052317"
+        "created_at": "2026-08-25T21:15:55.115375"
       },
       {
         "_id": "STU20240355",
@@ -7530,7 +7530,7 @@
         "admission_quota": "Merit",
         "merit_rank": 6048,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052327"
+        "created_at": "2026-08-25T21:15:55.115379"
       },
       {
         "_id": "STU20210356",
@@ -7549,7 +7549,7 @@
         "admission_quota": "Merit",
         "merit_rank": 28337,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052332"
+        "created_at": "2026-08-25T21:15:55.115383"
       },
       {
         "_id": "STU20220357",
@@ -7568,7 +7568,7 @@
         "admission_quota": "Management",
         "merit_rank": 85252,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052344"
+        "created_at": "2026-08-25T21:15:55.115388"
       },
       {
         "_id": "STU20230358",
@@ -7587,7 +7587,7 @@
         "admission_quota": "NRI",
         "merit_rank": 81529,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052349"
+        "created_at": "2026-08-25T21:15:55.115393"
       },
       {
         "_id": "STU20240359",
@@ -7606,7 +7606,7 @@
         "admission_quota": "Merit",
         "merit_rank": 2815,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052355"
+        "created_at": "2026-08-25T21:15:55.115397"
       },
       {
         "_id": "STU20210360",
@@ -7625,7 +7625,7 @@
         "admission_quota": "Management",
         "merit_rank": 45407,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052360"
+        "created_at": "2026-08-25T21:15:55.115402"
       },
       {
         "_id": "STU20220361",
@@ -7644,7 +7644,7 @@
         "admission_quota": "Merit",
         "merit_rank": 15979,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052365"
+        "created_at": "2026-08-25T21:15:55.115407"
       },
       {
         "_id": "STU20230362",
@@ -7663,7 +7663,7 @@
         "admission_quota": "NRI",
         "merit_rank": 81784,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052370"
+        "created_at": "2026-08-25T21:15:55.115411"
       },
       {
         "_id": "STU20240363",
@@ -7682,7 +7682,7 @@
         "admission_quota": "Management",
         "merit_rank": 84794,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052374"
+        "created_at": "2026-08-25T21:15:55.115416"
       },
       {
         "_id": "STU20210364",
@@ -7701,7 +7701,7 @@
         "admission_quota": "Management",
         "merit_rank": 80008,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052379"
+        "created_at": "2026-08-25T21:15:55.115420"
       },
       {
         "_id": "STU20220365",
@@ -7720,7 +7720,7 @@
         "admission_quota": "Merit",
         "merit_rank": 36388,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052384"
+        "created_at": "2026-08-25T21:15:55.115425"
       },
       {
         "_id": "STU20230366",
@@ -7739,7 +7739,7 @@
         "admission_quota": "NRI",
         "merit_rank": 94752,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052389"
+        "created_at": "2026-08-25T21:15:55.115430"
       },
       {
         "_id": "STU20240367",
@@ -7758,7 +7758,7 @@
         "admission_quota": "Merit",
         "merit_rank": 28482,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052393"
+        "created_at": "2026-08-25T21:15:55.115434"
       },
       {
         "_id": "STU20210368",
@@ -7777,7 +7777,7 @@
         "admission_quota": "Management",
         "merit_rank": 44548,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052398"
+        "created_at": "2026-08-25T21:15:55.115442"
       },
       {
         "_id": "STU20220369",
@@ -7796,7 +7796,7 @@
         "admission_quota": "Sports",
         "merit_rank": 87680,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052403"
+        "created_at": "2026-08-25T21:15:55.115449"
       },
       {
         "_id": "STU20230370",
@@ -7815,7 +7815,7 @@
         "admission_quota": "Management",
         "merit_rank": 66470,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052407"
+        "created_at": "2026-08-25T21:15:55.115453"
       },
       {
         "_id": "STU20240371",
@@ -7834,7 +7834,7 @@
         "admission_quota": "Merit",
         "merit_rank": 35537,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052411"
+        "created_at": "2026-08-25T21:15:55.115458"
       },
       {
         "_id": "STU20210372",
@@ -7853,7 +7853,7 @@
         "admission_quota": "NRI",
         "merit_rank": 68703,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052416"
+        "created_at": "2026-08-25T21:15:55.115463"
       },
       {
         "_id": "STU20220373",
@@ -7872,7 +7872,7 @@
         "admission_quota": "Merit",
         "merit_rank": 3305,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052422"
+        "created_at": "2026-08-25T21:15:55.115468"
       },
       {
         "_id": "STU20230374",
@@ -7891,7 +7891,7 @@
         "admission_quota": "Management",
         "merit_rank": 80525,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052426"
+        "created_at": "2026-08-25T21:15:55.115473"
       },
       {
         "_id": "STU20240375",
@@ -7910,7 +7910,7 @@
         "admission_quota": "Sports",
         "merit_rank": 92374,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052431"
+        "created_at": "2026-08-25T21:15:55.115478"
       },
       {
         "_id": "STU20210376",
@@ -7929,7 +7929,7 @@
         "admission_quota": "Merit",
         "merit_rank": 8413,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052436"
+        "created_at": "2026-08-25T21:15:55.115482"
       },
       {
         "_id": "STU20220377",
@@ -7948,7 +7948,7 @@
         "admission_quota": "Management",
         "merit_rank": 45290,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052441"
+        "created_at": "2026-08-25T21:15:55.115487"
       },
       {
         "_id": "STU20230378",
@@ -7967,7 +7967,7 @@
         "admission_quota": "NRI",
         "merit_rank": 42465,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052445"
+        "created_at": "2026-08-25T21:15:55.115492"
       },
       {
         "_id": "STU20240379",
@@ -7986,7 +7986,7 @@
         "admission_quota": "Merit",
         "merit_rank": 35871,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052450"
+        "created_at": "2026-08-25T21:15:55.115497"
       },
       {
         "_id": "STU20210380",
@@ -8005,7 +8005,7 @@
         "admission_quota": "Merit",
         "merit_rank": 14235,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052454"
+        "created_at": "2026-08-25T21:15:55.115501"
       },
       {
         "_id": "STU20220381",
@@ -8024,7 +8024,7 @@
         "admission_quota": "Merit",
         "merit_rank": 27963,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052459"
+        "created_at": "2026-08-25T21:15:55.115506"
       },
       {
         "_id": "STU20230382",
@@ -8043,7 +8043,7 @@
         "admission_quota": "Merit",
         "merit_rank": 29064,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052464"
+        "created_at": "2026-08-25T21:15:55.115510"
       },
       {
         "_id": "STU20240383",
@@ -8062,7 +8062,7 @@
         "admission_quota": "Merit",
         "merit_rank": 7781,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052468"
+        "created_at": "2026-08-25T21:15:55.115515"
       },
       {
         "_id": "STU20210384",
@@ -8081,7 +8081,7 @@
         "admission_quota": "Management",
         "merit_rank": 94852,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052473"
+        "created_at": "2026-08-25T21:15:55.115519"
       },
       {
         "_id": "STU20220385",
@@ -8100,7 +8100,7 @@
         "admission_quota": "Management",
         "merit_rank": 74807,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052477"
+        "created_at": "2026-08-25T21:15:55.115524"
       },
       {
         "_id": "STU20230386",
@@ -8119,7 +8119,7 @@
         "admission_quota": "NRI",
         "merit_rank": 45946,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052482"
+        "created_at": "2026-08-25T21:15:55.115528"
       },
       {
         "_id": "STU20240387",
@@ -8138,7 +8138,7 @@
         "admission_quota": "NRI",
         "merit_rank": 81510,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052486"
+        "created_at": "2026-08-25T21:15:55.115537"
       },
       {
         "_id": "STU20210388",
@@ -8157,7 +8157,7 @@
         "admission_quota": "Sports",
         "merit_rank": 62000,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052491"
+        "created_at": "2026-08-25T21:15:55.115542"
       },
       {
         "_id": "STU20220389",
@@ -8176,7 +8176,7 @@
         "admission_quota": "NRI",
         "merit_rank": 90697,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052496"
+        "created_at": "2026-08-25T21:15:55.115546"
       },
       {
         "_id": "STU20230390",
@@ -8195,7 +8195,7 @@
         "admission_quota": "Merit",
         "merit_rank": 24932,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052500"
+        "created_at": "2026-08-25T21:15:55.115551"
       },
       {
         "_id": "STU20240391",
@@ -8214,7 +8214,7 @@
         "admission_quota": "Management",
         "merit_rank": 45721,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052505"
+        "created_at": "2026-08-25T21:15:55.115555"
       },
       {
         "_id": "STU20210392",
@@ -8233,7 +8233,7 @@
         "admission_quota": "Management",
         "merit_rank": 84721,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052509"
+        "created_at": "2026-08-25T21:15:55.115560"
       },
       {
         "_id": "STU20220393",
@@ -8252,7 +8252,7 @@
         "admission_quota": "Management",
         "merit_rank": 77925,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052514"
+        "created_at": "2026-08-25T21:15:55.115564"
       },
       {
         "_id": "STU20230394",
@@ -8271,7 +8271,7 @@
         "admission_quota": "Management",
         "merit_rank": 64372,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052518"
+        "created_at": "2026-08-25T21:15:55.115569"
       },
       {
         "_id": "STU20240395",
@@ -8290,7 +8290,7 @@
         "admission_quota": "Merit",
         "merit_rank": 16091,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052524"
+        "created_at": "2026-08-25T21:15:55.115573"
       },
       {
         "_id": "STU20210396",
@@ -8309,7 +8309,7 @@
         "admission_quota": "Merit",
         "merit_rank": 8461,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052529"
+        "created_at": "2026-08-25T21:15:55.115578"
       },
       {
         "_id": "STU20220397",
@@ -8328,7 +8328,7 @@
         "admission_quota": "Sports",
         "merit_rank": 87745,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052533"
+        "created_at": "2026-08-25T21:15:55.115582"
       },
       {
         "_id": "STU20230398",
@@ -8347,7 +8347,7 @@
         "admission_quota": "Sports",
         "merit_rank": 82029,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052538"
+        "created_at": "2026-08-25T21:15:55.115587"
       },
       {
         "_id": "STU20240399",
@@ -8366,7 +8366,7 @@
         "admission_quota": "Management",
         "merit_rank": 49695,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052542"
+        "created_at": "2026-08-25T21:15:55.115591"
       },
       {
         "_id": "STU20210400",
@@ -8385,7 +8385,7 @@
         "admission_quota": "Merit",
         "merit_rank": 28276,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052547"
+        "created_at": "2026-08-25T21:15:55.115596"
       },
       {
         "_id": "STU20220401",
@@ -8404,7 +8404,7 @@
         "admission_quota": "Sports",
         "merit_rank": 70285,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052552"
+        "created_at": "2026-08-25T21:15:55.115601"
       },
       {
         "_id": "STU20230402",
@@ -8423,7 +8423,7 @@
         "admission_quota": "NRI",
         "merit_rank": 70372,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052557"
+        "created_at": "2026-08-25T21:15:55.115606"
       },
       {
         "_id": "STU20240403",
@@ -8442,7 +8442,7 @@
         "admission_quota": "Management",
         "merit_rank": 44372,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052562"
+        "created_at": "2026-08-25T21:15:55.115611"
       },
       {
         "_id": "STU20210404",
@@ -8461,7 +8461,7 @@
         "admission_quota": "NRI",
         "merit_rank": 48879,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052567"
+        "created_at": "2026-08-25T21:15:55.115616"
       },
       {
         "_id": "STU20220405",
@@ -8480,7 +8480,7 @@
         "admission_quota": "Sports",
         "merit_rank": 61142,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052571"
+        "created_at": "2026-08-25T21:15:55.115621"
       },
       {
         "_id": "STU20230406",
@@ -8499,7 +8499,7 @@
         "admission_quota": "Management",
         "merit_rank": 62302,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052576"
+        "created_at": "2026-08-25T21:15:55.115625"
       },
       {
         "_id": "STU20240407",
@@ -8518,7 +8518,7 @@
         "admission_quota": "Merit",
         "merit_rank": 20919,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052581"
+        "created_at": "2026-08-25T21:15:55.115630"
       },
       {
         "_id": "STU20210408",
@@ -8537,7 +8537,7 @@
         "admission_quota": "Merit",
         "merit_rank": 9033,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052585"
+        "created_at": "2026-08-25T21:15:55.115634"
       },
       {
         "_id": "STU20220409",
@@ -8556,7 +8556,7 @@
         "admission_quota": "Merit",
         "merit_rank": 4841,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052590"
+        "created_at": "2026-08-25T21:15:55.115639"
       },
       {
         "_id": "STU20230410",
@@ -8575,7 +8575,7 @@
         "admission_quota": "Merit",
         "merit_rank": 33309,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052595"
+        "created_at": "2026-08-25T21:15:55.115643"
       },
       {
         "_id": "STU20240411",
@@ -8594,7 +8594,7 @@
         "admission_quota": "NRI",
         "merit_rank": 78625,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052599"
+        "created_at": "2026-08-25T21:15:55.115648"
       },
       {
         "_id": "STU20210412",
@@ -8613,7 +8613,7 @@
         "admission_quota": "Management",
         "merit_rank": 89956,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052604"
+        "created_at": "2026-08-25T21:15:55.115652"
       },
       {
         "_id": "STU20220413",
@@ -8632,7 +8632,7 @@
         "admission_quota": "Merit",
         "merit_rank": 5061,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052608"
+        "created_at": "2026-08-25T21:15:55.115657"
       },
       {
         "_id": "STU20230414",
@@ -8651,7 +8651,7 @@
         "admission_quota": "Merit",
         "merit_rank": 24336,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052613"
+        "created_at": "2026-08-25T21:15:55.115661"
       },
       {
         "_id": "STU20240415",
@@ -8670,7 +8670,7 @@
         "admission_quota": "Management",
         "merit_rank": 71754,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052620"
+        "created_at": "2026-08-25T21:15:55.115666"
       },
       {
         "_id": "STU20210416",
@@ -8689,7 +8689,7 @@
         "admission_quota": "Management",
         "merit_rank": 79622,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052626"
+        "created_at": "2026-08-25T21:15:55.115672"
       },
       {
         "_id": "STU20220417",
@@ -8708,7 +8708,7 @@
         "admission_quota": "Sports",
         "merit_rank": 41158,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052631"
+        "created_at": "2026-08-25T21:15:55.115676"
       },
       {
         "_id": "STU20230418",
@@ -8727,7 +8727,7 @@
         "admission_quota": "Management",
         "merit_rank": 68225,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052635"
+        "created_at": "2026-08-25T21:15:55.115681"
       },
       {
         "_id": "STU20240419",
@@ -8746,7 +8746,7 @@
         "admission_quota": "Sports",
         "merit_rank": 64759,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052640"
+        "created_at": "2026-08-25T21:15:55.115685"
       },
       {
         "_id": "STU20210420",
@@ -8765,7 +8765,7 @@
         "admission_quota": "Management",
         "merit_rank": 46379,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052644"
+        "created_at": "2026-08-25T21:15:55.115690"
       },
       {
         "_id": "STU20220421",
@@ -8784,7 +8784,7 @@
         "admission_quota": "Merit",
         "merit_rank": 35785,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052651"
+        "created_at": "2026-08-25T21:15:55.115694"
       },
       {
         "_id": "STU20230422",
@@ -8803,7 +8803,7 @@
         "admission_quota": "Management",
         "merit_rank": 46557,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052656"
+        "created_at": "2026-08-25T21:15:55.115699"
       },
       {
         "_id": "STU20240423",
@@ -8822,7 +8822,7 @@
         "admission_quota": "Merit",
         "merit_rank": 19332,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052660"
+        "created_at": "2026-08-25T21:15:55.115703"
       },
       {
         "_id": "STU20210424",
@@ -8841,7 +8841,7 @@
         "admission_quota": "Merit",
         "merit_rank": 5524,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052665"
+        "created_at": "2026-08-25T21:15:55.115708"
       },
       {
         "_id": "STU20220425",
@@ -8860,7 +8860,7 @@
         "admission_quota": "NRI",
         "merit_rank": 86093,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052670"
+        "created_at": "2026-08-25T21:15:55.115712"
       },
       {
         "_id": "STU20230426",
@@ -8879,7 +8879,7 @@
         "admission_quota": "Management",
         "merit_rank": 49682,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052674"
+        "created_at": "2026-08-25T21:15:55.115717"
       },
       {
         "_id": "STU20240427",
@@ -8898,7 +8898,7 @@
         "admission_quota": "Management",
         "merit_rank": 55629,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052679"
+        "created_at": "2026-08-25T21:15:55.115724"
       },
       {
         "_id": "STU20210428",
@@ -8917,7 +8917,7 @@
         "admission_quota": "Sports",
         "merit_rank": 51533,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052684"
+        "created_at": "2026-08-25T21:15:55.115728"
       },
       {
         "_id": "STU20220429",
@@ -8936,7 +8936,7 @@
         "admission_quota": "Merit",
         "merit_rank": 37919,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052688"
+        "created_at": "2026-08-25T21:15:55.115733"
       },
       {
         "_id": "STU20230430",
@@ -8955,7 +8955,7 @@
         "admission_quota": "NRI",
         "merit_rank": 65555,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052692"
+        "created_at": "2026-08-25T21:15:55.115739"
       },
       {
         "_id": "STU20240431",
@@ -8974,7 +8974,7 @@
         "admission_quota": "Merit",
         "merit_rank": 36265,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052697"
+        "created_at": "2026-08-25T21:15:55.115744"
       },
       {
         "_id": "STU20210432",
@@ -8993,7 +8993,7 @@
         "admission_quota": "NRI",
         "merit_rank": 91694,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052702"
+        "created_at": "2026-08-25T21:15:55.115749"
       },
       {
         "_id": "STU20220433",
@@ -9012,7 +9012,7 @@
         "admission_quota": "Merit",
         "merit_rank": 6414,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052706"
+        "created_at": "2026-08-25T21:15:55.115753"
       },
       {
         "_id": "STU20230434",
@@ -9031,7 +9031,7 @@
         "admission_quota": "Merit",
         "merit_rank": 11008,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052711"
+        "created_at": "2026-08-25T21:15:55.115758"
       },
       {
         "_id": "STU20240435",
@@ -9050,7 +9050,7 @@
         "admission_quota": "Merit",
         "merit_rank": 26757,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052717"
+        "created_at": "2026-08-25T21:15:55.115762"
       },
       {
         "_id": "STU20210436",
@@ -9069,7 +9069,7 @@
         "admission_quota": "Merit",
         "merit_rank": 18967,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052722"
+        "created_at": "2026-08-25T21:15:55.115767"
       },
       {
         "_id": "STU20220437",
@@ -9088,7 +9088,7 @@
         "admission_quota": "Merit",
         "merit_rank": 17656,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052727"
+        "created_at": "2026-08-25T21:15:55.115771"
       },
       {
         "_id": "STU20230438",
@@ -9107,7 +9107,7 @@
         "admission_quota": "Merit",
         "merit_rank": 15211,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052732"
+        "created_at": "2026-08-25T21:15:55.115776"
       },
       {
         "_id": "STU20240439",
@@ -9126,7 +9126,7 @@
         "admission_quota": "Management",
         "merit_rank": 91934,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052736"
+        "created_at": "2026-08-25T21:15:55.115781"
       },
       {
         "_id": "STU20210440",
@@ -9145,7 +9145,7 @@
         "admission_quota": "NRI",
         "merit_rank": 53907,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052741"
+        "created_at": "2026-08-25T21:15:55.115785"
       },
       {
         "_id": "STU20220441",
@@ -9164,7 +9164,7 @@
         "admission_quota": "Merit",
         "merit_rank": 17123,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052745"
+        "created_at": "2026-08-25T21:15:55.115790"
       },
       {
         "_id": "STU20230442",
@@ -9183,7 +9183,7 @@
         "admission_quota": "Merit",
         "merit_rank": 21295,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052750"
+        "created_at": "2026-08-25T21:15:55.115794"
       },
       {
         "_id": "STU20240443",
@@ -9202,7 +9202,7 @@
         "admission_quota": "Merit",
         "merit_rank": 29058,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052754"
+        "created_at": "2026-08-25T21:15:55.115799"
       },
       {
         "_id": "STU20210444",
@@ -9221,7 +9221,7 @@
         "admission_quota": "Management",
         "merit_rank": 47603,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052759"
+        "created_at": "2026-08-25T21:15:55.115803"
       },
       {
         "_id": "STU20220445",
@@ -9240,7 +9240,7 @@
         "admission_quota": "Sports",
         "merit_rank": 83459,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052764"
+        "created_at": "2026-08-25T21:15:55.115807"
       },
       {
         "_id": "STU20230446",
@@ -9259,7 +9259,7 @@
         "admission_quota": "Management",
         "merit_rank": 64481,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052768"
+        "created_at": "2026-08-25T21:15:55.115812"
       },
       {
         "_id": "STU20240447",
@@ -9278,7 +9278,7 @@
         "admission_quota": "NRI",
         "merit_rank": 88124,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052773"
+        "created_at": "2026-08-25T21:15:55.115816"
       },
       {
         "_id": "STU20210448",
@@ -9297,7 +9297,7 @@
         "admission_quota": "Merit",
         "merit_rank": 14146,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052778"
+        "created_at": "2026-08-25T21:15:55.115821"
       },
       {
         "_id": "STU20220449",
@@ -9316,7 +9316,7 @@
         "admission_quota": "Merit",
         "merit_rank": 24030,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052782"
+        "created_at": "2026-08-25T21:15:55.115825"
       },
       {
         "_id": "STU20230450",
@@ -9335,7 +9335,7 @@
         "admission_quota": "NRI",
         "merit_rank": 67919,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052786"
+        "created_at": "2026-08-25T21:15:55.115830"
       },
       {
         "_id": "STU20240451",
@@ -9354,7 +9354,7 @@
         "admission_quota": "Merit",
         "merit_rank": 8874,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052791"
+        "created_at": "2026-08-25T21:15:55.115834"
       },
       {
         "_id": "STU20210452",
@@ -9373,7 +9373,7 @@
         "admission_quota": "Merit",
         "merit_rank": 17202,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052795"
+        "created_at": "2026-08-25T21:15:55.115839"
       },
       {
         "_id": "STU20220453",
@@ -9392,7 +9392,7 @@
         "admission_quota": "Management",
         "merit_rank": 80882,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052800"
+        "created_at": "2026-08-25T21:15:55.115843"
       },
       {
         "_id": "STU20230454",
@@ -9411,7 +9411,7 @@
         "admission_quota": "Management",
         "merit_rank": 70157,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052804"
+        "created_at": "2026-08-25T21:15:55.115848"
       },
       {
         "_id": "STU20240455",
@@ -9430,7 +9430,7 @@
         "admission_quota": "Merit",
         "merit_rank": 14212,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052809"
+        "created_at": "2026-08-25T21:15:55.115853"
       },
       {
         "_id": "STU20210456",
@@ -9449,7 +9449,7 @@
         "admission_quota": "Merit",
         "merit_rank": 29680,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052814"
+        "created_at": "2026-08-25T21:15:55.115857"
       },
       {
         "_id": "STU20220457",
@@ -9468,7 +9468,7 @@
         "admission_quota": "Sports",
         "merit_rank": 87911,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052818"
+        "created_at": "2026-08-25T21:15:55.115862"
       },
       {
         "_id": "STU20230458",
@@ -9487,7 +9487,7 @@
         "admission_quota": "Management",
         "merit_rank": 47663,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052828"
+        "created_at": "2026-08-25T21:15:55.115867"
       },
       {
         "_id": "STU20240459",
@@ -9506,7 +9506,7 @@
         "admission_quota": "Sports",
         "merit_rank": 86871,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052833"
+        "created_at": "2026-08-25T21:15:55.115872"
       },
       {
         "_id": "STU20210460",
@@ -9525,7 +9525,7 @@
         "admission_quota": "Merit",
         "merit_rank": 10744,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052838"
+        "created_at": "2026-08-25T21:15:55.115877"
       },
       {
         "_id": "STU20220461",
@@ -9544,7 +9544,7 @@
         "admission_quota": "Merit",
         "merit_rank": 22633,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052843"
+        "created_at": "2026-08-25T21:15:55.115881"
       },
       {
         "_id": "STU20230462",
@@ -9563,7 +9563,7 @@
         "admission_quota": "NRI",
         "merit_rank": 43304,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052847"
+        "created_at": "2026-08-25T21:15:55.115886"
       },
       {
         "_id": "STU20240463",
@@ -9582,7 +9582,7 @@
         "admission_quota": "Merit",
         "merit_rank": 19644,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052852"
+        "created_at": "2026-08-25T21:15:55.115890"
       },
       {
         "_id": "STU20210464",
@@ -9601,7 +9601,7 @@
         "admission_quota": "Management",
         "merit_rank": 62368,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052857"
+        "created_at": "2026-08-25T21:15:55.115896"
       },
       {
         "_id": "STU20220465",
@@ -9620,7 +9620,7 @@
         "admission_quota": "Sports",
         "merit_rank": 92075,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052861"
+        "created_at": "2026-08-25T21:15:55.115900"
       },
       {
         "_id": "STU20230466",
@@ -9639,7 +9639,7 @@
         "admission_quota": "NRI",
         "merit_rank": 49892,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052866"
+        "created_at": "2026-08-25T21:15:55.115904"
       },
       {
         "_id": "STU20240467",
@@ -9658,7 +9658,7 @@
         "admission_quota": "Sports",
         "merit_rank": 80003,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052871"
+        "created_at": "2026-08-25T21:15:55.115917"
       },
       {
         "_id": "STU20210468",
@@ -9677,7 +9677,7 @@
         "admission_quota": "Management",
         "merit_rank": 87520,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052875"
+        "created_at": "2026-08-25T21:15:55.115922"
       },
       {
         "_id": "STU20220469",
@@ -9696,7 +9696,7 @@
         "admission_quota": "Sports",
         "merit_rank": 56953,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052880"
+        "created_at": "2026-08-25T21:15:55.115927"
       },
       {
         "_id": "STU20230470",
@@ -9715,7 +9715,7 @@
         "admission_quota": "Management",
         "merit_rank": 62215,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052885"
+        "created_at": "2026-08-25T21:15:55.115932"
       },
       {
         "_id": "STU20240471",
@@ -9734,7 +9734,7 @@
         "admission_quota": "NRI",
         "merit_rank": 64750,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052889"
+        "created_at": "2026-08-25T21:15:55.115936"
       },
       {
         "_id": "STU20210472",
@@ -9753,7 +9753,7 @@
         "admission_quota": "Management",
         "merit_rank": 54076,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052894"
+        "created_at": "2026-08-25T21:15:55.115941"
       },
       {
         "_id": "STU20220473",
@@ -9772,7 +9772,7 @@
         "admission_quota": "Merit",
         "merit_rank": 9959,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052898"
+        "created_at": "2026-08-25T21:15:55.115945"
       },
       {
         "_id": "STU20230474",
@@ -9791,7 +9791,7 @@
         "admission_quota": "Merit",
         "merit_rank": 24721,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052903"
+        "created_at": "2026-08-25T21:15:55.115950"
       },
       {
         "_id": "STU20240475",
@@ -9810,7 +9810,7 @@
         "admission_quota": "Merit",
         "merit_rank": 14628,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052911"
+        "created_at": "2026-08-25T21:15:55.115955"
       },
       {
         "_id": "STU20210476",
@@ -9829,7 +9829,7 @@
         "admission_quota": "Merit",
         "merit_rank": 33580,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052924"
+        "created_at": "2026-08-25T21:15:55.115959"
       },
       {
         "_id": "STU20220477",
@@ -9848,7 +9848,7 @@
         "admission_quota": "NRI",
         "merit_rank": 58178,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052929"
+        "created_at": "2026-08-25T21:15:55.115964"
       },
       {
         "_id": "STU20230478",
@@ -9867,7 +9867,7 @@
         "admission_quota": "Sports",
         "merit_rank": 52412,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052933"
+        "created_at": "2026-08-25T21:15:55.115968"
       },
       {
         "_id": "STU20240479",
@@ -9886,7 +9886,7 @@
         "admission_quota": "Merit",
         "merit_rank": 26832,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052938"
+        "created_at": "2026-08-25T21:15:55.115973"
       },
       {
         "_id": "STU20210480",
@@ -9905,7 +9905,7 @@
         "admission_quota": "Merit",
         "merit_rank": 17248,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052944"
+        "created_at": "2026-08-25T21:15:55.115978"
       },
       {
         "_id": "STU20220481",
@@ -9924,7 +9924,7 @@
         "admission_quota": "Management",
         "merit_rank": 94246,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052949"
+        "created_at": "2026-08-25T21:15:55.115982"
       },
       {
         "_id": "STU20230482",
@@ -9943,7 +9943,7 @@
         "admission_quota": "Management",
         "merit_rank": 81519,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052953"
+        "created_at": "2026-08-25T21:15:55.115987"
       },
       {
         "_id": "STU20240483",
@@ -9962,7 +9962,7 @@
         "admission_quota": "Sports",
         "merit_rank": 51022,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052958"
+        "created_at": "2026-08-25T21:15:55.115991"
       },
       {
         "_id": "STU20210484",
@@ -9981,7 +9981,7 @@
         "admission_quota": "Merit",
         "merit_rank": 41932,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052962"
+        "created_at": "2026-08-25T21:15:55.115996"
       },
       {
         "_id": "STU20220485",
@@ -10000,7 +10000,7 @@
         "admission_quota": "NRI",
         "merit_rank": 57128,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052967"
+        "created_at": "2026-08-25T21:15:55.116001"
       },
       {
         "_id": "STU20230486",
@@ -10019,7 +10019,7 @@
         "admission_quota": "Merit",
         "merit_rank": 1127,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052971"
+        "created_at": "2026-08-25T21:15:55.116005"
       },
       {
         "_id": "STU20240487",
@@ -10038,7 +10038,7 @@
         "admission_quota": "Sports",
         "merit_rank": 63459,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052976"
+        "created_at": "2026-08-25T21:15:55.116009"
       },
       {
         "_id": "STU20210488",
@@ -10057,7 +10057,7 @@
         "admission_quota": "Merit",
         "merit_rank": 40702,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052980"
+        "created_at": "2026-08-25T21:15:55.116014"
       },
       {
         "_id": "STU20220489",
@@ -10076,7 +10076,7 @@
         "admission_quota": "Merit",
         "merit_rank": 18676,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052984"
+        "created_at": "2026-08-25T21:15:55.116020"
       },
       {
         "_id": "STU20230490",
@@ -10095,7 +10095,7 @@
         "admission_quota": "Sports",
         "merit_rank": 87769,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052989"
+        "created_at": "2026-08-25T21:15:55.116025"
       },
       {
         "_id": "STU20240491",
@@ -10114,7 +10114,7 @@
         "admission_quota": "Merit",
         "merit_rank": 28847,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052993"
+        "created_at": "2026-08-25T21:15:55.116029"
       },
       {
         "_id": "STU20210492",
@@ -10133,7 +10133,7 @@
         "admission_quota": "Sports",
         "merit_rank": 92931,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.052998"
+        "created_at": "2026-08-25T21:15:55.116034"
       },
       {
         "_id": "STU20220493",
@@ -10152,7 +10152,7 @@
         "admission_quota": "Merit",
         "merit_rank": 39332,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053002"
+        "created_at": "2026-08-25T21:15:55.116039"
       },
       {
         "_id": "STU20230494",
@@ -10171,7 +10171,7 @@
         "admission_quota": "Sports",
         "merit_rank": 48180,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053006"
+        "created_at": "2026-08-25T21:15:55.116043"
       },
       {
         "_id": "STU20240495",
@@ -10190,7 +10190,7 @@
         "admission_quota": "Merit",
         "merit_rank": 37151,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053011"
+        "created_at": "2026-08-25T21:15:55.116048"
       },
       {
         "_id": "STU20210496",
@@ -10209,7 +10209,7 @@
         "admission_quota": "NRI",
         "merit_rank": 91310,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053015"
+        "created_at": "2026-08-25T21:15:55.116052"
       },
       {
         "_id": "STU20220497",
@@ -10228,7 +10228,7 @@
         "admission_quota": "Management",
         "merit_rank": 87488,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053020"
+        "created_at": "2026-08-25T21:15:55.116058"
       },
       {
         "_id": "STU20230498",
@@ -10247,7 +10247,7 @@
         "admission_quota": "Sports",
         "merit_rank": 78432,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053025"
+        "created_at": "2026-08-25T21:15:55.116063"
       },
       {
         "_id": "STU20240499",
@@ -10266,7 +10266,7 @@
         "admission_quota": "NRI",
         "merit_rank": 71177,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053030"
+        "created_at": "2026-08-25T21:15:55.116068"
       },
       {
         "_id": "STU20210500",
@@ -10285,7 +10285,7 @@
         "admission_quota": "Merit",
         "merit_rank": 742,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053034"
+        "created_at": "2026-08-25T21:15:55.116072"
       },
       {
         "_id": "STU20220501",
@@ -10304,7 +10304,7 @@
         "admission_quota": "Merit",
         "merit_rank": 36852,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053041"
+        "created_at": "2026-08-25T21:15:55.116077"
       },
       {
         "_id": "STU20230502",
@@ -10323,7 +10323,7 @@
         "admission_quota": "Sports",
         "merit_rank": 56119,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053046"
+        "created_at": "2026-08-25T21:15:55.116082"
       },
       {
         "_id": "STU20240503",
@@ -10342,7 +10342,7 @@
         "admission_quota": "Sports",
         "merit_rank": 68424,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053051"
+        "created_at": "2026-08-25T21:15:55.116087"
       },
       {
         "_id": "STU20210504",
@@ -10361,7 +10361,7 @@
         "admission_quota": "Sports",
         "merit_rank": 59279,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053056"
+        "created_at": "2026-08-25T21:15:55.116092"
       },
       {
         "_id": "STU20220505",
@@ -10380,7 +10380,7 @@
         "admission_quota": "Sports",
         "merit_rank": 65435,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053060"
+        "created_at": "2026-08-25T21:15:55.116097"
       },
       {
         "_id": "STU20230506",
@@ -10399,7 +10399,7 @@
         "admission_quota": "Merit",
         "merit_rank": 14886,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053065"
+        "created_at": "2026-08-25T21:15:55.116101"
       },
       {
         "_id": "STU20240507",
@@ -10418,7 +10418,7 @@
         "admission_quota": "Sports",
         "merit_rank": 63040,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053070"
+        "created_at": "2026-08-25T21:15:55.116108"
       },
       {
         "_id": "STU20210508",
@@ -10437,7 +10437,7 @@
         "admission_quota": "Merit",
         "merit_rank": 5901,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053074"
+        "created_at": "2026-08-25T21:15:55.116112"
       },
       {
         "_id": "STU20220509",
@@ -10456,7 +10456,7 @@
         "admission_quota": "Merit",
         "merit_rank": 20338,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053079"
+        "created_at": "2026-08-25T21:15:55.116117"
       },
       {
         "_id": "STU20230510",
@@ -10475,7 +10475,7 @@
         "admission_quota": "Sports",
         "merit_rank": 89663,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053083"
+        "created_at": "2026-08-25T21:15:55.116121"
       },
       {
         "_id": "STU20240511",
@@ -10494,7 +10494,7 @@
         "admission_quota": "Merit",
         "merit_rank": 6127,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053088"
+        "created_at": "2026-08-25T21:15:55.116126"
       },
       {
         "_id": "STU20210512",
@@ -10513,7 +10513,7 @@
         "admission_quota": "Merit",
         "merit_rank": 15277,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053092"
+        "created_at": "2026-08-25T21:15:55.116130"
       },
       {
         "_id": "STU20220513",
@@ -10532,7 +10532,7 @@
         "admission_quota": "NRI",
         "merit_rank": 92372,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053097"
+        "created_at": "2026-08-25T21:15:55.116135"
       },
       {
         "_id": "STU20230514",
@@ -10551,7 +10551,7 @@
         "admission_quota": "Merit",
         "merit_rank": 11734,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053101"
+        "created_at": "2026-08-25T21:15:55.116140"
       },
       {
         "_id": "STU20240515",
@@ -10570,7 +10570,7 @@
         "admission_quota": "Merit",
         "merit_rank": 30296,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053107"
+        "created_at": "2026-08-25T21:15:55.116144"
       },
       {
         "_id": "STU20210516",
@@ -10589,7 +10589,7 @@
         "admission_quota": "Merit",
         "merit_rank": 20800,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053112"
+        "created_at": "2026-08-25T21:15:55.116148"
       },
       {
         "_id": "STU20220517",
@@ -10608,7 +10608,7 @@
         "admission_quota": "Merit",
         "merit_rank": 34962,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053116"
+        "created_at": "2026-08-25T21:15:55.116153"
       },
       {
         "_id": "STU20230518",
@@ -10627,7 +10627,7 @@
         "admission_quota": "Management",
         "merit_rank": 56327,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053121"
+        "created_at": "2026-08-25T21:15:55.116158"
       },
       {
         "_id": "STU20240519",
@@ -10646,7 +10646,7 @@
         "admission_quota": "NRI",
         "merit_rank": 44374,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053126"
+        "created_at": "2026-08-25T21:15:55.116162"
       },
       {
         "_id": "STU20210520",
@@ -10665,7 +10665,7 @@
         "admission_quota": "Merit",
         "merit_rank": 17065,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053130"
+        "created_at": "2026-08-25T21:15:55.116167"
       },
       {
         "_id": "STU20220521",
@@ -10684,7 +10684,7 @@
         "admission_quota": "NRI",
         "merit_rank": 48944,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053136"
+        "created_at": "2026-08-25T21:15:55.116172"
       },
       {
         "_id": "STU20230522",
@@ -10703,7 +10703,7 @@
         "admission_quota": "Merit",
         "merit_rank": 19777,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053148"
+        "created_at": "2026-08-25T21:15:55.116177"
       },
       {
         "_id": "STU20240523",
@@ -10722,7 +10722,7 @@
         "admission_quota": "NRI",
         "merit_rank": 93183,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053153"
+        "created_at": "2026-08-25T21:15:55.116181"
       },
       {
         "_id": "STU20210524",
@@ -10741,7 +10741,7 @@
         "admission_quota": "Merit",
         "merit_rank": 13606,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053158"
+        "created_at": "2026-08-25T21:15:55.116186"
       },
       {
         "_id": "STU20220525",
@@ -10760,7 +10760,7 @@
         "admission_quota": "Sports",
         "merit_rank": 81077,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053162"
+        "created_at": "2026-08-25T21:15:55.116190"
       },
       {
         "_id": "STU20230526",
@@ -10779,7 +10779,7 @@
         "admission_quota": "Merit",
         "merit_rank": 30566,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053167"
+        "created_at": "2026-08-25T21:15:55.116195"
       },
       {
         "_id": "STU20240527",
@@ -10798,7 +10798,7 @@
         "admission_quota": "Merit",
         "merit_rank": 6709,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053171"
+        "created_at": "2026-08-25T21:15:55.116200"
       },
       {
         "_id": "STU20210528",
@@ -10817,7 +10817,7 @@
         "admission_quota": "Sports",
         "merit_rank": 69419,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053176"
+        "created_at": "2026-08-25T21:15:55.116204"
       },
       {
         "_id": "STU20220529",
@@ -10836,7 +10836,7 @@
         "admission_quota": "Merit",
         "merit_rank": 9514,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053180"
+        "created_at": "2026-08-25T21:15:55.116209"
       },
       {
         "_id": "STU20230530",
@@ -10855,7 +10855,7 @@
         "admission_quota": "Management",
         "merit_rank": 82470,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053185"
+        "created_at": "2026-08-25T21:15:55.116214"
       },
       {
         "_id": "STU20240531",
@@ -10874,7 +10874,7 @@
         "admission_quota": "Merit",
         "merit_rank": 13113,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053190"
+        "created_at": "2026-08-25T21:15:55.116219"
       },
       {
         "_id": "STU20210532",
@@ -10893,7 +10893,7 @@
         "admission_quota": "Management",
         "merit_rank": 51562,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053195"
+        "created_at": "2026-08-25T21:15:55.116223"
       },
       {
         "_id": "STU20220533",
@@ -10912,7 +10912,7 @@
         "admission_quota": "NRI",
         "merit_rank": 68405,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053199"
+        "created_at": "2026-08-25T21:15:55.116228"
       },
       {
         "_id": "STU20230534",
@@ -10931,7 +10931,7 @@
         "admission_quota": "Merit",
         "merit_rank": 25085,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053204"
+        "created_at": "2026-08-25T21:15:55.116233"
       },
       {
         "_id": "STU20240535",
@@ -10950,7 +10950,7 @@
         "admission_quota": "Management",
         "merit_rank": 60172,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053208"
+        "created_at": "2026-08-25T21:15:55.116238"
       },
       {
         "_id": "STU20210536",
@@ -10969,7 +10969,7 @@
         "admission_quota": "NRI",
         "merit_rank": 65253,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053213"
+        "created_at": "2026-08-25T21:15:55.116242"
       },
       {
         "_id": "STU20220537",
@@ -10988,7 +10988,7 @@
         "admission_quota": "Merit",
         "merit_rank": 8150,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053218"
+        "created_at": "2026-08-25T21:15:55.116247"
       },
       {
         "_id": "STU20230538",
@@ -11007,7 +11007,7 @@
         "admission_quota": "NRI",
         "merit_rank": 65086,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053222"
+        "created_at": "2026-08-25T21:15:55.116251"
       },
       {
         "_id": "STU20240539",
@@ -11026,7 +11026,7 @@
         "admission_quota": "NRI",
         "merit_rank": 67383,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053227"
+        "created_at": "2026-08-25T21:15:55.116256"
       },
       {
         "_id": "STU20210540",
@@ -11045,7 +11045,7 @@
         "admission_quota": "Merit",
         "merit_rank": 4365,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053231"
+        "created_at": "2026-08-25T21:15:55.116260"
       },
       {
         "_id": "STU20220541",
@@ -11064,7 +11064,7 @@
         "admission_quota": "Merit",
         "merit_rank": 4711,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053236"
+        "created_at": "2026-08-25T21:15:55.116265"
       },
       {
         "_id": "STU20230542",
@@ -11083,7 +11083,7 @@
         "admission_quota": "Sports",
         "merit_rank": 74083,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053242"
+        "created_at": "2026-08-25T21:15:55.116270"
       },
       {
         "_id": "STU20240543",
@@ -11102,7 +11102,7 @@
         "admission_quota": "Merit",
         "merit_rank": 702,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053247"
+        "created_at": "2026-08-25T21:15:55.116274"
       },
       {
         "_id": "STU20210544",
@@ -11121,7 +11121,7 @@
         "admission_quota": "Merit",
         "merit_rank": 42316,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053251"
+        "created_at": "2026-08-25T21:15:55.116279"
       },
       {
         "_id": "STU20220545",
@@ -11140,7 +11140,7 @@
         "admission_quota": "NRI",
         "merit_rank": 85842,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053256"
+        "created_at": "2026-08-25T21:15:55.116283"
       },
       {
         "_id": "STU20230546",
@@ -11159,7 +11159,7 @@
         "admission_quota": "Merit",
         "merit_rank": 29747,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053260"
+        "created_at": "2026-08-25T21:15:55.116288"
       },
       {
         "_id": "STU20240547",
@@ -11178,7 +11178,7 @@
         "admission_quota": "NRI",
         "merit_rank": 71214,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053264"
+        "created_at": "2026-08-25T21:15:55.116294"
       },
       {
         "_id": "STU20210548",
@@ -11197,7 +11197,7 @@
         "admission_quota": "Management",
         "merit_rank": 92982,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053269"
+        "created_at": "2026-08-25T21:15:55.116300"
       },
       {
         "_id": "STU20220549",
@@ -11216,7 +11216,7 @@
         "admission_quota": "Merit",
         "merit_rank": 39170,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053274"
+        "created_at": "2026-08-25T21:15:55.116305"
       },
       {
         "_id": "STU20230550",
@@ -11235,7 +11235,7 @@
         "admission_quota": "Merit",
         "merit_rank": 14846,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053278"
+        "created_at": "2026-08-25T21:15:55.116312"
       },
       {
         "_id": "STU20240551",
@@ -11254,7 +11254,7 @@
         "admission_quota": "NRI",
         "merit_rank": 94308,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053283"
+        "created_at": "2026-08-25T21:15:55.116317"
       },
       {
         "_id": "STU20210552",
@@ -11273,7 +11273,7 @@
         "admission_quota": "Merit",
         "merit_rank": 36409,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053287"
+        "created_at": "2026-08-25T21:15:55.116322"
       },
       {
         "_id": "STU20220553",
@@ -11292,7 +11292,7 @@
         "admission_quota": "Merit",
         "merit_rank": 21695,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053292"
+        "created_at": "2026-08-25T21:15:55.116326"
       },
       {
         "_id": "STU20230554",
@@ -11311,7 +11311,7 @@
         "admission_quota": "Merit",
         "merit_rank": 38227,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053296"
+        "created_at": "2026-08-25T21:15:55.116331"
       },
       {
         "_id": "STU20240555",
@@ -11330,7 +11330,7 @@
         "admission_quota": "Merit",
         "merit_rank": 39388,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053302"
+        "created_at": "2026-08-25T21:15:55.116335"
       },
       {
         "_id": "STU20210556",
@@ -11349,7 +11349,7 @@
         "admission_quota": "Management",
         "merit_rank": 93621,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053307"
+        "created_at": "2026-08-25T21:15:55.116340"
       },
       {
         "_id": "STU20220557",
@@ -11368,7 +11368,7 @@
         "admission_quota": "Sports",
         "merit_rank": 71424,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053312"
+        "created_at": "2026-08-25T21:15:55.116345"
       },
       {
         "_id": "STU20230558",
@@ -11387,7 +11387,7 @@
         "admission_quota": "Management",
         "merit_rank": 93272,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053316"
+        "created_at": "2026-08-25T21:15:55.116350"
       },
       {
         "_id": "STU20240559",
@@ -11406,7 +11406,7 @@
         "admission_quota": "NRI",
         "merit_rank": 51792,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053321"
+        "created_at": "2026-08-25T21:15:55.116354"
       },
       {
         "_id": "STU20210560",
@@ -11425,7 +11425,7 @@
         "admission_quota": "Merit",
         "merit_rank": 36179,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053325"
+        "created_at": "2026-08-25T21:15:55.116359"
       },
       {
         "_id": "STU20220561",
@@ -11444,7 +11444,7 @@
         "admission_quota": "Sports",
         "merit_rank": 73462,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053330"
+        "created_at": "2026-08-25T21:15:55.116363"
       },
       {
         "_id": "STU20230562",
@@ -11463,7 +11463,7 @@
         "admission_quota": "Sports",
         "merit_rank": 56709,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053335"
+        "created_at": "2026-08-25T21:15:55.116368"
       },
       {
         "_id": "STU20240563",
@@ -11482,7 +11482,7 @@
         "admission_quota": "NRI",
         "merit_rank": 64388,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053340"
+        "created_at": "2026-08-25T21:15:55.116373"
       },
       {
         "_id": "STU20210564",
@@ -11501,7 +11501,7 @@
         "admission_quota": "Merit",
         "merit_rank": 36437,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053344"
+        "created_at": "2026-08-25T21:15:55.116379"
       },
       {
         "_id": "STU20220565",
@@ -11520,7 +11520,7 @@
         "admission_quota": "Merit",
         "merit_rank": 35003,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053349"
+        "created_at": "2026-08-25T21:15:55.116384"
       },
       {
         "_id": "STU20230566",
@@ -11539,7 +11539,7 @@
         "admission_quota": "Merit",
         "merit_rank": 44921,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053353"
+        "created_at": "2026-08-25T21:15:55.116388"
       },
       {
         "_id": "STU20240567",
@@ -11558,7 +11558,7 @@
         "admission_quota": "NRI",
         "merit_rank": 90956,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053358"
+        "created_at": "2026-08-25T21:15:55.116393"
       },
       {
         "_id": "STU20210568",
@@ -11577,7 +11577,7 @@
         "admission_quota": "NRI",
         "merit_rank": 45697,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053362"
+        "created_at": "2026-08-25T21:15:55.116398"
       },
       {
         "_id": "STU20220569",
@@ -11596,7 +11596,7 @@
         "admission_quota": "NRI",
         "merit_rank": 73337,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053367"
+        "created_at": "2026-08-25T21:15:55.116402"
       },
       {
         "_id": "STU20230570",
@@ -11615,7 +11615,7 @@
         "admission_quota": "NRI",
         "merit_rank": 62613,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053371"
+        "created_at": "2026-08-25T21:15:55.116407"
       },
       {
         "_id": "STU20240571",
@@ -11634,7 +11634,7 @@
         "admission_quota": "Management",
         "merit_rank": 72473,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053376"
+        "created_at": "2026-08-25T21:15:55.116411"
       },
       {
         "_id": "STU20210572",
@@ -11653,7 +11653,7 @@
         "admission_quota": "Management",
         "merit_rank": 54251,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053381"
+        "created_at": "2026-08-25T21:15:55.116416"
       },
       {
         "_id": "STU20220573",
@@ -11672,7 +11672,7 @@
         "admission_quota": "NRI",
         "merit_rank": 52200,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053385"
+        "created_at": "2026-08-25T21:15:55.116421"
       },
       {
         "_id": "STU20230574",
@@ -11691,7 +11691,7 @@
         "admission_quota": "Merit",
         "merit_rank": 24387,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053390"
+        "created_at": "2026-08-25T21:15:55.116425"
       },
       {
         "_id": "STU20240575",
@@ -11710,7 +11710,7 @@
         "admission_quota": "Merit",
         "merit_rank": 19171,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053395"
+        "created_at": "2026-08-25T21:15:55.116430"
       },
       {
         "_id": "STU20210576",
@@ -11729,7 +11729,7 @@
         "admission_quota": "Management",
         "merit_rank": 72889,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053399"
+        "created_at": "2026-08-25T21:15:55.116434"
       },
       {
         "_id": "STU20220577",
@@ -11748,7 +11748,7 @@
         "admission_quota": "Sports",
         "merit_rank": 88328,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053403"
+        "created_at": "2026-08-25T21:15:55.116439"
       },
       {
         "_id": "STU20230578",
@@ -11767,7 +11767,7 @@
         "admission_quota": "NRI",
         "merit_rank": 93779,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053408"
+        "created_at": "2026-08-25T21:15:55.116443"
       },
       {
         "_id": "STU20240579",
@@ -11786,7 +11786,7 @@
         "admission_quota": "Merit",
         "merit_rank": 28438,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053413"
+        "created_at": "2026-08-25T21:15:55.116449"
       },
       {
         "_id": "STU20210580",
@@ -11805,7 +11805,7 @@
         "admission_quota": "Merit",
         "merit_rank": 24327,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053417"
+        "created_at": "2026-08-25T21:15:55.116453"
       },
       {
         "_id": "STU20220581",
@@ -11824,7 +11824,7 @@
         "admission_quota": "Merit",
         "merit_rank": 17032,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053422"
+        "created_at": "2026-08-25T21:15:55.116458"
       },
       {
         "_id": "STU20230582",
@@ -11843,7 +11843,7 @@
         "admission_quota": "Merit",
         "merit_rank": 38794,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053427"
+        "created_at": "2026-08-25T21:15:55.116462"
       },
       {
         "_id": "STU20240583",
@@ -11862,7 +11862,7 @@
         "admission_quota": "Merit",
         "merit_rank": 31577,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053431"
+        "created_at": "2026-08-25T21:15:55.116467"
       },
       {
         "_id": "STU20210584",
@@ -11881,7 +11881,7 @@
         "admission_quota": "Management",
         "merit_rank": 74325,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053436"
+        "created_at": "2026-08-25T21:15:55.116472"
       },
       {
         "_id": "STU20220585",
@@ -11900,7 +11900,7 @@
         "admission_quota": "Management",
         "merit_rank": 89199,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053440"
+        "created_at": "2026-08-25T21:15:55.116476"
       },
       {
         "_id": "STU20230586",
@@ -11919,7 +11919,7 @@
         "admission_quota": "Merit",
         "merit_rank": 20384,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053445"
+        "created_at": "2026-08-25T21:15:55.116481"
       },
       {
         "_id": "STU20240587",
@@ -11938,7 +11938,7 @@
         "admission_quota": "Merit",
         "merit_rank": 14260,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053450"
+        "created_at": "2026-08-25T21:15:55.116487"
       },
       {
         "_id": "STU20210588",
@@ -11957,7 +11957,7 @@
         "admission_quota": "Merit",
         "merit_rank": 14870,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053455"
+        "created_at": "2026-08-25T21:15:55.116492"
       },
       {
         "_id": "STU20220589",
@@ -11976,7 +11976,7 @@
         "admission_quota": "Merit",
         "merit_rank": 18115,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053459"
+        "created_at": "2026-08-25T21:15:55.116497"
       },
       {
         "_id": "STU20230590",
@@ -11995,7 +11995,7 @@
         "admission_quota": "Sports",
         "merit_rank": 72146,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053464"
+        "created_at": "2026-08-25T21:15:55.116502"
       },
       {
         "_id": "STU20240591",
@@ -12014,7 +12014,7 @@
         "admission_quota": "Merit",
         "merit_rank": 35022,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053468"
+        "created_at": "2026-08-25T21:15:55.116506"
       },
       {
         "_id": "STU20210592",
@@ -12033,7 +12033,7 @@
         "admission_quota": "Merit",
         "merit_rank": 1115,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053473"
+        "created_at": "2026-08-25T21:15:55.116511"
       },
       {
         "_id": "STU20220593",
@@ -12052,7 +12052,7 @@
         "admission_quota": "Sports",
         "merit_rank": 85353,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053485"
+        "created_at": "2026-08-25T21:15:55.116515"
       },
       {
         "_id": "STU20230594",
@@ -12071,7 +12071,7 @@
         "admission_quota": "Merit",
         "merit_rank": 43449,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053491"
+        "created_at": "2026-08-25T21:15:55.116529"
       },
       {
         "_id": "STU20240595",
@@ -12090,7 +12090,7 @@
         "admission_quota": "Merit",
         "merit_rank": 6057,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053497"
+        "created_at": "2026-08-25T21:15:55.116534"
       },
       {
         "_id": "STU20210596",
@@ -12109,7 +12109,7 @@
         "admission_quota": "Merit",
         "merit_rank": 5504,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053502"
+        "created_at": "2026-08-25T21:15:55.116538"
       },
       {
         "_id": "STU20220597",
@@ -12128,7 +12128,7 @@
         "admission_quota": "Merit",
         "merit_rank": 21671,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053506"
+        "created_at": "2026-08-25T21:15:55.116543"
       },
       {
         "_id": "STU20230598",
@@ -12147,7 +12147,7 @@
         "admission_quota": "Sports",
         "merit_rank": 74981,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053511"
+        "created_at": "2026-08-25T21:15:55.116547"
       },
       {
         "_id": "STU20240599",
@@ -12166,7 +12166,7 @@
         "admission_quota": "Merit",
         "merit_rank": 37093,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053518"
+        "created_at": "2026-08-25T21:15:55.116552"
       },
       {
         "_id": "STU20210600",
@@ -12185,7 +12185,7 @@
         "admission_quota": "NRI",
         "merit_rank": 49030,
         "is_active": true,
-        "created_at": "2026-08-25T20:58:24.053523"
+        "created_at": "2026-08-25T21:15:55.116557"
       }
     ],
     "dim_dates": [
@@ -154237,8 +154237,8 @@
   },
   "data_quality_reports": [
     {
-      "report_id": "DQR_20260825_205824",
-      "run_timestamp": "2026-08-25T20:58:24.094251",
+      "report_id": "DQR_20260825_211555",
+      "run_timestamp": "2026-08-25T21:15:55.182884",
       "records_extracted": 16932,
       "records_cleaned_and_loaded": 10330,
       "anomalies_sanitized_count": 31,
@@ -154419,6 +154419,7 @@
       "source_collection": "erp_source.students, erp_source.admissions",
       "warehouse_collection": "erp_warehouse.dim_students",
       "calculation_logic": "COUNT(dim_students WHERE is_active = true)",
+      "mongo_aggregation_pipeline": "db.dim_students.aggregate([\n  { \"$match\": { \"is_active\": true } },\n  { \"$group\": { \"_id\": None, \"total_students\": { \"$sum\": 1 } } }\n])",
       "etl_transformations": [
         "Extracted from raw ERP admissions & student registries",
         "Deduplicated duplicate student enrollments by business student_id",
@@ -154434,6 +154435,7 @@
       "source_collection": "erp_source.attendance",
       "warehouse_collection": "erp_warehouse.fact_attendance",
       "calculation_logic": "AVG(attendance_percentage)",
+      "mongo_aggregation_pipeline": "db.fact_attendance.aggregate([\n  { \"$group\": {\n      \"_id\": \"$department_id\",\n      \"avg_attendance\": { \"$avg\": \"$attendance_percentage\" },\n      \"total_sessions\": { \"$sum\": \"$total_classes\" },\n      \"attended_sessions\": { \"$sum\": \"$classes_attended\" }\n  } },\n  { \"$group\": {\n      \"_id\": None,\n      \"overall_institutional_avg\": { \"$avg\": \"$avg_attendance\" }\n  } }\n])",
       "etl_transformations": [
         "Standardized diverse date formats (DD/MM/YYYY, MM-DD-YYYY) to ISO 8601",
         "Clamped out-of-range attendance records (> total classes or < 0)",
@@ -154449,6 +154451,7 @@
       "source_collection": "erp_source.examinations",
       "warehouse_collection": "erp_warehouse.fact_examinations",
       "calculation_logic": "AVG(total_marks = internal_marks + end_sem_marks)",
+      "mongo_aggregation_pipeline": "db.fact_examinations.aggregate([\n  { \"$group\": {\n      \"_id\": None,\n      \"avg_score\": { \"$avg\": \"$total_marks\" },\n      \"avg_gpa\": { \"$avg\": \"$grade_point\" },\n      \"pass_rate\": { \"$avg\": { \"$cond\": [\"$is_passed\", 1.0, 0.0] } }\n  } }\n])",
       "etl_transformations": [
         "Sanitized internal marks to [0, 30] and end-semester marks to [0, 70]",
         "Derived 10-point grade scale and letter grades (O, A+, A, B+, B, C, F)",
@@ -154464,6 +154467,7 @@
       "source_collection": "erp_source.fees",
       "warehouse_collection": "erp_warehouse.fact_fees",
       "calculation_logic": "SUM(total_paid) / SUM(total_due) * 100",
+      "mongo_aggregation_pipeline": "db.fact_fees.aggregate([\n  { \"$group\": {\n      \"_id\": None,\n      \"total_billed\": { \"$sum\": \"$total_due\" },\n      \"total_collected\": { \"$sum\": \"$total_paid\" },\n      \"total_arrears\": { \"$sum\": \"$outstanding_balance\" }\n  } },\n  { \"$project\": {\n      \"collection_efficiency_pct\": {\n        \"$multiply\": [{ \"$divide\": [\"$total_collected\", \"$total_billed\"] }, 100]\n      }\n  } }\n])",
       "etl_transformations": [
         "Deduplicated duplicate payment transaction receipts",
         "Calculated outstanding balances: MAX(0, total_due - total_paid)",
@@ -154479,6 +154483,7 @@
       "source_collection": "Aggregated facts: attendance, exams, fees, library",
       "warehouse_collection": "erp_warehouse.risk_predictions",
       "calculation_logic": "COUNT(risk_predictions WHERE risk_level = 'HIGH')",
+      "mongo_aggregation_pipeline": "db.risk_predictions.aggregate([\n  { \"$match\": { \"risk_level\": \"HIGH\" } },\n  { \"$group\": {\n      \"_id\": \"$department_id\",\n      \"flagged_advisees\": { \"$sum\": 1 }\n  } },\n  { \"$sort\": { \"flagged_advisees\": -1 } }\n])",
       "etl_transformations": [
         "Engineered predictive features: attendance %, internal avg, backlog counts",
         "Processed through trained Scikit-learn Random Forest Classifier",
@@ -154493,6 +154498,7 @@
       "source_collection": "All raw erp_source collections",
       "warehouse_collection": "erp_warehouse.data_quality_reports",
       "calculation_logic": "0.25*Completeness + 0.25*Validity + 0.20*Consistency + 0.15*Uniqueness + 0.15*RefIntegrity",
+      "mongo_aggregation_pipeline": "db.data_quality_reports.find({}, {\n  \"metrics\": 1,\n  \"issues_detected\": 1,\n  \"run_timestamp\": 1\n}).sort({ \"run_timestamp\": -1 }).limit(1)",
       "etl_transformations": [
         "Evaluated 5 enterprise data quality dimensions across entire pipeline",
         "Recorded full audit logs of sanitized anomalies and rejected documents"

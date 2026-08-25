@@ -144,3 +144,13 @@ def test_student_portal_summary_api(client):
     assert "examination_records" in data
     assert "fee_transactions" in data
     assert "personalized_recommendations" in data
+
+
+def test_etl_trigger_api(client):
+    """Test /api/etl/trigger POST endpoint."""
+    res = client.post("/api/etl/trigger", json={"regenerate_raw": False})
+    assert res.status_code == 200
+    data = res.get_json()["data"]
+    assert data["status"] == "success"
+    assert "quality_score" in data
+    assert "records_ingested" in data

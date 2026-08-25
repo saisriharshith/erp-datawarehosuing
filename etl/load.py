@@ -26,6 +26,7 @@ KPI_LINEAGE_DEFINITIONS = [
         "source_collection": "erp_source.students, erp_source.admissions",
         "warehouse_collection": "erp_warehouse.dim_students",
         "calculation_logic": "COUNT(dim_students WHERE is_active = true)",
+        "mongo_aggregation_pipeline": 'db.dim_students.aggregate([\n  { "$match": { "is_active": true } },\n  { "$group": { "_id": None, "total_students": { "$sum": 1 } } }\n])',
         "etl_transformations": [
             "Extracted from raw ERP admissions & student registries",
             "Deduplicated duplicate student enrollments by business student_id",
@@ -41,6 +42,7 @@ KPI_LINEAGE_DEFINITIONS = [
         "source_collection": "erp_source.attendance",
         "warehouse_collection": "erp_warehouse.fact_attendance",
         "calculation_logic": "AVG(attendance_percentage)",
+        "mongo_aggregation_pipeline": 'db.fact_attendance.aggregate([\n  { "$group": {\n      "_id": "$department_id",\n      "avg_attendance": { "$avg": "$attendance_percentage" },\n      "total_sessions": { "$sum": "$total_classes" },\n      "attended_sessions": { "$sum": "$classes_attended" }\n  } },\n  { "$group": {\n      "_id": None,\n      "overall_institutional_avg": { "$avg": "$avg_attendance" }\n  } }\n])',
         "etl_transformations": [
             "Standardized diverse date formats (DD/MM/YYYY, MM-DD-YYYY) to ISO 8601",
             "Clamped out-of-range attendance records (> total classes or < 0)",
@@ -56,6 +58,7 @@ KPI_LINEAGE_DEFINITIONS = [
         "source_collection": "erp_source.examinations",
         "warehouse_collection": "erp_warehouse.fact_examinations",
         "calculation_logic": "AVG(total_marks = internal_marks + end_sem_marks)",
+        "mongo_aggregation_pipeline": 'db.fact_examinations.aggregate([\n  { "$group": {\n      "_id": None,\n      "avg_score": { "$avg": "$total_marks" },\n      "avg_gpa": { "$avg": "$grade_point" },\n      "pass_rate": { "$avg": { "$cond": ["$is_passed", 1.0, 0.0] } }\n  } }\n])',
         "etl_transformations": [
             "Sanitized internal marks to [0, 30] and end-semester marks to [0, 70]",
             "Derived 10-point grade scale and letter grades (O, A+, A, B+, B, C, F)",
@@ -71,6 +74,7 @@ KPI_LINEAGE_DEFINITIONS = [
         "source_collection": "erp_source.fees",
         "warehouse_collection": "erp_warehouse.fact_fees",
         "calculation_logic": "SUM(total_paid) / SUM(total_due) * 100",
+        "mongo_aggregation_pipeline": 'db.fact_fees.aggregate([\n  { "$group": {\n      "_id": None,\n      "total_billed": { "$sum": "$total_due" },\n      "total_collected": { "$sum": "$total_paid" },\n      "total_arrears": { "$sum": "$outstanding_balance" }\n  } },\n  { "$project": {\n      "collection_efficiency_pct": {\n        "$multiply": [{ "$divide": ["$total_collected", "$total_billed"] }, 100]\n      }\n  } }\n])',
         "etl_transformations": [
             "Deduplicated duplicate payment transaction receipts",
             "Calculated outstanding balances: MAX(0, total_due - total_paid)",
@@ -86,6 +90,7 @@ KPI_LINEAGE_DEFINITIONS = [
         "source_collection": "Aggregated facts: attendance, exams, fees, library",
         "warehouse_collection": "erp_warehouse.risk_predictions",
         "calculation_logic": "COUNT(risk_predictions WHERE risk_level = 'HIGH')",
+        "mongo_aggregation_pipeline": 'db.risk_predictions.aggregate([\n  { "$match": { "risk_level": "HIGH" } },\n  { "$group": {\n      "_id": "$department_id",\n      "flagged_advisees": { "$sum": 1 }\n  } },\n  { "$sort": { "flagged_advisees": -1 } }\n])',
         "etl_transformations": [
             "Engineered predictive features: attendance %, internal avg, backlog counts",
             "Processed through trained Scikit-learn Random Forest Classifier",
@@ -100,6 +105,7 @@ KPI_LINEAGE_DEFINITIONS = [
         "source_collection": "All raw erp_source collections",
         "warehouse_collection": "erp_warehouse.data_quality_reports",
         "calculation_logic": "0.25*Completeness + 0.25*Validity + 0.20*Consistency + 0.15*Uniqueness + 0.15*RefIntegrity",
+        "mongo_aggregation_pipeline": 'db.data_quality_reports.find({}, {\n  "metrics": 1,\n  "issues_detected": 1,\n  "run_timestamp": 1\n}).sort({ "run_timestamp": -1 }).limit(1)',
         "etl_transformations": [
             "Evaluated 5 enterprise data quality dimensions across entire pipeline",
             "Recorded full audit logs of sanitized anomalies and rejected documents"

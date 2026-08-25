@@ -153,17 +153,26 @@
                 </div>
               </div>
 
-              <!-- Simulated Outcome Card -->
+              <!-- Simulated Outcome Card with Gauge -->
               <div class="col-md-6">
-                <div class="simulation-box h-100">
-                  <div class="d-flex align-items-center justify-content-between mb-2">
+                <div class="simulation-box h-100 text-center">
+                  <div class="d-flex align-items-center justify-content-between mb-1">
                     <span class="small fw-bold text-success text-uppercase">Simulated Outcome</span>
                     <span id="resSimLevel" class="badge-risk-low">LOW RISK</span>
                   </div>
-                  <h2 id="resSimScore" class="fw-bold text-success my-2">0.28</h2>
+                  
+                  <!-- Dynamic Risk Speedometer SVG -->
+                  <div class="my-2" style="position: relative; width: 140px; margin: 0 auto;">
+                    <svg viewBox="0 0 100 55" style="width: 100%;">
+                      <path d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="#e2e8f0" stroke-width="8" stroke-linecap="round"/>
+                      <path id="simGaugePath" d="M 10 50 A 40 40 0 0 1 40 18" fill="none" stroke="#10b981" stroke-width="8" stroke-linecap="round"/>
+                    </svg>
+                    <div id="resSimScore" class="fw-bold fs-4 text-success" style="position: absolute; bottom: -2px; left: 0; right: 0;">0.28</div>
+                  </div>
+
                   <div class="small text-muted mb-2">Projected Risk Probability</div>
                   <hr class="my-2 border-success opacity-25">
-                  <div id="resSimDetails" class="small text-secondary">
+                  <div id="resSimDetails" class="small text-secondary text-start">
                     • Projected Attendance: <strong>80%</strong><br>
                     • Backlogs: <strong>1</strong><br>
                     • Risk Reduction: <strong class="text-success" id="resReductionPct">65.8%</strong>
@@ -188,7 +197,10 @@
       <div class="dashboard-card">
         <div class="card-title-header">
           <span><i class="bi bi-exclamation-octagon-fill text-danger me-2"></i> Flagged Students for Academic Intervention (risk_predictions)</span>
-          <span id="flaggedCountBadge" class="badge bg-danger">Flagged Students</span>
+          <div class="d-flex align-items-center gap-2">
+            <span id="flaggedCountBadge" class="badge bg-danger">Flagged Students</span>
+            <button class="btn btn-sm btn-outline-secondary" onclick="exportRiskRosterCSV()"><i class="bi bi-download me-1"></i> Export CSV</button>
+          </div>
         </div>
 
         <div class="table-responsive">
@@ -339,6 +351,21 @@
       document.getElementById("resSimLevel").textContent = `${sim.risk_level} RISK`;
       document.getElementById("resSimLevel").className = sim.risk_level === 'HIGH' ? 'badge-risk-high' : (sim.risk_level === 'MEDIUM' ? 'badge-risk-medium' : 'badge-risk-low');
 
+      // Update Gauge Arc
+      const gaugeEl = document.getElementById("simGaugePath");
+      if (gaugeEl) {
+        if (sim.risk_level === 'LOW') {
+          gaugeEl.setAttribute("stroke", "#10b981");
+          gaugeEl.setAttribute("d", "M 10 50 A 40 40 0 0 1 35 18");
+        } else if (sim.risk_level === 'MEDIUM') {
+          gaugeEl.setAttribute("stroke", "#f59e0b");
+          gaugeEl.setAttribute("d", "M 10 50 A 40 40 0 0 1 55 12");
+        } else {
+          gaugeEl.setAttribute("stroke", "#ef4444");
+          gaugeEl.setAttribute("d", "M 10 50 A 40 40 0 0 1 85 45");
+        }
+      }
+
       document.getElementById("resSimDetails").innerHTML = `
         • Projected Attendance: <strong>${sim.attendance}%</strong><br>
         • Projected CGPA: <strong>${sim.gpa.toFixed(2)}</strong><br>
@@ -348,6 +375,28 @@
     } catch (e) {
       console.error("Simulation error:", e);
     }
+  }
+
+  function exportRiskRosterCSV() {
+    if (!cachedRiskStudents || cachedRiskStudents.length === 0) {
+      alert("No students to export.");
+      return;
+    }
+
+    let csv = "StudentID,Name,Department,Semester,Attendance,CGPA,RiskLevel,RiskScore,RiskFactors\n";
+    cachedRiskStudents.forEach(s => {
+      const factors = (s.risk_factors || []).join(" | ").replace(/"/g, '""');
+      csv += `"${s.student_id}","${s.student_name}","${s.department_name}","${s.semester}","${s.attendance_percentage}","${s.cgpa}","${s.risk_level}","${s.risk_score}","${factors}"\n`;
+    });
+
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.setAttribute("href", url);
+    link.setAttribute("download", "student_risk_advisory_roster.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 
   document.addEventListener("DOMContentLoaded", () => {

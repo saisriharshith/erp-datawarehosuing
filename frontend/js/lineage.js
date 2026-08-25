@@ -1,6 +1,6 @@
 /**
- * Data Lineage Modal & Provenance Viewer
- * Explains the origin, ETL cleansing steps, and calculation logic behind every institutional KPI.
+ * Visual Data Lineage & MongoDB Query Inspector
+ * Explains the full data provenance, ETL transformations, and exact MongoDB Aggregation Pipeline query for every KPI.
  */
 
 const Lineage = {
@@ -36,6 +36,7 @@ const Lineage = {
         source_collection: "erp_source (Raw Silo)",
         warehouse_collection: "erp_warehouse (Star Schema)",
         calculation_logic: "Direct aggregation on warehouse collection",
+        mongo_aggregation_pipeline: 'db.warehouse.aggregate([\n  { "$group": { "_id": null, "result": { "$avg": "$value" } } }\n])',
         etl_transformations: [
           "Extracted from source database",
           "Cleaned, deduplicated, and standardized by ETL pipeline",
@@ -44,12 +45,22 @@ const Lineage = {
       };
     }
 
-    // Populate modal elements
-    document.getElementById("lineageModalTitle").textContent = `Data Lineage: ${item.display_name}`;
+    // Modal elements
+    const modalEl = document.getElementById("lineageModal");
+    if (!modalEl) return;
+
+    document.getElementById("lineageModalTitle").innerHTML = `<i class="bi bi-diagram-3-fill text-indigo me-2"></i> Data Lineage: <span>${item.display_name}</span>`;
     document.getElementById("lineageSourceCol").textContent = item.source_collection;
     document.getElementById("lineageWarehouseCol").textContent = item.warehouse_collection;
     document.getElementById("lineageFormula").textContent = item.calculation_logic;
 
+    // MongoDB Pipeline Query Block
+    const queryEl = document.getElementById("lineageMongoQuery");
+    if (queryEl) {
+      queryEl.textContent = item.mongo_aggregation_pipeline || '// Executed via PyMongo aggregation pipeline';
+    }
+
+    // Transformation steps list
     const listEl = document.getElementById("lineageTransformationsList");
     listEl.innerHTML = "";
     (item.etl_transformations || []).forEach(step => {
@@ -59,15 +70,21 @@ const Lineage = {
       listEl.appendChild(li);
     });
 
-    const modal = new bootstrap.Modal(document.getElementById("lineageModal"));
+    const modal = new bootstrap.Modal(modalEl);
     modal.show();
+  },
+
+  copyMongoQuery() {
+    const code = document.getElementById("lineageMongoQuery").textContent;
+    navigator.clipboard.writeText(code).then(() => {
+      showAlert("MongoDB Aggregation Pipeline query copied to clipboard!", "success");
+    });
   }
 };
 
 document.addEventListener("DOMContentLoaded", () => {
   Lineage.loadLineageData();
 
-  // Attach click listener for any element with data-lineage-metric attribute
   document.body.addEventListener("click", (e) => {
     const btn = e.target.closest("[data-lineage-metric]");
     if (btn) {

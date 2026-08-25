@@ -20,7 +20,7 @@
       "Critical attendance shortage (52.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360564"
+    "updated_at": "2026-08-25T21:15:58.370138"
   },
   {
     "_id": "RISK_STU20230002",
@@ -44,7 +44,7 @@
       "Low cumulative grade point average (5.00 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360585"
+    "updated_at": "2026-08-25T21:15:58.370151"
   },
   {
     "_id": "RISK_STU20240003",
@@ -69,7 +69,7 @@
       "Low cumulative grade point average (3.67 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360590"
+    "updated_at": "2026-08-25T21:15:58.370155"
   },
   {
     "_id": "RISK_STU20210004",
@@ -94,7 +94,7 @@
       "Low cumulative grade point average (4.14 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360593"
+    "updated_at": "2026-08-25T21:15:58.370157"
   },
   {
     "_id": "RISK_STU20220005",
@@ -117,7 +117,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360596"
+    "updated_at": "2026-08-25T21:15:58.370159"
   },
   {
     "_id": "RISK_STU20230006",
@@ -140,7 +140,7 @@
       "Critical attendance shortage (47.2%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360599"
+    "updated_at": "2026-08-25T21:15:58.370161"
   },
   {
     "_id": "RISK_STU20240007",
@@ -163,7 +163,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360602"
+    "updated_at": "2026-08-25T21:15:58.370163"
   },
   {
     "_id": "RISK_STU20210008",
@@ -188,7 +188,7 @@
       "Low cumulative grade point average (4.25 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360605"
+    "updated_at": "2026-08-25T21:15:58.370165"
   },
   {
     "_id": "RISK_STU20220009",
@@ -213,7 +213,7 @@
       "Below average CGPA (5.50)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360608"
+    "updated_at": "2026-08-25T21:15:58.370167"
   },
   {
     "_id": "RISK_STU20230010",
@@ -236,7 +236,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360611"
+    "updated_at": "2026-08-25T21:15:58.370169"
   },
   {
     "_id": "RISK_STU20240011",
@@ -262,7 +262,7 @@
       "Low internal continuous assessment score (41.7%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360613"
+    "updated_at": "2026-08-25T21:15:58.370171"
   },
   {
     "_id": "RISK_STU20210012",
@@ -288,7 +288,7 @@
       "Low internal continuous assessment score (0.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360616"
+    "updated_at": "2026-08-25T21:15:58.370173"
   },
   {
     "_id": "RISK_STU20220013",
@@ -311,7 +311,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360618"
+    "updated_at": "2026-08-25T21:15:58.370174"
   },
   {
     "_id": "RISK_STU20230014",
@@ -334,7 +334,7 @@
       "Attendance below 75% threshold (68.4%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360621"
+    "updated_at": "2026-08-25T21:15:58.370176"
   },
   {
     "_id": "RISK_STU20240015",
@@ -358,7 +358,7 @@
       "Below average CGPA (6.25)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360623"
+    "updated_at": "2026-08-25T21:15:58.370178"
   },
   {
     "_id": "RISK_STU20210016",
@@ -382,7 +382,7 @@
       "Below average CGPA (5.75)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360626"
+    "updated_at": "2026-08-25T21:15:58.370180"
   },
   {
     "_id": "RISK_STU20220017",
@@ -405,7 +405,7 @@
       "Attendance below 75% threshold (61.7%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360628"
+    "updated_at": "2026-08-25T21:15:58.370182"
   },
   {
     "_id": "RISK_STU20230018",
@@ -428,7 +428,7 @@
       "Critical attendance shortage (52.4%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360631"
+    "updated_at": "2026-08-25T21:15:58.370183"
   },
   {
     "_id": "RISK_STU20240019",
@@ -451,7 +451,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360634"
+    "updated_at": "2026-08-25T21:15:58.370185"
   },
   {
     "_id": "RISK_STU20210020",
@@ -474,7 +474,7 @@
       "Attendance below 75% threshold (66.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360636"
+    "updated_at": "2026-08-25T21:15:58.370187"
   },
   {
     "_id": "RISK_STU20220021",
@@ -497,7 +497,7 @@
       "Critical attendance shortage (52.4%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360639"
+    "updated_at": "2026-08-25T21:15:58.370189"
   },
   {
     "_id": "RISK_STU20230022",
@@ -521,7 +521,7 @@
       "Below average CGPA (6.11)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360641"
+    "updated_at": "2026-08-25T21:15:58.370190"
   },
   {
     "_id": "RISK_STU20240023",
@@ -544,7 +544,7 @@
       "Attendance below 75% threshold (72.9%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360644"
+    "updated_at": "2026-08-25T21:15:58.370192"
   },
   {
     "_id": "RISK_STU20210024",
@@ -567,7 +567,7 @@
       "Attendance below 75% threshold (60.5%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360646"
+    "updated_at": "2026-08-25T21:15:58.370194"
   },
   {
     "_id": "RISK_STU20220025",
@@ -590,7 +590,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360649"
+    "updated_at": "2026-08-25T21:15:58.370195"
   },
   {
     "_id": "RISK_STU20230026",
@@ -613,7 +613,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360652"
+    "updated_at": "2026-08-25T21:15:58.370197"
   },
   {
     "_id": "RISK_STU20240027",
@@ -637,7 +637,7 @@
       "Below average CGPA (5.75)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360654"
+    "updated_at": "2026-08-25T21:15:58.370199"
   },
   {
     "_id": "RISK_STU20210028",
@@ -661,7 +661,7 @@
       "Below average CGPA (5.67)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360656"
+    "updated_at": "2026-08-25T21:15:58.370201"
   },
   {
     "_id": "RISK_STU20220029",
@@ -684,7 +684,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360672"
+    "updated_at": "2026-08-25T21:15:58.370203"
   },
   {
     "_id": "RISK_STU20230030",
@@ -707,7 +707,7 @@
       "Attendance below 75% threshold (68.5%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360681"
+    "updated_at": "2026-08-25T21:15:58.370205"
   },
   {
     "_id": "RISK_STU20240031",
@@ -731,7 +731,7 @@
       "Below average CGPA (6.38)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360683"
+    "updated_at": "2026-08-25T21:15:58.370207"
   },
   {
     "_id": "RISK_STU20210032",
@@ -756,7 +756,7 @@
       "Low internal continuous assessment score (43.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360685"
+    "updated_at": "2026-08-25T21:15:58.370208"
   },
   {
     "_id": "RISK_STU20220033",
@@ -781,7 +781,7 @@
       "Low cumulative grade point average (0.00 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360687"
+    "updated_at": "2026-08-25T21:15:58.370210"
   },
   {
     "_id": "RISK_STU20230034",
@@ -805,7 +805,7 @@
       "Below average CGPA (6.00)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360689"
+    "updated_at": "2026-08-25T21:15:58.370212"
   },
   {
     "_id": "RISK_STU20240035",
@@ -829,7 +829,7 @@
       "Below average CGPA (5.67)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360691"
+    "updated_at": "2026-08-25T21:15:58.370214"
   },
   {
     "_id": "RISK_STU20210036",
@@ -853,7 +853,7 @@
       "Below average CGPA (6.00)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360693"
+    "updated_at": "2026-08-25T21:15:58.370216"
   },
   {
     "_id": "RISK_STU20220037",
@@ -877,7 +877,7 @@
       "Low cumulative grade point average (5.00 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360694"
+    "updated_at": "2026-08-25T21:15:58.370217"
   },
   {
     "_id": "RISK_STU20230038",
@@ -900,7 +900,7 @@
       "Attendance below 75% threshold (70.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360697"
+    "updated_at": "2026-08-25T21:15:58.370219"
   },
   {
     "_id": "RISK_STU20240039",
@@ -923,7 +923,7 @@
       "Attendance below 75% threshold (61.1%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360698"
+    "updated_at": "2026-08-25T21:15:58.370221"
   },
   {
     "_id": "RISK_STU20210040",
@@ -946,7 +946,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360700"
+    "updated_at": "2026-08-25T21:15:58.370223"
   },
   {
     "_id": "RISK_STU20220041",
@@ -971,7 +971,7 @@
       "Low cumulative grade point average (3.75 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360702"
+    "updated_at": "2026-08-25T21:15:58.370224"
   },
   {
     "_id": "RISK_STU20230042",
@@ -994,7 +994,7 @@
       "Attendance below 75% threshold (67.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360704"
+    "updated_at": "2026-08-25T21:15:58.370226"
   },
   {
     "_id": "RISK_STU20240043",
@@ -1017,7 +1017,7 @@
       "Critical attendance shortage (59.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360705"
+    "updated_at": "2026-08-25T21:15:58.370228"
   },
   {
     "_id": "RISK_STU20210044",
@@ -1040,7 +1040,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360707"
+    "updated_at": "2026-08-25T21:15:58.370230"
   },
   {
     "_id": "RISK_STU20220045",
@@ -1063,7 +1063,7 @@
       "Attendance below 75% threshold (63.4%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360709"
+    "updated_at": "2026-08-25T21:15:58.370231"
   },
   {
     "_id": "RISK_STU20230046",
@@ -1087,7 +1087,7 @@
       "Low cumulative grade point average (5.00 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360711"
+    "updated_at": "2026-08-25T21:15:58.370233"
   },
   {
     "_id": "RISK_STU20240047",
@@ -1110,7 +1110,7 @@
       "Attendance below 75% threshold (74.1%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360713"
+    "updated_at": "2026-08-25T21:15:58.370235"
   },
   {
     "_id": "RISK_STU20210048",
@@ -1134,7 +1134,7 @@
       "Below average CGPA (6.00)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360715"
+    "updated_at": "2026-08-25T21:15:58.370237"
   },
   {
     "_id": "RISK_STU20220049",
@@ -1157,7 +1157,7 @@
       "Critical attendance shortage (57.1%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360716"
+    "updated_at": "2026-08-25T21:15:58.370238"
   },
   {
     "_id": "RISK_STU20230050",
@@ -1181,7 +1181,7 @@
       "Below average CGPA (6.43)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360718"
+    "updated_at": "2026-08-25T21:15:58.370240"
   },
   {
     "_id": "RISK_STU20240051",
@@ -1207,7 +1207,7 @@
       "Low internal continuous assessment score (31.7%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360720"
+    "updated_at": "2026-08-25T21:15:58.370242"
   },
   {
     "_id": "RISK_STU20210052",
@@ -1230,7 +1230,7 @@
       "Attendance below 75% threshold (70.5%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360722"
+    "updated_at": "2026-08-25T21:15:58.370244"
   },
   {
     "_id": "RISK_STU20220053",
@@ -1253,7 +1253,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360723"
+    "updated_at": "2026-08-25T21:15:58.370246"
   },
   {
     "_id": "RISK_STU20230054",
@@ -1276,7 +1276,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360725"
+    "updated_at": "2026-08-25T21:15:58.370248"
   },
   {
     "_id": "RISK_STU20240055",
@@ -1299,7 +1299,7 @@
       "Critical attendance shortage (42.5%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360727"
+    "updated_at": "2026-08-25T21:15:58.370249"
   },
   {
     "_id": "RISK_STU20210056",
@@ -1322,7 +1322,7 @@
       "Attendance below 75% threshold (71.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360729"
+    "updated_at": "2026-08-25T21:15:58.370251"
   },
   {
     "_id": "RISK_STU20220057",
@@ -1346,7 +1346,7 @@
       "Below average CGPA (5.50)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360730"
+    "updated_at": "2026-08-25T21:15:58.370253"
   },
   {
     "_id": "RISK_STU20230058",
@@ -1370,7 +1370,7 @@
       "Below average CGPA (5.67)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360732"
+    "updated_at": "2026-08-25T21:15:58.370254"
   },
   {
     "_id": "RISK_STU20240059",
@@ -1395,7 +1395,7 @@
       "Low internal continuous assessment score (31.7%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360734"
+    "updated_at": "2026-08-25T21:15:58.370256"
   },
   {
     "_id": "RISK_STU20210060",
@@ -1419,7 +1419,7 @@
       "Below average CGPA (6.00)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360736"
+    "updated_at": "2026-08-25T21:15:58.370258"
   },
   {
     "_id": "RISK_STU20220061",
@@ -1442,7 +1442,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360737"
+    "updated_at": "2026-08-25T21:15:58.370259"
   },
   {
     "_id": "RISK_STU20230062",
@@ -1465,7 +1465,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360739"
+    "updated_at": "2026-08-25T21:15:58.370261"
   },
   {
     "_id": "RISK_STU20240063",
@@ -1489,7 +1489,7 @@
       "Below average CGPA (6.33)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360741"
+    "updated_at": "2026-08-25T21:15:58.370263"
   },
   {
     "_id": "RISK_STU20210064",
@@ -1512,7 +1512,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360742"
+    "updated_at": "2026-08-25T21:15:58.370264"
   },
   {
     "_id": "RISK_STU20220065",
@@ -1536,7 +1536,7 @@
       "Low cumulative grade point average (5.33 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360744"
+    "updated_at": "2026-08-25T21:15:58.370266"
   },
   {
     "_id": "RISK_STU20230066",
@@ -1559,7 +1559,7 @@
       "Attendance below 75% threshold (70.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360746"
+    "updated_at": "2026-08-25T21:15:58.370268"
   },
   {
     "_id": "RISK_STU20240067",
@@ -1582,7 +1582,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360748"
+    "updated_at": "2026-08-25T21:15:58.370270"
   },
   {
     "_id": "RISK_STU20210068",
@@ -1607,7 +1607,7 @@
       "Low cumulative grade point average (0.00 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360749"
+    "updated_at": "2026-08-25T21:15:58.370272"
   },
   {
     "_id": "RISK_STU20220069",
@@ -1630,7 +1630,7 @@
       "Critical attendance shortage (58.5%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360751"
+    "updated_at": "2026-08-25T21:15:58.370273"
   },
   {
     "_id": "RISK_STU20230070",
@@ -1653,7 +1653,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360753"
+    "updated_at": "2026-08-25T21:15:58.370275"
   },
   {
     "_id": "RISK_STU20240071",
@@ -1676,7 +1676,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360754"
+    "updated_at": "2026-08-25T21:15:58.370277"
   },
   {
     "_id": "RISK_STU20210072",
@@ -1699,7 +1699,7 @@
       "Attendance below 75% threshold (70.9%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360756"
+    "updated_at": "2026-08-25T21:15:58.370279"
   },
   {
     "_id": "RISK_STU20220073",
@@ -1725,7 +1725,7 @@
       "Low internal continuous assessment score (32.6%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360757"
+    "updated_at": "2026-08-25T21:15:58.370280"
   },
   {
     "_id": "RISK_STU20230074",
@@ -1748,7 +1748,7 @@
       "Attendance below 75% threshold (72.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360759"
+    "updated_at": "2026-08-25T21:15:58.370282"
   },
   {
     "_id": "RISK_STU20240075",
@@ -1771,7 +1771,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360761"
+    "updated_at": "2026-08-25T21:15:58.370284"
   },
   {
     "_id": "RISK_STU20210076",
@@ -1794,7 +1794,7 @@
       "Critical attendance shortage (54.9%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360762"
+    "updated_at": "2026-08-25T21:15:58.370286"
   },
   {
     "_id": "RISK_STU20220077",
@@ -1817,7 +1817,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360764"
+    "updated_at": "2026-08-25T21:15:58.370287"
   },
   {
     "_id": "RISK_STU20230078",
@@ -1843,7 +1843,7 @@
       "Low internal continuous assessment score (25.6%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360766"
+    "updated_at": "2026-08-25T21:15:58.370290"
   },
   {
     "_id": "RISK_STU20240079",
@@ -1866,7 +1866,7 @@
       "Attendance below 75% threshold (71.1%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360768"
+    "updated_at": "2026-08-25T21:15:58.370291"
   },
   {
     "_id": "RISK_STU20210080",
@@ -1891,7 +1891,7 @@
       "Low cumulative grade point average (4.25 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360770"
+    "updated_at": "2026-08-25T21:15:58.370293"
   },
   {
     "_id": "RISK_STU20220081",
@@ -1914,7 +1914,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360771"
+    "updated_at": "2026-08-25T21:15:58.370295"
   },
   {
     "_id": "RISK_STU20230082",
@@ -1937,7 +1937,7 @@
       "Critical attendance shortage (51.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360773"
+    "updated_at": "2026-08-25T21:15:58.370297"
   },
   {
     "_id": "RISK_STU20240083",
@@ -1961,7 +1961,7 @@
       "Below average CGPA (5.75)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360775"
+    "updated_at": "2026-08-25T21:15:58.370298"
   },
   {
     "_id": "RISK_STU20210084",
@@ -1984,7 +1984,7 @@
       "Critical attendance shortage (51.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360776"
+    "updated_at": "2026-08-25T21:15:58.370300"
   },
   {
     "_id": "RISK_STU20220085",
@@ -2007,7 +2007,7 @@
       "Critical attendance shortage (57.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360778"
+    "updated_at": "2026-08-25T21:15:58.370302"
   },
   {
     "_id": "RISK_STU20230086",
@@ -2030,7 +2030,7 @@
       "Attendance below 75% threshold (66.2%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360780"
+    "updated_at": "2026-08-25T21:15:58.370304"
   },
   {
     "_id": "RISK_STU20240087",
@@ -2056,7 +2056,7 @@
       "Low internal continuous assessment score (42.4%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360781"
+    "updated_at": "2026-08-25T21:15:58.370306"
   },
   {
     "_id": "RISK_STU20210088",
@@ -2082,7 +2082,7 @@
       "Low internal continuous assessment score (43.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360783"
+    "updated_at": "2026-08-25T21:15:58.370307"
   },
   {
     "_id": "RISK_STU20220089",
@@ -2107,7 +2107,7 @@
       "Low cumulative grade point average (5.00 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360785"
+    "updated_at": "2026-08-25T21:15:58.370309"
   },
   {
     "_id": "RISK_STU20230090",
@@ -2133,7 +2133,7 @@
       "Low internal continuous assessment score (44.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360786"
+    "updated_at": "2026-08-25T21:15:58.370311"
   },
   {
     "_id": "RISK_STU20240091",
@@ -2159,7 +2159,7 @@
       "Low internal continuous assessment score (36.7%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360788"
+    "updated_at": "2026-08-25T21:15:58.370312"
   },
   {
     "_id": "RISK_STU20210092",
@@ -2185,7 +2185,7 @@
       "Low internal continuous assessment score (36.7%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360789"
+    "updated_at": "2026-08-25T21:15:58.370314"
   },
   {
     "_id": "RISK_STU20220093",
@@ -2208,7 +2208,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360791"
+    "updated_at": "2026-08-25T21:15:58.370316"
   },
   {
     "_id": "RISK_STU20230094",
@@ -2234,7 +2234,7 @@
       "Low internal continuous assessment score (36.7%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360793"
+    "updated_at": "2026-08-25T21:15:58.370318"
   },
   {
     "_id": "RISK_STU20240095",
@@ -2257,7 +2257,7 @@
       "Attendance below 75% threshold (63.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360795"
+    "updated_at": "2026-08-25T21:15:58.370320"
   },
   {
     "_id": "RISK_STU20210096",
@@ -2281,7 +2281,7 @@
       "Below average CGPA (6.00)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360797"
+    "updated_at": "2026-08-25T21:15:58.370321"
   },
   {
     "_id": "RISK_STU20220097",
@@ -2307,7 +2307,7 @@
       "Low internal continuous assessment score (44.8%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360798"
+    "updated_at": "2026-08-25T21:15:58.370323"
   },
   {
     "_id": "RISK_STU20230098",
@@ -2332,7 +2332,7 @@
       "Low cumulative grade point average (4.33 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360800"
+    "updated_at": "2026-08-25T21:15:58.370325"
   },
   {
     "_id": "RISK_STU20240099",
@@ -2355,7 +2355,7 @@
       "Attendance below 75% threshold (61.5%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360801"
+    "updated_at": "2026-08-25T21:15:58.370326"
   },
   {
     "_id": "RISK_STU20210100",
@@ -2378,7 +2378,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360803"
+    "updated_at": "2026-08-25T21:15:58.370328"
   },
   {
     "_id": "RISK_STU20220101",
@@ -2404,7 +2404,7 @@
       "Low internal continuous assessment score (42.2%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360805"
+    "updated_at": "2026-08-25T21:15:58.370330"
   },
   {
     "_id": "RISK_STU20230102",
@@ -2428,7 +2428,7 @@
       "Below average CGPA (5.50)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360807"
+    "updated_at": "2026-08-25T21:15:58.370331"
   },
   {
     "_id": "RISK_STU20240103",
@@ -2451,7 +2451,7 @@
       "Attendance below 75% threshold (68.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360808"
+    "updated_at": "2026-08-25T21:15:58.370333"
   },
   {
     "_id": "RISK_STU20210104",
@@ -2474,7 +2474,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360810"
+    "updated_at": "2026-08-25T21:15:58.370335"
   },
   {
     "_id": "RISK_STU20220105",
@@ -2497,7 +2497,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360812"
+    "updated_at": "2026-08-25T21:15:58.370336"
   },
   {
     "_id": "RISK_STU20230106",
@@ -2522,7 +2522,7 @@
       "Low cumulative grade point average (5.00 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360813"
+    "updated_at": "2026-08-25T21:15:58.370338"
   },
   {
     "_id": "RISK_STU20240107",
@@ -2545,7 +2545,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360815"
+    "updated_at": "2026-08-25T21:15:58.370340"
   },
   {
     "_id": "RISK_STU20210108",
@@ -2568,7 +2568,7 @@
       "Critical attendance shortage (50.9%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360817"
+    "updated_at": "2026-08-25T21:15:58.370341"
   },
   {
     "_id": "RISK_STU20220109",
@@ -2591,7 +2591,7 @@
       "Critical attendance shortage (59.5%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360819"
+    "updated_at": "2026-08-25T21:15:58.370343"
   },
   {
     "_id": "RISK_STU20230110",
@@ -2614,7 +2614,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360821"
+    "updated_at": "2026-08-25T21:15:58.370345"
   },
   {
     "_id": "RISK_STU20240111",
@@ -2639,7 +2639,7 @@
       "Low cumulative grade point average (4.14 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360823"
+    "updated_at": "2026-08-25T21:15:58.370347"
   },
   {
     "_id": "RISK_STU20210112",
@@ -2663,7 +2663,7 @@
       "Below average CGPA (6.00)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360824"
+    "updated_at": "2026-08-25T21:15:58.370349"
   },
   {
     "_id": "RISK_STU20220113",
@@ -2686,7 +2686,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360826"
+    "updated_at": "2026-08-25T21:15:58.370350"
   },
   {
     "_id": "RISK_STU20230114",
@@ -2710,7 +2710,7 @@
       "Below average CGPA (6.00)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360828"
+    "updated_at": "2026-08-25T21:15:58.370352"
   },
   {
     "_id": "RISK_STU20240115",
@@ -2733,7 +2733,7 @@
       "Attendance below 75% threshold (69.4%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360829"
+    "updated_at": "2026-08-25T21:15:58.370354"
   },
   {
     "_id": "RISK_STU20210116",
@@ -2756,7 +2756,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360831"
+    "updated_at": "2026-08-25T21:15:58.370355"
   },
   {
     "_id": "RISK_STU20220117",
@@ -2779,7 +2779,7 @@
       "Attendance below 75% threshold (66.2%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360833"
+    "updated_at": "2026-08-25T21:15:58.370357"
   },
   {
     "_id": "RISK_STU20230118",
@@ -2804,7 +2804,7 @@
       "Low cumulative grade point average (4.00 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360835"
+    "updated_at": "2026-08-25T21:15:58.370359"
   },
   {
     "_id": "RISK_STU20240119",
@@ -2829,7 +2829,7 @@
       "Low cumulative grade point average (5.33 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360837"
+    "updated_at": "2026-08-25T21:15:58.370360"
   },
   {
     "_id": "RISK_STU20210120",
@@ -2854,7 +2854,7 @@
       "Low cumulative grade point average (4.22 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360839"
+    "updated_at": "2026-08-25T21:15:58.370362"
   },
   {
     "_id": "RISK_STU20220121",
@@ -2877,7 +2877,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360840"
+    "updated_at": "2026-08-25T21:15:58.370364"
   },
   {
     "_id": "RISK_STU20230122",
@@ -2901,7 +2901,7 @@
       "Below average CGPA (5.83)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360842"
+    "updated_at": "2026-08-25T21:15:58.370366"
   },
   {
     "_id": "RISK_STU20240123",
@@ -2925,7 +2925,7 @@
       "Below average CGPA (6.00)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360844"
+    "updated_at": "2026-08-25T21:15:58.370368"
   },
   {
     "_id": "RISK_STU20210124",
@@ -2948,7 +2948,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360845"
+    "updated_at": "2026-08-25T21:15:58.370369"
   },
   {
     "_id": "RISK_STU20220125",
@@ -2971,7 +2971,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360847"
+    "updated_at": "2026-08-25T21:15:58.370371"
   },
   {
     "_id": "RISK_STU20230126",
@@ -2994,7 +2994,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360849"
+    "updated_at": "2026-08-25T21:15:58.370373"
   },
   {
     "_id": "RISK_STU20240127",
@@ -3017,7 +3017,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360850"
+    "updated_at": "2026-08-25T21:15:58.370374"
   },
   {
     "_id": "RISK_STU20210128",
@@ -3040,7 +3040,7 @@
       "Attendance below 75% threshold (73.9%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360852"
+    "updated_at": "2026-08-25T21:15:58.370376"
   },
   {
     "_id": "RISK_STU20220129",
@@ -3063,7 +3063,7 @@
       "Attendance below 75% threshold (71.9%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360854"
+    "updated_at": "2026-08-25T21:15:58.370378"
   },
   {
     "_id": "RISK_STU20230130",
@@ -3086,7 +3086,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360856"
+    "updated_at": "2026-08-25T21:15:58.370380"
   },
   {
     "_id": "RISK_STU20240131",
@@ -3112,7 +3112,7 @@
       "Low internal continuous assessment score (41.4%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360858"
+    "updated_at": "2026-08-25T21:15:58.370382"
   },
   {
     "_id": "RISK_STU20210132",
@@ -3135,7 +3135,7 @@
       "Attendance below 75% threshold (60.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360859"
+    "updated_at": "2026-08-25T21:15:58.370384"
   },
   {
     "_id": "RISK_STU20220133",
@@ -3158,7 +3158,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360861"
+    "updated_at": "2026-08-25T21:15:58.370385"
   },
   {
     "_id": "RISK_STU20230134",
@@ -3182,7 +3182,7 @@
       "Below average CGPA (5.88)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360863"
+    "updated_at": "2026-08-25T21:15:58.370387"
   },
   {
     "_id": "RISK_STU20240135",
@@ -3207,7 +3207,7 @@
       "Low cumulative grade point average (5.33 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360864"
+    "updated_at": "2026-08-25T21:15:58.370389"
   },
   {
     "_id": "RISK_STU20210136",
@@ -3233,7 +3233,7 @@
       "Low internal continuous assessment score (40.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360866"
+    "updated_at": "2026-08-25T21:15:58.370391"
   },
   {
     "_id": "RISK_STU20220137",
@@ -3256,7 +3256,7 @@
       "Critical attendance shortage (58.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360868"
+    "updated_at": "2026-08-25T21:15:58.370392"
   },
   {
     "_id": "RISK_STU20230138",
@@ -3279,7 +3279,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360869"
+    "updated_at": "2026-08-25T21:15:58.370394"
   },
   {
     "_id": "RISK_STU20240139",
@@ -3302,7 +3302,7 @@
       "Attendance below 75% threshold (61.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360871"
+    "updated_at": "2026-08-25T21:15:58.370396"
   },
   {
     "_id": "RISK_STU20210140",
@@ -3326,7 +3326,7 @@
       "Below average CGPA (6.00)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360873"
+    "updated_at": "2026-08-25T21:15:58.370397"
   },
   {
     "_id": "RISK_STU20220141",
@@ -3349,7 +3349,7 @@
       "Attendance below 75% threshold (74.5%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360875"
+    "updated_at": "2026-08-25T21:15:58.370399"
   },
   {
     "_id": "RISK_STU20230142",
@@ -3372,7 +3372,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360876"
+    "updated_at": "2026-08-25T21:15:58.370401"
   },
   {
     "_id": "RISK_STU20240143",
@@ -3395,7 +3395,7 @@
       "Critical attendance shortage (59.4%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360878"
+    "updated_at": "2026-08-25T21:15:58.370403"
   },
   {
     "_id": "RISK_STU20210144",
@@ -3418,7 +3418,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360880"
+    "updated_at": "2026-08-25T21:15:58.370405"
   },
   {
     "_id": "RISK_STU20220145",
@@ -3441,7 +3441,7 @@
       "Attendance below 75% threshold (66.4%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360881"
+    "updated_at": "2026-08-25T21:15:58.370407"
   },
   {
     "_id": "RISK_STU20230146",
@@ -3466,7 +3466,7 @@
       "Low cumulative grade point average (4.75 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360883"
+    "updated_at": "2026-08-25T21:15:58.370408"
   },
   {
     "_id": "RISK_STU20240147",
@@ -3492,7 +3492,7 @@
       "Low internal continuous assessment score (44.1%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360885"
+    "updated_at": "2026-08-25T21:15:58.370410"
   },
   {
     "_id": "RISK_STU20210148",
@@ -3515,7 +3515,7 @@
       "Attendance below 75% threshold (69.8%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360886"
+    "updated_at": "2026-08-25T21:15:58.370412"
   },
   {
     "_id": "RISK_STU20220149",
@@ -3540,7 +3540,7 @@
       "Low cumulative grade point average (2.75 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360888"
+    "updated_at": "2026-08-25T21:15:58.370414"
   },
   {
     "_id": "RISK_STU20230150",
@@ -3563,7 +3563,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360890"
+    "updated_at": "2026-08-25T21:15:58.370416"
   },
   {
     "_id": "RISK_STU20240151",
@@ -3587,7 +3587,7 @@
       "Below average CGPA (6.00)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360892"
+    "updated_at": "2026-08-25T21:15:58.370418"
   },
   {
     "_id": "RISK_STU20210152",
@@ -3611,7 +3611,7 @@
       "Low cumulative grade point average (5.29 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360893"
+    "updated_at": "2026-08-25T21:15:58.370419"
   },
   {
     "_id": "RISK_STU20220153",
@@ -3634,7 +3634,7 @@
       "Critical attendance shortage (53.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360895"
+    "updated_at": "2026-08-25T21:15:58.370421"
   },
   {
     "_id": "RISK_STU20230154",
@@ -3658,7 +3658,7 @@
       "Below average CGPA (5.57)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360897"
+    "updated_at": "2026-08-25T21:15:58.370423"
   },
   {
     "_id": "RISK_STU20240155",
@@ -3683,7 +3683,7 @@
       "Low cumulative grade point average (4.25 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360899"
+    "updated_at": "2026-08-25T21:15:58.370424"
   },
   {
     "_id": "RISK_STU20210156",
@@ -3707,7 +3707,7 @@
       "Below average CGPA (5.67)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360900"
+    "updated_at": "2026-08-25T21:15:58.370426"
   },
   {
     "_id": "RISK_STU20220157",
@@ -3731,7 +3731,7 @@
       "Below average CGPA (6.43)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360902"
+    "updated_at": "2026-08-25T21:15:58.370428"
   },
   {
     "_id": "RISK_STU20230158",
@@ -3755,7 +3755,7 @@
       "Below average CGPA (6.44)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360904"
+    "updated_at": "2026-08-25T21:15:58.370429"
   },
   {
     "_id": "RISK_STU20240159",
@@ -3781,7 +3781,7 @@
       "Low internal continuous assessment score (43.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360905"
+    "updated_at": "2026-08-25T21:15:58.370431"
   },
   {
     "_id": "RISK_STU20210160",
@@ -3804,7 +3804,7 @@
       "Attendance below 75% threshold (65.8%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360907"
+    "updated_at": "2026-08-25T21:15:58.370433"
   },
   {
     "_id": "RISK_STU20220161",
@@ -3827,7 +3827,7 @@
       "Attendance below 75% threshold (70.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360909"
+    "updated_at": "2026-08-25T21:15:58.370435"
   },
   {
     "_id": "RISK_STU20230162",
@@ -3852,7 +3852,7 @@
       "Low cumulative grade point average (5.33 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360911"
+    "updated_at": "2026-08-25T21:15:58.370437"
   },
   {
     "_id": "RISK_STU20240163",
@@ -3875,7 +3875,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360912"
+    "updated_at": "2026-08-25T21:15:58.370438"
   },
   {
     "_id": "RISK_STU20210164",
@@ -3898,7 +3898,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360914"
+    "updated_at": "2026-08-25T21:15:58.370440"
   },
   {
     "_id": "RISK_STU20220165",
@@ -3921,7 +3921,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360916"
+    "updated_at": "2026-08-25T21:15:58.370442"
   },
   {
     "_id": "RISK_STU20230166",
@@ -3947,7 +3947,7 @@
       "Low internal continuous assessment score (37.2%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360918"
+    "updated_at": "2026-08-25T21:15:58.370443"
   },
   {
     "_id": "RISK_STU20240167",
@@ -3973,7 +3973,7 @@
       "Low internal continuous assessment score (43.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360919"
+    "updated_at": "2026-08-25T21:15:58.370445"
   },
   {
     "_id": "RISK_STU20210168",
@@ -3996,7 +3996,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360921"
+    "updated_at": "2026-08-25T21:15:58.370447"
   },
   {
     "_id": "RISK_STU20220169",
@@ -4020,7 +4020,7 @@
       "Below average CGPA (6.38)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360923"
+    "updated_at": "2026-08-25T21:15:58.370449"
   },
   {
     "_id": "RISK_STU20230170",
@@ -4043,7 +4043,7 @@
       "Attendance below 75% threshold (65.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360924"
+    "updated_at": "2026-08-25T21:15:58.370450"
   },
   {
     "_id": "RISK_STU20240171",
@@ -4069,7 +4069,7 @@
       "Low internal continuous assessment score (30.8%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360926"
+    "updated_at": "2026-08-25T21:15:58.370452"
   },
   {
     "_id": "RISK_STU20210172",
@@ -4094,7 +4094,7 @@
       "Low cumulative grade point average (4.00 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360928"
+    "updated_at": "2026-08-25T21:15:58.370454"
   },
   {
     "_id": "RISK_STU20220173",
@@ -4117,7 +4117,7 @@
       "Attendance below 75% threshold (70.6%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360929"
+    "updated_at": "2026-08-25T21:15:58.370455"
   },
   {
     "_id": "RISK_STU20230174",
@@ -4140,7 +4140,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360931"
+    "updated_at": "2026-08-25T21:15:58.370457"
   },
   {
     "_id": "RISK_STU20240175",
@@ -4165,7 +4165,7 @@
       "Low internal continuous assessment score (40.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360933"
+    "updated_at": "2026-08-25T21:15:58.370459"
   },
   {
     "_id": "RISK_STU20210176",
@@ -4188,7 +4188,7 @@
       "Critical attendance shortage (45.2%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360935"
+    "updated_at": "2026-08-25T21:15:58.370461"
   },
   {
     "_id": "RISK_STU20220177",
@@ -4214,7 +4214,7 @@
       "Low internal continuous assessment score (41.7%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360937"
+    "updated_at": "2026-08-25T21:15:58.370463"
   },
   {
     "_id": "RISK_STU20230178",
@@ -4237,7 +4237,7 @@
       "Attendance below 75% threshold (73.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360938"
+    "updated_at": "2026-08-25T21:15:58.370464"
   },
   {
     "_id": "RISK_STU20240179",
@@ -4260,7 +4260,7 @@
       "Critical attendance shortage (57.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360940"
+    "updated_at": "2026-08-25T21:15:58.370466"
   },
   {
     "_id": "RISK_STU20210180",
@@ -4283,7 +4283,7 @@
       "Critical attendance shortage (40.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360942"
+    "updated_at": "2026-08-25T21:15:58.370468"
   },
   {
     "_id": "RISK_STU20220181",
@@ -4309,7 +4309,7 @@
       "Low internal continuous assessment score (37.8%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360944"
+    "updated_at": "2026-08-25T21:15:58.370469"
   },
   {
     "_id": "RISK_STU20230182",
@@ -4333,7 +4333,7 @@
       "Below average CGPA (6.38)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360945"
+    "updated_at": "2026-08-25T21:15:58.370471"
   },
   {
     "_id": "RISK_STU20240183",
@@ -4356,7 +4356,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360947"
+    "updated_at": "2026-08-25T21:15:58.370473"
   },
   {
     "_id": "RISK_STU20210184",
@@ -4379,7 +4379,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360949"
+    "updated_at": "2026-08-25T21:15:58.370474"
   },
   {
     "_id": "RISK_STU20220185",
@@ -4404,7 +4404,7 @@
       "Low cumulative grade point average (3.50 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360950"
+    "updated_at": "2026-08-25T21:15:58.370476"
   },
   {
     "_id": "RISK_STU20230186",
@@ -4427,7 +4427,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360952"
+    "updated_at": "2026-08-25T21:15:58.370478"
   },
   {
     "_id": "RISK_STU20240187",
@@ -4450,7 +4450,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360954"
+    "updated_at": "2026-08-25T21:15:58.370480"
   },
   {
     "_id": "RISK_STU20210188",
@@ -4473,7 +4473,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360955"
+    "updated_at": "2026-08-25T21:15:58.370481"
   },
   {
     "_id": "RISK_STU20220189",
@@ -4499,7 +4499,7 @@
       "Low internal continuous assessment score (31.7%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360957"
+    "updated_at": "2026-08-25T21:15:58.370483"
   },
   {
     "_id": "RISK_STU20230190",
@@ -4522,7 +4522,7 @@
       "Attendance below 75% threshold (68.5%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360959"
+    "updated_at": "2026-08-25T21:15:58.370484"
   },
   {
     "_id": "RISK_STU20240191",
@@ -4545,7 +4545,7 @@
       "Attendance below 75% threshold (65.5%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360960"
+    "updated_at": "2026-08-25T21:15:58.370486"
   },
   {
     "_id": "RISK_STU20210192",
@@ -4570,7 +4570,7 @@
       "Low cumulative grade point average (4.00 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360962"
+    "updated_at": "2026-08-25T21:15:58.370488"
   },
   {
     "_id": "RISK_STU20220193",
@@ -4593,7 +4593,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360964"
+    "updated_at": "2026-08-25T21:15:58.370489"
   },
   {
     "_id": "RISK_STU20230194",
@@ -4617,7 +4617,7 @@
       "Below average CGPA (6.00)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360966"
+    "updated_at": "2026-08-25T21:15:58.370491"
   },
   {
     "_id": "RISK_STU20240195",
@@ -4640,7 +4640,7 @@
       "Attendance below 75% threshold (74.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360967"
+    "updated_at": "2026-08-25T21:15:58.370493"
   },
   {
     "_id": "RISK_STU20210196",
@@ -4663,7 +4663,7 @@
       "Critical attendance shortage (57.1%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360969"
+    "updated_at": "2026-08-25T21:15:58.370494"
   },
   {
     "_id": "RISK_STU20220197",
@@ -4686,7 +4686,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360971"
+    "updated_at": "2026-08-25T21:15:58.370496"
   },
   {
     "_id": "RISK_STU20230198",
@@ -4709,7 +4709,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360973"
+    "updated_at": "2026-08-25T21:15:58.370498"
   },
   {
     "_id": "RISK_STU20240199",
@@ -4732,7 +4732,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360974"
+    "updated_at": "2026-08-25T21:15:58.370499"
   },
   {
     "_id": "RISK_STU20210200",
@@ -4755,7 +4755,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360976"
+    "updated_at": "2026-08-25T21:15:58.370501"
   },
   {
     "_id": "RISK_STU20220201",
@@ -4779,7 +4779,7 @@
       "Below average CGPA (6.00)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360978"
+    "updated_at": "2026-08-25T21:15:58.370503"
   },
   {
     "_id": "RISK_STU20230202",
@@ -4802,7 +4802,7 @@
       "Attendance below 75% threshold (60.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360980"
+    "updated_at": "2026-08-25T21:15:58.370505"
   },
   {
     "_id": "RISK_STU20240203",
@@ -4827,7 +4827,7 @@
       "Low internal continuous assessment score (43.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360981"
+    "updated_at": "2026-08-25T21:15:58.370507"
   },
   {
     "_id": "RISK_STU20210204",
@@ -4850,7 +4850,7 @@
       "Attendance below 75% threshold (66.6%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360983"
+    "updated_at": "2026-08-25T21:15:58.370509"
   },
   {
     "_id": "RISK_STU20220205",
@@ -4873,7 +4873,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360985"
+    "updated_at": "2026-08-25T21:15:58.370511"
   },
   {
     "_id": "RISK_STU20230206",
@@ -4896,7 +4896,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360987"
+    "updated_at": "2026-08-25T21:15:58.370512"
   },
   {
     "_id": "RISK_STU20240207",
@@ -4919,7 +4919,7 @@
       "Attendance below 75% threshold (69.8%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360988"
+    "updated_at": "2026-08-25T21:15:58.370514"
   },
   {
     "_id": "RISK_STU20210208",
@@ -4942,7 +4942,7 @@
       "Attendance below 75% threshold (60.2%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360990"
+    "updated_at": "2026-08-25T21:15:58.370516"
   },
   {
     "_id": "RISK_STU20220209",
@@ -4965,7 +4965,7 @@
       "Attendance below 75% threshold (67.8%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360992"
+    "updated_at": "2026-08-25T21:15:58.370517"
   },
   {
     "_id": "RISK_STU20230210",
@@ -4988,7 +4988,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360993"
+    "updated_at": "2026-08-25T21:15:58.370519"
   },
   {
     "_id": "RISK_STU20240211",
@@ -5011,7 +5011,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360995"
+    "updated_at": "2026-08-25T21:15:58.370521"
   },
   {
     "_id": "RISK_STU20210212",
@@ -5034,7 +5034,7 @@
       "Attendance below 75% threshold (67.8%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360997"
+    "updated_at": "2026-08-25T21:15:58.370523"
   },
   {
     "_id": "RISK_STU20220213",
@@ -5058,7 +5058,7 @@
       "Below average CGPA (6.25)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.360998"
+    "updated_at": "2026-08-25T21:15:58.370524"
   },
   {
     "_id": "RISK_STU20230214",
@@ -5081,7 +5081,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361000"
+    "updated_at": "2026-08-25T21:15:58.370526"
   },
   {
     "_id": "RISK_STU20240215",
@@ -5104,7 +5104,7 @@
       "Critical attendance shortage (56.5%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361002"
+    "updated_at": "2026-08-25T21:15:58.370528"
   },
   {
     "_id": "RISK_STU20210216",
@@ -5127,7 +5127,7 @@
       "Attendance below 75% threshold (70.7%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361004"
+    "updated_at": "2026-08-25T21:15:58.370530"
   },
   {
     "_id": "RISK_STU20220217",
@@ -5151,7 +5151,7 @@
       "Below average CGPA (6.33)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361006"
+    "updated_at": "2026-08-25T21:15:58.370531"
   },
   {
     "_id": "RISK_STU20230218",
@@ -5174,7 +5174,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361008"
+    "updated_at": "2026-08-25T21:15:58.370533"
   },
   {
     "_id": "RISK_STU20240219",
@@ -5198,7 +5198,7 @@
       "Below average CGPA (6.22)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361009"
+    "updated_at": "2026-08-25T21:15:58.370535"
   },
   {
     "_id": "RISK_STU20210220",
@@ -5221,7 +5221,7 @@
       "Attendance below 75% threshold (72.9%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361011"
+    "updated_at": "2026-08-25T21:15:58.370536"
   },
   {
     "_id": "RISK_STU20220221",
@@ -5246,7 +5246,7 @@
       "Low cumulative grade point average (4.00 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361013"
+    "updated_at": "2026-08-25T21:15:58.370538"
   },
   {
     "_id": "RISK_STU20230222",
@@ -5272,7 +5272,7 @@
       "Low internal continuous assessment score (38.1%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361014"
+    "updated_at": "2026-08-25T21:15:58.370540"
   },
   {
     "_id": "RISK_STU20240223",
@@ -5297,7 +5297,7 @@
       "Low cumulative grade point average (3.00 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361016"
+    "updated_at": "2026-08-25T21:15:58.370541"
   },
   {
     "_id": "RISK_STU20210224",
@@ -5320,7 +5320,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361018"
+    "updated_at": "2026-08-25T21:15:58.370543"
   },
   {
     "_id": "RISK_STU20220225",
@@ -5343,7 +5343,7 @@
       "Critical attendance shortage (53.7%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361019"
+    "updated_at": "2026-08-25T21:15:58.370545"
   },
   {
     "_id": "RISK_STU20230226",
@@ -5366,7 +5366,7 @@
       "Attendance below 75% threshold (73.9%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361021"
+    "updated_at": "2026-08-25T21:15:58.370547"
   },
   {
     "_id": "RISK_STU20240227",
@@ -5389,7 +5389,7 @@
       "Attendance below 75% threshold (71.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361023"
+    "updated_at": "2026-08-25T21:15:58.370548"
   },
   {
     "_id": "RISK_STU20210228",
@@ -5413,7 +5413,7 @@
       "Below average CGPA (6.29)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361025"
+    "updated_at": "2026-08-25T21:15:58.370550"
   },
   {
     "_id": "RISK_STU20220229",
@@ -5439,7 +5439,7 @@
       "Low internal continuous assessment score (43.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361026"
+    "updated_at": "2026-08-25T21:15:58.370552"
   },
   {
     "_id": "RISK_STU20230230",
@@ -5463,7 +5463,7 @@
       "Below average CGPA (6.25)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361028"
+    "updated_at": "2026-08-25T21:15:58.370553"
   },
   {
     "_id": "RISK_STU20240231",
@@ -5486,7 +5486,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361030"
+    "updated_at": "2026-08-25T21:15:58.370555"
   },
   {
     "_id": "RISK_STU20210232",
@@ -5509,7 +5509,7 @@
       "Attendance below 75% threshold (61.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361032"
+    "updated_at": "2026-08-25T21:15:58.370557"
   },
   {
     "_id": "RISK_STU20220233",
@@ -5532,7 +5532,7 @@
       "Attendance below 75% threshold (71.2%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361033"
+    "updated_at": "2026-08-25T21:15:58.370558"
   },
   {
     "_id": "RISK_STU20230234",
@@ -5555,7 +5555,7 @@
       "Attendance below 75% threshold (71.2%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361036"
+    "updated_at": "2026-08-25T21:15:58.370560"
   },
   {
     "_id": "RISK_STU20240235",
@@ -5581,7 +5581,7 @@
       "Low internal continuous assessment score (39.6%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361037"
+    "updated_at": "2026-08-25T21:15:58.370562"
   },
   {
     "_id": "RISK_STU20210236",
@@ -5604,7 +5604,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361039"
+    "updated_at": "2026-08-25T21:15:58.370564"
   },
   {
     "_id": "RISK_STU20220237",
@@ -5628,7 +5628,7 @@
       "Below average CGPA (5.56)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361041"
+    "updated_at": "2026-08-25T21:15:58.370566"
   },
   {
     "_id": "RISK_STU20230238",
@@ -5651,7 +5651,7 @@
       "Attendance below 75% threshold (62.5%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361043"
+    "updated_at": "2026-08-25T21:15:58.370567"
   },
   {
     "_id": "RISK_STU20240239",
@@ -5674,7 +5674,7 @@
       "Critical attendance shortage (48.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361044"
+    "updated_at": "2026-08-25T21:15:58.370569"
   },
   {
     "_id": "RISK_STU20210240",
@@ -5697,7 +5697,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361046"
+    "updated_at": "2026-08-25T21:15:58.370571"
   },
   {
     "_id": "RISK_STU20220241",
@@ -5722,7 +5722,7 @@
       "Low cumulative grade point average (4.86 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361048"
+    "updated_at": "2026-08-25T21:15:58.370573"
   },
   {
     "_id": "RISK_STU20230242",
@@ -5745,7 +5745,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361050"
+    "updated_at": "2026-08-25T21:15:58.370574"
   },
   {
     "_id": "RISK_STU20240243",
@@ -5768,7 +5768,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361052"
+    "updated_at": "2026-08-25T21:15:58.370576"
   },
   {
     "_id": "RISK_STU20210244",
@@ -5791,7 +5791,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361053"
+    "updated_at": "2026-08-25T21:15:58.370578"
   },
   {
     "_id": "RISK_STU20220245",
@@ -5815,7 +5815,7 @@
       "Below average CGPA (6.14)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361055"
+    "updated_at": "2026-08-25T21:15:58.370580"
   },
   {
     "_id": "RISK_STU20230246",
@@ -5838,7 +5838,7 @@
       "Attendance below 75% threshold (67.7%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361057"
+    "updated_at": "2026-08-25T21:15:58.370582"
   },
   {
     "_id": "RISK_STU20240247",
@@ -5862,7 +5862,7 @@
       "Below average CGPA (6.14)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361059"
+    "updated_at": "2026-08-25T21:15:58.370583"
   },
   {
     "_id": "RISK_STU20210248",
@@ -5885,7 +5885,7 @@
       "Critical attendance shortage (52.4%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361060"
+    "updated_at": "2026-08-25T21:15:58.370585"
   },
   {
     "_id": "RISK_STU20220249",
@@ -5909,7 +5909,7 @@
       "Below average CGPA (5.67)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361062"
+    "updated_at": "2026-08-25T21:15:58.370587"
   },
   {
     "_id": "RISK_STU20230250",
@@ -5932,7 +5932,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361064"
+    "updated_at": "2026-08-25T21:15:58.370588"
   },
   {
     "_id": "RISK_STU20240251",
@@ -5955,7 +5955,7 @@
       "Critical attendance shortage (45.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361065"
+    "updated_at": "2026-08-25T21:15:58.370590"
   },
   {
     "_id": "RISK_STU20210252",
@@ -5978,7 +5978,7 @@
       "Critical attendance shortage (57.7%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361067"
+    "updated_at": "2026-08-25T21:15:58.370592"
   },
   {
     "_id": "RISK_STU20220253",
@@ -6001,7 +6001,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361069"
+    "updated_at": "2026-08-25T21:15:58.370593"
   },
   {
     "_id": "RISK_STU20230254",
@@ -6024,7 +6024,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361071"
+    "updated_at": "2026-08-25T21:15:58.370595"
   },
   {
     "_id": "RISK_STU20240255",
@@ -6048,7 +6048,7 @@
       "Below average CGPA (5.50)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361072"
+    "updated_at": "2026-08-25T21:15:58.370597"
   },
   {
     "_id": "RISK_STU20210256",
@@ -6071,7 +6071,7 @@
       "Attendance below 75% threshold (65.4%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361074"
+    "updated_at": "2026-08-25T21:15:58.370598"
   },
   {
     "_id": "RISK_STU20220257",
@@ -6095,7 +6095,7 @@
       "Below average CGPA (6.00)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361076"
+    "updated_at": "2026-08-25T21:15:58.370600"
   },
   {
     "_id": "RISK_STU20230258",
@@ -6118,7 +6118,7 @@
       "Attendance below 75% threshold (66.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361077"
+    "updated_at": "2026-08-25T21:15:58.370602"
   },
   {
     "_id": "RISK_STU20240259",
@@ -6142,7 +6142,7 @@
       "Below average CGPA (5.50)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361079"
+    "updated_at": "2026-08-25T21:15:58.370604"
   },
   {
     "_id": "RISK_STU20210260",
@@ -6167,7 +6167,7 @@
       "Low cumulative grade point average (4.56 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361081"
+    "updated_at": "2026-08-25T21:15:58.370605"
   },
   {
     "_id": "RISK_STU20220261",
@@ -6190,7 +6190,7 @@
       "Attendance below 75% threshold (70.5%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361083"
+    "updated_at": "2026-08-25T21:15:58.370607"
   },
   {
     "_id": "RISK_STU20230262",
@@ -6213,7 +6213,7 @@
       "Attendance below 75% threshold (71.4%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361084"
+    "updated_at": "2026-08-25T21:15:58.370609"
   },
   {
     "_id": "RISK_STU20240263",
@@ -6236,7 +6236,7 @@
       "Critical attendance shortage (57.8%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361086"
+    "updated_at": "2026-08-25T21:15:58.370611"
   },
   {
     "_id": "RISK_STU20210264",
@@ -6261,7 +6261,7 @@
       "Low cumulative grade point average (3.00 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361088"
+    "updated_at": "2026-08-25T21:15:58.370612"
   },
   {
     "_id": "RISK_STU20220265",
@@ -6285,7 +6285,7 @@
       "Below average CGPA (5.67)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361089"
+    "updated_at": "2026-08-25T21:15:58.370614"
   },
   {
     "_id": "RISK_STU20230266",
@@ -6311,7 +6311,7 @@
       "Low internal continuous assessment score (39.4%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361091"
+    "updated_at": "2026-08-25T21:15:58.370616"
   },
   {
     "_id": "RISK_STU20240267",
@@ -6334,7 +6334,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361093"
+    "updated_at": "2026-08-25T21:15:58.370617"
   },
   {
     "_id": "RISK_STU20210268",
@@ -6357,7 +6357,7 @@
       "Critical attendance shortage (59.9%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361095"
+    "updated_at": "2026-08-25T21:15:58.370619"
   },
   {
     "_id": "RISK_STU20220269",
@@ -6380,7 +6380,7 @@
       "Attendance below 75% threshold (62.8%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361096"
+    "updated_at": "2026-08-25T21:15:58.370620"
   },
   {
     "_id": "RISK_STU20230270",
@@ -6403,7 +6403,7 @@
       "Attendance below 75% threshold (69.4%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361098"
+    "updated_at": "2026-08-25T21:15:58.370622"
   },
   {
     "_id": "RISK_STU20240271",
@@ -6426,7 +6426,7 @@
       "Attendance below 75% threshold (65.4%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361100"
+    "updated_at": "2026-08-25T21:15:58.370624"
   },
   {
     "_id": "RISK_STU20210272",
@@ -6449,7 +6449,7 @@
       "Below average CGPA (6.00)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361102"
+    "updated_at": "2026-08-25T21:15:58.370626"
   },
   {
     "_id": "RISK_STU20220273",
@@ -6472,7 +6472,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361103"
+    "updated_at": "2026-08-25T21:15:58.370627"
   },
   {
     "_id": "RISK_STU20230274",
@@ -6498,7 +6498,7 @@
       "Low internal continuous assessment score (34.8%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361105"
+    "updated_at": "2026-08-25T21:15:58.370629"
   },
   {
     "_id": "RISK_STU20240275",
@@ -6523,7 +6523,7 @@
       "Low internal continuous assessment score (43.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361107"
+    "updated_at": "2026-08-25T21:15:58.370631"
   },
   {
     "_id": "RISK_STU20210276",
@@ -6546,7 +6546,7 @@
       "Attendance below 75% threshold (72.2%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361108"
+    "updated_at": "2026-08-25T21:15:58.370632"
   },
   {
     "_id": "RISK_STU20220277",
@@ -6569,7 +6569,7 @@
       "Attendance below 75% threshold (60.6%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361110"
+    "updated_at": "2026-08-25T21:15:58.370634"
   },
   {
     "_id": "RISK_STU20230278",
@@ -6592,7 +6592,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361112"
+    "updated_at": "2026-08-25T21:15:58.370636"
   },
   {
     "_id": "RISK_STU20240279",
@@ -6615,7 +6615,7 @@
       "Critical attendance shortage (54.1%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361114"
+    "updated_at": "2026-08-25T21:15:58.370638"
   },
   {
     "_id": "RISK_STU20210280",
@@ -6638,7 +6638,7 @@
       "Attendance below 75% threshold (68.8%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361115"
+    "updated_at": "2026-08-25T21:15:58.370639"
   },
   {
     "_id": "RISK_STU20220281",
@@ -6661,7 +6661,7 @@
       "Attendance below 75% threshold (64.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361117"
+    "updated_at": "2026-08-25T21:15:58.370641"
   },
   {
     "_id": "RISK_STU20230282",
@@ -6686,7 +6686,7 @@
       "Low cumulative grade point average (3.50 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361119"
+    "updated_at": "2026-08-25T21:15:58.370643"
   },
   {
     "_id": "RISK_STU20240283",
@@ -6709,7 +6709,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361121"
+    "updated_at": "2026-08-25T21:15:58.370644"
   },
   {
     "_id": "RISK_STU20210284",
@@ -6732,7 +6732,7 @@
       "Attendance below 75% threshold (61.7%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361122"
+    "updated_at": "2026-08-25T21:15:58.370646"
   },
   {
     "_id": "RISK_STU20220285",
@@ -6755,7 +6755,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361124"
+    "updated_at": "2026-08-25T21:15:58.370648"
   },
   {
     "_id": "RISK_STU20230286",
@@ -6779,7 +6779,7 @@
       "Below average CGPA (6.44)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361126"
+    "updated_at": "2026-08-25T21:15:58.370649"
   },
   {
     "_id": "RISK_STU20240287",
@@ -6804,7 +6804,7 @@
       "Low cumulative grade point average (3.00 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361128"
+    "updated_at": "2026-08-25T21:15:58.370651"
   },
   {
     "_id": "RISK_STU20210288",
@@ -6827,7 +6827,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361130"
+    "updated_at": "2026-08-25T21:15:58.370653"
   },
   {
     "_id": "RISK_STU20220289",
@@ -6851,7 +6851,7 @@
       "Below average CGPA (6.00)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361132"
+    "updated_at": "2026-08-25T21:15:58.370655"
   },
   {
     "_id": "RISK_STU20230290",
@@ -6876,7 +6876,7 @@
       "Low cumulative grade point average (3.83 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361133"
+    "updated_at": "2026-08-25T21:15:58.370656"
   },
   {
     "_id": "RISK_STU20240291",
@@ -6900,7 +6900,7 @@
       "Below average CGPA (6.00)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361135"
+    "updated_at": "2026-08-25T21:15:58.370658"
   },
   {
     "_id": "RISK_STU20210292",
@@ -6923,7 +6923,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361137"
+    "updated_at": "2026-08-25T21:15:58.370660"
   },
   {
     "_id": "RISK_STU20220293",
@@ -6946,7 +6946,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361139"
+    "updated_at": "2026-08-25T21:15:58.370661"
   },
   {
     "_id": "RISK_STU20230294",
@@ -6970,7 +6970,7 @@
       "Below average CGPA (6.00)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361140"
+    "updated_at": "2026-08-25T21:15:58.370663"
   },
   {
     "_id": "RISK_STU20240295",
@@ -6993,7 +6993,7 @@
       "Attendance below 75% threshold (65.6%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361142"
+    "updated_at": "2026-08-25T21:15:58.370665"
   },
   {
     "_id": "RISK_STU20210296",
@@ -7016,7 +7016,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361144"
+    "updated_at": "2026-08-25T21:15:58.370667"
   },
   {
     "_id": "RISK_STU20220297",
@@ -7039,7 +7039,7 @@
       "Critical attendance shortage (53.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361146"
+    "updated_at": "2026-08-25T21:15:58.370668"
   },
   {
     "_id": "RISK_STU20230298",
@@ -7062,7 +7062,7 @@
       "Attendance below 75% threshold (69.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361147"
+    "updated_at": "2026-08-25T21:15:58.370670"
   },
   {
     "_id": "RISK_STU20240299",
@@ -7085,7 +7085,7 @@
       "Attendance below 75% threshold (69.2%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361149"
+    "updated_at": "2026-08-25T21:15:58.370672"
   },
   {
     "_id": "RISK_STU20210300",
@@ -7110,7 +7110,7 @@
       "Low internal continuous assessment score (30.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361151"
+    "updated_at": "2026-08-25T21:15:58.370673"
   },
   {
     "_id": "RISK_STU20220301",
@@ -7133,7 +7133,7 @@
       "Critical attendance shortage (41.7%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361180"
+    "updated_at": "2026-08-25T21:15:58.370675"
   },
   {
     "_id": "RISK_STU20230302",
@@ -7156,7 +7156,7 @@
       "Critical attendance shortage (53.2%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361186"
+    "updated_at": "2026-08-25T21:15:58.370677"
   },
   {
     "_id": "RISK_STU20240303",
@@ -7181,7 +7181,7 @@
       "Low cumulative grade point average (2.50 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361188"
+    "updated_at": "2026-08-25T21:15:58.370678"
   },
   {
     "_id": "RISK_STU20210304",
@@ -7204,7 +7204,7 @@
       "Critical attendance shortage (59.9%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361190"
+    "updated_at": "2026-08-25T21:15:58.370680"
   },
   {
     "_id": "RISK_STU20220305",
@@ -7227,7 +7227,7 @@
       "Attendance below 75% threshold (68.2%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361192"
+    "updated_at": "2026-08-25T21:15:58.370682"
   },
   {
     "_id": "RISK_STU20230306",
@@ -7250,7 +7250,7 @@
       "Attendance below 75% threshold (63.6%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361194"
+    "updated_at": "2026-08-25T21:15:58.370684"
   },
   {
     "_id": "RISK_STU20240307",
@@ -7273,7 +7273,7 @@
       "Attendance below 75% threshold (72.6%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361196"
+    "updated_at": "2026-08-25T21:15:58.370685"
   },
   {
     "_id": "RISK_STU20210308",
@@ -7296,7 +7296,7 @@
       "Critical attendance shortage (47.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361198"
+    "updated_at": "2026-08-25T21:15:58.370687"
   },
   {
     "_id": "RISK_STU20220309",
@@ -7319,7 +7319,7 @@
       "Attendance below 75% threshold (70.8%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361199"
+    "updated_at": "2026-08-25T21:15:58.370689"
   },
   {
     "_id": "RISK_STU20230310",
@@ -7342,7 +7342,7 @@
       "Attendance below 75% threshold (74.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361202"
+    "updated_at": "2026-08-25T21:15:58.370691"
   },
   {
     "_id": "RISK_STU20240311",
@@ -7367,7 +7367,7 @@
       "Low internal continuous assessment score (35.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361204"
+    "updated_at": "2026-08-25T21:15:58.370693"
   },
   {
     "_id": "RISK_STU20210312",
@@ -7390,7 +7390,7 @@
       "Attendance below 75% threshold (66.5%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361205"
+    "updated_at": "2026-08-25T21:15:58.370694"
   },
   {
     "_id": "RISK_STU20220313",
@@ -7413,7 +7413,7 @@
       "Attendance below 75% threshold (66.4%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361207"
+    "updated_at": "2026-08-25T21:15:58.370696"
   },
   {
     "_id": "RISK_STU20230314",
@@ -7436,7 +7436,7 @@
       "Attendance below 75% threshold (71.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361208"
+    "updated_at": "2026-08-25T21:15:58.370710"
   },
   {
     "_id": "RISK_STU20240315",
@@ -7460,7 +7460,7 @@
       "Below average CGPA (6.00)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361210"
+    "updated_at": "2026-08-25T21:15:58.370712"
   },
   {
     "_id": "RISK_STU20210316",
@@ -7483,7 +7483,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361212"
+    "updated_at": "2026-08-25T21:15:58.370714"
   },
   {
     "_id": "RISK_STU20220317",
@@ -7507,7 +7507,7 @@
       "Below average CGPA (6.12)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361214"
+    "updated_at": "2026-08-25T21:15:58.370715"
   },
   {
     "_id": "RISK_STU20230318",
@@ -7530,7 +7530,7 @@
       "Critical attendance shortage (53.2%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361220"
+    "updated_at": "2026-08-25T21:15:58.370717"
   },
   {
     "_id": "RISK_STU20240319",
@@ -7553,7 +7553,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361222"
+    "updated_at": "2026-08-25T21:15:58.370719"
   },
   {
     "_id": "RISK_STU20210320",
@@ -7576,7 +7576,7 @@
       "Attendance below 75% threshold (64.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361223"
+    "updated_at": "2026-08-25T21:15:58.370721"
   },
   {
     "_id": "RISK_STU20220321",
@@ -7600,7 +7600,7 @@
       "Below average CGPA (6.43)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361227"
+    "updated_at": "2026-08-25T21:15:58.370723"
   },
   {
     "_id": "RISK_STU20230322",
@@ -7623,7 +7623,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361229"
+    "updated_at": "2026-08-25T21:15:58.370724"
   },
   {
     "_id": "RISK_STU20240323",
@@ -7646,7 +7646,7 @@
       "Critical attendance shortage (56.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361231"
+    "updated_at": "2026-08-25T21:15:58.370726"
   },
   {
     "_id": "RISK_STU20210324",
@@ -7669,7 +7669,7 @@
       "Attendance below 75% threshold (63.7%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361232"
+    "updated_at": "2026-08-25T21:15:58.370728"
   },
   {
     "_id": "RISK_STU20220325",
@@ -7692,7 +7692,7 @@
       "Attendance below 75% threshold (65.7%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361234"
+    "updated_at": "2026-08-25T21:15:58.370730"
   },
   {
     "_id": "RISK_STU20230326",
@@ -7715,7 +7715,7 @@
       "Attendance below 75% threshold (67.8%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361236"
+    "updated_at": "2026-08-25T21:15:58.370731"
   },
   {
     "_id": "RISK_STU20240327",
@@ -7738,7 +7738,7 @@
       "Attendance below 75% threshold (71.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361237"
+    "updated_at": "2026-08-25T21:15:58.370733"
   },
   {
     "_id": "RISK_STU20210328",
@@ -7762,7 +7762,7 @@
       "Below average CGPA (5.57)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361239"
+    "updated_at": "2026-08-25T21:15:58.370735"
   },
   {
     "_id": "RISK_STU20220329",
@@ -7785,7 +7785,7 @@
       "Attendance below 75% threshold (62.4%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361241"
+    "updated_at": "2026-08-25T21:15:58.370737"
   },
   {
     "_id": "RISK_STU20230330",
@@ -7808,7 +7808,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361242"
+    "updated_at": "2026-08-25T21:15:58.370738"
   },
   {
     "_id": "RISK_STU20240331",
@@ -7833,7 +7833,7 @@
       "Below average CGPA (5.67)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361244"
+    "updated_at": "2026-08-25T21:15:58.370740"
   },
   {
     "_id": "RISK_STU20210332",
@@ -7858,7 +7858,7 @@
       "Low cumulative grade point average (2.50 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361246"
+    "updated_at": "2026-08-25T21:15:58.370742"
   },
   {
     "_id": "RISK_STU20220333",
@@ -7881,7 +7881,7 @@
       "Attendance below 75% threshold (74.6%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361247"
+    "updated_at": "2026-08-25T21:15:58.370743"
   },
   {
     "_id": "RISK_STU20230334",
@@ -7907,7 +7907,7 @@
       "Low internal continuous assessment score (43.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361249"
+    "updated_at": "2026-08-25T21:15:58.370745"
   },
   {
     "_id": "RISK_STU20240335",
@@ -7930,7 +7930,7 @@
       "Attendance below 75% threshold (70.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361251"
+    "updated_at": "2026-08-25T21:15:58.370747"
   },
   {
     "_id": "RISK_STU20210336",
@@ -7953,7 +7953,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361252"
+    "updated_at": "2026-08-25T21:15:58.370748"
   },
   {
     "_id": "RISK_STU20220337",
@@ -7976,7 +7976,7 @@
       "Attendance below 75% threshold (70.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361254"
+    "updated_at": "2026-08-25T21:15:58.370750"
   },
   {
     "_id": "RISK_STU20230338",
@@ -8000,7 +8000,7 @@
       "Low cumulative grade point average (5.25 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361256"
+    "updated_at": "2026-08-25T21:15:58.370752"
   },
   {
     "_id": "RISK_STU20240339",
@@ -8024,7 +8024,7 @@
       "Below average CGPA (6.22)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361257"
+    "updated_at": "2026-08-25T21:15:58.370753"
   },
   {
     "_id": "RISK_STU20210340",
@@ -8048,7 +8048,7 @@
       "Below average CGPA (5.75)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361259"
+    "updated_at": "2026-08-25T21:15:58.370755"
   },
   {
     "_id": "RISK_STU20220341",
@@ -8071,7 +8071,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361261"
+    "updated_at": "2026-08-25T21:15:58.370756"
   },
   {
     "_id": "RISK_STU20230342",
@@ -8094,7 +8094,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361262"
+    "updated_at": "2026-08-25T21:15:58.370758"
   },
   {
     "_id": "RISK_STU20240343",
@@ -8118,7 +8118,7 @@
       "Below average CGPA (5.50)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361264"
+    "updated_at": "2026-08-25T21:15:58.370760"
   },
   {
     "_id": "RISK_STU20210344",
@@ -8141,7 +8141,7 @@
       "Attendance below 75% threshold (61.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361266"
+    "updated_at": "2026-08-25T21:15:58.370761"
   },
   {
     "_id": "RISK_STU20220345",
@@ -8166,7 +8166,7 @@
       "Low cumulative grade point average (2.83 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361267"
+    "updated_at": "2026-08-25T21:15:58.370763"
   },
   {
     "_id": "RISK_STU20230346",
@@ -8189,7 +8189,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361269"
+    "updated_at": "2026-08-25T21:15:58.370765"
   },
   {
     "_id": "RISK_STU20240347",
@@ -8215,7 +8215,7 @@
       "Low internal continuous assessment score (40.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361271"
+    "updated_at": "2026-08-25T21:15:58.370766"
   },
   {
     "_id": "RISK_STU20210348",
@@ -8238,7 +8238,7 @@
       "Critical attendance shortage (38.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361272"
+    "updated_at": "2026-08-25T21:15:58.370768"
   },
   {
     "_id": "RISK_STU20220349",
@@ -8261,7 +8261,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361274"
+    "updated_at": "2026-08-25T21:15:58.370770"
   },
   {
     "_id": "RISK_STU20230350",
@@ -8286,7 +8286,7 @@
       "Low cumulative grade point average (5.00 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361275"
+    "updated_at": "2026-08-25T21:15:58.370771"
   },
   {
     "_id": "RISK_STU20240351",
@@ -8309,7 +8309,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361277"
+    "updated_at": "2026-08-25T21:15:58.370773"
   },
   {
     "_id": "RISK_STU20210352",
@@ -8332,7 +8332,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361279"
+    "updated_at": "2026-08-25T21:15:58.370775"
   },
   {
     "_id": "RISK_STU20220353",
@@ -8355,7 +8355,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361280"
+    "updated_at": "2026-08-25T21:15:58.370776"
   },
   {
     "_id": "RISK_STU20230354",
@@ -8379,7 +8379,7 @@
       "Low cumulative grade point average (5.00 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361283"
+    "updated_at": "2026-08-25T21:15:58.370779"
   },
   {
     "_id": "RISK_STU20240355",
@@ -8402,7 +8402,7 @@
       "Attendance below 75% threshold (71.9%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361284"
+    "updated_at": "2026-08-25T21:15:58.370780"
   },
   {
     "_id": "RISK_STU20210356",
@@ -8428,7 +8428,7 @@
       "Low internal continuous assessment score (41.7%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361286"
+    "updated_at": "2026-08-25T21:15:58.370782"
   },
   {
     "_id": "RISK_STU20220357",
@@ -8451,7 +8451,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361288"
+    "updated_at": "2026-08-25T21:15:58.370784"
   },
   {
     "_id": "RISK_STU20230358",
@@ -8474,7 +8474,7 @@
       "Attendance below 75% threshold (60.1%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361291"
+    "updated_at": "2026-08-25T21:15:58.370786"
   },
   {
     "_id": "RISK_STU20240359",
@@ -8497,7 +8497,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361293"
+    "updated_at": "2026-08-25T21:15:58.370787"
   },
   {
     "_id": "RISK_STU20210360",
@@ -8521,7 +8521,7 @@
       "Below average CGPA (6.33)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361294"
+    "updated_at": "2026-08-25T21:15:58.370789"
   },
   {
     "_id": "RISK_STU20220361",
@@ -8546,7 +8546,7 @@
       "Low cumulative grade point average (4.14 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361296"
+    "updated_at": "2026-08-25T21:15:58.370791"
   },
   {
     "_id": "RISK_STU20230362",
@@ -8569,7 +8569,7 @@
       "Attendance below 75% threshold (67.7%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361298"
+    "updated_at": "2026-08-25T21:15:58.370793"
   },
   {
     "_id": "RISK_STU20240363",
@@ -8593,7 +8593,7 @@
       "Below average CGPA (6.00)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361300"
+    "updated_at": "2026-08-25T21:15:58.370794"
   },
   {
     "_id": "RISK_STU20210364",
@@ -8618,7 +8618,7 @@
       "Low internal continuous assessment score (42.5%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361301"
+    "updated_at": "2026-08-25T21:15:58.370796"
   },
   {
     "_id": "RISK_STU20220365",
@@ -8641,7 +8641,7 @@
       "Attendance below 75% threshold (65.2%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361303"
+    "updated_at": "2026-08-25T21:15:58.370798"
   },
   {
     "_id": "RISK_STU20230366",
@@ -8664,7 +8664,7 @@
       "Critical attendance shortage (58.1%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361304"
+    "updated_at": "2026-08-25T21:15:58.370800"
   },
   {
     "_id": "RISK_STU20240367",
@@ -8687,7 +8687,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361306"
+    "updated_at": "2026-08-25T21:15:58.370801"
   },
   {
     "_id": "RISK_STU20210368",
@@ -8712,7 +8712,7 @@
       "Low cumulative grade point average (3.00 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361308"
+    "updated_at": "2026-08-25T21:15:58.370803"
   },
   {
     "_id": "RISK_STU20220369",
@@ -8735,7 +8735,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361309"
+    "updated_at": "2026-08-25T21:15:58.370805"
   },
   {
     "_id": "RISK_STU20230370",
@@ -8761,7 +8761,7 @@
       "Low internal continuous assessment score (28.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361311"
+    "updated_at": "2026-08-25T21:15:58.370806"
   },
   {
     "_id": "RISK_STU20240371",
@@ -8785,7 +8785,7 @@
       "Below average CGPA (6.25)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361312"
+    "updated_at": "2026-08-25T21:15:58.370808"
   },
   {
     "_id": "RISK_STU20210372",
@@ -8808,7 +8808,7 @@
       "Attendance below 75% threshold (64.5%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361314"
+    "updated_at": "2026-08-25T21:15:58.370810"
   },
   {
     "_id": "RISK_STU20220373",
@@ -8831,7 +8831,7 @@
       "Attendance below 75% threshold (67.8%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361316"
+    "updated_at": "2026-08-25T21:15:58.370811"
   },
   {
     "_id": "RISK_STU20230374",
@@ -8854,7 +8854,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361317"
+    "updated_at": "2026-08-25T21:15:58.370813"
   },
   {
     "_id": "RISK_STU20240375",
@@ -8877,7 +8877,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361319"
+    "updated_at": "2026-08-25T21:15:58.370815"
   },
   {
     "_id": "RISK_STU20210376",
@@ -8900,7 +8900,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361321"
+    "updated_at": "2026-08-25T21:15:58.370817"
   },
   {
     "_id": "RISK_STU20220377",
@@ -8924,7 +8924,7 @@
       "Below average CGPA (6.12)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361322"
+    "updated_at": "2026-08-25T21:15:58.370818"
   },
   {
     "_id": "RISK_STU20230378",
@@ -8947,7 +8947,7 @@
       "Attendance below 75% threshold (66.1%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361324"
+    "updated_at": "2026-08-25T21:15:58.370820"
   },
   {
     "_id": "RISK_STU20240379",
@@ -8972,7 +8972,7 @@
       "Below average CGPA (5.67)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361326"
+    "updated_at": "2026-08-25T21:15:58.370822"
   },
   {
     "_id": "RISK_STU20210380",
@@ -8995,7 +8995,7 @@
       "Critical attendance shortage (35.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361327"
+    "updated_at": "2026-08-25T21:15:58.370823"
   },
   {
     "_id": "RISK_STU20220381",
@@ -9021,7 +9021,7 @@
       "Low internal continuous assessment score (43.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361329"
+    "updated_at": "2026-08-25T21:15:58.370825"
   },
   {
     "_id": "RISK_STU20230382",
@@ -9045,7 +9045,7 @@
       "Below average CGPA (5.50)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361330"
+    "updated_at": "2026-08-25T21:15:58.370827"
   },
   {
     "_id": "RISK_STU20240383",
@@ -9069,7 +9069,7 @@
       "Below average CGPA (6.00)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361332"
+    "updated_at": "2026-08-25T21:15:58.370828"
   },
   {
     "_id": "RISK_STU20210384",
@@ -9092,7 +9092,7 @@
       "Attendance below 75% threshold (65.5%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361334"
+    "updated_at": "2026-08-25T21:15:58.370830"
   },
   {
     "_id": "RISK_STU20220385",
@@ -9115,7 +9115,7 @@
       "Critical attendance shortage (59.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361336"
+    "updated_at": "2026-08-25T21:15:58.370832"
   },
   {
     "_id": "RISK_STU20230386",
@@ -9138,7 +9138,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361337"
+    "updated_at": "2026-08-25T21:15:58.370833"
   },
   {
     "_id": "RISK_STU20240387",
@@ -9162,7 +9162,7 @@
       "Below average CGPA (6.00)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361339"
+    "updated_at": "2026-08-25T21:15:58.370835"
   },
   {
     "_id": "RISK_STU20210388",
@@ -9188,7 +9188,7 @@
       "Low internal continuous assessment score (44.2%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361340"
+    "updated_at": "2026-08-25T21:15:58.370837"
   },
   {
     "_id": "RISK_STU20220389",
@@ -9211,7 +9211,7 @@
       "Attendance below 75% threshold (70.4%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361342"
+    "updated_at": "2026-08-25T21:15:58.370839"
   },
   {
     "_id": "RISK_STU20230390",
@@ -9234,7 +9234,7 @@
       "Attendance below 75% threshold (69.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361344"
+    "updated_at": "2026-08-25T21:15:58.370841"
   },
   {
     "_id": "RISK_STU20240391",
@@ -9260,7 +9260,7 @@
       "Low internal continuous assessment score (40.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361346"
+    "updated_at": "2026-08-25T21:15:58.370842"
   },
   {
     "_id": "RISK_STU20210392",
@@ -9283,7 +9283,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361347"
+    "updated_at": "2026-08-25T21:15:58.370844"
   },
   {
     "_id": "RISK_STU20220393",
@@ -9306,7 +9306,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361349"
+    "updated_at": "2026-08-25T21:15:58.370846"
   },
   {
     "_id": "RISK_STU20230394",
@@ -9329,7 +9329,7 @@
       "Attendance below 75% threshold (66.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361350"
+    "updated_at": "2026-08-25T21:15:58.370848"
   },
   {
     "_id": "RISK_STU20240395",
@@ -9352,7 +9352,7 @@
       "Critical attendance shortage (50.1%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361352"
+    "updated_at": "2026-08-25T21:15:58.370849"
   },
   {
     "_id": "RISK_STU20210396",
@@ -9375,7 +9375,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361354"
+    "updated_at": "2026-08-25T21:15:58.370851"
   },
   {
     "_id": "RISK_STU20220397",
@@ -9400,7 +9400,7 @@
       "Low cumulative grade point average (4.75 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361356"
+    "updated_at": "2026-08-25T21:15:58.370853"
   },
   {
     "_id": "RISK_STU20230398",
@@ -9425,7 +9425,7 @@
       "Low cumulative grade point average (2.44 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361359"
+    "updated_at": "2026-08-25T21:15:58.370855"
   },
   {
     "_id": "RISK_STU20240399",
@@ -9449,7 +9449,7 @@
       "Low cumulative grade point average (5.00 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361361"
+    "updated_at": "2026-08-25T21:15:58.370856"
   },
   {
     "_id": "RISK_STU20210400",
@@ -9472,7 +9472,7 @@
       "Attendance below 75% threshold (61.1%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361362"
+    "updated_at": "2026-08-25T21:15:58.370858"
   },
   {
     "_id": "RISK_STU20220401",
@@ -9495,7 +9495,7 @@
       "Attendance below 75% threshold (72.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361364"
+    "updated_at": "2026-08-25T21:15:58.370860"
   },
   {
     "_id": "RISK_STU20230402",
@@ -9518,7 +9518,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361368"
+    "updated_at": "2026-08-25T21:15:58.370862"
   },
   {
     "_id": "RISK_STU20240403",
@@ -9541,7 +9541,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361370"
+    "updated_at": "2026-08-25T21:15:58.370864"
   },
   {
     "_id": "RISK_STU20210404",
@@ -9564,7 +9564,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361372"
+    "updated_at": "2026-08-25T21:15:58.370865"
   },
   {
     "_id": "RISK_STU20220405",
@@ -9587,7 +9587,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361374"
+    "updated_at": "2026-08-25T21:15:58.370867"
   },
   {
     "_id": "RISK_STU20230406",
@@ -9611,7 +9611,7 @@
       "Below average CGPA (5.75)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361376"
+    "updated_at": "2026-08-25T21:15:58.370869"
   },
   {
     "_id": "RISK_STU20240407",
@@ -9634,7 +9634,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361377"
+    "updated_at": "2026-08-25T21:15:58.370870"
   },
   {
     "_id": "RISK_STU20210408",
@@ -9657,7 +9657,7 @@
       "Attendance below 75% threshold (73.8%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361379"
+    "updated_at": "2026-08-25T21:15:58.370872"
   },
   {
     "_id": "RISK_STU20220409",
@@ -9682,7 +9682,7 @@
       "Low cumulative grade point average (5.44 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361381"
+    "updated_at": "2026-08-25T21:15:58.370874"
   },
   {
     "_id": "RISK_STU20230410",
@@ -9705,7 +9705,7 @@
       "Attendance below 75% threshold (74.6%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361383"
+    "updated_at": "2026-08-25T21:15:58.370876"
   },
   {
     "_id": "RISK_STU20240411",
@@ -9728,7 +9728,7 @@
       "Critical attendance shortage (58.7%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361384"
+    "updated_at": "2026-08-25T21:15:58.370877"
   },
   {
     "_id": "RISK_STU20210412",
@@ -9754,7 +9754,7 @@
       "Low internal continuous assessment score (41.9%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361386"
+    "updated_at": "2026-08-25T21:15:58.370879"
   },
   {
     "_id": "RISK_STU20220413",
@@ -9777,7 +9777,7 @@
       "Critical attendance shortage (56.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361388"
+    "updated_at": "2026-08-25T21:15:58.370881"
   },
   {
     "_id": "RISK_STU20230414",
@@ -9800,7 +9800,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361390"
+    "updated_at": "2026-08-25T21:15:58.370882"
   },
   {
     "_id": "RISK_STU20240415",
@@ -9823,7 +9823,7 @@
       "Attendance below 75% threshold (62.6%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361391"
+    "updated_at": "2026-08-25T21:15:58.370884"
   },
   {
     "_id": "RISK_STU20210416",
@@ -9846,7 +9846,7 @@
       "Critical attendance shortage (58.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361393"
+    "updated_at": "2026-08-25T21:15:58.370886"
   },
   {
     "_id": "RISK_STU20220417",
@@ -9869,7 +9869,7 @@
       "Critical attendance shortage (53.9%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361395"
+    "updated_at": "2026-08-25T21:15:58.370887"
   },
   {
     "_id": "RISK_STU20230418",
@@ -9892,7 +9892,7 @@
       "Attendance below 75% threshold (69.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361396"
+    "updated_at": "2026-08-25T21:15:58.370889"
   },
   {
     "_id": "RISK_STU20240419",
@@ -9918,7 +9918,7 @@
       "Low internal continuous assessment score (33.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361398"
+    "updated_at": "2026-08-25T21:15:58.370891"
   },
   {
     "_id": "RISK_STU20210420",
@@ -9941,7 +9941,7 @@
       "Attendance below 75% threshold (61.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361400"
+    "updated_at": "2026-08-25T21:15:58.370892"
   },
   {
     "_id": "RISK_STU20220421",
@@ -9964,7 +9964,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361401"
+    "updated_at": "2026-08-25T21:15:58.370894"
   },
   {
     "_id": "RISK_STU20230422",
@@ -9987,7 +9987,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361403"
+    "updated_at": "2026-08-25T21:15:58.370896"
   },
   {
     "_id": "RISK_STU20240423",
@@ -10012,7 +10012,7 @@
       "Low cumulative grade point average (4.50 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361404"
+    "updated_at": "2026-08-25T21:15:58.370897"
   },
   {
     "_id": "RISK_STU20210424",
@@ -10035,7 +10035,7 @@
       "Attendance below 75% threshold (61.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361406"
+    "updated_at": "2026-08-25T21:15:58.370899"
   },
   {
     "_id": "RISK_STU20220425",
@@ -10058,7 +10058,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361408"
+    "updated_at": "2026-08-25T21:15:58.370901"
   },
   {
     "_id": "RISK_STU20230426",
@@ -10081,7 +10081,7 @@
       "Attendance below 75% threshold (64.8%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361409"
+    "updated_at": "2026-08-25T21:15:58.370903"
   },
   {
     "_id": "RISK_STU20240427",
@@ -10104,7 +10104,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361411"
+    "updated_at": "2026-08-25T21:15:58.370904"
   },
   {
     "_id": "RISK_STU20210428",
@@ -10127,7 +10127,7 @@
       "Critical attendance shortage (47.5%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361413"
+    "updated_at": "2026-08-25T21:15:58.370906"
   },
   {
     "_id": "RISK_STU20220429",
@@ -10150,7 +10150,7 @@
       "Attendance below 75% threshold (65.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361414"
+    "updated_at": "2026-08-25T21:15:58.370908"
   },
   {
     "_id": "RISK_STU20230430",
@@ -10174,7 +10174,7 @@
       "Below average CGPA (5.50)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361416"
+    "updated_at": "2026-08-25T21:15:58.370909"
   },
   {
     "_id": "RISK_STU20240431",
@@ -10197,7 +10197,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361418"
+    "updated_at": "2026-08-25T21:15:58.370911"
   },
   {
     "_id": "RISK_STU20210432",
@@ -10220,7 +10220,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361419"
+    "updated_at": "2026-08-25T21:15:58.370913"
   },
   {
     "_id": "RISK_STU20220433",
@@ -10243,7 +10243,7 @@
       "Attendance below 75% threshold (67.5%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361421"
+    "updated_at": "2026-08-25T21:15:58.370914"
   },
   {
     "_id": "RISK_STU20230434",
@@ -10266,7 +10266,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361423"
+    "updated_at": "2026-08-25T21:15:58.370916"
   },
   {
     "_id": "RISK_STU20240435",
@@ -10291,7 +10291,7 @@
       "Low cumulative grade point average (4.56 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361424"
+    "updated_at": "2026-08-25T21:15:58.370918"
   },
   {
     "_id": "RISK_STU20210436",
@@ -10314,7 +10314,7 @@
       "Critical attendance shortage (52.4%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361426"
+    "updated_at": "2026-08-25T21:15:58.370920"
   },
   {
     "_id": "RISK_STU20220437",
@@ -10338,7 +10338,7 @@
       "Below average CGPA (5.89)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361428"
+    "updated_at": "2026-08-25T21:15:58.370921"
   },
   {
     "_id": "RISK_STU20230438",
@@ -10361,7 +10361,7 @@
       "Attendance below 75% threshold (69.2%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361431"
+    "updated_at": "2026-08-25T21:15:58.370923"
   },
   {
     "_id": "RISK_STU20240439",
@@ -10385,7 +10385,7 @@
       "Below average CGPA (6.29)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361433"
+    "updated_at": "2026-08-25T21:15:58.370925"
   },
   {
     "_id": "RISK_STU20210440",
@@ -10410,7 +10410,7 @@
       "Low internal continuous assessment score (30.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361435"
+    "updated_at": "2026-08-25T21:15:58.370926"
   },
   {
     "_id": "RISK_STU20220441",
@@ -10434,7 +10434,7 @@
       "Below average CGPA (5.86)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361437"
+    "updated_at": "2026-08-25T21:15:58.370928"
   },
   {
     "_id": "RISK_STU20230442",
@@ -10457,7 +10457,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361438"
+    "updated_at": "2026-08-25T21:15:58.370930"
   },
   {
     "_id": "RISK_STU20240443",
@@ -10483,7 +10483,7 @@
       "Low internal continuous assessment score (0.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361440"
+    "updated_at": "2026-08-25T21:15:58.370932"
   },
   {
     "_id": "RISK_STU20210444",
@@ -10506,7 +10506,7 @@
       "Attendance below 75% threshold (63.5%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361442"
+    "updated_at": "2026-08-25T21:15:58.370933"
   },
   {
     "_id": "RISK_STU20220445",
@@ -10529,7 +10529,7 @@
       "Attendance below 75% threshold (66.6%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361443"
+    "updated_at": "2026-08-25T21:15:58.370935"
   },
   {
     "_id": "RISK_STU20230446",
@@ -10552,7 +10552,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361445"
+    "updated_at": "2026-08-25T21:15:58.370937"
   },
   {
     "_id": "RISK_STU20240447",
@@ -10576,7 +10576,7 @@
       "Below average CGPA (5.56)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361447"
+    "updated_at": "2026-08-25T21:15:58.370938"
   },
   {
     "_id": "RISK_STU20210448",
@@ -10599,7 +10599,7 @@
       "Attendance below 75% threshold (73.4%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361448"
+    "updated_at": "2026-08-25T21:15:58.370940"
   },
   {
     "_id": "RISK_STU20220449",
@@ -10622,7 +10622,7 @@
       "Attendance below 75% threshold (72.6%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361450"
+    "updated_at": "2026-08-25T21:15:58.370942"
   },
   {
     "_id": "RISK_STU20230450",
@@ -10645,7 +10645,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361452"
+    "updated_at": "2026-08-25T21:15:58.370943"
   },
   {
     "_id": "RISK_STU20240451",
@@ -10668,7 +10668,7 @@
       "Attendance below 75% threshold (63.7%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361453"
+    "updated_at": "2026-08-25T21:15:58.370945"
   },
   {
     "_id": "RISK_STU20210452",
@@ -10693,7 +10693,7 @@
       "Low cumulative grade point average (3.89 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361455"
+    "updated_at": "2026-08-25T21:15:58.370947"
   },
   {
     "_id": "RISK_STU20220453",
@@ -10719,7 +10719,7 @@
       "Low internal continuous assessment score (44.1%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361457"
+    "updated_at": "2026-08-25T21:15:58.370949"
   },
   {
     "_id": "RISK_STU20230454",
@@ -10743,7 +10743,7 @@
       "Below average CGPA (5.50)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361458"
+    "updated_at": "2026-08-25T21:15:58.370950"
   },
   {
     "_id": "RISK_STU20240455",
@@ -10766,7 +10766,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361460"
+    "updated_at": "2026-08-25T21:15:58.370952"
   },
   {
     "_id": "RISK_STU20210456",
@@ -10790,7 +10790,7 @@
       "Below average CGPA (5.75)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361462"
+    "updated_at": "2026-08-25T21:15:58.370954"
   },
   {
     "_id": "RISK_STU20220457",
@@ -10813,7 +10813,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361463"
+    "updated_at": "2026-08-25T21:15:58.370955"
   },
   {
     "_id": "RISK_STU20230458",
@@ -10836,7 +10836,7 @@
       "Critical attendance shortage (59.5%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361466"
+    "updated_at": "2026-08-25T21:15:58.370958"
   },
   {
     "_id": "RISK_STU20240459",
@@ -10859,7 +10859,7 @@
       "Attendance below 75% threshold (69.2%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361467"
+    "updated_at": "2026-08-25T21:15:58.370959"
   },
   {
     "_id": "RISK_STU20210460",
@@ -10884,7 +10884,7 @@
       "Low cumulative grade point average (4.00 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361469"
+    "updated_at": "2026-08-25T21:15:58.370961"
   },
   {
     "_id": "RISK_STU20220461",
@@ -10907,7 +10907,7 @@
       "Attendance below 75% threshold (61.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361471"
+    "updated_at": "2026-08-25T21:15:58.370963"
   },
   {
     "_id": "RISK_STU20230462",
@@ -10930,7 +10930,7 @@
       "Attendance below 75% threshold (63.6%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361472"
+    "updated_at": "2026-08-25T21:15:58.370964"
   },
   {
     "_id": "RISK_STU20240463",
@@ -10955,7 +10955,7 @@
       "Low cumulative grade point average (3.00 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361474"
+    "updated_at": "2026-08-25T21:15:58.370966"
   },
   {
     "_id": "RISK_STU20210464",
@@ -10978,7 +10978,7 @@
       "Attendance below 75% threshold (62.8%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361476"
+    "updated_at": "2026-08-25T21:15:58.370968"
   },
   {
     "_id": "RISK_STU20220465",
@@ -11001,7 +11001,7 @@
       "Attendance below 75% threshold (71.1%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361477"
+    "updated_at": "2026-08-25T21:15:58.370969"
   },
   {
     "_id": "RISK_STU20230466",
@@ -11024,7 +11024,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361479"
+    "updated_at": "2026-08-25T21:15:58.370971"
   },
   {
     "_id": "RISK_STU20240467",
@@ -11047,7 +11047,7 @@
       "Attendance below 75% threshold (68.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361481"
+    "updated_at": "2026-08-25T21:15:58.370973"
   },
   {
     "_id": "RISK_STU20210468",
@@ -11071,7 +11071,7 @@
       "Below average CGPA (5.50)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361482"
+    "updated_at": "2026-08-25T21:15:58.370975"
   },
   {
     "_id": "RISK_STU20220469",
@@ -11097,7 +11097,7 @@
       "Low internal continuous assessment score (44.2%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361484"
+    "updated_at": "2026-08-25T21:15:58.370976"
   },
   {
     "_id": "RISK_STU20230470",
@@ -11120,7 +11120,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361486"
+    "updated_at": "2026-08-25T21:15:58.370978"
   },
   {
     "_id": "RISK_STU20240471",
@@ -11144,7 +11144,7 @@
       "Below average CGPA (5.67)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361487"
+    "updated_at": "2026-08-25T21:15:58.370980"
   },
   {
     "_id": "RISK_STU20210472",
@@ -11167,7 +11167,7 @@
       "Attendance below 75% threshold (74.8%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361489"
+    "updated_at": "2026-08-25T21:15:58.370981"
   },
   {
     "_id": "RISK_STU20220473",
@@ -11190,7 +11190,7 @@
       "Attendance below 75% threshold (74.2%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361491"
+    "updated_at": "2026-08-25T21:15:58.370983"
   },
   {
     "_id": "RISK_STU20230474",
@@ -11213,7 +11213,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361492"
+    "updated_at": "2026-08-25T21:15:58.370985"
   },
   {
     "_id": "RISK_STU20240475",
@@ -11239,7 +11239,7 @@
       "Low internal continuous assessment score (43.7%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361494"
+    "updated_at": "2026-08-25T21:15:58.370987"
   },
   {
     "_id": "RISK_STU20210476",
@@ -11262,7 +11262,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361496"
+    "updated_at": "2026-08-25T21:15:58.370988"
   },
   {
     "_id": "RISK_STU20220477",
@@ -11285,7 +11285,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361498"
+    "updated_at": "2026-08-25T21:15:58.370990"
   },
   {
     "_id": "RISK_STU20230478",
@@ -11308,7 +11308,7 @@
       "Attendance below 75% threshold (66.2%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361501"
+    "updated_at": "2026-08-25T21:15:58.370992"
   },
   {
     "_id": "RISK_STU20240479",
@@ -11334,7 +11334,7 @@
       "Low internal continuous assessment score (44.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361503"
+    "updated_at": "2026-08-25T21:15:58.370993"
   },
   {
     "_id": "RISK_STU20210480",
@@ -11360,7 +11360,7 @@
       "Low internal continuous assessment score (40.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361505"
+    "updated_at": "2026-08-25T21:15:58.370995"
   },
   {
     "_id": "RISK_STU20220481",
@@ -11383,7 +11383,7 @@
       "Critical attendance shortage (59.5%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361506"
+    "updated_at": "2026-08-25T21:15:58.370997"
   },
   {
     "_id": "RISK_STU20230482",
@@ -11407,7 +11407,7 @@
       "Below average CGPA (6.00)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361508"
+    "updated_at": "2026-08-25T21:15:58.370999"
   },
   {
     "_id": "RISK_STU20240483",
@@ -11433,7 +11433,7 @@
       "Low internal continuous assessment score (33.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361510"
+    "updated_at": "2026-08-25T21:15:58.371000"
   },
   {
     "_id": "RISK_STU20210484",
@@ -11458,7 +11458,7 @@
       "Low cumulative grade point average (5.00 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361511"
+    "updated_at": "2026-08-25T21:15:58.371002"
   },
   {
     "_id": "RISK_STU20220485",
@@ -11482,7 +11482,7 @@
       "Below average CGPA (6.00)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361513"
+    "updated_at": "2026-08-25T21:15:58.371004"
   },
   {
     "_id": "RISK_STU20230486",
@@ -11505,7 +11505,7 @@
       "Attendance below 75% threshold (72.7%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361515"
+    "updated_at": "2026-08-25T21:15:58.371005"
   },
   {
     "_id": "RISK_STU20240487",
@@ -11531,7 +11531,7 @@
       "Low internal continuous assessment score (42.6%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361518"
+    "updated_at": "2026-08-25T21:15:58.371007"
   },
   {
     "_id": "RISK_STU20210488",
@@ -11554,7 +11554,7 @@
       "Attendance below 75% threshold (60.6%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361520"
+    "updated_at": "2026-08-25T21:15:58.371009"
   },
   {
     "_id": "RISK_STU20220489",
@@ -11577,7 +11577,7 @@
       "Attendance below 75% threshold (72.5%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361521"
+    "updated_at": "2026-08-25T21:15:58.371011"
   },
   {
     "_id": "RISK_STU20230490",
@@ -11600,7 +11600,7 @@
       "Attendance below 75% threshold (71.9%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361523"
+    "updated_at": "2026-08-25T21:15:58.371012"
   },
   {
     "_id": "RISK_STU20240491",
@@ -11623,7 +11623,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361525"
+    "updated_at": "2026-08-25T21:15:58.371014"
   },
   {
     "_id": "RISK_STU20210492",
@@ -11648,7 +11648,7 @@
       "Low internal continuous assessment score (41.7%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361526"
+    "updated_at": "2026-08-25T21:15:58.371016"
   },
   {
     "_id": "RISK_STU20220493",
@@ -11671,7 +11671,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361528"
+    "updated_at": "2026-08-25T21:15:58.371017"
   },
   {
     "_id": "RISK_STU20230494",
@@ -11694,7 +11694,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361530"
+    "updated_at": "2026-08-25T21:15:58.371019"
   },
   {
     "_id": "RISK_STU20240495",
@@ -11718,7 +11718,7 @@
       "Below average CGPA (6.00)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361531"
+    "updated_at": "2026-08-25T21:15:58.371021"
   },
   {
     "_id": "RISK_STU20210496",
@@ -11743,7 +11743,7 @@
       "Low cumulative grade point average (2.50 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361533"
+    "updated_at": "2026-08-25T21:15:58.371023"
   },
   {
     "_id": "RISK_STU20220497",
@@ -11766,7 +11766,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361535"
+    "updated_at": "2026-08-25T21:15:58.371024"
   },
   {
     "_id": "RISK_STU20230498",
@@ -11789,7 +11789,7 @@
       "Attendance below 75% threshold (67.4%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361536"
+    "updated_at": "2026-08-25T21:15:58.371026"
   },
   {
     "_id": "RISK_STU20240499",
@@ -11812,7 +11812,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361538"
+    "updated_at": "2026-08-25T21:15:58.371028"
   },
   {
     "_id": "RISK_STU20210500",
@@ -11835,7 +11835,7 @@
       "Critical attendance shortage (44.6%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361540"
+    "updated_at": "2026-08-25T21:15:58.371029"
   },
   {
     "_id": "RISK_STU20220501",
@@ -11858,7 +11858,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361541"
+    "updated_at": "2026-08-25T21:15:58.371031"
   },
   {
     "_id": "RISK_STU20230502",
@@ -11881,7 +11881,7 @@
       "Critical attendance shortage (58.6%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361543"
+    "updated_at": "2026-08-25T21:15:58.371033"
   },
   {
     "_id": "RISK_STU20240503",
@@ -11904,7 +11904,7 @@
       "Critical attendance shortage (58.1%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361545"
+    "updated_at": "2026-08-25T21:15:58.371034"
   },
   {
     "_id": "RISK_STU20210504",
@@ -11927,7 +11927,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361546"
+    "updated_at": "2026-08-25T21:15:58.371036"
   },
   {
     "_id": "RISK_STU20220505",
@@ -11953,7 +11953,7 @@
       "Low internal continuous assessment score (42.4%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361548"
+    "updated_at": "2026-08-25T21:15:58.371038"
   },
   {
     "_id": "RISK_STU20230506",
@@ -11977,7 +11977,7 @@
       "Low cumulative grade point average (5.00 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361550"
+    "updated_at": "2026-08-25T21:15:58.371040"
   },
   {
     "_id": "RISK_STU20240507",
@@ -12000,7 +12000,7 @@
       "Low internal continuous assessment score (40.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361551"
+    "updated_at": "2026-08-25T21:15:58.371041"
   },
   {
     "_id": "RISK_STU20210508",
@@ -12023,7 +12023,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361553"
+    "updated_at": "2026-08-25T21:15:58.371043"
   },
   {
     "_id": "RISK_STU20220509",
@@ -12046,7 +12046,7 @@
       "Attendance below 75% threshold (64.8%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361555"
+    "updated_at": "2026-08-25T21:15:58.371045"
   },
   {
     "_id": "RISK_STU20230510",
@@ -12069,7 +12069,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361556"
+    "updated_at": "2026-08-25T21:15:58.371046"
   },
   {
     "_id": "RISK_STU20240511",
@@ -12092,7 +12092,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361558"
+    "updated_at": "2026-08-25T21:15:58.371048"
   },
   {
     "_id": "RISK_STU20210512",
@@ -12115,7 +12115,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361560"
+    "updated_at": "2026-08-25T21:15:58.371050"
   },
   {
     "_id": "RISK_STU20220513",
@@ -12139,7 +12139,7 @@
       "Below average CGPA (5.67)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361561"
+    "updated_at": "2026-08-25T21:15:58.371051"
   },
   {
     "_id": "RISK_STU20230514",
@@ -12162,7 +12162,7 @@
       "Attendance below 75% threshold (66.7%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361563"
+    "updated_at": "2026-08-25T21:15:58.371053"
   },
   {
     "_id": "RISK_STU20240515",
@@ -12185,7 +12185,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361565"
+    "updated_at": "2026-08-25T21:15:58.371055"
   },
   {
     "_id": "RISK_STU20210516",
@@ -12208,7 +12208,7 @@
       "Attendance below 75% threshold (69.5%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361566"
+    "updated_at": "2026-08-25T21:15:58.371057"
   },
   {
     "_id": "RISK_STU20220517",
@@ -12232,7 +12232,7 @@
       "Below average CGPA (6.00)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361568"
+    "updated_at": "2026-08-25T21:15:58.371058"
   },
   {
     "_id": "RISK_STU20230518",
@@ -12255,7 +12255,7 @@
       "Attendance below 75% threshold (66.6%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361571"
+    "updated_at": "2026-08-25T21:15:58.371060"
   },
   {
     "_id": "RISK_STU20240519",
@@ -12278,7 +12278,7 @@
       "Critical attendance shortage (59.2%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361573"
+    "updated_at": "2026-08-25T21:15:58.371062"
   },
   {
     "_id": "RISK_STU20210520",
@@ -12301,7 +12301,7 @@
       "Attendance below 75% threshold (72.6%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361575"
+    "updated_at": "2026-08-25T21:15:58.371063"
   },
   {
     "_id": "RISK_STU20220521",
@@ -12326,7 +12326,7 @@
       "Low cumulative grade point average (2.50 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361576"
+    "updated_at": "2026-08-25T21:15:58.371065"
   },
   {
     "_id": "RISK_STU20230522",
@@ -12349,7 +12349,7 @@
       "Attendance below 75% threshold (72.2%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361578"
+    "updated_at": "2026-08-25T21:15:58.371067"
   },
   {
     "_id": "RISK_STU20240523",
@@ -12372,7 +12372,7 @@
       "Critical attendance shortage (59.8%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361580"
+    "updated_at": "2026-08-25T21:15:58.371069"
   },
   {
     "_id": "RISK_STU20210524",
@@ -12396,7 +12396,7 @@
       "Below average CGPA (5.62)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361581"
+    "updated_at": "2026-08-25T21:15:58.371071"
   },
   {
     "_id": "RISK_STU20220525",
@@ -12419,7 +12419,7 @@
       "Critical attendance shortage (58.7%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361584"
+    "updated_at": "2026-08-25T21:15:58.371073"
   },
   {
     "_id": "RISK_STU20230526",
@@ -12443,7 +12443,7 @@
       "Below average CGPA (6.25)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361586"
+    "updated_at": "2026-08-25T21:15:58.371074"
   },
   {
     "_id": "RISK_STU20240527",
@@ -12466,7 +12466,7 @@
       "Attendance below 75% threshold (73.9%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361588"
+    "updated_at": "2026-08-25T21:15:58.371076"
   },
   {
     "_id": "RISK_STU20210528",
@@ -12489,7 +12489,7 @@
       "Attendance below 75% threshold (68.8%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361589"
+    "updated_at": "2026-08-25T21:15:58.371078"
   },
   {
     "_id": "RISK_STU20220529",
@@ -12512,7 +12512,7 @@
       "Attendance below 75% threshold (64.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361591"
+    "updated_at": "2026-08-25T21:15:58.371079"
   },
   {
     "_id": "RISK_STU20230530",
@@ -12535,7 +12535,7 @@
       "Attendance below 75% threshold (74.1%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361593"
+    "updated_at": "2026-08-25T21:15:58.371081"
   },
   {
     "_id": "RISK_STU20240531",
@@ -12558,7 +12558,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361595"
+    "updated_at": "2026-08-25T21:15:58.371083"
   },
   {
     "_id": "RISK_STU20210532",
@@ -12581,7 +12581,7 @@
       "Attendance below 75% threshold (73.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361596"
+    "updated_at": "2026-08-25T21:15:58.371084"
   },
   {
     "_id": "RISK_STU20220533",
@@ -12604,7 +12604,7 @@
       "Critical attendance shortage (50.5%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361598"
+    "updated_at": "2026-08-25T21:15:58.371086"
   },
   {
     "_id": "RISK_STU20230534",
@@ -12629,7 +12629,7 @@
       "Low cumulative grade point average (5.00 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361600"
+    "updated_at": "2026-08-25T21:15:58.371088"
   },
   {
     "_id": "RISK_STU20240535",
@@ -12652,7 +12652,7 @@
       "Attendance below 75% threshold (63.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361601"
+    "updated_at": "2026-08-25T21:15:58.371090"
   },
   {
     "_id": "RISK_STU20210536",
@@ -12675,7 +12675,7 @@
       "Attendance below 75% threshold (73.2%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361603"
+    "updated_at": "2026-08-25T21:15:58.371091"
   },
   {
     "_id": "RISK_STU20220537",
@@ -12698,7 +12698,7 @@
       "Critical attendance shortage (49.1%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361604"
+    "updated_at": "2026-08-25T21:15:58.371093"
   },
   {
     "_id": "RISK_STU20230538",
@@ -12721,7 +12721,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361606"
+    "updated_at": "2026-08-25T21:15:58.371095"
   },
   {
     "_id": "RISK_STU20240539",
@@ -12744,7 +12744,7 @@
       "Attendance below 75% threshold (62.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361608"
+    "updated_at": "2026-08-25T21:15:58.371096"
   },
   {
     "_id": "RISK_STU20210540",
@@ -12767,7 +12767,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361609"
+    "updated_at": "2026-08-25T21:15:58.371098"
   },
   {
     "_id": "RISK_STU20220541",
@@ -12790,7 +12790,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361611"
+    "updated_at": "2026-08-25T21:15:58.371100"
   },
   {
     "_id": "RISK_STU20230542",
@@ -12814,7 +12814,7 @@
       "Below average CGPA (6.33)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361613"
+    "updated_at": "2026-08-25T21:15:58.371101"
   },
   {
     "_id": "RISK_STU20240543",
@@ -12837,7 +12837,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361614"
+    "updated_at": "2026-08-25T21:15:58.371103"
   },
   {
     "_id": "RISK_STU20210544",
@@ -12860,7 +12860,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361616"
+    "updated_at": "2026-08-25T21:15:58.371105"
   },
   {
     "_id": "RISK_STU20220545",
@@ -12885,7 +12885,7 @@
       "Low cumulative grade point average (3.00 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361618"
+    "updated_at": "2026-08-25T21:15:58.371106"
   },
   {
     "_id": "RISK_STU20230546",
@@ -12910,7 +12910,7 @@
       "Low cumulative grade point average (5.00 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361619"
+    "updated_at": "2026-08-25T21:15:58.371108"
   },
   {
     "_id": "RISK_STU20240547",
@@ -12933,7 +12933,7 @@
       "Critical attendance shortage (56.4%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361621"
+    "updated_at": "2026-08-25T21:15:58.371110"
   },
   {
     "_id": "RISK_STU20210548",
@@ -12957,7 +12957,7 @@
       "Below average CGPA (6.33)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361623"
+    "updated_at": "2026-08-25T21:15:58.371112"
   },
   {
     "_id": "RISK_STU20220549",
@@ -12980,7 +12980,7 @@
       "Critical attendance shortage (59.8%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361624"
+    "updated_at": "2026-08-25T21:15:58.371113"
   },
   {
     "_id": "RISK_STU20230550",
@@ -13003,7 +13003,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361626"
+    "updated_at": "2026-08-25T21:15:58.371115"
   },
   {
     "_id": "RISK_STU20240551",
@@ -13027,7 +13027,7 @@
       "Below average CGPA (5.75)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361628"
+    "updated_at": "2026-08-25T21:15:58.371117"
   },
   {
     "_id": "RISK_STU20210552",
@@ -13050,7 +13050,7 @@
       "Attendance below 75% threshold (73.8%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361629"
+    "updated_at": "2026-08-25T21:15:58.371118"
   },
   {
     "_id": "RISK_STU20220553",
@@ -13074,7 +13074,7 @@
       "Low cumulative grade point average (5.00 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361631"
+    "updated_at": "2026-08-25T21:15:58.371120"
   },
   {
     "_id": "RISK_STU20230554",
@@ -13097,7 +13097,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361632"
+    "updated_at": "2026-08-25T21:15:58.371122"
   },
   {
     "_id": "RISK_STU20240555",
@@ -13122,7 +13122,7 @@
       "Low cumulative grade point average (4.00 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361634"
+    "updated_at": "2026-08-25T21:15:58.371123"
   },
   {
     "_id": "RISK_STU20210556",
@@ -13148,7 +13148,7 @@
       "Low internal continuous assessment score (42.4%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361636"
+    "updated_at": "2026-08-25T21:15:58.371125"
   },
   {
     "_id": "RISK_STU20220557",
@@ -13171,7 +13171,7 @@
       "Critical attendance shortage (55.2%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361637"
+    "updated_at": "2026-08-25T21:15:58.371127"
   },
   {
     "_id": "RISK_STU20230558",
@@ -13194,7 +13194,7 @@
       "Attendance below 75% threshold (60.9%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361641"
+    "updated_at": "2026-08-25T21:15:58.371129"
   },
   {
     "_id": "RISK_STU20240559",
@@ -13217,7 +13217,7 @@
       "Attendance below 75% threshold (69.8%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361643"
+    "updated_at": "2026-08-25T21:15:58.371130"
   },
   {
     "_id": "RISK_STU20210560",
@@ -13243,7 +13243,7 @@
       "Low internal continuous assessment score (39.2%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361644"
+    "updated_at": "2026-08-25T21:15:58.371132"
   },
   {
     "_id": "RISK_STU20220561",
@@ -13266,7 +13266,7 @@
       "Critical attendance shortage (40.6%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361646"
+    "updated_at": "2026-08-25T21:15:58.371134"
   },
   {
     "_id": "RISK_STU20230562",
@@ -13292,7 +13292,7 @@
       "Low internal continuous assessment score (43.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361648"
+    "updated_at": "2026-08-25T21:15:58.371135"
   },
   {
     "_id": "RISK_STU20240563",
@@ -13315,7 +13315,7 @@
       "Critical attendance shortage (59.2%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361649"
+    "updated_at": "2026-08-25T21:15:58.371137"
   },
   {
     "_id": "RISK_STU20210564",
@@ -13338,7 +13338,7 @@
       "Attendance below 75% threshold (63.3%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361651"
+    "updated_at": "2026-08-25T21:15:58.371139"
   },
   {
     "_id": "RISK_STU20220565",
@@ -13361,7 +13361,7 @@
       "Attendance below 75% threshold (72.9%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361652"
+    "updated_at": "2026-08-25T21:15:58.371141"
   },
   {
     "_id": "RISK_STU20230566",
@@ -13387,7 +13387,7 @@
       "Low internal continuous assessment score (44.4%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361654"
+    "updated_at": "2026-08-25T21:15:58.371142"
   },
   {
     "_id": "RISK_STU20240567",
@@ -13410,7 +13410,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361656"
+    "updated_at": "2026-08-25T21:15:58.371144"
   },
   {
     "_id": "RISK_STU20210568",
@@ -13435,7 +13435,7 @@
       "Low cumulative grade point average (4.00 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361658"
+    "updated_at": "2026-08-25T21:15:58.371146"
   },
   {
     "_id": "RISK_STU20220569",
@@ -13458,7 +13458,7 @@
       "Attendance below 75% threshold (73.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361659"
+    "updated_at": "2026-08-25T21:15:58.371147"
   },
   {
     "_id": "RISK_STU20230570",
@@ -13483,7 +13483,7 @@
       "Low cumulative grade point average (4.22 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361661"
+    "updated_at": "2026-08-25T21:15:58.371149"
   },
   {
     "_id": "RISK_STU20240571",
@@ -13506,7 +13506,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361663"
+    "updated_at": "2026-08-25T21:15:58.371151"
   },
   {
     "_id": "RISK_STU20210572",
@@ -13529,7 +13529,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361666"
+    "updated_at": "2026-08-25T21:15:58.371152"
   },
   {
     "_id": "RISK_STU20220573",
@@ -13552,7 +13552,7 @@
       "Attendance below 75% threshold (71.6%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361668"
+    "updated_at": "2026-08-25T21:15:58.371154"
   },
   {
     "_id": "RISK_STU20230574",
@@ -13575,7 +13575,7 @@
       "Attendance below 75% threshold (62.5%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361670"
+    "updated_at": "2026-08-25T21:15:58.371156"
   },
   {
     "_id": "RISK_STU20240575",
@@ -13600,7 +13600,7 @@
       "Low cumulative grade point average (4.00 CGPA)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361671"
+    "updated_at": "2026-08-25T21:15:58.371157"
   },
   {
     "_id": "RISK_STU20210576",
@@ -13623,7 +13623,7 @@
       "Attendance below 75% threshold (74.6%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361673"
+    "updated_at": "2026-08-25T21:15:58.371159"
   },
   {
     "_id": "RISK_STU20220577",
@@ -13646,7 +13646,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361674"
+    "updated_at": "2026-08-25T21:15:58.371161"
   },
   {
     "_id": "RISK_STU20230578",
@@ -13669,7 +13669,7 @@
       "Attendance below 75% threshold (66.2%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361676"
+    "updated_at": "2026-08-25T21:15:58.371162"
   },
   {
     "_id": "RISK_STU20240579",
@@ -13692,7 +13692,7 @@
       "Critical attendance shortage (53.9%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361678"
+    "updated_at": "2026-08-25T21:15:58.371164"
   },
   {
     "_id": "RISK_STU20210580",
@@ -13717,7 +13717,7 @@
       "Low internal continuous assessment score (41.7%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361679"
+    "updated_at": "2026-08-25T21:15:58.371166"
   },
   {
     "_id": "RISK_STU20220581",
@@ -13740,7 +13740,7 @@
       "Attendance below 75% threshold (72.7%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361681"
+    "updated_at": "2026-08-25T21:15:58.371168"
   },
   {
     "_id": "RISK_STU20230582",
@@ -13763,7 +13763,7 @@
       "Attendance below 75% threshold (74.5%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361683"
+    "updated_at": "2026-08-25T21:15:58.371169"
   },
   {
     "_id": "RISK_STU20240583",
@@ -13786,7 +13786,7 @@
       "Attendance below 75% threshold (67.8%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361685"
+    "updated_at": "2026-08-25T21:15:58.371171"
   },
   {
     "_id": "RISK_STU20210584",
@@ -13810,7 +13810,7 @@
       "Below average CGPA (6.25)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361686"
+    "updated_at": "2026-08-25T21:15:58.371173"
   },
   {
     "_id": "RISK_STU20220585",
@@ -13833,7 +13833,7 @@
       "Critical attendance shortage (52.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361688"
+    "updated_at": "2026-08-25T21:15:58.371174"
   },
   {
     "_id": "RISK_STU20230586",
@@ -13858,7 +13858,7 @@
       "Low internal continuous assessment score (43.8%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361690"
+    "updated_at": "2026-08-25T21:15:58.371176"
   },
   {
     "_id": "RISK_STU20240587",
@@ -13881,7 +13881,7 @@
       "Critical attendance shortage (59.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361691"
+    "updated_at": "2026-08-25T21:15:58.371178"
   },
   {
     "_id": "RISK_STU20210588",
@@ -13904,7 +13904,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361693"
+    "updated_at": "2026-08-25T21:15:58.371180"
   },
   {
     "_id": "RISK_STU20220589",
@@ -13928,7 +13928,7 @@
       "Below average CGPA (5.50)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361695"
+    "updated_at": "2026-08-25T21:15:58.371181"
   },
   {
     "_id": "RISK_STU20230590",
@@ -13951,7 +13951,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361696"
+    "updated_at": "2026-08-25T21:15:58.371183"
   },
   {
     "_id": "RISK_STU20240591",
@@ -13975,7 +13975,7 @@
       "Below average CGPA (6.25)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361698"
+    "updated_at": "2026-08-25T21:15:58.371185"
   },
   {
     "_id": "RISK_STU20210592",
@@ -14001,7 +14001,7 @@
       "Low internal continuous assessment score (43.8%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361700"
+    "updated_at": "2026-08-25T21:15:58.371186"
   },
   {
     "_id": "RISK_STU20220593",
@@ -14026,7 +14026,7 @@
       "Low internal continuous assessment score (35.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361701"
+    "updated_at": "2026-08-25T21:15:58.371188"
   },
   {
     "_id": "RISK_STU20230594",
@@ -14049,7 +14049,7 @@
       "Attendance below 75% threshold (70.4%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361704"
+    "updated_at": "2026-08-25T21:15:58.371190"
   },
   {
     "_id": "RISK_STU20240595",
@@ -14074,7 +14074,7 @@
       "Below average CGPA (5.50)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361705"
+    "updated_at": "2026-08-25T21:15:58.371192"
   },
   {
     "_id": "RISK_STU20210596",
@@ -14100,7 +14100,7 @@
       "Low internal continuous assessment score (36.7%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361707"
+    "updated_at": "2026-08-25T21:15:58.371194"
   },
   {
     "_id": "RISK_STU20220597",
@@ -14123,7 +14123,7 @@
       "Critical attendance shortage (24.0%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361709"
+    "updated_at": "2026-08-25T21:15:58.371196"
   },
   {
     "_id": "RISK_STU20230598",
@@ -14146,7 +14146,7 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361712"
+    "updated_at": "2026-08-25T21:15:58.371197"
   },
   {
     "_id": "RISK_STU20240599",
@@ -14169,7 +14169,7 @@
       "Attendance below 75% threshold (62.8%)"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361714"
+    "updated_at": "2026-08-25T21:15:58.371199"
   },
   {
     "_id": "RISK_STU20210600",
@@ -14192,6 +14192,6 @@
       "Consistently satisfactory academic indicators"
     ],
     "model_version": "v1.0.0-RandomForest",
-    "updated_at": "2026-08-25T20:58:27.361716"
+    "updated_at": "2026-08-25T21:15:58.371201"
   }
 ]
