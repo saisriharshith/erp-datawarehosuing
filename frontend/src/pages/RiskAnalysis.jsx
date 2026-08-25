@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { fetchAPI } from '../services/api';
+import { useToast } from '../context/ToastContext';
 
 export default function RiskAnalysis() {
+  const { addToast } = useToast();
   const [baseline, setBaseline] = useState({
     attendance_percentage: 62.0,
     previous_gpa: 5.8,
@@ -34,6 +36,7 @@ export default function RiskAnalysis() {
       setSimResult(res);
     } catch (err) {
       console.error(err);
+      addToast('Error calculating simulation', 'danger');
     } finally {
       setLoading(false);
     }
@@ -58,10 +61,10 @@ export default function RiskAnalysis() {
     link.href = url;
     link.download = "student_risk_advisory_roster.csv";
     link.click();
+    addToast('Exported student risk roster to CSV', 'success');
   };
 
   const getGaugeRotation = (score = 0) => {
-    // 0 -> -90 deg, 1 -> 90 deg
     return -90 + (score * 180);
   };
 
@@ -74,8 +77,8 @@ export default function RiskAnalysis() {
           <p className="text-muted small mb-0">Scikit-learn analytical risk classifier (94.5% Accuracy) with interactive What-If scenario interventions.</p>
         </div>
 
-        <button className="btn btn-sm btn-outline-success d-flex align-items-center gap-1" onClick={handleExportCSV}>
-          <i className="bi bi-file-earmark-spreadsheet"></i>
+        <button className="btn btn-sm btn-outline-success d-flex align-items-center gap-1 shadow-sm" onClick={handleExportCSV}>
+          <i className="bi bi-file-earmark-spreadsheet-fill"></i>
           <span>Export Advisee CSV</span>
         </button>
       </div>
@@ -85,7 +88,10 @@ export default function RiskAnalysis() {
         {/* Left: What-If Slider Controls */}
         <div className="col-12 col-lg-7">
           <div className="metric-card">
-            <h6 className="fw-bold mb-3"><i className="bi bi-sliders text-primary me-1"></i> Simulated Scenario Adjustment</h6>
+            <div className="d-flex justify-content-between align-items-center mb-3">
+              <h6 className="fw-bold mb-0"><i className="bi bi-sliders text-primary me-1"></i> Simulated Scenario Adjustment</h6>
+              <span className="badge bg-light text-primary border">Interactive Modeling</span>
+            </div>
 
             <div className="row g-3">
               <div className="col-6">
@@ -164,8 +170,14 @@ export default function RiskAnalysis() {
             </div>
 
             <div className="mt-3 text-end">
-              <button className="btn btn-sm btn-primary px-3" onClick={runSimulation} disabled={loading} style={{ background: '#4f46e5', borderColor: '#4f46e5' }}>
-                <i className="bi bi-play-fill me-1"></i> Re-Calculate Risk Impact
+              <button
+                className="btn btn-sm btn-primary px-3 shadow-sm"
+                onClick={runSimulation}
+                disabled={loading}
+                style={{ background: '#4f46e5', borderColor: '#4f46e5' }}
+              >
+                {loading ? <span className="spinner-border spinner-border-sm me-1"></span> : <i className="bi bi-play-fill me-1"></i>}
+                Re-Calculate Risk Impact
               </button>
             </div>
           </div>
@@ -201,7 +213,7 @@ export default function RiskAnalysis() {
                     style={{
                       transformOrigin: '110px 110px',
                       transform: `rotate(${getGaugeRotation(simResult.scenario.risk_score)}deg)`,
-                      transition: 'transform 0.5s ease-out'
+                      transition: 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)'
                     }}
                   />
                   <circle cx="110" cy="110" r="8" fill="#1e293b" />

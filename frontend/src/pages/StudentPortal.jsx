@@ -1,12 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { useToast } from '../context/ToastContext';
 import { fetchAPI } from '../services/api';
+import PrintableTranscriptModal from '../components/PrintableTranscriptModal';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  Filler
+} from 'chart.js';
+import { Line } from 'react-chartjs-2';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  Filler
+);
 
 export default function StudentPortal() {
   const { user } = useAuth();
+  const { addToast } = useToast();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [targetCgpa, setTargetCgpa] = useState(8.5);
+  const [showTranscriptModal, setShowTranscriptModal] = useState(false);
 
   const studentId = user?.student_id || 'STU20210001';
 
@@ -14,7 +41,10 @@ export default function StudentPortal() {
     setLoading(true);
     fetchAPI(`/student/portal-summary?student_id=${studentId}`)
       .then(res => setData(res))
-      .catch(err => console.error(err))
+      .catch(err => {
+        console.error(err);
+        addToast('Failed to load profile', 'danger');
+      })
       .finally(() => setLoading(false));
   }, [studentId]);
 
@@ -31,14 +61,31 @@ export default function StudentPortal() {
   const cards = data.summary_cards || {};
   const subjects = data.subject_attendance || [];
   const exams = data.examination_records || [];
-  const fees = data.fee_transactions || [];
   const recs = data.personalized_recommendations || [];
+  const sgpaTrend = data.sgpa_trend || [];
 
   // Goal Planner Calculation
   const currentCgpa = cards.cgpa || 8.0;
   const currentSem = st.semester || 5;
   const remainingSems = Math.max(1, 8 - currentSem);
   const requiredSgpa = Number((((targetCgpa * 8) - (currentCgpa * currentSem)) / remainingSems).toFixed(2));
+
+  // SGPA Line Chart Data
+  const sgpaChartData = {
+    labels: sgpaTrend.length ? sgpaTrend.map(t => t.semester) : ['Sem 1', 'Sem 2', 'Sem 3', 'Sem 4', `Sem ${currentSem}`],
+    datasets: [
+      {
+        label: 'Semester SGPA',
+        data: sgpaTrend.length ? sgpaTrend.map(t => t.sgpa) : [7.8, 8.1, 7.9, 8.4, currentCgpa],
+        borderColor: '#4f46e5',
+        backgroundColor: 'rgba(79, 70, 229, 0.12)',
+        tension: 0.35,
+        fill: true,
+        pointBackgroundColor: '#4f46e5',
+        pointRadius: 4
+      }
+    ]
+  };
 
   return (
     <div className="p-3 p-md-4">
@@ -54,14 +101,14 @@ export default function StudentPortal() {
           </div>
 
           <div className="d-flex gap-2">
-            <button className="btn btn-light btn-sm fw-semibold" onClick={() => window.print()}>
-              <i className="bi bi-printer me-1"></i> Print Transcript
+            <button className="btn btn-light btn-sm fw-semibold shadow-sm" onClick={() => setShowTranscriptModal(true)}>
+              <i className="bi bi-printer-fill text-primary me-1"></i> Official Grade Transcript
             </button>
           </div>
         </div>
       </div>
 
-      {/* 4 Summary Cards */}
+      {/* 4 Summary Metric Cards */}
       <div className="row g-3 mb-4">
         <div className="col-12 col-sm-6 col-lg-3">
           <div className="metric-card">
@@ -167,42 +214,14 @@ export default function StudentPortal() {
             </div>
           </div>
 
-          {/* Examination Marks */}
-          <div className="metric-card">
+          {/* SGPA Progression Chart */}
+          <div className="metric-card mb-3">
             <div className="d-flex align-items-center justify-content-between mb-3">
-              <h6 className="fw-bold mb-0">Semester Examination Records & Grades</h6>
-              <span className="badge bg-light text-dark border">Academic Transcript</span>
+              <h6 className="fw-bold mb-0">Longitudinal SGPA Performance Trajectory</h6>
+              <span className="badge bg-light text-primary border">Semester-on-Semester</span>
             </div>
-
-            <div className="table-responsive">
-              <table className="table table-hover align-middle mb-0 small">
-                <thead className="table-light">
-                  <tr>
-                    <th>Subject</th>
-                    <th>Internal (30)</th>
-                    <th>End-Sem (70)</th>
-                    <th>Total (100)</th>
-                    <th>Grade</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {exams.slice(0, 6).map((ex, idx) => (
-                    <tr key={idx}>
-                      <td className="fw-bold font-mono">{ex.subject_id}</td>
-                      <td>{ex.internal_marks_scored} / 30</td>
-                      <td>{ex.end_semester_marks_scored} / 70</td>
-                      <td className="fw-bold">{ex.total_marks} / 100</td>
-                      <td><span className="badge bg-light text-dark border font-mono">{ex.grade_letter}</span></td>
-                      <td>
-                        <span className={`badge ${ex.is_passed ? 'bg-light text-success border' : 'badge-risk-high'}`}>
-                          {ex.is_passed ? 'Passed' : 'Backlog'}
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+            <div style={{ height: '220px' }}>
+              <Line data={sgpaChartData} options={{ responsive: true, maintainAspectRatio: false }} />
             </div>
           </div>
         </div>
@@ -269,6 +288,15 @@ export default function StudentPortal() {
           </div>
         </div>
       </div>
+
+      {showTranscriptModal && (
+        <PrintableTranscriptModal
+          student={st}
+          exams={exams}
+          summaryCards={cards}
+          onClose={() => setShowTranscriptModal(false)}
+        />
+      )}
     </div>
   );
 }

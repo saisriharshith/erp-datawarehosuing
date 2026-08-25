@@ -23,6 +23,8 @@ import predictionRouter from './routes/prediction.routes.js';
 import qualityRouter from './routes/quality.routes.js';
 import etlRouter from './routes/etl.routes.js';
 
+import compression from 'compression';
+
 dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
@@ -35,7 +37,8 @@ dbManager.connect().catch(err => {
   console.warn('[DB-MANAGER] Initialization notice:', err.message);
 });
 
-// Middlewares
+// High-performance middlewares
+app.use(compression());
 app.use(cors({
   origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
