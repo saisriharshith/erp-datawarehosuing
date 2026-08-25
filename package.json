@@ -1,0 +1,26 @@
+{
+  "name": "erp-decision-support-mern-stack",
+  "version": "2.0.0",
+  "description": "Institutional ERP Data Warehouse & Decision Support System (MERN Stack: MongoDB Atlas, Express, React, Node)",
+  "scripts": {
+    "start": "node server/src/index.js",
+    "server": "node server/src/index.js",
+    "server:watch": "node --watch server/src/index.js",
+    "client": "npm run dev --prefix client-react",
+    "client:build": "npm run build --prefix client-react",
+    "build": "npm run client:build",
+    "dev": "node server/src/index.js",
+    "test": "node --test server/tests/"
+  },
+  "keywords": [
+    "mern",
+    "mongodb-atlas",
+    "express",
+    "react",
+    "node",
+    "data-warehouse",
+    "decision-support"
+  ],
+  "author": "Google DeepMind Pair Programming",
+  "license": "MIT"
+}
