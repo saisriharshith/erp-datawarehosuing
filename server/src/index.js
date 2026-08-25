@@ -41,7 +41,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Serve frontend static build if present
-const clientDist = path.resolve(__dirname, '../../client-react/dist');
+const clientDist = path.resolve(__dirname, '../../frontend/dist');
 app.use(express.static(clientDist));
 
 // Mount REST API Blueprints under /api
