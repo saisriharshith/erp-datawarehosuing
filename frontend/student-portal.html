@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Academic Portal - UnivAnalytics</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="d-flex" id="wrapper">
+
+  <!-- Sidebar -->
+  <div id="sidebar-wrapper">
+    <div class="sidebar-heading d-flex align-items-center">
+      <i class="bi bi-mortarboard-fill text-indigo me-2" style="color: #818cf8;"></i>
+      <span>UnivAnalytics</span>
+    </div>
+    <div class="sidebar-nav">
+      <!-- Injected dynamically by Auth.renderRoleBasedNavigation() -->
+    </div>
+  </div>
+
+  <!-- Page Content -->
+  <div id="page-content-wrapper">
+    
+    <!-- Top Navbar -->
+    <nav class="top-navbar d-flex align-items-center justify-content-between">
+      <div class="d-flex align-items-center gap-2">
+        <span class="badge bg-success px-3 py-2"><i class="bi bi-person-fill me-1"></i> STUDENT PORTAL</span>
+        <span class="text-secondary small d-none d-md-inline">Personal Academic Record & Advisories</span>
+      </div>
+      
+      <div class="d-flex align-items-center gap-3">
+        <!-- Quick Role Switcher for Demo Evaluator -->
+        <div class="dropdown">
+          <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+            <i class="bi bi-arrow-repeat me-1"></i> Switch Role View
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+            <li><button class="dropdown-item small" onclick="Auth.switchPersona('ADMIN')"><i class="bi bi-shield-check text-indigo me-2"></i> Dean / Admin View (Institutional)</button></li>
+            <li><button class="dropdown-item small" onclick="Auth.switchPersona('FACULTY')"><i class="bi bi-person-badge text-primary me-2"></i> Faculty View (CSE Department)</button></li>
+            <li><button class="dropdown-item small active" onclick="Auth.switchPersona('STUDENT')"><i class="bi bi-person text-success me-2"></i> Student View (Aarav Sharma)</button></li>
+          </ul>
+        </div>
+
+        <div class="vr"></div>
+
+        <div class="dropdown">
+          <button class="btn btn-sm btn-light dropdown-toggle d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown">
+            <i class="bi bi-person-circle fs-5 text-success"></i>
+            <span id="nav-user-name" class="fw-semibold small">Aarav Sharma</span>
+            <span id="nav-user-badge" class="badge bg-success">STUDENT</span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+            <li><button class="dropdown-item small text-danger" onclick="Auth.logout()"><i class="bi bi-box-arrow-right me-2"></i> Logout</button></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="main-container">
+      <div id="alert-container"></div>
+
+      <!-- Welcome Student Banner -->
+      <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 text-white" style="background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);">
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+          <div class="d-flex align-items-center gap-3">
+            <div class="rounded-circle bg-white text-dark d-flex align-items-center justify-content-center fw-bold fs-3" style="width: 60px; height: 60px;">
+              AS
+            </div>
+            <div>
+              <h4 class="fw-bold mb-1" id="stFullName">Aarav Sharma</h4>
+              <div class="d-flex align-items-center gap-2 text-indigo-light small flex-wrap" style="color: #c7d2fe;">
+                <span><i class="bi bi-card-text me-1"></i> ID: <strong id="stStudentId">STU2023001</strong></span>
+                <span>•</span>
+                <span><i class="bi bi-mortarboard me-1"></i> <span id="stDeptName">Computer Science & Engineering</span></span>
+                <span>•</span>
+                <span><i class="bi bi-calendar-event me-1"></i> Semester <span id="stSem">5</span> (Batch <span id="stBatch">2023</span>)</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <span id="stExamEligibleBadge" class="badge bg-success px-3 py-2 fs-6"><i class="bi bi-check-circle-fill me-1"></i> Eligible for End-Sem Exams</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Personal Student KPI Metrics -->
+      <div class="row g-3 mb-4">
+        
+        <!-- My Attendance -->
+        <div class="col-md-3">
+          <div class="kpi-card kpi-blue">
+            <span class="kpi-label">My Overall Attendance</span>
+            <div id="stAttPct" class="kpi-value text-primary">--%</div>
+            <div class="small text-muted" id="stAttClassesNote">Attended -- / -- total sessions</div>
+          </div>
+        </div>
+
+        <!-- My CGPA -->
+        <div class="col-md-3">
+          <div class="kpi-card kpi-emerald">
+            <span class="kpi-label">Cumulative GPA (CGPA)</span>
+            <div id="stCGPA" class="kpi-value text-success">--</div>
+            <div class="small text-muted" id="stBacklogNote">0 Active Backlogs</div>
+          </div>
+        </div>
+
+        <!-- My Fee Status -->
+        <div class="col-md-3">
+          <div class="kpi-card kpi-amber">
+            <span class="kpi-label">Tuition Fee Status</span>
+            <div id="stFeeStatus" class="kpi-value text-dark">PAID</div>
+            <div class="small text-muted" id="stFeeBalanceNote">Outstanding Balance: ₹0</div>
+          </div>
+        </div>
+
+        <!-- My Library Standing -->
+        <div class="col-md-3">
+          <div class="kpi-card kpi-indigo">
+            <span class="kpi-label">Library Resource Standing</span>
+            <div id="stBooksBorrowed" class="kpi-value text-indigo">-- Books</div>
+            <div class="small text-muted" id="stFinesNote">Unpaid Fines: ₹0</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Section: Subject Attendance & Shortage Warnings -->
+      <div id="attendanceSection" class="dashboard-card mb-4">
+        <div class="card-title-header">
+          <span><i class="bi bi-calendar-check-fill text-primary me-2"></i> My Subject-wise Attendance Tracker</span>
+          <span class="badge bg-light text-dark border">Mandatory Threshold: 75%</span>
+        </div>
+        
+        <div class="table-responsive">
+          <table class="table custom-table table-hover align-middle mb-0">
+            <thead>
+              <tr>
+                <th>Subject Code</th>
+                <th>Semester</th>
+                <th>Conducted</th>
+                <th>Attended</th>
+                <th>My Attendance %</th>
+                <th>Exam Status</th>
+                <th>Advisory</th>
+              </tr>
+            </thead>
+            <tbody id="stAttendanceTableBody">
+              <tr><td colspan="7" class="text-center text-muted py-3">Loading attendance details...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Section: Examination Results & SGPA Trend -->
+      <div id="examsSection" class="row g-3 mb-4">
+        
+        <div class="col-lg-5">
+          <div class="dashboard-card h-100">
+            <div class="card-title-header">
+              <span><i class="bi bi-graph-up-arrow text-success me-2"></i> My SGPA Progression</span>
+              <span class="badge bg-light text-dark border">Semester Grades</span>
+            </div>
+            <div style="position: relative; height: 260px;">
+              <canvas id="stSGPATrendChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-7">
+          <div class="dashboard-card h-100">
+            <div class="card-title-header">
+              <span><i class="bi bi-award-fill text-emerald me-2"></i> Recent Examination Grades & Marks</span>
+            </div>
+            <div class="table-responsive">
+              <table class="table custom-table table-hover align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th>Subject</th>
+                    <th>Internal (/30)</th>
+                    <th>End-Sem (/70)</th>
+                    <th>Total (/100)</th>
+                    <th>Grade Point</th>
+                    <th>Grade</th>
+                    <th>Result</th>
+                  </tr>
+                </thead>
+                <tbody id="stExamsTableBody">
+                  <tr><td colspan="7" class="text-center text-muted py-3">Loading exam records...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Section: Fee Receipts & Library Activity -->
+      <div class="row g-3 mb-4">
+        
+        <!-- Fees Section -->
+        <div id="feesSection" class="col-lg-7">
+          <div class="dashboard-card h-100">
+            <div class="card-title-header">
+              <span><i class="bi bi-receipt text-warning me-2"></i> My Tuition Fee Receipts & Transactions</span>
+            </div>
+            <div class="table-responsive">
+              <table class="table custom-table table-hover align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th>Receipt / Txn ID</th>
+                    <th>Semester</th>
+                    <th>Amount Billed</th>
+                    <th>Amount Paid</th>
+                    <th>Payment Mode</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="stFeesTableBody">
+                  <tr><td colspan="7" class="text-center text-muted py-3">Loading fee receipts...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Advisories Section -->
+        <div id="adviceSection" class="col-lg-5">
+          <div class="dashboard-card h-100">
+            <div class="card-title-header">
+              <span><i class="bi bi-lightbulb-fill text-warning me-2"></i> My Personalized Academic Guidance</span>
+            </div>
+            <div id="stRecommendationsList" class="p-3 bg-light rounded-3 border">
+              <ul class="mb-0 ps-3 small text-secondary">
+                <li>Loading personalized advisories...</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script>
+  let sgpaChartInst = null;
+
+  async function loadStudentPortal() {
+    const user = Auth.getUser() || { student_id: "STU2023001" };
+    const sId = user.student_id || "STU2023001";
+
+    try {
+      const data = await fetchAPI(`/student/portal-summary?student_id=${sId}`);
+      const st = data.student;
+      const cards = data.summary_cards;
+
+      // Populate Student Header
+      document.getElementById("stFullName").textContent = st.full_name;
+      document.getElementById("stStudentId").textContent = st.student_id;
+      document.getElementById("stDeptName").textContent = st.department_name;
+      document.getElementById("stSem").textContent = st.semester;
+      document.getElementById("stBatch").textContent = st.batch_year;
+
+      if (cards.is_exam_eligible) {
+        document.getElementById("stExamEligibleBadge").className = "badge bg-success px-3 py-2 fs-6";
+        document.getElementById("stExamEligibleBadge").innerHTML = '<i class="bi bi-check-circle-fill me-1"></i> Eligible for End-Sem Exams';
+      } else {
+        document.getElementById("stExamEligibleBadge").className = "badge bg-danger px-3 py-2 fs-6";
+        document.getElementById("stExamEligibleBadge").innerHTML = '<i class="bi bi-exclamation-octagon-fill me-1"></i> Attendance Shortage (< 75%)';
+      }
+
+      // Populate Cards
+      document.getElementById("stAttPct").textContent = `${cards.attendance_percentage}%`;
+      document.getElementById("stCGPA").textContent = cards.cgpa;
+      document.getElementById("stBacklogNote").textContent = `${cards.backlogs_count} Active Backlogs`;
+      document.getElementById("stBacklogNote").className = cards.backlogs_count > 0 ? "small text-danger fw-bold" : "small text-success";
+
+      document.getElementById("stFeeStatus").textContent = cards.fee_status;
+      document.getElementById("stFeeStatus").className = `kpi-value ${cards.fee_status === 'PAID' ? 'text-success' : 'text-danger'}`;
+      document.getElementById("stFeeBalanceNote").textContent = `Outstanding: ₹${cards.fee_outstanding.toLocaleString()}`;
+
+      document.getElementById("stBooksBorrowed").textContent = `${cards.books_borrowed} Books`;
+      document.getElementById("stFinesNote").textContent = `Unpaid Fines: ₹${cards.unpaid_fines}`;
+
+      // Populate Attendance Table
+      const attTbody = document.getElementById("stAttendanceTableBody");
+      attTbody.innerHTML = "";
+      (data.subject_attendance || []).forEach(sub => {
+        const tr = document.createElement("tr");
+        const statusBadge = sub.attendance_percentage >= 75 
+          ? '<span class="badge bg-success">Eligible</span>' 
+          : '<span class="badge bg-danger">Shortage</span>';
+        
+        const advisory = sub.classes_needed_for_75 > 0 
+          ? `<span class="text-danger fw-semibold small">Must attend next ${sub.classes_needed_for_75} lectures</span>` 
+          : '<span class="text-success small">Satisfies minimum criteria</span>';
+
+        tr.innerHTML = `
+          <td class="font-monospace fw-bold">${sub.subject_id}</td>
+          <td>Sem ${sub.semester}</td>
+          <td>${sub.total_classes}</td>
+          <td>${sub.classes_attended}</td>
+          <td><strong>${sub.attendance_percentage}%</strong></td>
+          <td>${statusBadge}</td>
+          <td>${advisory}</td>
+        `;
+        attTbody.appendChild(tr);
+      });
+
+      // Populate Exams Table
+      const exTbody = document.getElementById("stExamsTableBody");
+      exTbody.innerHTML = "";
+      (data.examination_records || []).forEach(ex => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td class="font-monospace fw-bold">${ex.subject_id}</td>
+          <td>${ex.internal_marks} / 30</td>
+          <td>${ex.end_sem_marks} / 70</td>
+          <td><strong>${ex.total_marks} / 100</strong></td>
+          <td>${ex.grade_point}</td>
+          <td><span class="badge bg-light text-dark border">${ex.grade_letter}</span></td>
+          <td><span class="badge ${ex.is_passed ? 'bg-success' : 'bg-danger'}">${ex.is_passed ? 'PASS' : 'FAIL'}</span></td>
+        `;
+        exTbody.appendChild(tr);
+      });
+
+      // Populate SGPA Chart
+      const sgpaData = data.sgpa_trend || [];
+      const ctx = document.getElementById("stSGPATrendChart").getContext("2d");
+      if (sgpaChartInst) sgpaChartInst.destroy();
+      sgpaChartInst = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: sgpaData.map(s => s.semester),
+          datasets: [{
+            label: "SGPA (10.0 Scale)",
+            data: sgpaData.map(s => s.sgpa),
+            borderColor: "#10b981",
+            backgroundColor: "rgba(16, 185, 129, 0.1)",
+            fill: true,
+            tension: 0.3,
+            pointRadius: 5
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: { y: { min: 5.0, max: 10.0 } }
+        }
+      });
+
+      // Populate Fees Table
+      const feeTbody = document.getElementById("stFeesTableBody");
+      feeTbody.innerHTML = "";
+      (data.fee_transactions || []).forEach(f => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td class="font-monospace small">${f.fee_id}</td>
+          <td>Sem ${f.semester}</td>
+          <td>₹${f.total_due.toLocaleString()}</td>
+          <td>₹${f.total_paid.toLocaleString()}</td>
+          <td>${f.payment_mode}</td>
+          <td>${f.transaction_date}</td>
+          <td><span class="badge ${f.status === 'PAID' ? 'bg-success' : 'bg-danger'}">${f.status}</span></td>
+        `;
+        feeTbody.appendChild(tr);
+      });
+
+      // Populate Recommendations
+      const recsList = document.getElementById("stRecommendationsList");
+      recsList.innerHTML = `<ul class="mb-0 ps-3 small text-secondary"></ul>`;
+      const ul = recsList.querySelector("ul");
+      (data.personalized_recommendations || []).forEach(r => {
+        const li = document.createElement("li");
+        li.className = "mb-2";
+        li.textContent = r;
+        ul.appendChild(li);
+      });
+
+    } catch (err) {
+      showAlert("Could not load personal student dashboard.", "danger");
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    loadStudentPortal();
+  });
+</script>
+</body>
+</html>

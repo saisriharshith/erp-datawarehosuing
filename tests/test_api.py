@@ -129,3 +129,18 @@ def test_auth_login(client):
     data = res.get_json()["data"]
     assert data["role"] == "ADMIN"
     assert "token" in data
+
+
+def test_student_portal_summary_api(client):
+    """Test /api/student/portal-summary personal student endpoint."""
+    res = client.get("/api/student/portal-summary?student_id=STU2023001")
+    assert res.status_code == 200
+    json_data = res.get_json()
+    assert json_data["success"] is True
+    data = json_data["data"]
+    assert "student" in data
+    assert "summary_cards" in data
+    assert "subject_attendance" in data
+    assert "examination_records" in data
+    assert "fee_transactions" in data
+    assert "personalized_recommendations" in data

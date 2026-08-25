@@ -186,3 +186,104 @@ class StudentService:
                 "risk_factors": risk.get("risk_factors", ["Satisfactory academic standing"])
             }
         }
+
+    @staticmethod
+    def get_student_portal_data(student_id: str) -> Optional[Dict[str, Any]]:
+        """Returns student-tailored personal academic dashboard data."""
+        profile = StudentService.get_student_profile(student_id)
+        if not profile:
+            return None
+
+        st = profile["student"]
+        att = profile["attendance"]
+        exams = profile["examinations"]
+        fees = profile["fees"]
+        lib = profile["library"]
+        risk = profile["risk_assessment"]
+
+        # Calculate subject-by-subject shortage details
+        subject_details = []
+        shortage_alerts = []
+        for rec in att.get("subject_records", []):
+            pct = rec.get("attendance_percentage", 0)
+            total = rec.get("total_classes", 60)
+            attended = rec.get("classes_attended", 45)
+            
+            # Classes needed to reach 75%
+            needed = 0
+            if pct < 75.0:
+                # attended + x >= 0.75 * (total + x) => 0.25 * x >= 0.75 * total - attended => x = max(0, ceil(3*total - 4*attended))
+                needed = max(0, int((0.75 * total - attended) / 0.25))
+                shortage_alerts.append({
+                    "subject_id": rec.get("subject_id"),
+                    "current_percentage": pct,
+                    "classes_needed": needed
+                })
+
+            subject_details.append({
+                "subject_id": rec.get("subject_id"),
+                "semester": rec.get("semester"),
+                "total_classes": total,
+                "classes_attended": attended,
+                "attendance_percentage": pct,
+                "status": rec.get("status"),
+                "classes_needed_for_75": needed
+            })
+
+        # SGPA trend by semester
+        sem_gpas = {}
+        for ex in exams.get("exam_records", []):
+            s = ex.get("semester", 1)
+            sem_gpas.setdefault(s, []).append(ex.get("grade_point", 7.0))
+
+        sgpa_trend = [
+            {"semester": f"Sem {s}", "sgpa": round(sum(v)/len(v), 2)}
+            for s, v in sorted(sem_gpas.items())
+        ]
+
+        # Personalized recommendations
+        recs = []
+        if att["overall_percentage"] < 75.0:
+            recs.append("Urgent: Attend all upcoming lectures to meet the mandatory 75% end-semester exam threshold.")
+        else:
+            recs.append("Good job! Your attendance satisfies institutional exam eligibility criteria.")
+
+        if exams["backlogs"] > 0:
+            recs.append(f"You have {exams['backlogs']} pending backlog(s). Register for remedial classes during office hours.")
+        else:
+            recs.append("Academic standing is clear with zero subject backlogs.")
+
+        if fees["outstanding_balance"] > 0:
+            recs.append(f"Fee reminder: An outstanding balance of ₹{fees['outstanding_balance']:,} is pending for current semester.")
+        else:
+            recs.append("Semester tuition fees are fully settled.")
+
+        return {
+            "student": {
+                "student_id": st.get("student_id"),
+                "full_name": st.get("full_name"),
+                "department_id": st.get("department_id"),
+                "department_name": st.get("department_name"),
+                "semester": st.get("current_semester"),
+                "batch_year": st.get("batch_year"),
+                "email": st.get("email")
+            },
+            "summary_cards": {
+                "attendance_percentage": att["overall_percentage"],
+                "is_exam_eligible": att["overall_percentage"] >= 75.0,
+                "cgpa": exams["cgpa"],
+                "backlogs_count": exams["backlogs"],
+                "fee_status": fees["status"],
+                "fee_outstanding": fees["outstanding_balance"],
+                "books_borrowed": lib.get("total_books_borrowed", 0),
+                "unpaid_fines": lib.get("unpaid_fines", 0),
+                "risk_level": risk["risk_level"]
+            },
+            "subject_attendance": subject_details,
+            "shortage_alerts": shortage_alerts,
+            "examination_records": exams.get("exam_records", []),
+            "sgpa_trend": sgpa_trend,
+            "fee_transactions": fees.get("transaction_records", []),
+            "library_summary": lib,
+            "personalized_recommendations": recs
+        }

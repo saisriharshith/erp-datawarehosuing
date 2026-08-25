@@ -39,15 +39,27 @@
     <nav class="top-navbar d-flex align-items-center justify-content-between">
       <h5 class="m-0 fw-bold">Data Quality Assurance & ETL Governance Audit</h5>
       <div class="d-flex align-items-center gap-3">
+        <!-- Quick Role Switcher for Demo Evaluator -->
+        <div class="dropdown">
+          <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+            <i class="bi bi-arrow-repeat me-1"></i> Switch Role View
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+            <li><button class="dropdown-item small" onclick="Auth.switchPersona('ADMIN')"><i class="bi bi-shield-check text-indigo me-2"></i> Dean / Admin View (Institutional)</button></li>
+            <li><button class="dropdown-item small" onclick="Auth.switchPersona('FACULTY')"><i class="bi bi-person-badge text-primary me-2"></i> Faculty View (CSE Department)</button></li>
+            <li><button class="dropdown-item small" onclick="Auth.switchPersona('STUDENT')"><i class="bi bi-person text-success me-2"></i> Student View (Aarav Sharma)</button></li>
+          </ul>
+        </div>
+
+        <div class="vr"></div>
+
         <div class="dropdown">
           <button class="btn btn-sm btn-light dropdown-toggle d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown">
             <span id="nav-user-name" class="fw-semibold small">User</span>
             <span id="nav-user-badge" class="badge bg-indigo">ADMIN</span>
           </button>
           <ul class="dropdown-menu dropdown-menu-end shadow-sm">
-            <li><a class="dropdown-item small" href="index.html">Switch Persona</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><button class="dropdown-item small text-danger" onclick="Auth.logout()">Logout</button></li>
+            <li><button class="dropdown-item small text-danger" onclick="Auth.logout()"><i class="bi bi-box-arrow-right me-2"></i> Logout</button></li>
           </ul>
         </div>
       </div>

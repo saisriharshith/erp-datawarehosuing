@@ -687,7 +687,7 @@
       "department": "Comp Sci",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.632468"
+      "created_timestamp": "2026-08-25T20:58:20.735122"
     },
     {
       "raw_student_id": "STU20230002",
@@ -700,7 +700,7 @@
       "department": "Civil Engg",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.632503"
+      "created_timestamp": "2026-08-25T20:58:20.735202"
     },
     {
       "raw_student_id": "STU20240003",
@@ -713,7 +713,7 @@
       "department": "Civil Dept",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.632524"
+      "created_timestamp": "2026-08-25T20:58:20.735225"
     },
     {
       "raw_student_id": "STU20210004",
@@ -726,7 +726,7 @@
       "department": "ece dept",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.632538"
+      "created_timestamp": "2026-08-25T20:58:20.735241"
     },
     {
       "raw_student_id": "STU20220005",
@@ -739,7 +739,7 @@
       "department": "Mechanical Engg",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.632551"
+      "created_timestamp": "2026-08-25T20:58:20.735255"
     },
     {
       "raw_student_id": "STU20230006",
@@ -752,7 +752,7 @@
       "department": "ece dept",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.632564"
+      "created_timestamp": "2026-08-25T20:58:20.735270"
     },
     {
       "raw_student_id": "STU20240007",
@@ -765,7 +765,7 @@
       "department": "cs",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.632577"
+      "created_timestamp": "2026-08-25T20:58:20.735283"
     },
     {
       "raw_student_id": "STU20210008",
@@ -778,7 +778,7 @@
       "department": "Civil",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.632589"
+      "created_timestamp": "2026-08-25T20:58:20.735300"
     },
     {
       "raw_student_id": "STU20220009",
@@ -791,7 +791,7 @@
       "department": "Computer Science & Engg",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.632603"
+      "created_timestamp": "2026-08-25T20:58:20.735314"
     },
     {
       "raw_student_id": "STU20230010",
@@ -804,7 +804,7 @@
       "department": "CSE",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.632617"
+      "created_timestamp": "2026-08-25T20:58:20.735329"
     },
     {
       "raw_student_id": "STU20240011",
@@ -817,7 +817,7 @@
       "department": "AI & DS",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.632629"
+      "created_timestamp": "2026-08-25T20:58:20.735342"
     },
     {
       "raw_student_id": "STU20210012",
@@ -830,7 +830,7 @@
       "department": "mech",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.632641"
+      "created_timestamp": "2026-08-25T20:58:20.735357"
     },
     {
       "raw_student_id": "STU20220013",
@@ -843,7 +843,7 @@
       "department": "Computer Science",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.632652"
+      "created_timestamp": "2026-08-25T20:58:20.735369"
     },
     {
       "raw_student_id": "STU20230014",
@@ -856,7 +856,7 @@
       "department": "AI-DS",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.632665"
+      "created_timestamp": "2026-08-25T20:58:20.735381"
     },
     {
       "raw_student_id": "STU20240015",
@@ -869,7 +869,7 @@
       "department": "Mech Dept",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.632676"
+      "created_timestamp": "2026-08-25T20:58:20.735393"
     },
     {
       "raw_student_id": "STU20210016",
@@ -882,7 +882,7 @@
       "department": "Artificial Intelligence",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.632688"
+      "created_timestamp": "2026-08-25T20:58:20.735406"
     },
     {
       "raw_student_id": "STU20220017",
@@ -895,7 +895,7 @@
       "department": "Electronics & Comm",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.632699"
+      "created_timestamp": "2026-08-25T20:58:20.735418"
     },
     {
       "raw_student_id": "STU20230018",
@@ -908,7 +908,7 @@
       "department": "CIVIL",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.632711"
+      "created_timestamp": "2026-08-25T20:58:20.735431"
     },
     {
       "raw_student_id": "STU20240019",
@@ -921,7 +921,7 @@
       "department": "ece dept",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.632725"
+      "created_timestamp": "2026-08-25T20:58:20.735450"
     },
     {
       "raw_student_id": "STU20210020",
@@ -934,7 +934,7 @@
       "department": "MECH",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.632738"
+      "created_timestamp": "2026-08-25T20:58:20.735463"
     },
     {
       "raw_student_id": "STU20220021",
@@ -947,7 +947,7 @@
       "department": "Mech Dept",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.632750"
+      "created_timestamp": "2026-08-25T20:58:20.735476"
     },
     {
       "raw_student_id": "STU20230022",
@@ -960,7 +960,7 @@
       "department": "AI & DS",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.632762"
+      "created_timestamp": "2026-08-25T20:58:20.735490"
     },
     {
       "raw_student_id": "STU20240023",
@@ -973,7 +973,7 @@
       "department": "Mechanical Engg",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.632775"
+      "created_timestamp": "2026-08-25T20:58:20.735504"
     },
     {
       "raw_student_id": "STU20210024",
@@ -986,7 +986,7 @@
       "department": "Artificial Intelligence",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.632786"
+      "created_timestamp": "2026-08-25T20:58:20.735516"
     },
     {
       "raw_student_id": "STU20220025",
@@ -999,7 +999,7 @@
       "department": "MECH",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.632798"
+      "created_timestamp": "2026-08-25T20:58:20.735529"
     },
     {
       "raw_student_id": "STU20230026",
@@ -1012,7 +1012,7 @@
       "department": "civil",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.632810"
+      "created_timestamp": "2026-08-25T20:58:20.735542"
     },
     {
       "raw_student_id": "STU20240027",
@@ -1025,7 +1025,7 @@
       "department": "civil",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.632822"
+      "created_timestamp": "2026-08-25T20:58:20.735555"
     },
     {
       "raw_student_id": "STU20210028",
@@ -1038,7 +1038,7 @@
       "department": "Civil Engg",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.632834"
+      "created_timestamp": "2026-08-25T20:58:20.735570"
     },
     {
       "raw_student_id": "STU20220029",
@@ -1051,7 +1051,7 @@
       "department": "Mechanical",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.632846"
+      "created_timestamp": "2026-08-25T20:58:20.735583"
     },
     {
       "raw_student_id": "STU20230030",
@@ -1064,7 +1064,7 @@
       "department": "AI-DS",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.632858"
+      "created_timestamp": "2026-08-25T20:58:20.735596"
     },
     {
       "raw_student_id": "STU20240031",
@@ -1077,7 +1077,7 @@
       "department": "AI & DS",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.632870"
+      "created_timestamp": "2026-08-25T20:58:20.735608"
     },
     {
       "raw_student_id": "STU20210032",
@@ -1090,7 +1090,7 @@
       "department": "CSE",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.632881"
+      "created_timestamp": "2026-08-25T20:58:20.735621"
     },
     {
       "raw_student_id": "STU20220033",
@@ -1103,7 +1103,7 @@
       "department": "Electronics & Comm",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.632893"
+      "created_timestamp": "2026-08-25T20:58:20.735633"
     },
     {
       "raw_student_id": "STU20230034",
@@ -1116,7 +1116,7 @@
       "department": "AIDS",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.632905"
+      "created_timestamp": "2026-08-25T20:58:20.735647"
     },
     {
       "raw_student_id": "STU20240035",
@@ -1129,7 +1129,7 @@
       "department": "Comp Sci",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.632934"
+      "created_timestamp": "2026-08-25T20:58:20.735660"
     },
     {
       "raw_student_id": "STU20210036",
@@ -1142,7 +1142,7 @@
       "department": "Civil",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.632946"
+      "created_timestamp": "2026-08-25T20:58:20.735675"
     },
     {
       "raw_student_id": "STU20220037",
@@ -1155,7 +1155,7 @@
       "department": "Electronics & Comm",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.632959"
+      "created_timestamp": "2026-08-25T20:58:20.735688"
     },
     {
       "raw_student_id": "STU20230038",
@@ -1168,7 +1168,7 @@
       "department": "Civil Dept",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.632971"
+      "created_timestamp": "2026-08-25T20:58:20.735701"
     },
     {
       "raw_student_id": "STU20240039",
@@ -1181,7 +1181,7 @@
       "department": "MECH",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.632983"
+      "created_timestamp": "2026-08-25T20:58:20.735713"
     },
     {
       "raw_student_id": "STU20210040",
@@ -1194,7 +1194,7 @@
       "department": "ece dept",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.632993"
+      "created_timestamp": "2026-08-25T20:58:20.735725"
     },
     {
       "raw_student_id": "STU20220041",
@@ -1207,7 +1207,7 @@
       "department": "Comp Sci",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.633005"
+      "created_timestamp": "2026-08-25T20:58:20.735737"
     },
     {
       "raw_student_id": "STU20230042",
@@ -1220,7 +1220,7 @@
       "department": "Mech Dept",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.633017"
+      "created_timestamp": "2026-08-25T20:58:20.735750"
     },
     {
       "raw_student_id": "STU20240043",
@@ -1233,7 +1233,7 @@
       "department": "AIDS",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.633028"
+      "created_timestamp": "2026-08-25T20:58:20.735762"
     },
     {
       "raw_student_id": "STU20210044",
@@ -1246,7 +1246,7 @@
       "department": "Mechanical",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.633041"
+      "created_timestamp": "2026-08-25T20:58:20.735775"
     },
     {
       "raw_student_id": "STU20220045",
@@ -1259,7 +1259,7 @@
       "department": "AIDS",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.633052"
+      "created_timestamp": "2026-08-25T20:58:20.735787"
     },
     {
       "raw_student_id": "STU20230046",
@@ -1272,7 +1272,7 @@
       "department": "Mech Dept",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.633064"
+      "created_timestamp": "2026-08-25T20:58:20.735800"
     },
     {
       "raw_student_id": "STU20240047",
@@ -1285,7 +1285,7 @@
       "department": "Computer Science & Engg",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.633075"
+      "created_timestamp": "2026-08-25T20:58:20.735812"
     },
     {
       "raw_student_id": "STU20210048",
@@ -1298,7 +1298,7 @@
       "department": "civil",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.633087"
+      "created_timestamp": "2026-08-25T20:58:20.735825"
     },
     {
       "raw_student_id": "STU20220049",
@@ -1311,7 +1311,7 @@
       "department": "civil",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.633099"
+      "created_timestamp": "2026-08-25T20:58:20.735838"
     },
     {
       "raw_student_id": "STU20230050",
@@ -1324,7 +1324,7 @@
       "department": "ECE",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.633111"
+      "created_timestamp": "2026-08-25T20:58:20.735850"
     },
     {
       "raw_student_id": "STU20240051",
@@ -1337,7 +1337,7 @@
       "department": "Electronics",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.633123"
+      "created_timestamp": "2026-08-25T20:58:20.735865"
     },
     {
       "raw_student_id": "STU20210052",
@@ -1350,7 +1350,7 @@
       "department": "Artificial Intelligence",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.633134"
+      "created_timestamp": "2026-08-25T20:58:20.735879"
     },
     {
       "raw_student_id": "STU20220053",
@@ -1363,7 +1363,7 @@
       "department": "MECH",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.633146"
+      "created_timestamp": "2026-08-25T20:58:20.735892"
     },
     {
       "raw_student_id": "STU20230054",
@@ -1376,7 +1376,7 @@
       "department": "AI & DS",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.633158"
+      "created_timestamp": "2026-08-25T20:58:20.735905"
     },
     {
       "raw_student_id": "STU20240055",
@@ -1389,7 +1389,7 @@
       "department": "Mechanical Engg",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.633171"
+      "created_timestamp": "2026-08-25T20:58:20.735925"
     },
     {
       "raw_student_id": "STU20210056",
@@ -1402,7 +1402,7 @@
       "department": "mech",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.633183"
+      "created_timestamp": "2026-08-25T20:58:20.735938"
     },
     {
       "raw_student_id": "STU20220057",
@@ -1415,7 +1415,7 @@
       "department": "Electronics & Comm",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.633195"
+      "created_timestamp": "2026-08-25T20:58:20.735951"
     },
     {
       "raw_student_id": "STU20230058",
@@ -1428,7 +1428,7 @@
       "department": "civil",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.633211"
+      "created_timestamp": "2026-08-25T20:58:20.735966"
     },
     {
       "raw_student_id": "STU20240059",
@@ -1441,7 +1441,7 @@
       "department": "AI-DS",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.633224"
+      "created_timestamp": "2026-08-25T20:58:20.735980"
     },
     {
       "raw_student_id": "STU20210060",
@@ -1454,7 +1454,7 @@
       "department": "Mechanical Engg",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.633242"
+      "created_timestamp": "2026-08-25T20:58:20.735996"
     },
     {
       "raw_student_id": "STU20220061",
@@ -1467,7 +1467,7 @@
       "department": "CIVIL",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.633255"
+      "created_timestamp": "2026-08-25T20:58:20.736008"
     },
     {
       "raw_student_id": "STU20230062",
@@ -1480,7 +1480,7 @@
       "department": "Data Science",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.633266"
+      "created_timestamp": "2026-08-25T20:58:20.736024"
     },
     {
       "raw_student_id": "STU20240063",
@@ -1493,7 +1493,7 @@
       "department": "ECE",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.633277"
+      "created_timestamp": "2026-08-25T20:58:20.736037"
     },
     {
       "raw_student_id": "STU20210064",
@@ -1506,7 +1506,7 @@
       "department": "civil",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.633290"
+      "created_timestamp": "2026-08-25T20:58:20.736050"
     },
     {
       "raw_student_id": "STU20220065",
@@ -1519,7 +1519,7 @@
       "department": "AI & DS",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.633302"
+      "created_timestamp": "2026-08-25T20:58:20.736062"
     },
     {
       "raw_student_id": "STU20230066",
@@ -1532,7 +1532,7 @@
       "department": "Electronics & Comm",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.633314"
+      "created_timestamp": "2026-08-25T20:58:20.736076"
     },
     {
       "raw_student_id": "STU20240067",
@@ -1545,7 +1545,7 @@
       "department": "Comp Sci",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.633326"
+      "created_timestamp": "2026-08-25T20:58:20.736089"
     },
     {
       "raw_student_id": "STU20210068",
@@ -1558,7 +1558,7 @@
       "department": "Computer Science & Engg",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.633339"
+      "created_timestamp": "2026-08-25T20:58:20.736102"
     },
     {
       "raw_student_id": "STU20220069",
@@ -1571,7 +1571,7 @@
       "department": "Computer Science & Engg",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.633352"
+      "created_timestamp": "2026-08-25T20:58:20.736114"
     },
     {
       "raw_student_id": "STU20230070",
@@ -1584,7 +1584,7 @@
       "department": "cs",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.633365"
+      "created_timestamp": "2026-08-25T20:58:20.736126"
     },
     {
       "raw_student_id": "STU20240071",
@@ -1597,7 +1597,7 @@
       "department": "Computer Science & Engg",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.633377"
+      "created_timestamp": "2026-08-25T20:58:20.736139"
     },
     {
       "raw_student_id": "STU20210072",
@@ -1610,7 +1610,7 @@
       "department": "mech",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.633389"
+      "created_timestamp": "2026-08-25T20:58:20.736231"
     },
     {
       "raw_student_id": "STU20220073",
@@ -1623,7 +1623,7 @@
       "department": "AIDS",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.633401"
+      "created_timestamp": "2026-08-25T20:58:20.736275"
     },
     {
       "raw_student_id": "STU20230074",
@@ -1636,7 +1636,7 @@
       "department": "AI-DS",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.633413"
+      "created_timestamp": "2026-08-25T20:58:20.736291"
     },
     {
       "raw_student_id": "STU20240075",
@@ -1649,7 +1649,7 @@
       "department": "Civil Engg",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.633428"
+      "created_timestamp": "2026-08-25T20:58:20.736305"
     },
     {
       "raw_student_id": "STU20210076",
@@ -1662,7 +1662,7 @@
       "department": "ECE",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.633440"
+      "created_timestamp": "2026-08-25T20:58:20.736321"
     },
     {
       "raw_student_id": "STU20220077",
@@ -1675,7 +1675,7 @@
       "department": "civil",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.633451"
+      "created_timestamp": "2026-08-25T20:58:20.736333"
     },
     {
       "raw_student_id": "STU20230078",
@@ -1688,7 +1688,7 @@
       "department": "Civil Dept",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.633464"
+      "created_timestamp": "2026-08-25T20:58:20.736346"
     },
     {
       "raw_student_id": "STU20240079",
@@ -1701,7 +1701,7 @@
       "department": "AIDS",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.633476"
+      "created_timestamp": "2026-08-25T20:58:20.736359"
     },
     {
       "raw_student_id": "STU20210080",
@@ -1714,7 +1714,7 @@
       "department": "civil",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.633488"
+      "created_timestamp": "2026-08-25T20:58:20.736372"
     },
     {
       "raw_student_id": "STU20220081",
@@ -1727,7 +1727,7 @@
       "department": "Computer Science & Engg",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.633500"
+      "created_timestamp": "2026-08-25T20:58:20.736385"
     },
     {
       "raw_student_id": "STU20230082",
@@ -1740,7 +1740,7 @@
       "department": "AI & DS",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.633512"
+      "created_timestamp": "2026-08-25T20:58:20.736397"
     },
     {
       "raw_student_id": "STU20240083",
@@ -1753,7 +1753,7 @@
       "department": "Mech Dept",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.633523"
+      "created_timestamp": "2026-08-25T20:58:20.736409"
     },
     {
       "raw_student_id": "STU20210084",
@@ -1766,7 +1766,7 @@
       "department": "mech",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.633535"
+      "created_timestamp": "2026-08-25T20:58:20.736422"
     },
     {
       "raw_student_id": "STU20220085",
@@ -1779,7 +1779,7 @@
       "department": "Comp Sci",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.633547"
+      "created_timestamp": "2026-08-25T20:58:20.736478"
     },
     {
       "raw_student_id": "STU20230086",
@@ -1792,7 +1792,7 @@
       "department": "Mech Dept",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.633559"
+      "created_timestamp": "2026-08-25T20:58:20.736492"
     },
     {
       "raw_student_id": "STU20240087",
@@ -1805,7 +1805,7 @@
       "department": "Artificial Intelligence",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.633572"
+      "created_timestamp": "2026-08-25T20:58:20.736507"
     },
     {
       "raw_student_id": "STU20210088",
@@ -1818,7 +1818,7 @@
       "department": "ece dept",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.633584"
+      "created_timestamp": "2026-08-25T20:58:20.736607"
     },
     {
       "raw_student_id": "STU20220089",
@@ -1831,7 +1831,7 @@
       "department": "Mechanical",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.633597"
+      "created_timestamp": "2026-08-25T20:58:20.736651"
     },
     {
       "raw_student_id": "STU20230090",
@@ -1844,7 +1844,7 @@
       "department": "Civil",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.633608"
+      "created_timestamp": "2026-08-25T20:58:20.736668"
     },
     {
       "raw_student_id": "STU20240091",
@@ -1857,7 +1857,7 @@
       "department": "Mechanical",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.633622"
+      "created_timestamp": "2026-08-25T20:58:20.736683"
     },
     {
       "raw_student_id": "STU20210092",
@@ -1870,7 +1870,7 @@
       "department": "AI & DS",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.633634"
+      "created_timestamp": "2026-08-25T20:58:20.736697"
     },
     {
       "raw_student_id": "STU20220093",
@@ -1883,7 +1883,7 @@
       "department": "Mechanical",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.633646"
+      "created_timestamp": "2026-08-25T20:58:20.736712"
     },
     {
       "raw_student_id": "STU20230094",
@@ -1896,7 +1896,7 @@
       "department": "Electronics",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.633659"
+      "created_timestamp": "2026-08-25T20:58:20.736746"
     },
     {
       "raw_student_id": "STU20240095",
@@ -1909,7 +1909,7 @@
       "department": "mech",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.633670"
+      "created_timestamp": "2026-08-25T20:58:20.736878"
     },
     {
       "raw_student_id": "STU20210096",
@@ -1922,7 +1922,7 @@
       "department": "Comp Sci",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.633682"
+      "created_timestamp": "2026-08-25T20:58:20.736898"
     },
     {
       "raw_student_id": "STU20220097",
@@ -1935,7 +1935,7 @@
       "department": "Civil",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.633694"
+      "created_timestamp": "2026-08-25T20:58:20.736914"
     },
     {
       "raw_student_id": "STU20230098",
@@ -1948,7 +1948,7 @@
       "department": "Computer Science",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.633706"
+      "created_timestamp": "2026-08-25T20:58:20.736928"
     },
     {
       "raw_student_id": "STU20240099",
@@ -1961,7 +1961,7 @@
       "department": "MECH",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.633718"
+      "created_timestamp": "2026-08-25T20:58:20.736942"
     },
     {
       "raw_student_id": "STU20210100",
@@ -1974,7 +1974,7 @@
       "department": "Computer Science",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.633732"
+      "created_timestamp": "2026-08-25T20:58:20.736960"
     },
     {
       "raw_student_id": "STU20220101",
@@ -1987,7 +1987,7 @@
       "department": "Mechanical",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.633745"
+      "created_timestamp": "2026-08-25T20:58:20.736974"
     },
     {
       "raw_student_id": "STU20230102",
@@ -2000,7 +2000,7 @@
       "department": "AI & DS",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.633758"
+      "created_timestamp": "2026-08-25T20:58:20.736991"
     },
     {
       "raw_student_id": "STU20240103",
@@ -2013,7 +2013,7 @@
       "department": "AI-DS",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.633770"
+      "created_timestamp": "2026-08-25T20:58:20.737005"
     },
     {
       "raw_student_id": "STU20210104",
@@ -2026,7 +2026,7 @@
       "department": "ece dept",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.633781"
+      "created_timestamp": "2026-08-25T20:58:20.737018"
     },
     {
       "raw_student_id": "STU20220105",
@@ -2039,7 +2039,7 @@
       "department": "cs",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.633792"
+      "created_timestamp": "2026-08-25T20:58:20.737030"
     },
     {
       "raw_student_id": "STU20230106",
@@ -2052,7 +2052,7 @@
       "department": "civil",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.633804"
+      "created_timestamp": "2026-08-25T20:58:20.737045"
     },
     {
       "raw_student_id": "STU20240107",
@@ -2065,7 +2065,7 @@
       "department": "AIDS",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.633816"
+      "created_timestamp": "2026-08-25T20:58:20.737058"
     },
     {
       "raw_student_id": "STU20210108",
@@ -2078,7 +2078,7 @@
       "department": "Data Science",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.633827"
+      "created_timestamp": "2026-08-25T20:58:20.737116"
     },
     {
       "raw_student_id": "STU20220109",
@@ -2091,7 +2091,7 @@
       "department": "Comp Sci",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.633839"
+      "created_timestamp": "2026-08-25T20:58:20.737151"
     },
     {
       "raw_student_id": "STU20230110",
@@ -2104,7 +2104,7 @@
       "department": "Artificial Intelligence",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.633852"
+      "created_timestamp": "2026-08-25T20:58:20.737178"
     },
     {
       "raw_student_id": "STU20240111",
@@ -2117,7 +2117,7 @@
       "department": "Electronics",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.633863"
+      "created_timestamp": "2026-08-25T20:58:20.737200"
     },
     {
       "raw_student_id": "STU20210112",
@@ -2130,7 +2130,7 @@
       "department": "ece dept",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.633874"
+      "created_timestamp": "2026-08-25T20:58:20.737222"
     },
     {
       "raw_student_id": "STU20220113",
@@ -2143,7 +2143,7 @@
       "department": "Artificial Intelligence",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.633886"
+      "created_timestamp": "2026-08-25T20:58:20.737243"
     },
     {
       "raw_student_id": "STU20230114",
@@ -2156,7 +2156,7 @@
       "department": "ECE",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.633897"
+      "created_timestamp": "2026-08-25T20:58:20.737263"
     },
     {
       "raw_student_id": "STU20240115",
@@ -2169,7 +2169,7 @@
       "department": "Computer Science & Engg",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.633912"
+      "created_timestamp": "2026-08-25T20:58:20.737286"
     },
     {
       "raw_student_id": "STU20210116",
@@ -2182,7 +2182,7 @@
       "department": "Civil Engg",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.633924"
+      "created_timestamp": "2026-08-25T20:58:20.737307"
     },
     {
       "raw_student_id": "STU20220117",
@@ -2195,7 +2195,7 @@
       "department": "Comp Sci",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.633935"
+      "created_timestamp": "2026-08-25T20:58:20.737327"
     },
     {
       "raw_student_id": "STU20230118",
@@ -2208,7 +2208,7 @@
       "department": "Artificial Intelligence",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.633946"
+      "created_timestamp": "2026-08-25T20:58:20.737380"
     },
     {
       "raw_student_id": "STU20240119",
@@ -2221,7 +2221,7 @@
       "department": "civil",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.633958"
+      "created_timestamp": "2026-08-25T20:58:20.737399"
     },
     {
       "raw_student_id": "STU20210120",
@@ -2234,7 +2234,7 @@
       "department": "ECE",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.633970"
+      "created_timestamp": "2026-08-25T20:58:20.737430"
     },
     {
       "raw_student_id": "STU20220121",
@@ -2247,7 +2247,7 @@
       "department": "Computer Science & Engg",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.633982"
+      "created_timestamp": "2026-08-25T20:58:20.737445"
     },
     {
       "raw_student_id": "STU20230122",
@@ -2260,7 +2260,7 @@
       "department": "Mechanical Engg",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.633994"
+      "created_timestamp": "2026-08-25T20:58:20.737461"
     },
     {
       "raw_student_id": "STU20240123",
@@ -2273,7 +2273,7 @@
       "department": "ECE",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.634006"
+      "created_timestamp": "2026-08-25T20:58:20.737475"
     },
     {
       "raw_student_id": "STU20210124",
@@ -2286,7 +2286,7 @@
       "department": "CSE",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.634018"
+      "created_timestamp": "2026-08-25T20:58:20.737488"
     },
     {
       "raw_student_id": "STU20220125",
@@ -2299,7 +2299,7 @@
       "department": "AI & DS",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.634030"
+      "created_timestamp": "2026-08-25T20:58:20.737501"
     },
     {
       "raw_student_id": "STU20230126",
@@ -2312,7 +2312,7 @@
       "department": "Electronics",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.634042"
+      "created_timestamp": "2026-08-25T20:58:20.737513"
     },
     {
       "raw_student_id": "STU20240127",
@@ -2325,7 +2325,7 @@
       "department": "Computer Science & Engg",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.634053"
+      "created_timestamp": "2026-08-25T20:58:20.737525"
     },
     {
       "raw_student_id": "STU20210128",
@@ -2338,7 +2338,7 @@
       "department": "Civil Dept",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.634065"
+      "created_timestamp": "2026-08-25T20:58:20.737539"
     },
     {
       "raw_student_id": "STU20220129",
@@ -2351,7 +2351,7 @@
       "department": "Civil Engg",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.634078"
+      "created_timestamp": "2026-08-25T20:58:20.737552"
     },
     {
       "raw_student_id": "STU20230130",
@@ -2364,7 +2364,7 @@
       "department": "Electronics",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.634089"
+      "created_timestamp": "2026-08-25T20:58:20.737565"
     },
     {
       "raw_student_id": "STU20240131",
@@ -2377,7 +2377,7 @@
       "department": "Mechanical Engg",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.634101"
+      "created_timestamp": "2026-08-25T20:58:20.737577"
     },
     {
       "raw_student_id": "STU20210132",
@@ -2390,7 +2390,7 @@
       "department": "Civil Engg",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.634113"
+      "created_timestamp": "2026-08-25T20:58:20.737590"
     },
     {
       "raw_student_id": "STU20220133",
@@ -2403,7 +2403,7 @@
       "department": "ece dept",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.634124"
+      "created_timestamp": "2026-08-25T20:58:20.737601"
     },
     {
       "raw_student_id": "STU20230134",
@@ -2416,7 +2416,7 @@
       "department": "Electronics",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.634136"
+      "created_timestamp": "2026-08-25T20:58:20.737614"
     },
     {
       "raw_student_id": "STU20240135",
@@ -2429,7 +2429,7 @@
       "department": "E&CE",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.634148"
+      "created_timestamp": "2026-08-25T20:58:20.737626"
     },
     {
       "raw_student_id": "STU20210136",
@@ -2442,7 +2442,7 @@
       "department": "AIDS",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.634162"
+      "created_timestamp": "2026-08-25T20:58:20.737640"
     },
     {
       "raw_student_id": "STU20220137",
@@ -2455,7 +2455,7 @@
       "department": "AIDS",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.634174"
+      "created_timestamp": "2026-08-25T20:58:20.737701"
     },
     {
       "raw_student_id": "STU20230138",
@@ -2468,7 +2468,7 @@
       "department": "ECE",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.634186"
+      "created_timestamp": "2026-08-25T20:58:20.737729"
     },
     {
       "raw_student_id": "STU20240139",
@@ -2481,7 +2481,7 @@
       "department": "ece dept",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.634198"
+      "created_timestamp": "2026-08-25T20:58:20.737766"
     },
     {
       "raw_student_id": "STU20210140",
@@ -2494,7 +2494,7 @@
       "department": "AIDS",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.634213"
+      "created_timestamp": "2026-08-25T20:58:20.737785"
     },
     {
       "raw_student_id": "STU20220141",
@@ -2507,7 +2507,7 @@
       "department": "Civil",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.634225"
+      "created_timestamp": "2026-08-25T20:58:20.737798"
     },
     {
       "raw_student_id": "STU20230142",
@@ -2520,7 +2520,7 @@
       "department": "CIVIL",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.634237"
+      "created_timestamp": "2026-08-25T20:58:20.737812"
     },
     {
       "raw_student_id": "STU20240143",
@@ -2533,7 +2533,7 @@
       "department": "ECE",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.634250"
+      "created_timestamp": "2026-08-25T20:58:20.737826"
     },
     {
       "raw_student_id": "STU20210144",
@@ -2546,7 +2546,7 @@
       "department": "Computer Science & Engg",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.634264"
+      "created_timestamp": "2026-08-25T20:58:20.737838"
     },
     {
       "raw_student_id": "STU20220145",
@@ -2559,7 +2559,7 @@
       "department": "Mech Dept",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.634276"
+      "created_timestamp": "2026-08-25T20:58:20.737853"
     },
     {
       "raw_student_id": "STU20230146",
@@ -2572,7 +2572,7 @@
       "department": "Mechanical",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.634287"
+      "created_timestamp": "2026-08-25T20:58:20.737865"
     },
     {
       "raw_student_id": "STU20240147",
@@ -2585,7 +2585,7 @@
       "department": "Data Science",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.634299"
+      "created_timestamp": "2026-08-25T20:58:20.737877"
     },
     {
       "raw_student_id": "STU20210148",
@@ -2598,7 +2598,7 @@
       "department": "Electronics & Comm",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.634310"
+      "created_timestamp": "2026-08-25T20:58:20.737890"
     },
     {
       "raw_student_id": "STU20220149",
@@ -2611,7 +2611,7 @@
       "department": "civil",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.634322"
+      "created_timestamp": "2026-08-25T20:58:20.737902"
     },
     {
       "raw_student_id": "STU20230150",
@@ -2624,7 +2624,7 @@
       "department": "E&CE",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.634334"
+      "created_timestamp": "2026-08-25T20:58:20.737957"
     },
     {
       "raw_student_id": "STU20240151",
@@ -2637,7 +2637,7 @@
       "department": "AIDS",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.634346"
+      "created_timestamp": "2026-08-25T20:58:20.737987"
     },
     {
       "raw_student_id": "STU20210152",
@@ -2650,7 +2650,7 @@
       "department": "mech",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.634357"
+      "created_timestamp": "2026-08-25T20:58:20.738008"
     },
     {
       "raw_student_id": "STU20220153",
@@ -2663,7 +2663,7 @@
       "department": "Artificial Intelligence",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.634368"
+      "created_timestamp": "2026-08-25T20:58:20.738031"
     },
     {
       "raw_student_id": "STU20230154",
@@ -2676,7 +2676,7 @@
       "department": "MECH",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.634379"
+      "created_timestamp": "2026-08-25T20:58:20.738051"
     },
     {
       "raw_student_id": "STU20240155",
@@ -2689,7 +2689,7 @@
       "department": "Comp Sci",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.634391"
+      "created_timestamp": "2026-08-25T20:58:20.738085"
     },
     {
       "raw_student_id": "STU20210156",
@@ -2702,7 +2702,7 @@
       "department": "Comp Sci",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.634402"
+      "created_timestamp": "2026-08-25T20:58:20.738100"
     },
     {
       "raw_student_id": "STU20220157",
@@ -2715,7 +2715,7 @@
       "department": "civil",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.634413"
+      "created_timestamp": "2026-08-25T20:58:20.738160"
     },
     {
       "raw_student_id": "STU20230158",
@@ -2728,7 +2728,7 @@
       "department": "mech",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.634424"
+      "created_timestamp": "2026-08-25T20:58:20.738185"
     },
     {
       "raw_student_id": "STU20240159",
@@ -2741,7 +2741,7 @@
       "department": "CS-ENG",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.634435"
+      "created_timestamp": "2026-08-25T20:58:20.738206"
     },
     {
       "raw_student_id": "STU20210160",
@@ -2754,7 +2754,7 @@
       "department": "Data Science",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.634447"
+      "created_timestamp": "2026-08-25T20:58:20.738289"
     },
     {
       "raw_student_id": "STU20220161",
@@ -2767,7 +2767,7 @@
       "department": "mech",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.634458"
+      "created_timestamp": "2026-08-25T20:58:20.738307"
     },
     {
       "raw_student_id": "STU20230162",
@@ -2780,7 +2780,7 @@
       "department": "CSE",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.634469"
+      "created_timestamp": "2026-08-25T20:58:20.738320"
     },
     {
       "raw_student_id": "STU20240163",
@@ -2793,7 +2793,7 @@
       "department": "AIDS",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.634480"
+      "created_timestamp": "2026-08-25T20:58:20.738333"
     },
     {
       "raw_student_id": "STU20210164",
@@ -2806,7 +2806,7 @@
       "department": "Mech Dept",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.634492"
+      "created_timestamp": "2026-08-25T20:58:20.738346"
     },
     {
       "raw_student_id": "STU20220165",
@@ -2819,7 +2819,7 @@
       "department": "AI-DS",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.634506"
+      "created_timestamp": "2026-08-25T20:58:20.738359"
     },
     {
       "raw_student_id": "STU20230166",
@@ -2832,7 +2832,7 @@
       "department": "E&CE",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.634518"
+      "created_timestamp": "2026-08-25T20:58:20.738372"
     },
     {
       "raw_student_id": "STU20240167",
@@ -2845,7 +2845,7 @@
       "department": "Artificial Intelligence",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.634530"
+      "created_timestamp": "2026-08-25T20:58:20.738386"
     },
     {
       "raw_student_id": "STU20210168",
@@ -2858,7 +2858,7 @@
       "department": "Electronics & Comm",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.634541"
+      "created_timestamp": "2026-08-25T20:58:20.738397"
     },
     {
       "raw_student_id": "STU20220169",
@@ -2871,7 +2871,7 @@
       "department": "CIVIL",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.634553"
+      "created_timestamp": "2026-08-25T20:58:20.738411"
     },
     {
       "raw_student_id": "STU20230170",
@@ -2884,7 +2884,7 @@
       "department": "CS-ENG",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.634564"
+      "created_timestamp": "2026-08-25T20:58:20.738423"
     },
     {
       "raw_student_id": "STU20240171",
@@ -2897,7 +2897,7 @@
       "department": "CSE",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.634576"
+      "created_timestamp": "2026-08-25T20:58:20.738436"
     },
     {
       "raw_student_id": "STU20210172",
@@ -2910,7 +2910,7 @@
       "department": "CS-ENG",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.634589"
+      "created_timestamp": "2026-08-25T20:58:20.738452"
     },
     {
       "raw_student_id": "STU20220173",
@@ -2923,7 +2923,7 @@
       "department": "Civil",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.634607"
+      "created_timestamp": "2026-08-25T20:58:20.738464"
     },
     {
       "raw_student_id": "STU20230174",
@@ -2936,7 +2936,7 @@
       "department": "Data Science",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.634619"
+      "created_timestamp": "2026-08-25T20:58:20.738477"
     },
     {
       "raw_student_id": "STU20240175",
@@ -2949,7 +2949,7 @@
       "department": "Electronics",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.634631"
+      "created_timestamp": "2026-08-25T20:58:20.738489"
     },
     {
       "raw_student_id": "STU20210176",
@@ -2962,7 +2962,7 @@
       "department": "Data Science",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.634642"
+      "created_timestamp": "2026-08-25T20:58:20.738501"
     },
     {
       "raw_student_id": "STU20220177",
@@ -2975,7 +2975,7 @@
       "department": "AI & DS",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.634653"
+      "created_timestamp": "2026-08-25T20:58:20.738516"
     },
     {
       "raw_student_id": "STU20230178",
@@ -2988,7 +2988,7 @@
       "department": "CS-ENG",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.634664"
+      "created_timestamp": "2026-08-25T20:58:20.738528"
     },
     {
       "raw_student_id": "STU20240179",
@@ -3001,7 +3001,7 @@
       "department": "Mechanical Engg",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.634676"
+      "created_timestamp": "2026-08-25T20:58:20.738541"
     },
     {
       "raw_student_id": "STU20210180",
@@ -3014,7 +3014,7 @@
       "department": "Computer Science & Engg",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.634689"
+      "created_timestamp": "2026-08-25T20:58:20.738555"
     },
     {
       "raw_student_id": "STU20220181",
@@ -3027,7 +3027,7 @@
       "department": "civil",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.634701"
+      "created_timestamp": "2026-08-25T20:58:20.738569"
     },
     {
       "raw_student_id": "STU20230182",
@@ -3040,7 +3040,7 @@
       "department": "Data Science",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.634713"
+      "created_timestamp": "2026-08-25T20:58:20.738582"
     },
     {
       "raw_student_id": "STU20240183",
@@ -3053,7 +3053,7 @@
       "department": "Electronics",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.634724"
+      "created_timestamp": "2026-08-25T20:58:20.738594"
     },
     {
       "raw_student_id": "STU20210184",
@@ -3066,7 +3066,7 @@
       "department": "CSE",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.634736"
+      "created_timestamp": "2026-08-25T20:58:20.738606"
     },
     {
       "raw_student_id": "STU20220185",
@@ -3079,7 +3079,7 @@
       "department": "mech",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.634748"
+      "created_timestamp": "2026-08-25T20:58:20.738619"
     },
     {
       "raw_student_id": "STU20230186",
@@ -3092,7 +3092,7 @@
       "department": "Mech Dept",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.634759"
+      "created_timestamp": "2026-08-25T20:58:20.738631"
     },
     {
       "raw_student_id": "STU20240187",
@@ -3105,7 +3105,7 @@
       "department": "Mechanical Engg",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.634771"
+      "created_timestamp": "2026-08-25T20:58:20.738644"
     },
     {
       "raw_student_id": "STU20210188",
@@ -3118,7 +3118,7 @@
       "department": "Computer Science & Engg",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.634783"
+      "created_timestamp": "2026-08-25T20:58:20.738657"
     },
     {
       "raw_student_id": "STU20220189",
@@ -3131,7 +3131,7 @@
       "department": "Electronics & Comm",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.634794"
+      "created_timestamp": "2026-08-25T20:58:20.738670"
     },
     {
       "raw_student_id": "STU20230190",
@@ -3144,7 +3144,7 @@
       "department": "cs",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.634806"
+      "created_timestamp": "2026-08-25T20:58:20.738683"
     },
     {
       "raw_student_id": "STU20240191",
@@ -3157,7 +3157,7 @@
       "department": "AI & DS",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.634820"
+      "created_timestamp": "2026-08-25T20:58:20.738696"
     },
     {
       "raw_student_id": "STU20210192",
@@ -3170,7 +3170,7 @@
       "department": "Civil Engg",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.634831"
+      "created_timestamp": "2026-08-25T20:58:20.738709"
     },
     {
       "raw_student_id": "STU20220193",
@@ -3183,7 +3183,7 @@
       "department": "Mech Dept",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.634843"
+      "created_timestamp": "2026-08-25T20:58:20.738723"
     },
     {
       "raw_student_id": "STU20230194",
@@ -3196,7 +3196,7 @@
       "department": "Electronics & Comm",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.634855"
+      "created_timestamp": "2026-08-25T20:58:20.738737"
     },
     {
       "raw_student_id": "STU20240195",
@@ -3209,7 +3209,7 @@
       "department": "Computer Science & Engg",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.634867"
+      "created_timestamp": "2026-08-25T20:58:20.738752"
     },
     {
       "raw_student_id": "STU20210196",
@@ -3222,7 +3222,7 @@
       "department": "Comp Sci",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.634879"
+      "created_timestamp": "2026-08-25T20:58:20.738766"
     },
     {
       "raw_student_id": "STU20220197",
@@ -3235,7 +3235,7 @@
       "department": "AI-DS",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.634890"
+      "created_timestamp": "2026-08-25T20:58:20.738779"
     },
     {
       "raw_student_id": "STU20230198",
@@ -3248,7 +3248,7 @@
       "department": "E&CE",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.634901"
+      "created_timestamp": "2026-08-25T20:58:20.738793"
     },
     {
       "raw_student_id": "STU20240199",
@@ -3261,7 +3261,7 @@
       "department": "Civil",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.634913"
+      "created_timestamp": "2026-08-25T20:58:20.738806"
     },
     {
       "raw_student_id": "STU20210200",
@@ -3274,7 +3274,7 @@
       "department": "MECH",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.634925"
+      "created_timestamp": "2026-08-25T20:58:20.738817"
     },
     {
       "raw_student_id": "STU20220201",
@@ -3287,7 +3287,7 @@
       "department": "Electronics & Comm",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.634937"
+      "created_timestamp": "2026-08-25T20:58:20.738831"
     },
     {
       "raw_student_id": "STU20230202",
@@ -3300,7 +3300,7 @@
       "department": "Electronics & Comm",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.634952"
+      "created_timestamp": "2026-08-25T20:58:20.738845"
     },
     {
       "raw_student_id": "STU20240203",
@@ -3313,7 +3313,7 @@
       "department": "Computer Science",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.634963"
+      "created_timestamp": "2026-08-25T20:58:20.738859"
     },
     {
       "raw_student_id": "STU20210204",
@@ -3326,7 +3326,7 @@
       "department": "Civil Engg",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.634974"
+      "created_timestamp": "2026-08-25T20:58:20.738872"
     },
     {
       "raw_student_id": "STU20220205",
@@ -3339,7 +3339,7 @@
       "department": "CSE",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.634986"
+      "created_timestamp": "2026-08-25T20:58:20.738884"
     },
     {
       "raw_student_id": "STU20230206",
@@ -3352,7 +3352,7 @@
       "department": "Civil Dept",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.634997"
+      "created_timestamp": "2026-08-25T20:58:20.738897"
     },
     {
       "raw_student_id": "STU20240207",
@@ -3365,7 +3365,7 @@
       "department": "Electronics",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.635008"
+      "created_timestamp": "2026-08-25T20:58:20.738910"
     },
     {
       "raw_student_id": "STU20210208",
@@ -3378,7 +3378,7 @@
       "department": "Civil",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.635020"
+      "created_timestamp": "2026-08-25T20:58:20.738923"
     },
     {
       "raw_student_id": "STU20220209",
@@ -3391,7 +3391,7 @@
       "department": "Artificial Intelligence",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.635032"
+      "created_timestamp": "2026-08-25T20:58:20.738936"
     },
     {
       "raw_student_id": "STU20230210",
@@ -3404,7 +3404,7 @@
       "department": "Mechanical Engg",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.635044"
+      "created_timestamp": "2026-08-25T20:58:20.738948"
     },
     {
       "raw_student_id": "STU20240211",
@@ -3417,7 +3417,7 @@
       "department": "Mechanical",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.635055"
+      "created_timestamp": "2026-08-25T20:58:20.738961"
     },
     {
       "raw_student_id": "STU20210212",
@@ -3430,7 +3430,7 @@
       "department": "ece dept",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.635066"
+      "created_timestamp": "2026-08-25T20:58:20.738974"
     },
     {
       "raw_student_id": "STU20220213",
@@ -3443,7 +3443,7 @@
       "department": "Mechanical",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.635078"
+      "created_timestamp": "2026-08-25T20:58:20.738986"
     },
     {
       "raw_student_id": "STU20230214",
@@ -3456,7 +3456,7 @@
       "department": "CSE",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.635092"
+      "created_timestamp": "2026-08-25T20:58:20.739001"
     },
     {
       "raw_student_id": "STU20240215",
@@ -3469,7 +3469,7 @@
       "department": "Electronics & Comm",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.635104"
+      "created_timestamp": "2026-08-25T20:58:20.739014"
     },
     {
       "raw_student_id": "STU20210216",
@@ -3482,7 +3482,7 @@
       "department": "Artificial Intelligence",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.635115"
+      "created_timestamp": "2026-08-25T20:58:20.739027"
     },
     {
       "raw_student_id": "STU20220217",
@@ -3495,7 +3495,7 @@
       "department": "mech",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.635127"
+      "created_timestamp": "2026-08-25T20:58:20.739039"
     },
     {
       "raw_student_id": "STU20230218",
@@ -3508,7 +3508,7 @@
       "department": "Civil Dept",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.635141"
+      "created_timestamp": "2026-08-25T20:58:20.739052"
     },
     {
       "raw_student_id": "STU20240219",
@@ -3521,7 +3521,7 @@
       "department": "MECH",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.635153"
+      "created_timestamp": "2026-08-25T20:58:20.739064"
     },
     {
       "raw_student_id": "STU20210220",
@@ -3534,7 +3534,7 @@
       "department": "Mech Dept",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.635167"
+      "created_timestamp": "2026-08-25T20:58:20.739079"
     },
     {
       "raw_student_id": "STU20220221",
@@ -3547,7 +3547,7 @@
       "department": "Electronics",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.635180"
+      "created_timestamp": "2026-08-25T20:58:20.739092"
     },
     {
       "raw_student_id": "STU20230222",
@@ -3560,7 +3560,7 @@
       "department": "Electronics",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.635191"
+      "created_timestamp": "2026-08-25T20:58:20.739105"
     },
     {
       "raw_student_id": "STU20240223",
@@ -3573,7 +3573,7 @@
       "department": "Computer Science",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.635202"
+      "created_timestamp": "2026-08-25T20:58:20.739119"
     },
     {
       "raw_student_id": "STU20210224",
@@ -3586,7 +3586,7 @@
       "department": "Mech Dept",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.635213"
+      "created_timestamp": "2026-08-25T20:58:20.739132"
     },
     {
       "raw_student_id": "STU20220225",
@@ -3599,7 +3599,7 @@
       "department": "ECE",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.635225"
+      "created_timestamp": "2026-08-25T20:58:20.739144"
     },
     {
       "raw_student_id": "STU20230226",
@@ -3612,7 +3612,7 @@
       "department": "AI & DS",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.635236"
+      "created_timestamp": "2026-08-25T20:58:20.739156"
     },
     {
       "raw_student_id": "STU20240227",
@@ -3625,7 +3625,7 @@
       "department": "MECH",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.635247"
+      "created_timestamp": "2026-08-25T20:58:20.739169"
     },
     {
       "raw_student_id": "STU20210228",
@@ -3638,7 +3638,7 @@
       "department": "AI-DS",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.635258"
+      "created_timestamp": "2026-08-25T20:58:20.739182"
     },
     {
       "raw_student_id": "STU20220229",
@@ -3651,7 +3651,7 @@
       "department": "Computer Science & Engg",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.635269"
+      "created_timestamp": "2026-08-25T20:58:20.739194"
     },
     {
       "raw_student_id": "STU20230230",
@@ -3664,7 +3664,7 @@
       "department": "Mechanical",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.635282"
+      "created_timestamp": "2026-08-25T20:58:20.739207"
     },
     {
       "raw_student_id": "STU20240231",
@@ -3677,7 +3677,7 @@
       "department": "mech",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.635295"
+      "created_timestamp": "2026-08-25T20:58:20.739220"
     },
     {
       "raw_student_id": "STU20210232",
@@ -3690,7 +3690,7 @@
       "department": "Data Science",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.635308"
+      "created_timestamp": "2026-08-25T20:58:20.739233"
     },
     {
       "raw_student_id": "STU20220233",
@@ -3703,7 +3703,7 @@
       "department": "Artificial Intelligence",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.635319"
+      "created_timestamp": "2026-08-25T20:58:20.739245"
     },
     {
       "raw_student_id": "STU20230234",
@@ -3716,7 +3716,7 @@
       "department": "AIDS",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.635332"
+      "created_timestamp": "2026-08-25T20:58:20.739259"
     },
     {
       "raw_student_id": "STU20240235",
@@ -3729,7 +3729,7 @@
       "department": "E&CE",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.635344"
+      "created_timestamp": "2026-08-25T20:58:20.739272"
     },
     {
       "raw_student_id": "STU20210236",
@@ -3742,7 +3742,7 @@
       "department": "Comp Sci",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.635355"
+      "created_timestamp": "2026-08-25T20:58:20.739284"
     },
     {
       "raw_student_id": "STU20220237",
@@ -3755,7 +3755,7 @@
       "department": "Comp Sci",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.635367"
+      "created_timestamp": "2026-08-25T20:58:20.739296"
     },
     {
       "raw_student_id": "STU20230238",
@@ -3768,7 +3768,7 @@
       "department": "Electronics & Comm",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.635379"
+      "created_timestamp": "2026-08-25T20:58:20.739309"
     },
     {
       "raw_student_id": "STU20240239",
@@ -3781,7 +3781,7 @@
       "department": "ece dept",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.635391"
+      "created_timestamp": "2026-08-25T20:58:20.739321"
     },
     {
       "raw_student_id": "STU20210240",
@@ -3794,7 +3794,7 @@
       "department": "AIDS",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.635404"
+      "created_timestamp": "2026-08-25T20:58:20.739334"
     },
     {
       "raw_student_id": "STU20220241",
@@ -3807,7 +3807,7 @@
       "department": "Electronics",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.635416"
+      "created_timestamp": "2026-08-25T20:58:20.739346"
     },
     {
       "raw_student_id": "STU20230242",
@@ -3820,7 +3820,7 @@
       "department": "Civil",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.635428"
+      "created_timestamp": "2026-08-25T20:58:20.739359"
     },
     {
       "raw_student_id": "STU20240243",
@@ -3833,7 +3833,7 @@
       "department": "Electronics & Comm",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.635439"
+      "created_timestamp": "2026-08-25T20:58:20.739370"
     },
     {
       "raw_student_id": "STU20210244",
@@ -3846,7 +3846,7 @@
       "department": "Electronics & Comm",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.635453"
+      "created_timestamp": "2026-08-25T20:58:20.739384"
     },
     {
       "raw_student_id": "STU20220245",
@@ -3859,7 +3859,7 @@
       "department": "Mechanical",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.635465"
+      "created_timestamp": "2026-08-25T20:58:20.739397"
     },
     {
       "raw_student_id": "STU20230246",
@@ -3872,7 +3872,7 @@
       "department": "Mechanical Engg",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.635477"
+      "created_timestamp": "2026-08-25T20:58:20.739409"
     },
     {
       "raw_student_id": "STU20240247",
@@ -3885,7 +3885,7 @@
       "department": "mech",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.635488"
+      "created_timestamp": "2026-08-25T20:58:20.739421"
     },
     {
       "raw_student_id": "STU20210248",
@@ -3898,7 +3898,7 @@
       "department": "Data Science",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.635500"
+      "created_timestamp": "2026-08-25T20:58:20.739434"
     },
     {
       "raw_student_id": "STU20220249",
@@ -3911,7 +3911,7 @@
       "department": "Mech Dept",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.635511"
+      "created_timestamp": "2026-08-25T20:58:20.739449"
     },
     {
       "raw_student_id": "STU20230250",
@@ -3924,7 +3924,7 @@
       "department": "Data Science",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.635523"
+      "created_timestamp": "2026-08-25T20:58:20.739462"
     },
     {
       "raw_student_id": "STU20240251",
@@ -3937,7 +3937,7 @@
       "department": "Civil Dept",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.635534"
+      "created_timestamp": "2026-08-25T20:58:20.739474"
     },
     {
       "raw_student_id": "STU20210252",
@@ -3950,7 +3950,7 @@
       "department": "Computer Science",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.635546"
+      "created_timestamp": "2026-08-25T20:58:20.739487"
     },
     {
       "raw_student_id": "STU20220253",
@@ -3963,7 +3963,7 @@
       "department": "Electronics & Comm",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.635558"
+      "created_timestamp": "2026-08-25T20:58:20.739500"
     },
     {
       "raw_student_id": "STU20230254",
@@ -3976,7 +3976,7 @@
       "department": "ECE",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.635569"
+      "created_timestamp": "2026-08-25T20:58:20.739513"
     },
     {
       "raw_student_id": "STU20240255",
@@ -3989,7 +3989,7 @@
       "department": "ece dept",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.635584"
+      "created_timestamp": "2026-08-25T20:58:20.739525"
     },
     {
       "raw_student_id": "STU20210256",
@@ -4002,7 +4002,7 @@
       "department": "Civil Dept",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.635595"
+      "created_timestamp": "2026-08-25T20:58:20.739539"
     },
     {
       "raw_student_id": "STU20220257",
@@ -4015,7 +4015,7 @@
       "department": "AIDS",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.635606"
+      "created_timestamp": "2026-08-25T20:58:20.739551"
     },
     {
       "raw_student_id": "STU20230258",
@@ -4028,7 +4028,7 @@
       "department": "Civil Dept",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.635618"
+      "created_timestamp": "2026-08-25T20:58:20.739563"
     },
     {
       "raw_student_id": "STU20240259",
@@ -4041,7 +4041,7 @@
       "department": "Artificial Intelligence",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.635629"
+      "created_timestamp": "2026-08-25T20:58:20.739576"
     },
     {
       "raw_student_id": "STU20210260",
@@ -4054,7 +4054,7 @@
       "department": "AIDS",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.635644"
+      "created_timestamp": "2026-08-25T20:58:20.739591"
     },
     {
       "raw_student_id": "STU20220261",
@@ -4067,7 +4067,7 @@
       "department": "cs",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.635656"
+      "created_timestamp": "2026-08-25T20:58:20.739602"
     },
     {
       "raw_student_id": "STU20230262",
@@ -4080,7 +4080,7 @@
       "department": "Artificial Intelligence",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.635668"
+      "created_timestamp": "2026-08-25T20:58:20.739615"
     },
     {
       "raw_student_id": "STU20240263",
@@ -4093,7 +4093,7 @@
       "department": "AIDS",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.635679"
+      "created_timestamp": "2026-08-25T20:58:20.739627"
     },
     {
       "raw_student_id": "STU20210264",
@@ -4106,7 +4106,7 @@
       "department": "Civil",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.635690"
+      "created_timestamp": "2026-08-25T20:58:20.739663"
     },
     {
       "raw_student_id": "STU20220265",
@@ -4119,7 +4119,7 @@
       "department": "Computer Science & Engg",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.635701"
+      "created_timestamp": "2026-08-25T20:58:20.739678"
     },
     {
       "raw_student_id": "STU20230266",
@@ -4132,7 +4132,7 @@
       "department": "CIVIL",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.635713"
+      "created_timestamp": "2026-08-25T20:58:20.739690"
     },
     {
       "raw_student_id": "STU20240267",
@@ -4145,7 +4145,7 @@
       "department": "E&CE",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.635724"
+      "created_timestamp": "2026-08-25T20:58:20.739702"
     },
     {
       "raw_student_id": "STU20210268",
@@ -4158,7 +4158,7 @@
       "department": "CS-ENG",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.635735"
+      "created_timestamp": "2026-08-25T20:58:20.739713"
     },
     {
       "raw_student_id": "STU20220269",
@@ -4171,7 +4171,7 @@
       "department": "Mechanical Engg",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.635748"
+      "created_timestamp": "2026-08-25T20:58:20.739726"
     },
     {
       "raw_student_id": "STU20230270",
@@ -4184,7 +4184,7 @@
       "department": "Mechanical Engg",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.635762"
+      "created_timestamp": "2026-08-25T20:58:20.739739"
     },
     {
       "raw_student_id": "STU20240271",
@@ -4197,7 +4197,7 @@
       "department": "Civil Dept",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.635774"
+      "created_timestamp": "2026-08-25T20:58:20.739751"
     },
     {
       "raw_student_id": "STU20210272",
@@ -4210,7 +4210,7 @@
       "department": "Electronics",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.635786"
+      "created_timestamp": "2026-08-25T20:58:20.739763"
     },
     {
       "raw_student_id": "STU20220273",
@@ -4223,7 +4223,7 @@
       "department": "ece dept",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.635797"
+      "created_timestamp": "2026-08-25T20:58:20.739775"
     },
     {
       "raw_student_id": "STU20230274",
@@ -4236,7 +4236,7 @@
       "department": "Computer Science & Engg",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.635808"
+      "created_timestamp": "2026-08-25T20:58:20.739787"
     },
     {
       "raw_student_id": "STU20240275",
@@ -4249,7 +4249,7 @@
       "department": "Mechanical",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.635820"
+      "created_timestamp": "2026-08-25T20:58:20.739799"
     },
     {
       "raw_student_id": "STU20210276",
@@ -4262,7 +4262,7 @@
       "department": "AIDS",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.635830"
+      "created_timestamp": "2026-08-25T20:58:20.739810"
     },
     {
       "raw_student_id": "STU20220277",
@@ -4275,7 +4275,7 @@
       "department": "AI-DS",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.635842"
+      "created_timestamp": "2026-08-25T20:58:20.739826"
     },
     {
       "raw_student_id": "STU20230278",
@@ -4288,7 +4288,7 @@
       "department": "Mechanical Engg",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.635853"
+      "created_timestamp": "2026-08-25T20:58:20.739838"
     },
     {
       "raw_student_id": "STU20240279",
@@ -4301,7 +4301,7 @@
       "department": "Data Science",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.635865"
+      "created_timestamp": "2026-08-25T20:58:20.739851"
     },
     {
       "raw_student_id": "STU20210280",
@@ -4314,7 +4314,7 @@
       "department": "mech",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.635876"
+      "created_timestamp": "2026-08-25T20:58:20.739863"
     },
     {
       "raw_student_id": "STU20220281",
@@ -4327,7 +4327,7 @@
       "department": "CIVIL",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.635888"
+      "created_timestamp": "2026-08-25T20:58:20.739892"
     },
     {
       "raw_student_id": "STU20230282",
@@ -4340,7 +4340,7 @@
       "department": "Computer Science & Engg",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.635899"
+      "created_timestamp": "2026-08-25T20:58:20.739919"
     },
     {
       "raw_student_id": "STU20240283",
@@ -4353,7 +4353,7 @@
       "department": "Mechanical Engg",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.635910"
+      "created_timestamp": "2026-08-25T20:58:20.739931"
     },
     {
       "raw_student_id": "STU20210284",
@@ -4366,7 +4366,7 @@
       "department": "Data Science",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.635922"
+      "created_timestamp": "2026-08-25T20:58:20.739944"
     },
     {
       "raw_student_id": "STU20220285",
@@ -4379,7 +4379,7 @@
       "department": "Civil",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.635933"
+      "created_timestamp": "2026-08-25T20:58:20.739956"
     },
     {
       "raw_student_id": "STU20230286",
@@ -4392,7 +4392,7 @@
       "department": "Civil Dept",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.635944"
+      "created_timestamp": "2026-08-25T20:58:20.739968"
     },
     {
       "raw_student_id": "STU20240287",
@@ -4405,7 +4405,7 @@
       "department": "Data Science",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.635955"
+      "created_timestamp": "2026-08-25T20:58:20.739979"
     },
     {
       "raw_student_id": "STU20210288",
@@ -4418,7 +4418,7 @@
       "department": "Mech Dept",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.635967"
+      "created_timestamp": "2026-08-25T20:58:20.739992"
     },
     {
       "raw_student_id": "STU20220289",
@@ -4431,7 +4431,7 @@
       "department": "E&CE",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.635978"
+      "created_timestamp": "2026-08-25T20:58:20.740005"
     },
     {
       "raw_student_id": "STU20230290",
@@ -4444,7 +4444,7 @@
       "department": "Civil Engg",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.635990"
+      "created_timestamp": "2026-08-25T20:58:20.740017"
     },
     {
       "raw_student_id": "STU20240291",
@@ -4457,7 +4457,7 @@
       "department": "Artificial Intelligence",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.636001"
+      "created_timestamp": "2026-08-25T20:58:20.740029"
     },
     {
       "raw_student_id": "STU20210292",
@@ -4470,7 +4470,7 @@
       "department": "Mechanical",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.636019"
+      "created_timestamp": "2026-08-25T20:58:20.740044"
     },
     {
       "raw_student_id": "STU20220293",
@@ -4483,7 +4483,7 @@
       "department": "E&CE",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.636032"
+      "created_timestamp": "2026-08-25T20:58:20.740056"
     },
     {
       "raw_student_id": "STU20230294",
@@ -4496,7 +4496,7 @@
       "department": "mech",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.636043"
+      "created_timestamp": "2026-08-25T20:58:20.740069"
     },
     {
       "raw_student_id": "STU20240295",
@@ -4509,7 +4509,7 @@
       "department": "Electronics",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.636055"
+      "created_timestamp": "2026-08-25T20:58:20.740082"
     },
     {
       "raw_student_id": "STU20210296",
@@ -4522,7 +4522,7 @@
       "department": "Computer Science",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.636066"
+      "created_timestamp": "2026-08-25T20:58:20.740094"
     },
     {
       "raw_student_id": "STU20220297",
@@ -4535,7 +4535,7 @@
       "department": "Civil Dept",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.636077"
+      "created_timestamp": "2026-08-25T20:58:20.740106"
     },
     {
       "raw_student_id": "STU20230298",
@@ -4548,7 +4548,7 @@
       "department": "AIDS",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.636091"
+      "created_timestamp": "2026-08-25T20:58:20.740118"
     },
     {
       "raw_student_id": "STU20240299",
@@ -4561,7 +4561,7 @@
       "department": "Comp Sci",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.636104"
+      "created_timestamp": "2026-08-25T20:58:20.740131"
     },
     {
       "raw_student_id": "STU20210300",
@@ -4574,7 +4574,7 @@
       "department": "E&CE",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.636118"
+      "created_timestamp": "2026-08-25T20:58:20.740148"
     },
     {
       "raw_student_id": "STU20220301",
@@ -4587,7 +4587,7 @@
       "department": "Mechanical Engg",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.636132"
+      "created_timestamp": "2026-08-25T20:58:20.740161"
     },
     {
       "raw_student_id": "STU20230302",
@@ -4600,7 +4600,7 @@
       "department": "CSE",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.636144"
+      "created_timestamp": "2026-08-25T20:58:20.740173"
     },
     {
       "raw_student_id": "STU20240303",
@@ -4613,7 +4613,7 @@
       "department": "AI & DS",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.636156"
+      "created_timestamp": "2026-08-25T20:58:20.740185"
     },
     {
       "raw_student_id": "STU20210304",
@@ -4626,7 +4626,7 @@
       "department": "AIDS",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.636168"
+      "created_timestamp": "2026-08-25T20:58:20.740200"
     },
     {
       "raw_student_id": "STU20220305",
@@ -4639,7 +4639,7 @@
       "department": "CSE",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.636180"
+      "created_timestamp": "2026-08-25T20:58:20.740213"
     },
     {
       "raw_student_id": "STU20230306",
@@ -4652,7 +4652,7 @@
       "department": "E&CE",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.636191"
+      "created_timestamp": "2026-08-25T20:58:20.740226"
     },
     {
       "raw_student_id": "STU20240307",
@@ -4665,7 +4665,7 @@
       "department": "mech",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.636203"
+      "created_timestamp": "2026-08-25T20:58:20.740237"
     },
     {
       "raw_student_id": "STU20210308",
@@ -4678,7 +4678,7 @@
       "department": "Civil Engg",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.636213"
+      "created_timestamp": "2026-08-25T20:58:20.740249"
     },
     {
       "raw_student_id": "STU20220309",
@@ -4691,7 +4691,7 @@
       "department": "Mechanical Engg",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.636225"
+      "created_timestamp": "2026-08-25T20:58:20.740262"
     },
     {
       "raw_student_id": "STU20230310",
@@ -4704,7 +4704,7 @@
       "department": "Mech Dept",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.636238"
+      "created_timestamp": "2026-08-25T20:58:20.740321"
     },
     {
       "raw_student_id": "STU20240311",
@@ -4717,7 +4717,7 @@
       "department": "Civil Dept",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.636250"
+      "created_timestamp": "2026-08-25T20:58:20.740336"
     },
     {
       "raw_student_id": "STU20210312",
@@ -4730,7 +4730,7 @@
       "department": "ece dept",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.636261"
+      "created_timestamp": "2026-08-25T20:58:20.740348"
     },
     {
       "raw_student_id": "STU20220313",
@@ -4743,7 +4743,7 @@
       "department": "CIVIL",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.636273"
+      "created_timestamp": "2026-08-25T20:58:20.740360"
     },
     {
       "raw_student_id": "STU20230314",
@@ -4756,7 +4756,7 @@
       "department": "ECE",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.636285"
+      "created_timestamp": "2026-08-25T20:58:20.740372"
     },
     {
       "raw_student_id": "STU20240315",
@@ -4769,7 +4769,7 @@
       "department": "Electronics",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.636296"
+      "created_timestamp": "2026-08-25T20:58:20.740384"
     },
     {
       "raw_student_id": "STU20210316",
@@ -4782,7 +4782,7 @@
       "department": "Mechanical Engg",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.636308"
+      "created_timestamp": "2026-08-25T20:58:20.740396"
     },
     {
       "raw_student_id": "STU20220317",
@@ -4795,7 +4795,7 @@
       "department": "Civil Dept",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.636320"
+      "created_timestamp": "2026-08-25T20:58:20.740408"
     },
     {
       "raw_student_id": "STU20230318",
@@ -4808,7 +4808,7 @@
       "department": "Computer Science & Engg",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.636332"
+      "created_timestamp": "2026-08-25T20:58:20.740420"
     },
     {
       "raw_student_id": "STU20240319",
@@ -4821,7 +4821,7 @@
       "department": "CS-ENG",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.636343"
+      "created_timestamp": "2026-08-25T20:58:20.740432"
     },
     {
       "raw_student_id": "STU20210320",
@@ -4834,7 +4834,7 @@
       "department": "CSE",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.636355"
+      "created_timestamp": "2026-08-25T20:58:20.740445"
     },
     {
       "raw_student_id": "STU20220321",
@@ -4847,7 +4847,7 @@
       "department": "Electronics",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.636366"
+      "created_timestamp": "2026-08-25T20:58:20.740457"
     },
     {
       "raw_student_id": "STU20230322",
@@ -4860,7 +4860,7 @@
       "department": "Civil Dept",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.636378"
+      "created_timestamp": "2026-08-25T20:58:20.740470"
     },
     {
       "raw_student_id": "STU20240323",
@@ -4873,7 +4873,7 @@
       "department": "Mechanical",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.636389"
+      "created_timestamp": "2026-08-25T20:58:20.740483"
     },
     {
       "raw_student_id": "STU20210324",
@@ -4886,7 +4886,7 @@
       "department": "Electronics",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.636400"
+      "created_timestamp": "2026-08-25T20:58:20.740495"
     },
     {
       "raw_student_id": "STU20220325",
@@ -4899,7 +4899,7 @@
       "department": "Electronics",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.636412"
+      "created_timestamp": "2026-08-25T20:58:20.740508"
     },
     {
       "raw_student_id": "STU20230326",
@@ -4912,7 +4912,7 @@
       "department": "Civil Dept",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.636429"
+      "created_timestamp": "2026-08-25T20:58:20.740519"
     },
     {
       "raw_student_id": "STU20240327",
@@ -4925,7 +4925,7 @@
       "department": "AI & DS",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.636441"
+      "created_timestamp": "2026-08-25T20:58:20.740547"
     },
     {
       "raw_student_id": "STU20210328",
@@ -4938,7 +4938,7 @@
       "department": "AI & DS",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.636453"
+      "created_timestamp": "2026-08-25T20:58:20.740561"
     },
     {
       "raw_student_id": "STU20220329",
@@ -4951,7 +4951,7 @@
       "department": "Civil",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.636467"
+      "created_timestamp": "2026-08-25T20:58:20.740573"
     },
     {
       "raw_student_id": "STU20230330",
@@ -4964,7 +4964,7 @@
       "department": "ece dept",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.636479"
+      "created_timestamp": "2026-08-25T20:58:20.740588"
     },
     {
       "raw_student_id": "STU20240331",
@@ -4977,7 +4977,7 @@
       "department": "ECE",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.636490"
+      "created_timestamp": "2026-08-25T20:58:20.740602"
     },
     {
       "raw_student_id": "STU20210332",
@@ -4990,7 +4990,7 @@
       "department": "Civil Dept",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.636500"
+      "created_timestamp": "2026-08-25T20:58:20.740613"
     },
     {
       "raw_student_id": "STU20220333",
@@ -5003,7 +5003,7 @@
       "department": "ECE",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.636512"
+      "created_timestamp": "2026-08-25T20:58:20.740626"
     },
     {
       "raw_student_id": "STU20230334",
@@ -5016,7 +5016,7 @@
       "department": "Electronics & Comm",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.636523"
+      "created_timestamp": "2026-08-25T20:58:20.740639"
     },
     {
       "raw_student_id": "STU20240335",
@@ -5029,7 +5029,7 @@
       "department": "Artificial Intelligence",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.636534"
+      "created_timestamp": "2026-08-25T20:58:20.740651"
     },
     {
       "raw_student_id": "STU20210336",
@@ -5042,7 +5042,7 @@
       "department": "Artificial Intelligence",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.636546"
+      "created_timestamp": "2026-08-25T20:58:20.740663"
     },
     {
       "raw_student_id": "STU20220337",
@@ -5055,7 +5055,7 @@
       "department": "ece dept",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.636557"
+      "created_timestamp": "2026-08-25T20:58:20.740675"
     },
     {
       "raw_student_id": "STU20230338",
@@ -5068,7 +5068,7 @@
       "department": "CS-ENG",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.636568"
+      "created_timestamp": "2026-08-25T20:58:20.740686"
     },
     {
       "raw_student_id": "STU20240339",
@@ -5081,7 +5081,7 @@
       "department": "Civil Engg",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.636580"
+      "created_timestamp": "2026-08-25T20:58:20.740699"
     },
     {
       "raw_student_id": "STU20210340",
@@ -5094,7 +5094,7 @@
       "department": "ECE",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.636594"
+      "created_timestamp": "2026-08-25T20:58:20.740713"
     },
     {
       "raw_student_id": "STU20220341",
@@ -5107,7 +5107,7 @@
       "department": "mech",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.636605"
+      "created_timestamp": "2026-08-25T20:58:20.740725"
     },
     {
       "raw_student_id": "STU20230342",
@@ -5120,7 +5120,7 @@
       "department": "CS-ENG",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.636617"
+      "created_timestamp": "2026-08-25T20:58:20.740737"
     },
     {
       "raw_student_id": "STU20240343",
@@ -5133,7 +5133,7 @@
       "department": "Computer Science",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.636631"
+      "created_timestamp": "2026-08-25T20:58:20.740752"
     },
     {
       "raw_student_id": "STU20210344",
@@ -5146,7 +5146,7 @@
       "department": "Mechanical",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.636643"
+      "created_timestamp": "2026-08-25T20:58:20.740766"
     },
     {
       "raw_student_id": "STU20220345",
@@ -5159,7 +5159,7 @@
       "department": "mech",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.636654"
+      "created_timestamp": "2026-08-25T20:58:20.740777"
     },
     {
       "raw_student_id": "STU20230346",
@@ -5172,7 +5172,7 @@
       "department": "Artificial Intelligence",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.636667"
+      "created_timestamp": "2026-08-25T20:58:20.740796"
     },
     {
       "raw_student_id": "STU20240347",
@@ -5185,7 +5185,7 @@
       "department": "Electronics",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.636678"
+      "created_timestamp": "2026-08-25T20:58:20.740807"
     },
     {
       "raw_student_id": "STU20210348",
@@ -5198,7 +5198,7 @@
       "department": "Mech Dept",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.636689"
+      "created_timestamp": "2026-08-25T20:58:20.740818"
     },
     {
       "raw_student_id": "STU20220349",
@@ -5211,7 +5211,7 @@
       "department": "civil",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.636700"
+      "created_timestamp": "2026-08-25T20:58:20.740829"
     },
     {
       "raw_student_id": "STU20230350",
@@ -5224,7 +5224,7 @@
       "department": "Data Science",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.636712"
+      "created_timestamp": "2026-08-25T20:58:20.740841"
     },
     {
       "raw_student_id": "STU20240351",
@@ -5237,7 +5237,7 @@
       "department": "Data Science",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.636723"
+      "created_timestamp": "2026-08-25T20:58:20.740852"
     },
     {
       "raw_student_id": "STU20210352",
@@ -5250,7 +5250,7 @@
       "department": "Electronics",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.636734"
+      "created_timestamp": "2026-08-25T20:58:20.740864"
     },
     {
       "raw_student_id": "STU20220353",
@@ -5263,7 +5263,7 @@
       "department": "Computer Science",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.636749"
+      "created_timestamp": "2026-08-25T20:58:20.740876"
     },
     {
       "raw_student_id": "STU20230354",
@@ -5276,7 +5276,7 @@
       "department": "Artificial Intelligence",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.636762"
+      "created_timestamp": "2026-08-25T20:58:20.740890"
     },
     {
       "raw_student_id": "STU20240355",
@@ -5289,7 +5289,7 @@
       "department": "cs",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.636773"
+      "created_timestamp": "2026-08-25T20:58:20.740902"
     },
     {
       "raw_student_id": "STU20210356",
@@ -5302,7 +5302,7 @@
       "department": "Electronics",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.636784"
+      "created_timestamp": "2026-08-25T20:58:20.740914"
     },
     {
       "raw_student_id": "STU20220357",
@@ -5315,7 +5315,7 @@
       "department": "Mech Dept",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.636796"
+      "created_timestamp": "2026-08-25T20:58:20.740927"
     },
     {
       "raw_student_id": "STU20230358",
@@ -5328,7 +5328,7 @@
       "department": "AI & DS",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.636807"
+      "created_timestamp": "2026-08-25T20:58:20.740941"
     },
     {
       "raw_student_id": "STU20240359",
@@ -5341,7 +5341,7 @@
       "department": "Civil Engg",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.636819"
+      "created_timestamp": "2026-08-25T20:58:20.740954"
     },
     {
       "raw_student_id": "STU20210360",
@@ -5354,7 +5354,7 @@
       "department": "AI-DS",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.636830"
+      "created_timestamp": "2026-08-25T20:58:20.740965"
     },
     {
       "raw_student_id": "STU20220361",
@@ -5367,7 +5367,7 @@
       "department": "CSE",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.636842"
+      "created_timestamp": "2026-08-25T20:58:20.740978"
     },
     {
       "raw_student_id": "STU20230362",
@@ -5380,7 +5380,7 @@
       "department": "E&CE",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.636853"
+      "created_timestamp": "2026-08-25T20:58:20.740990"
     },
     {
       "raw_student_id": "STU20240363",
@@ -5393,7 +5393,7 @@
       "department": "Electronics",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.636864"
+      "created_timestamp": "2026-08-25T20:58:20.741106"
     },
     {
       "raw_student_id": "STU20210364",
@@ -5406,7 +5406,7 @@
       "department": "Civil Engg",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.636875"
+      "created_timestamp": "2026-08-25T20:58:20.741290"
     },
     {
       "raw_student_id": "STU20220365",
@@ -5419,7 +5419,7 @@
       "department": "CIVIL",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.636889"
+      "created_timestamp": "2026-08-25T20:58:20.741320"
     },
     {
       "raw_student_id": "STU20230366",
@@ -5432,7 +5432,7 @@
       "department": "ece dept",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.636901"
+      "created_timestamp": "2026-08-25T20:58:20.741362"
     },
     {
       "raw_student_id": "STU20240367",
@@ -5445,7 +5445,7 @@
       "department": "cs",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.636913"
+      "created_timestamp": "2026-08-25T20:58:20.741603"
     },
     {
       "raw_student_id": "STU20210368",
@@ -5458,7 +5458,7 @@
       "department": "CIVIL",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.636924"
+      "created_timestamp": "2026-08-25T20:58:20.741633"
     },
     {
       "raw_student_id": "STU20220369",
@@ -5471,7 +5471,7 @@
       "department": "ECE",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.636935"
+      "created_timestamp": "2026-08-25T20:58:20.741828"
     },
     {
       "raw_student_id": "STU20230370",
@@ -5484,7 +5484,7 @@
       "department": "E&CE",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.636948"
+      "created_timestamp": "2026-08-25T20:58:20.741847"
     },
     {
       "raw_student_id": "STU20240371",
@@ -5497,7 +5497,7 @@
       "department": "AI & DS",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.636960"
+      "created_timestamp": "2026-08-25T20:58:20.741860"
     },
     {
       "raw_student_id": "STU20210372",
@@ -5510,7 +5510,7 @@
       "department": "ECE",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.636972"
+      "created_timestamp": "2026-08-25T20:58:20.741873"
     },
     {
       "raw_student_id": "STU20220373",
@@ -5523,7 +5523,7 @@
       "department": "Computer Science",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.636984"
+      "created_timestamp": "2026-08-25T20:58:20.741886"
     },
     {
       "raw_student_id": "STU20230374",
@@ -5536,7 +5536,7 @@
       "department": "AI & DS",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.636995"
+      "created_timestamp": "2026-08-25T20:58:20.741898"
     },
     {
       "raw_student_id": "STU20240375",
@@ -5549,7 +5549,7 @@
       "department": "Data Science",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.637007"
+      "created_timestamp": "2026-08-25T20:58:20.741911"
     },
     {
       "raw_student_id": "STU20210376",
@@ -5562,7 +5562,7 @@
       "department": "Comp Sci",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.637018"
+      "created_timestamp": "2026-08-25T20:58:20.741923"
     },
     {
       "raw_student_id": "STU20220377",
@@ -5575,7 +5575,7 @@
       "department": "AI & DS",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.637030"
+      "created_timestamp": "2026-08-25T20:58:20.741935"
     },
     {
       "raw_student_id": "STU20230378",
@@ -5588,7 +5588,7 @@
       "department": "ece dept",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.637042"
+      "created_timestamp": "2026-08-25T20:58:20.741948"
     },
     {
       "raw_student_id": "STU20240379",
@@ -5601,7 +5601,7 @@
       "department": "Civil Dept",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.637053"
+      "created_timestamp": "2026-08-25T20:58:20.741960"
     },
     {
       "raw_student_id": "STU20210380",
@@ -5614,7 +5614,7 @@
       "department": "Electronics & Comm",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.637067"
+      "created_timestamp": "2026-08-25T20:58:20.741975"
     },
     {
       "raw_student_id": "STU20220381",
@@ -5627,7 +5627,7 @@
       "department": "Computer Science & Engg",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.637081"
+      "created_timestamp": "2026-08-25T20:58:20.741987"
     },
     {
       "raw_student_id": "STU20230382",
@@ -5640,7 +5640,7 @@
       "department": "E&CE",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.637092"
+      "created_timestamp": "2026-08-25T20:58:20.741998"
     },
     {
       "raw_student_id": "STU20240383",
@@ -5653,7 +5653,7 @@
       "department": "Mechanical Engg",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.637103"
+      "created_timestamp": "2026-08-25T20:58:20.742011"
     },
     {
       "raw_student_id": "STU20210384",
@@ -5666,7 +5666,7 @@
       "department": "ece dept",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.637116"
+      "created_timestamp": "2026-08-25T20:58:20.742024"
     },
     {
       "raw_student_id": "STU20220385",
@@ -5679,7 +5679,7 @@
       "department": "ECE",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.637127"
+      "created_timestamp": "2026-08-25T20:58:20.742123"
     },
     {
       "raw_student_id": "STU20230386",
@@ -5692,7 +5692,7 @@
       "department": "AIDS",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.637138"
+      "created_timestamp": "2026-08-25T20:58:20.742188"
     },
     {
       "raw_student_id": "STU20240387",
@@ -5705,7 +5705,7 @@
       "department": "civil",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.637149"
+      "created_timestamp": "2026-08-25T20:58:20.742211"
     },
     {
       "raw_student_id": "STU20210388",
@@ -5718,7 +5718,7 @@
       "department": "Civil",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.637161"
+      "created_timestamp": "2026-08-25T20:58:20.742234"
     },
     {
       "raw_student_id": "STU20220389",
@@ -5731,7 +5731,7 @@
       "department": "Civil Dept",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.637172"
+      "created_timestamp": "2026-08-25T20:58:20.742257"
     },
     {
       "raw_student_id": "STU20230390",
@@ -5744,7 +5744,7 @@
       "department": "ECE",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.637183"
+      "created_timestamp": "2026-08-25T20:58:20.742277"
     },
     {
       "raw_student_id": "STU20240391",
@@ -5757,7 +5757,7 @@
       "department": "MECH",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.637195"
+      "created_timestamp": "2026-08-25T20:58:20.742297"
     },
     {
       "raw_student_id": "STU20210392",
@@ -5770,7 +5770,7 @@
       "department": "Comp Sci",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.637206"
+      "created_timestamp": "2026-08-25T20:58:20.742317"
     },
     {
       "raw_student_id": "STU20220393",
@@ -5783,7 +5783,7 @@
       "department": "Comp Sci",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.637217"
+      "created_timestamp": "2026-08-25T20:58:20.742348"
     },
     {
       "raw_student_id": "STU20230394",
@@ -5796,7 +5796,7 @@
       "department": "CIVIL",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.637228"
+      "created_timestamp": "2026-08-25T20:58:20.742369"
     },
     {
       "raw_student_id": "STU20240395",
@@ -5809,7 +5809,7 @@
       "department": "Electronics",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.637239"
+      "created_timestamp": "2026-08-25T20:58:20.742389"
     },
     {
       "raw_student_id": "STU20210396",
@@ -5822,7 +5822,7 @@
       "department": "Computer Science & Engg",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.637251"
+      "created_timestamp": "2026-08-25T20:58:20.742409"
     },
     {
       "raw_student_id": "STU20220397",
@@ -5835,7 +5835,7 @@
       "department": "AIDS",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.637262"
+      "created_timestamp": "2026-08-25T20:58:20.742525"
     },
     {
       "raw_student_id": "STU20230398",
@@ -5848,7 +5848,7 @@
       "department": "Mechanical",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.637274"
+      "created_timestamp": "2026-08-25T20:58:20.742546"
     },
     {
       "raw_student_id": "STU20240399",
@@ -5861,7 +5861,7 @@
       "department": "AI-DS",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.637286"
+      "created_timestamp": "2026-08-25T20:58:20.742561"
     },
     {
       "raw_student_id": "STU20210400",
@@ -5874,7 +5874,7 @@
       "department": "Civil Engg",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.637299"
+      "created_timestamp": "2026-08-25T20:58:20.742612"
     },
     {
       "raw_student_id": "STU20220401",
@@ -5887,7 +5887,7 @@
       "department": "CSE",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.637310"
+      "created_timestamp": "2026-08-25T20:58:20.742625"
     },
     {
       "raw_student_id": "STU20230402",
@@ -5900,7 +5900,7 @@
       "department": "Civil Dept",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.637322"
+      "created_timestamp": "2026-08-25T20:58:20.742643"
     },
     {
       "raw_student_id": "STU20240403",
@@ -5913,7 +5913,7 @@
       "department": "Mechanical Engg",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.637334"
+      "created_timestamp": "2026-08-25T20:58:20.742655"
     },
     {
       "raw_student_id": "STU20210404",
@@ -5926,7 +5926,7 @@
       "department": "mech",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.637346"
+      "created_timestamp": "2026-08-25T20:58:20.742669"
     },
     {
       "raw_student_id": "STU20220405",
@@ -5939,7 +5939,7 @@
       "department": "MECH",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.637357"
+      "created_timestamp": "2026-08-25T20:58:20.742681"
     },
     {
       "raw_student_id": "STU20230406",
@@ -5952,7 +5952,7 @@
       "department": "Data Science",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.637368"
+      "created_timestamp": "2026-08-25T20:58:20.742693"
     },
     {
       "raw_student_id": "STU20240407",
@@ -5965,7 +5965,7 @@
       "department": "Data Science",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.637381"
+      "created_timestamp": "2026-08-25T20:58:20.742706"
     },
     {
       "raw_student_id": "STU20210408",
@@ -5978,7 +5978,7 @@
       "department": "CSE",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.637393"
+      "created_timestamp": "2026-08-25T20:58:20.742763"
     },
     {
       "raw_student_id": "STU20220409",
@@ -5991,7 +5991,7 @@
       "department": "Comp Sci",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.637407"
+      "created_timestamp": "2026-08-25T20:58:20.742985"
     },
     {
       "raw_student_id": "STU20230410",
@@ -6004,7 +6004,7 @@
       "department": "Mechanical Engg",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.637419"
+      "created_timestamp": "2026-08-25T20:58:20.743011"
     },
     {
       "raw_student_id": "STU20240411",
@@ -6017,7 +6017,7 @@
       "department": "Electronics & Comm",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.637430"
+      "created_timestamp": "2026-08-25T20:58:20.743027"
     },
     {
       "raw_student_id": "STU20210412",
@@ -6030,7 +6030,7 @@
       "department": "Electronics",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.637441"
+      "created_timestamp": "2026-08-25T20:58:20.743040"
     },
     {
       "raw_student_id": "STU20220413",
@@ -6043,7 +6043,7 @@
       "department": "Data Science",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.637453"
+      "created_timestamp": "2026-08-25T20:58:20.743058"
     },
     {
       "raw_student_id": "STU20230414",
@@ -6056,7 +6056,7 @@
       "department": "CIVIL",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.637465"
+      "created_timestamp": "2026-08-25T20:58:20.743071"
     },
     {
       "raw_student_id": "STU20240415",
@@ -6069,7 +6069,7 @@
       "department": "Artificial Intelligence",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.637478"
+      "created_timestamp": "2026-08-25T20:58:20.743111"
     },
     {
       "raw_student_id": "STU20210416",
@@ -6082,7 +6082,7 @@
       "department": "CSE",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.637490"
+      "created_timestamp": "2026-08-25T20:58:20.743140"
     },
     {
       "raw_student_id": "STU20220417",
@@ -6095,7 +6095,7 @@
       "department": "ece dept",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.637502"
+      "created_timestamp": "2026-08-25T20:58:20.743162"
     },
     {
       "raw_student_id": "STU20230418",
@@ -6108,7 +6108,7 @@
       "department": "CIVIL",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.637513"
+      "created_timestamp": "2026-08-25T20:58:20.743182"
     },
     {
       "raw_student_id": "STU20240419",
@@ -6121,7 +6121,7 @@
       "department": "Data Science",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.637524"
+      "created_timestamp": "2026-08-25T20:58:20.743203"
     },
     {
       "raw_student_id": "STU20210420",
@@ -6134,7 +6134,7 @@
       "department": "Mechanical Engg",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.637538"
+      "created_timestamp": "2026-08-25T20:58:20.743232"
     },
     {
       "raw_student_id": "STU20220421",
@@ -6147,7 +6147,7 @@
       "department": "MECH",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.637549"
+      "created_timestamp": "2026-08-25T20:58:20.743274"
     },
     {
       "raw_student_id": "STU20230422",
@@ -6160,7 +6160,7 @@
       "department": "Civil",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.637560"
+      "created_timestamp": "2026-08-25T20:58:20.743292"
     },
     {
       "raw_student_id": "STU20240423",
@@ -6173,7 +6173,7 @@
       "department": "Artificial Intelligence",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.637572"
+      "created_timestamp": "2026-08-25T20:58:20.743305"
     },
     {
       "raw_student_id": "STU20210424",
@@ -6186,7 +6186,7 @@
       "department": "CSE",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.637583"
+      "created_timestamp": "2026-08-25T20:58:20.743321"
     },
     {
       "raw_student_id": "STU20220425",
@@ -6199,7 +6199,7 @@
       "department": "Civil",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.637594"
+      "created_timestamp": "2026-08-25T20:58:20.743336"
     },
     {
       "raw_student_id": "STU20230426",
@@ -6212,7 +6212,7 @@
       "department": "AI-DS",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.637606"
+      "created_timestamp": "2026-08-25T20:58:20.743349"
     },
     {
       "raw_student_id": "STU20240427",
@@ -6225,7 +6225,7 @@
       "department": "CIVIL",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.637618"
+      "created_timestamp": "2026-08-25T20:58:20.743362"
     },
     {
       "raw_student_id": "STU20210428",
@@ -6238,7 +6238,7 @@
       "department": "CS-ENG",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.637629"
+      "created_timestamp": "2026-08-25T20:58:20.743376"
     },
     {
       "raw_student_id": "STU20220429",
@@ -6251,7 +6251,7 @@
       "department": "CIVIL",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.637641"
+      "created_timestamp": "2026-08-25T20:58:20.743389"
     },
     {
       "raw_student_id": "STU20230430",
@@ -6264,7 +6264,7 @@
       "department": "Civil Dept",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.637652"
+      "created_timestamp": "2026-08-25T20:58:20.743472"
     },
     {
       "raw_student_id": "STU20240431",
@@ -6277,7 +6277,7 @@
       "department": "Civil",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.637663"
+      "created_timestamp": "2026-08-25T20:58:20.743486"
     },
     {
       "raw_student_id": "STU20210432",
@@ -6290,7 +6290,7 @@
       "department": "Mechanical",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.637675"
+      "created_timestamp": "2026-08-25T20:58:20.743500"
     },
     {
       "raw_student_id": "STU20220433",
@@ -6303,7 +6303,7 @@
       "department": "AI-DS",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.637686"
+      "created_timestamp": "2026-08-25T20:58:20.743514"
     },
     {
       "raw_student_id": "STU20230434",
@@ -6316,7 +6316,7 @@
       "department": "mech",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.637698"
+      "created_timestamp": "2026-08-25T20:58:20.743527"
     },
     {
       "raw_student_id": "STU20240435",
@@ -6329,7 +6329,7 @@
       "department": "CIVIL",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.637709"
+      "created_timestamp": "2026-08-25T20:58:20.743579"
     },
     {
       "raw_student_id": "STU20210436",
@@ -6342,7 +6342,7 @@
       "department": "Civil Dept",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.637724"
+      "created_timestamp": "2026-08-25T20:58:20.743593"
     },
     {
       "raw_student_id": "STU20220437",
@@ -6355,7 +6355,7 @@
       "department": "cs",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.637736"
+      "created_timestamp": "2026-08-25T20:58:20.743606"
     },
     {
       "raw_student_id": "STU20230438",
@@ -6368,7 +6368,7 @@
       "department": "E&CE",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.637748"
+      "created_timestamp": "2026-08-25T20:58:20.743619"
     },
     {
       "raw_student_id": "STU20240439",
@@ -6381,7 +6381,7 @@
       "department": "AIDS",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.637759"
+      "created_timestamp": "2026-08-25T20:58:20.743631"
     },
     {
       "raw_student_id": "STU20210440",
@@ -6394,7 +6394,7 @@
       "department": "Data Science",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.637770"
+      "created_timestamp": "2026-08-25T20:58:20.743643"
     },
     {
       "raw_student_id": "STU20220441",
@@ -6407,7 +6407,7 @@
       "department": "Mechanical",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.637782"
+      "created_timestamp": "2026-08-25T20:58:20.743660"
     },
     {
       "raw_student_id": "STU20230442",
@@ -6420,7 +6420,7 @@
       "department": "AIDS",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.637793"
+      "created_timestamp": "2026-08-25T20:58:20.743672"
     },
     {
       "raw_student_id": "STU20240443",
@@ -6433,7 +6433,7 @@
       "department": "Mech Dept",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.637805"
+      "created_timestamp": "2026-08-25T20:58:20.743684"
     },
     {
       "raw_student_id": "STU20210444",
@@ -6446,7 +6446,7 @@
       "department": "E&CE",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.637817"
+      "created_timestamp": "2026-08-25T20:58:20.743697"
     },
     {
       "raw_student_id": "STU20220445",
@@ -6459,7 +6459,7 @@
       "department": "Mechanical Engg",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.637828"
+      "created_timestamp": "2026-08-25T20:58:20.743709"
     },
     {
       "raw_student_id": "STU20230446",
@@ -6472,7 +6472,7 @@
       "department": "ECE",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.637840"
+      "created_timestamp": "2026-08-25T20:58:20.743721"
     },
     {
       "raw_student_id": "STU20240447",
@@ -6485,7 +6485,7 @@
       "department": "Mechanical Engg",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.637852"
+      "created_timestamp": "2026-08-25T20:58:20.743734"
     },
     {
       "raw_student_id": "STU20210448",
@@ -6498,7 +6498,7 @@
       "department": "AI & DS",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.637865"
+      "created_timestamp": "2026-08-25T20:58:20.743750"
     },
     {
       "raw_student_id": "STU20220449",
@@ -6511,7 +6511,7 @@
       "department": "Mech Dept",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.637876"
+      "created_timestamp": "2026-08-25T20:58:20.743762"
     },
     {
       "raw_student_id": "STU20230450",
@@ -6524,7 +6524,7 @@
       "department": "mech",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.637888"
+      "created_timestamp": "2026-08-25T20:58:20.743773"
     },
     {
       "raw_student_id": "STU20240451",
@@ -6537,7 +6537,7 @@
       "department": "AI-DS",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.637899"
+      "created_timestamp": "2026-08-25T20:58:20.743785"
     },
     {
       "raw_student_id": "STU20210452",
@@ -6550,7 +6550,7 @@
       "department": "Comp Sci",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.637910"
+      "created_timestamp": "2026-08-25T20:58:20.743850"
     },
     {
       "raw_student_id": "STU20220453",
@@ -6563,7 +6563,7 @@
       "department": "CS-ENG",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.637922"
+      "created_timestamp": "2026-08-25T20:58:20.743883"
     },
     {
       "raw_student_id": "STU20230454",
@@ -6576,7 +6576,7 @@
       "department": "CS-ENG",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.637934"
+      "created_timestamp": "2026-08-25T20:58:20.743905"
     },
     {
       "raw_student_id": "STU20240455",
@@ -6589,7 +6589,7 @@
       "department": "CIVIL",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.637946"
+      "created_timestamp": "2026-08-25T20:58:20.743927"
     },
     {
       "raw_student_id": "STU20210456",
@@ -6602,7 +6602,7 @@
       "department": "CSE",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.637960"
+      "created_timestamp": "2026-08-25T20:58:20.743950"
     },
     {
       "raw_student_id": "STU20220457",
@@ -6615,7 +6615,7 @@
       "department": "Mech Dept",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.637973"
+      "created_timestamp": "2026-08-25T20:58:20.743975"
     },
     {
       "raw_student_id": "STU20230458",
@@ -6628,7 +6628,7 @@
       "department": "cs",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.637985"
+      "created_timestamp": "2026-08-25T20:58:20.744005"
     },
     {
       "raw_student_id": "STU20240459",
@@ -6641,7 +6641,7 @@
       "department": "Electronics & Comm",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.637997"
+      "created_timestamp": "2026-08-25T20:58:20.744027"
     },
     {
       "raw_student_id": "STU20210460",
@@ -6654,7 +6654,7 @@
       "department": "Electronics",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.638012"
+      "created_timestamp": "2026-08-25T20:58:20.744052"
     },
     {
       "raw_student_id": "STU20220461",
@@ -6667,7 +6667,7 @@
       "department": "Mechanical",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.638023"
+      "created_timestamp": "2026-08-25T20:58:20.744072"
     },
     {
       "raw_student_id": "STU20230462",
@@ -6680,7 +6680,7 @@
       "department": "Computer Science",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.638036"
+      "created_timestamp": "2026-08-25T20:58:20.744094"
     },
     {
       "raw_student_id": "STU20240463",
@@ -6693,7 +6693,7 @@
       "department": "AI-DS",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.638047"
+      "created_timestamp": "2026-08-25T20:58:20.744115"
     },
     {
       "raw_student_id": "STU20210464",
@@ -6706,7 +6706,7 @@
       "department": "Electronics",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.638061"
+      "created_timestamp": "2026-08-25T20:58:20.744135"
     },
     {
       "raw_student_id": "STU20220465",
@@ -6719,7 +6719,7 @@
       "department": "Data Science",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.638073"
+      "created_timestamp": "2026-08-25T20:58:20.744155"
     },
     {
       "raw_student_id": "STU20230466",
@@ -6732,7 +6732,7 @@
       "department": "CS-ENG",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.638085"
+      "created_timestamp": "2026-08-25T20:58:20.744175"
     },
     {
       "raw_student_id": "STU20240467",
@@ -6745,7 +6745,7 @@
       "department": "AI-DS",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.638096"
+      "created_timestamp": "2026-08-25T20:58:20.744194"
     },
     {
       "raw_student_id": "STU20210468",
@@ -6758,7 +6758,7 @@
       "department": "Mechanical Engg",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.638107"
+      "created_timestamp": "2026-08-25T20:58:20.744213"
     },
     {
       "raw_student_id": "STU20220469",
@@ -6771,7 +6771,7 @@
       "department": "Artificial Intelligence",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.638118"
+      "created_timestamp": "2026-08-25T20:58:20.744236"
     },
     {
       "raw_student_id": "STU20230470",
@@ -6784,7 +6784,7 @@
       "department": "Mechanical",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.638129"
+      "created_timestamp": "2026-08-25T20:58:20.744256"
     },
     {
       "raw_student_id": "STU20240471",
@@ -6797,7 +6797,7 @@
       "department": "Electronics",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.638141"
+      "created_timestamp": "2026-08-25T20:58:20.744301"
     },
     {
       "raw_student_id": "STU20210472",
@@ -6810,7 +6810,7 @@
       "department": "CSE",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.638154"
+      "created_timestamp": "2026-08-25T20:58:20.744319"
     },
     {
       "raw_student_id": "STU20220473",
@@ -6823,7 +6823,7 @@
       "department": "Data Science",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.638165"
+      "created_timestamp": "2026-08-25T20:58:20.744334"
     },
     {
       "raw_student_id": "STU20230474",
@@ -6836,7 +6836,7 @@
       "department": "Computer Science",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.638177"
+      "created_timestamp": "2026-08-25T20:58:20.744347"
     },
     {
       "raw_student_id": "STU20240475",
@@ -6849,7 +6849,7 @@
       "department": "Civil Engg",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.638188"
+      "created_timestamp": "2026-08-25T20:58:20.744359"
     },
     {
       "raw_student_id": "STU20210476",
@@ -6862,7 +6862,7 @@
       "department": "CIVIL",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.638200"
+      "created_timestamp": "2026-08-25T20:58:20.744372"
     },
     {
       "raw_student_id": "STU20220477",
@@ -6875,7 +6875,7 @@
       "department": "Data Science",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.638211"
+      "created_timestamp": "2026-08-25T20:58:20.744384"
     },
     {
       "raw_student_id": "STU20230478",
@@ -6888,7 +6888,7 @@
       "department": "Computer Science & Engg",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.638222"
+      "created_timestamp": "2026-08-25T20:58:20.744397"
     },
     {
       "raw_student_id": "STU20240479",
@@ -6901,7 +6901,7 @@
       "department": "ece dept",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.638234"
+      "created_timestamp": "2026-08-25T20:58:20.744439"
     },
     {
       "raw_student_id": "STU20210480",
@@ -6914,7 +6914,7 @@
       "department": "MECH",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.638245"
+      "created_timestamp": "2026-08-25T20:58:20.744471"
     },
     {
       "raw_student_id": "STU20220481",
@@ -6927,7 +6927,7 @@
       "department": "Comp Sci",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.638256"
+      "created_timestamp": "2026-08-25T20:58:20.744491"
     },
     {
       "raw_student_id": "STU20230482",
@@ -6940,7 +6940,7 @@
       "department": "Computer Science",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.638268"
+      "created_timestamp": "2026-08-25T20:58:20.744512"
     },
     {
       "raw_student_id": "STU20240483",
@@ -6953,7 +6953,7 @@
       "department": "Mechanical Engg",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.638280"
+      "created_timestamp": "2026-08-25T20:58:20.744532"
     },
     {
       "raw_student_id": "STU20210484",
@@ -6966,7 +6966,7 @@
       "department": "mech",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.638292"
+      "created_timestamp": "2026-08-25T20:58:20.744555"
     },
     {
       "raw_student_id": "STU20220485",
@@ -6979,7 +6979,7 @@
       "department": "Electronics & Comm",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.638304"
+      "created_timestamp": "2026-08-25T20:58:20.744577"
     },
     {
       "raw_student_id": "STU20230486",
@@ -6992,7 +6992,7 @@
       "department": "mech",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.638316"
+      "created_timestamp": "2026-08-25T20:58:20.744597"
     },
     {
       "raw_student_id": "STU20240487",
@@ -7005,7 +7005,7 @@
       "department": "cs",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.638328"
+      "created_timestamp": "2026-08-25T20:58:20.744617"
     },
     {
       "raw_student_id": "STU20210488",
@@ -7018,7 +7018,7 @@
       "department": "CIVIL",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.638339"
+      "created_timestamp": "2026-08-25T20:58:20.744638"
     },
     {
       "raw_student_id": "STU20220489",
@@ -7031,7 +7031,7 @@
       "department": "mech",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.638351"
+      "created_timestamp": "2026-08-25T20:58:20.744700"
     },
     {
       "raw_student_id": "STU20230490",
@@ -7044,7 +7044,7 @@
       "department": "Electronics",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.638362"
+      "created_timestamp": "2026-08-25T20:58:20.744731"
     },
     {
       "raw_student_id": "STU20240491",
@@ -7057,7 +7057,7 @@
       "department": "Mechanical",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.638374"
+      "created_timestamp": "2026-08-25T20:58:20.744805"
     },
     {
       "raw_student_id": "STU20210492",
@@ -7070,7 +7070,7 @@
       "department": "Mechanical",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.638388"
+      "created_timestamp": "2026-08-25T20:58:20.744853"
     },
     {
       "raw_student_id": "STU20220493",
@@ -7083,7 +7083,7 @@
       "department": "E&CE",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.638400"
+      "created_timestamp": "2026-08-25T20:58:20.744884"
     },
     {
       "raw_student_id": "STU20230494",
@@ -7096,7 +7096,7 @@
       "department": "Data Science",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.638412"
+      "created_timestamp": "2026-08-25T20:58:20.744930"
     },
     {
       "raw_student_id": "STU20240495",
@@ -7109,7 +7109,7 @@
       "department": "CS-ENG",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.638424"
+      "created_timestamp": "2026-08-25T20:58:20.745123"
     },
     {
       "raw_student_id": "STU20210496",
@@ -7122,7 +7122,7 @@
       "department": "CS-ENG",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.638436"
+      "created_timestamp": "2026-08-25T20:58:20.745151"
     },
     {
       "raw_student_id": "STU20220497",
@@ -7135,7 +7135,7 @@
       "department": "Data Science",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.638447"
+      "created_timestamp": "2026-08-25T20:58:20.745179"
     },
     {
       "raw_student_id": "STU20230498",
@@ -7148,7 +7148,7 @@
       "department": "Mechanical",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.638460"
+      "created_timestamp": "2026-08-25T20:58:20.745201"
     },
     {
       "raw_student_id": "STU20240499",
@@ -7161,7 +7161,7 @@
       "department": "MECH",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.638471"
+      "created_timestamp": "2026-08-25T20:58:20.745412"
     },
     {
       "raw_student_id": "STU20210500",
@@ -7174,7 +7174,7 @@
       "department": "Data Science",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.638485"
+      "created_timestamp": "2026-08-25T20:58:20.745447"
     },
     {
       "raw_student_id": "STU20220501",
@@ -7187,7 +7187,7 @@
       "department": "Electronics & Comm",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.638496"
+      "created_timestamp": "2026-08-25T20:58:20.745505"
     },
     {
       "raw_student_id": "STU20230502",
@@ -7200,7 +7200,7 @@
       "department": "Comp Sci",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.638507"
+      "created_timestamp": "2026-08-25T20:58:20.745556"
     },
     {
       "raw_student_id": "STU20240503",
@@ -7213,7 +7213,7 @@
       "department": "ece dept",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.638520"
+      "created_timestamp": "2026-08-25T20:58:20.745597"
     },
     {
       "raw_student_id": "STU20210504",
@@ -7226,7 +7226,7 @@
       "department": "AIDS",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.638532"
+      "created_timestamp": "2026-08-25T20:58:20.745612"
     },
     {
       "raw_student_id": "STU20220505",
@@ -7239,7 +7239,7 @@
       "department": "CIVIL",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.638545"
+      "created_timestamp": "2026-08-25T20:58:20.745626"
     },
     {
       "raw_student_id": "STU20230506",
@@ -7252,7 +7252,7 @@
       "department": "Civil",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.638556"
+      "created_timestamp": "2026-08-25T20:58:20.745640"
     },
     {
       "raw_student_id": "STU20240507",
@@ -7265,7 +7265,7 @@
       "department": "E&CE",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.638568"
+      "created_timestamp": "2026-08-25T20:58:20.745654"
     },
     {
       "raw_student_id": "STU20210508",
@@ -7278,7 +7278,7 @@
       "department": "Mechanical",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.638579"
+      "created_timestamp": "2026-08-25T20:58:20.745729"
     },
     {
       "raw_student_id": "STU20220509",
@@ -7291,7 +7291,7 @@
       "department": "Comp Sci",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.638591"
+      "created_timestamp": "2026-08-25T20:58:20.745744"
     },
     {
       "raw_student_id": "STU20230510",
@@ -7304,7 +7304,7 @@
       "department": "mech",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.638603"
+      "created_timestamp": "2026-08-25T20:58:20.745758"
     },
     {
       "raw_student_id": "STU20240511",
@@ -7317,7 +7317,7 @@
       "department": "E&CE",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.638615"
+      "created_timestamp": "2026-08-25T20:58:20.745773"
     },
     {
       "raw_student_id": "STU20210512",
@@ -7330,7 +7330,7 @@
       "department": "Electronics & Comm",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.638626"
+      "created_timestamp": "2026-08-25T20:58:20.745785"
     },
     {
       "raw_student_id": "STU20220513",
@@ -7343,7 +7343,7 @@
       "department": "Artificial Intelligence",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.638638"
+      "created_timestamp": "2026-08-25T20:58:20.745839"
     },
     {
       "raw_student_id": "STU20230514",
@@ -7356,7 +7356,7 @@
       "department": "AI-DS",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.638649"
+      "created_timestamp": "2026-08-25T20:58:20.745853"
     },
     {
       "raw_student_id": "STU20240515",
@@ -7369,7 +7369,7 @@
       "department": "ece dept",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.638660"
+      "created_timestamp": "2026-08-25T20:58:20.745866"
     },
     {
       "raw_student_id": "STU20210516",
@@ -7382,7 +7382,7 @@
       "department": "CSE",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.638672"
+      "created_timestamp": "2026-08-25T20:58:20.745878"
     },
     {
       "raw_student_id": "STU20220517",
@@ -7395,7 +7395,7 @@
       "department": "ece dept",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.638683"
+      "created_timestamp": "2026-08-25T20:58:20.745890"
     },
     {
       "raw_student_id": "STU20230518",
@@ -7408,7 +7408,7 @@
       "department": "CIVIL",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.638694"
+      "created_timestamp": "2026-08-25T20:58:20.745903"
     },
     {
       "raw_student_id": "STU20240519",
@@ -7421,7 +7421,7 @@
       "department": "Civil Engg",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.638708"
+      "created_timestamp": "2026-08-25T20:58:20.745916"
     },
     {
       "raw_student_id": "STU20210520",
@@ -7434,7 +7434,7 @@
       "department": "mech",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.638720"
+      "created_timestamp": "2026-08-25T20:58:20.745929"
     },
     {
       "raw_student_id": "STU20220521",
@@ -7447,7 +7447,7 @@
       "department": "Mechanical",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.638731"
+      "created_timestamp": "2026-08-25T20:58:20.745940"
     },
     {
       "raw_student_id": "STU20230522",
@@ -7460,7 +7460,7 @@
       "department": "ECE",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.638743"
+      "created_timestamp": "2026-08-25T20:58:20.745954"
     },
     {
       "raw_student_id": "STU20240523",
@@ -7473,7 +7473,7 @@
       "department": "Mechanical",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.638754"
+      "created_timestamp": "2026-08-25T20:58:20.745966"
     },
     {
       "raw_student_id": "STU20210524",
@@ -7486,7 +7486,7 @@
       "department": "Comp Sci",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.638765"
+      "created_timestamp": "2026-08-25T20:58:20.745982"
     },
     {
       "raw_student_id": "STU20220525",
@@ -7499,7 +7499,7 @@
       "department": "Comp Sci",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.638777"
+      "created_timestamp": "2026-08-25T20:58:20.745996"
     },
     {
       "raw_student_id": "STU20230526",
@@ -7512,7 +7512,7 @@
       "department": "cs",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.638789"
+      "created_timestamp": "2026-08-25T20:58:20.746083"
     },
     {
       "raw_student_id": "STU20240527",
@@ -7525,7 +7525,7 @@
       "department": "CIVIL",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.638802"
+      "created_timestamp": "2026-08-25T20:58:20.746148"
     },
     {
       "raw_student_id": "STU20210528",
@@ -7538,7 +7538,7 @@
       "department": "ece dept",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.638814"
+      "created_timestamp": "2026-08-25T20:58:20.746178"
     },
     {
       "raw_student_id": "STU20220529",
@@ -7551,7 +7551,7 @@
       "department": "Computer Science",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.638826"
+      "created_timestamp": "2026-08-25T20:58:20.746201"
     },
     {
       "raw_student_id": "STU20230530",
@@ -7564,7 +7564,7 @@
       "department": "Civil Dept",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.638838"
+      "created_timestamp": "2026-08-25T20:58:20.746616"
     },
     {
       "raw_student_id": "STU20240531",
@@ -7577,7 +7577,7 @@
       "department": "Data Science",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.638850"
+      "created_timestamp": "2026-08-25T20:58:20.746721"
     },
     {
       "raw_student_id": "STU20210532",
@@ -7590,7 +7590,7 @@
       "department": "AIDS",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.638861"
+      "created_timestamp": "2026-08-25T20:58:20.746737"
     },
     {
       "raw_student_id": "STU20220533",
@@ -7603,7 +7603,7 @@
       "department": "Computer Science & Engg",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.638873"
+      "created_timestamp": "2026-08-25T20:58:20.746750"
     },
     {
       "raw_student_id": "STU20230534",
@@ -7616,7 +7616,7 @@
       "department": "Data Science",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.638885"
+      "created_timestamp": "2026-08-25T20:58:20.746762"
     },
     {
       "raw_student_id": "STU20240535",
@@ -7629,7 +7629,7 @@
       "department": "cs",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.638898"
+      "created_timestamp": "2026-08-25T20:58:20.746800"
     },
     {
       "raw_student_id": "STU20210536",
@@ -7642,7 +7642,7 @@
       "department": "Mechanical",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.638910"
+      "created_timestamp": "2026-08-25T20:58:20.746856"
     },
     {
       "raw_student_id": "STU20220537",
@@ -7655,7 +7655,7 @@
       "department": "MECH",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.638922"
+      "created_timestamp": "2026-08-25T20:58:20.746870"
     },
     {
       "raw_student_id": "STU20230538",
@@ -7668,7 +7668,7 @@
       "department": "ece dept",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.638934"
+      "created_timestamp": "2026-08-25T20:58:20.746914"
     },
     {
       "raw_student_id": "STU20240539",
@@ -7681,7 +7681,7 @@
       "department": "Civil",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.639088"
+      "created_timestamp": "2026-08-25T20:58:20.746943"
     },
     {
       "raw_student_id": "STU20210540",
@@ -7694,7 +7694,7 @@
       "department": "CIVIL",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.639102"
+      "created_timestamp": "2026-08-25T20:58:20.746968"
     },
     {
       "raw_student_id": "STU20220541",
@@ -7707,7 +7707,7 @@
       "department": "AI & DS",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.639113"
+      "created_timestamp": "2026-08-25T20:58:20.746982"
     },
     {
       "raw_student_id": "STU20230542",
@@ -7720,7 +7720,7 @@
       "department": "mech",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.639125"
+      "created_timestamp": "2026-08-25T20:58:20.746995"
     },
     {
       "raw_student_id": "STU20240543",
@@ -7733,7 +7733,7 @@
       "department": "Electronics & Comm",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.639137"
+      "created_timestamp": "2026-08-25T20:58:20.747008"
     },
     {
       "raw_student_id": "STU20210544",
@@ -7746,7 +7746,7 @@
       "department": "MECH",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.639149"
+      "created_timestamp": "2026-08-25T20:58:20.747022"
     },
     {
       "raw_student_id": "STU20220545",
@@ -7759,7 +7759,7 @@
       "department": "Data Science",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.639161"
+      "created_timestamp": "2026-08-25T20:58:20.747035"
     },
     {
       "raw_student_id": "STU20230546",
@@ -7772,7 +7772,7 @@
       "department": "Data Science",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.639174"
+      "created_timestamp": "2026-08-25T20:58:20.747047"
     },
     {
       "raw_student_id": "STU20240547",
@@ -7785,7 +7785,7 @@
       "department": "Civil Engg",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.639188"
+      "created_timestamp": "2026-08-25T20:58:20.747060"
     },
     {
       "raw_student_id": "STU20210548",
@@ -7798,7 +7798,7 @@
       "department": "Artificial Intelligence",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.639201"
+      "created_timestamp": "2026-08-25T20:58:20.747073"
     },
     {
       "raw_student_id": "STU20220549",
@@ -7811,7 +7811,7 @@
       "department": "Comp Sci",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.639213"
+      "created_timestamp": "2026-08-25T20:58:20.747090"
     },
     {
       "raw_student_id": "STU20230550",
@@ -7824,7 +7824,7 @@
       "department": "AIDS",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.639225"
+      "created_timestamp": "2026-08-25T20:58:20.747103"
     },
     {
       "raw_student_id": "STU20240551",
@@ -7837,7 +7837,7 @@
       "department": "mech",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.639236"
+      "created_timestamp": "2026-08-25T20:58:20.747115"
     },
     {
       "raw_student_id": "STU20210552",
@@ -7850,7 +7850,7 @@
       "department": "CSE",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.639249"
+      "created_timestamp": "2026-08-25T20:58:20.747130"
     },
     {
       "raw_student_id": "STU20220553",
@@ -7863,7 +7863,7 @@
       "department": "AI & DS",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.639261"
+      "created_timestamp": "2026-08-25T20:58:20.747143"
     },
     {
       "raw_student_id": "STU20230554",
@@ -7876,7 +7876,7 @@
       "department": "Civil",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.639272"
+      "created_timestamp": "2026-08-25T20:58:20.747195"
     },
     {
       "raw_student_id": "STU20240555",
@@ -7889,7 +7889,7 @@
       "department": "CS-ENG",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.639283"
+      "created_timestamp": "2026-08-25T20:58:20.747264"
     },
     {
       "raw_student_id": "STU20210556",
@@ -7902,7 +7902,7 @@
       "department": "Mechanical",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.639297"
+      "created_timestamp": "2026-08-25T20:58:20.747279"
     },
     {
       "raw_student_id": "STU20220557",
@@ -7915,7 +7915,7 @@
       "department": "Computer Science & Engg",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.639309"
+      "created_timestamp": "2026-08-25T20:58:20.747291"
     },
     {
       "raw_student_id": "STU20230558",
@@ -7928,7 +7928,7 @@
       "department": "AIDS",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.639320"
+      "created_timestamp": "2026-08-25T20:58:20.747303"
     },
     {
       "raw_student_id": "STU20240559",
@@ -7941,7 +7941,7 @@
       "department": "Artificial Intelligence",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.639332"
+      "created_timestamp": "2026-08-25T20:58:20.747315"
     },
     {
       "raw_student_id": "STU20210560",
@@ -7954,7 +7954,7 @@
       "department": "AI-DS",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.639343"
+      "created_timestamp": "2026-08-25T20:58:20.747327"
     },
     {
       "raw_student_id": "STU20220561",
@@ -7967,7 +7967,7 @@
       "department": "Artificial Intelligence",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.639355"
+      "created_timestamp": "2026-08-25T20:58:20.747340"
     },
     {
       "raw_student_id": "STU20230562",
@@ -7980,7 +7980,7 @@
       "department": "AI & DS",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.639367"
+      "created_timestamp": "2026-08-25T20:58:20.747352"
     },
     {
       "raw_student_id": "STU20240563",
@@ -7993,7 +7993,7 @@
       "department": "Electronics",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.639378"
+      "created_timestamp": "2026-08-25T20:58:20.747365"
     },
     {
       "raw_student_id": "STU20210564",
@@ -8006,7 +8006,7 @@
       "department": "Civil Dept",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.639390"
+      "created_timestamp": "2026-08-25T20:58:20.747377"
     },
     {
       "raw_student_id": "STU20220565",
@@ -8019,7 +8019,7 @@
       "department": "ECE",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.639401"
+      "created_timestamp": "2026-08-25T20:58:20.747392"
     },
     {
       "raw_student_id": "STU20230566",
@@ -8032,7 +8032,7 @@
       "department": "MECH",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.639413"
+      "created_timestamp": "2026-08-25T20:58:20.747405"
     },
     {
       "raw_student_id": "STU20240567",
@@ -8045,7 +8045,7 @@
       "department": "Electronics & Comm",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.639425"
+      "created_timestamp": "2026-08-25T20:58:20.747417"
     },
     {
       "raw_student_id": "STU20210568",
@@ -8058,7 +8058,7 @@
       "department": "Mechanical Engg",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.639438"
+      "created_timestamp": "2026-08-25T20:58:20.747430"
     },
     {
       "raw_student_id": "STU20220569",
@@ -8071,7 +8071,7 @@
       "department": "E&CE",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.639450"
+      "created_timestamp": "2026-08-25T20:58:20.747441"
     },
     {
       "raw_student_id": "STU20230570",
@@ -8084,7 +8084,7 @@
       "department": "Civil Dept",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.639462"
+      "created_timestamp": "2026-08-25T20:58:20.747482"
     },
     {
       "raw_student_id": "STU20240571",
@@ -8097,7 +8097,7 @@
       "department": "AI & DS",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.639473"
+      "created_timestamp": "2026-08-25T20:58:20.747520"
     },
     {
       "raw_student_id": "STU20210572",
@@ -8110,7 +8110,7 @@
       "department": "Mech Dept",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.639484"
+      "created_timestamp": "2026-08-25T20:58:20.747534"
     },
     {
       "raw_student_id": "STU20220573",
@@ -8123,7 +8123,7 @@
       "department": "Mechanical Engg",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.639496"
+      "created_timestamp": "2026-08-25T20:58:20.747547"
     },
     {
       "raw_student_id": "STU20230574",
@@ -8136,7 +8136,7 @@
       "department": "Comp Sci",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.639507"
+      "created_timestamp": "2026-08-25T20:58:20.747560"
     },
     {
       "raw_student_id": "STU20240575",
@@ -8149,7 +8149,7 @@
       "department": "ECE",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.639522"
+      "created_timestamp": "2026-08-25T20:58:20.747573"
     },
     {
       "raw_student_id": "STU20210576",
@@ -8162,7 +8162,7 @@
       "department": "Mechanical Engg",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.639534"
+      "created_timestamp": "2026-08-25T20:58:20.747586"
     },
     {
       "raw_student_id": "STU20220577",
@@ -8175,7 +8175,7 @@
       "department": "mech",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T20:54:47.639545"
+      "created_timestamp": "2026-08-25T20:58:20.747598"
     },
     {
       "raw_student_id": "STU20230578",
@@ -8188,7 +8188,7 @@
       "department": "Electronics",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.639556"
+      "created_timestamp": "2026-08-25T20:58:20.747610"
     },
     {
       "raw_student_id": "STU20240579",
@@ -8201,7 +8201,7 @@
       "department": "AIDS",
       "admission_batch": 2022,
       "current_sem": 5,
-      "created_timestamp": "2026-08-25T20:54:47.639568"
+      "created_timestamp": "2026-08-25T20:58:20.747626"
     },
     {
       "raw_student_id": "STU20210580",
@@ -8214,7 +8214,7 @@
       "department": "Mechanical",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.639581"
+      "created_timestamp": "2026-08-25T20:58:20.747640"
     },
     {
       "raw_student_id": "STU20220581",
@@ -8227,7 +8227,7 @@
       "department": "cs",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T20:54:47.639592"
+      "created_timestamp": "2026-08-25T20:58:20.747652"
     },
     {
       "raw_student_id": "STU20230582",
@@ -8240,7 +8240,7 @@
       "department": "Mechanical Engg",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.639604"
+      "created_timestamp": "2026-08-25T20:58:20.747665"
     },
     {
       "raw_student_id": "STU20240583",
@@ -8253,7 +8253,7 @@
       "department": "Electronics & Comm",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.639621"
+      "created_timestamp": "2026-08-25T20:58:20.747677"
     },
     {
       "raw_student_id": "STU20210584",
@@ -8266,7 +8266,7 @@
       "department": "mech",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.639634"
+      "created_timestamp": "2026-08-25T20:58:20.747699"
     },
     {
       "raw_student_id": "STU20220585",
@@ -8279,7 +8279,7 @@
       "department": "Electronics",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.639645"
+      "created_timestamp": "2026-08-25T20:58:20.747711"
     },
     {
       "raw_student_id": "STU20230586",
@@ -8292,7 +8292,7 @@
       "department": "ece dept",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.639657"
+      "created_timestamp": "2026-08-25T20:58:20.747723"
     },
     {
       "raw_student_id": "STU20240587",
@@ -8305,7 +8305,7 @@
       "department": "CS-ENG",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.639668"
+      "created_timestamp": "2026-08-25T20:58:20.747736"
     },
     {
       "raw_student_id": "STU20210588",
@@ -8318,7 +8318,7 @@
       "department": "Mechanical",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.639680"
+      "created_timestamp": "2026-08-25T20:58:20.747748"
     },
     {
       "raw_student_id": "STU20220589",
@@ -8331,7 +8331,7 @@
       "department": "CIVIL",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.639693"
+      "created_timestamp": "2026-08-25T20:58:20.747761"
     },
     {
       "raw_student_id": "STU20230590",
@@ -8344,7 +8344,7 @@
       "department": "Electronics",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.639704"
+      "created_timestamp": "2026-08-25T20:58:20.747773"
     },
     {
       "raw_student_id": "STU20240591",
@@ -8357,7 +8357,7 @@
       "department": "E&CE",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.639715"
+      "created_timestamp": "2026-08-25T20:58:20.747785"
     },
     {
       "raw_student_id": "STU20210592",
@@ -8370,7 +8370,7 @@
       "department": "Computer Science & Engg",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.639727"
+      "created_timestamp": "2026-08-25T20:58:20.747797"
     },
     {
       "raw_student_id": "STU20220593",
@@ -8383,7 +8383,7 @@
       "department": "AI & DS",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.639738"
+      "created_timestamp": "2026-08-25T20:58:20.747810"
     },
     {
       "raw_student_id": "STU20230594",
@@ -8396,7 +8396,7 @@
       "department": "AIDS",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-25T20:54:47.639750"
+      "created_timestamp": "2026-08-25T20:58:20.747824"
     },
     {
       "raw_student_id": "STU20240595",
@@ -8409,7 +8409,7 @@
       "department": "ECE",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-25T20:54:47.639763"
+      "created_timestamp": "2026-08-25T20:58:20.747837"
     },
     {
       "raw_student_id": "STU20210596",
@@ -8422,7 +8422,7 @@
       "department": "Mechanical Engg",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T20:54:47.639775"
+      "created_timestamp": "2026-08-25T20:58:20.747849"
     },
     {
       "raw_student_id": "STU20220597",
@@ -8435,7 +8435,7 @@
       "department": "CIVIL",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T20:54:47.639787"
+      "created_timestamp": "2026-08-25T20:58:20.747861"
     },
     {
       "raw_student_id": "STU20230598",
@@ -8448,7 +8448,7 @@
       "department": "mech",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.639798"
+      "created_timestamp": "2026-08-25T20:58:20.747873"
     },
     {
       "raw_student_id": "STU20240599",
@@ -8461,7 +8461,7 @@
       "department": "AI & DS",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.639809"
+      "created_timestamp": "2026-08-25T20:58:20.747884"
     },
     {
       "raw_student_id": "STU20210600",
@@ -8474,7 +8474,7 @@
       "department": "Civil",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-25T20:54:47.639821"
+      "created_timestamp": "2026-08-25T20:58:20.747896"
     },
     {
       "raw_student_id": "STU20240435",
@@ -8487,7 +8487,7 @@
       "department": "CIVIL",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-26T03:15:47.639829"
+      "created_timestamp": "2026-08-26T03:19:20.747909"
     },
     {
       "raw_student_id": "STU20210056",
@@ -8500,7 +8500,7 @@
       "department": "mech",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-26T08:53:47.639838"
+      "created_timestamp": "2026-08-26T08:57:20.747922"
     },
     {
       "raw_student_id": "STU20220109",
@@ -8513,7 +8513,7 @@
       "department": "Comp Sci",
       "admission_batch": 2021,
       "current_sem": 7,
-      "created_timestamp": "2026-08-26T08:13:47.639842"
+      "created_timestamp": "2026-08-26T08:17:20.747927"
     },
     {
       "raw_student_id": "STU20210596",
@@ -8526,7 +8526,7 @@
       "department": "Mechanical Engg",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T22:10:47.639846"
+      "created_timestamp": "2026-08-25T22:14:20.747931"
     },
     {
       "raw_student_id": "STU20220489",
@@ -8539,7 +8539,7 @@
       "department": "mech",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-26T11:12:47.639849"
+      "created_timestamp": "2026-08-26T11:16:20.747934"
     },
     {
       "raw_student_id": "STU20230162",
@@ -8552,7 +8552,7 @@
       "department": "CSE",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-25T21:25:47.639852"
+      "created_timestamp": "2026-08-25T21:29:20.747937"
     },
     {
       "raw_student_id": "STU20240151",
@@ -8565,7 +8565,7 @@
       "department": "AIDS",
       "admission_batch": 2022,
       "current_sem": 6,
-      "created_timestamp": "2026-08-26T03:09:47.639855"
+      "created_timestamp": "2026-08-26T03:13:20.747940"
     },
     {
       "raw_student_id": "STU20220145",
@@ -8578,7 +8578,7 @@
       "department": "Mech Dept",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-25T22:15:47.639857"
+      "created_timestamp": "2026-08-25T22:19:20.747943"
     },
     {
       "raw_student_id": "STU20240251",
@@ -8591,7 +8591,7 @@
       "department": "Civil Dept",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-25T22:13:47.639860"
+      "created_timestamp": "2026-08-25T22:17:20.747946"
     },
     {
       "raw_student_id": "STU20220013",
@@ -8604,7 +8604,7 @@
       "department": "Computer Science",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-26T06:37:47.639862"
+      "created_timestamp": "2026-08-26T06:41:20.747950"
     },
     {
       "raw_student_id": "STU20240427",
@@ -8617,7 +8617,7 @@
       "department": "CIVIL",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-25T23:28:47.639865"
+      "created_timestamp": "2026-08-25T23:32:20.747953"
     },
     {
       "raw_student_id": "STU20240187",
@@ -8630,7 +8630,7 @@
       "department": "Mechanical Engg",
       "admission_batch": 2024,
       "current_sem": 1,
-      "created_timestamp": "2026-08-26T04:56:47.639868"
+      "created_timestamp": "2026-08-26T05:00:20.747955"
     },
     {
       "raw_student_id": "STU20210144",
@@ -8643,7 +8643,7 @@
       "department": "Computer Science & Engg",
       "admission_batch": 2023,
       "current_sem": 3,
-      "created_timestamp": "2026-08-26T09:41:47.639870"
+      "created_timestamp": "2026-08-26T09:45:20.747958"
     },
     {
       "raw_student_id": "STU20220541",
@@ -8656,7 +8656,7 @@
       "department": "AI & DS",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-26T08:50:47.639873"
+      "created_timestamp": "2026-08-26T08:54:20.747961"
     },
     {
       "raw_student_id": "STU20240307",
@@ -8669,7 +8669,7 @@
       "department": "mech",
       "admission_batch": 2023,
       "current_sem": 4,
-      "created_timestamp": "2026-08-26T04:56:47.639878"
+      "created_timestamp": "2026-08-26T05:00:20.747964"
     },
     {
       "raw_student_id": "STU20230422",
@@ -8682,7 +8682,7 @@
       "department": "Civil",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-26T09:14:47.639881"
+      "created_timestamp": "2026-08-26T09:18:20.747967"
     },
     {
       "raw_student_id": "STU20230346",
@@ -8695,7 +8695,7 @@
       "department": "Artificial Intelligence",
       "admission_batch": 2024,
       "current_sem": 2,
-      "created_timestamp": "2026-08-26T04:29:47.639884"
+      "created_timestamp": "2026-08-26T04:33:20.747970"
     },
     {
       "raw_student_id": "STU20230014",
@@ -8708,7 +8708,7 @@
       "department": "AI-DS",
       "admission_batch": 2021,
       "current_sem": 8,
-      "created_timestamp": "2026-08-26T01:48:47.639886"
+      "created_timestamp": "2026-08-26T01:52:20.747973"
     }
   ],
   "admissions": [
