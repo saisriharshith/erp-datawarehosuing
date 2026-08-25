@@ -6,11 +6,14 @@ import { fetchAPI } from '../services/api';
 export default function FacultyPortal() {
   const { user } = useAuth();
   const { addToast } = useToast();
-  const [data, setData] = useState(null);
+  const isDean = user?.role === 'ADMIN';
+
+  const [facultySummary, setFacultySummary] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [selectedFacultyId, setSelectedFacultyId] = useState(user?.faculty_id || 'FAC101');
+  const [selectedCourseIndex, setSelectedCourseIndex] = useState(0);
+  const [selectedStudentForWarning, setSelectedStudentForWarning] = useState(null);
   const [deptFilter, setDeptFilter] = useState(user?.department_id || '');
-  const [searchFaculty, setSearchFaculty] = useState('');
-  const [selectedFacultyModal, setSelectedFacultyModal] = useState(null);
 
   const [mentorshipLogs, setMentorshipLogs] = useState(() => {
     try {
@@ -21,6 +24,7 @@ export default function FacultyPortal() {
           faculty_name: 'Dr. R. Ramanujan',
           student_id: 'STU20210016',
           student_name: 'Rohan Verma',
+          course_code: 'CS501',
           date: '2026-08-24',
           topic: 'Attendance Shortage & Lab Make-up',
           action: 'Agreed to attend 4 Saturday make-up laboratory sessions.',
@@ -31,9 +35,10 @@ export default function FacultyPortal() {
           faculty_name: 'Dr. Meenakshi Sundaram',
           student_id: 'STU20220017',
           student_name: 'Priya Patel',
+          course_code: 'EC301',
           date: '2026-08-22',
-          topic: 'Remedial Tutorial for Database Systems',
-          action: 'Assigned peer tutor Karthik Nair for unit test revision.',
+          topic: 'Remedial Tutorial for Signals & Systems',
+          action: 'Assigned peer tutor for unit test revision.',
           status: 'RESOLVED'
         }
       ];
@@ -42,7 +47,7 @@ export default function FacultyPortal() {
     }
   });
 
-  const [newLog, setNewLog] = useState({ student_id: '', student_name: '', topic: '', action: '' });
+  const [newLog, setNewLog] = useState({ student_id: '', student_name: '', course_code: '', topic: '', action: '' });
   const [showLogModal, setShowLogModal] = useState(false);
 
   useEffect(() => {
@@ -51,7 +56,14 @@ export default function FacultyPortal() {
     if (deptFilter) url += `department_id=${deptFilter}&`;
 
     fetchAPI(url)
-      .then(res => setData(res))
+      .then(res => {
+        setFacultySummary(res);
+        // Default to first faculty if current ID is not in filtered list
+        const list = res.faculty_list || [];
+        if (list.length > 0 && (!selectedFacultyId || !list.some(f => f.faculty_id === selectedFacultyId))) {
+          setSelectedFacultyId(list[0].faculty_id);
+        }
+      })
       .catch(err => {
         console.error(err);
         addToast('Failed to load faculty records', 'danger');
@@ -59,18 +71,25 @@ export default function FacultyPortal() {
       .finally(() => setLoading(false));
   }, [deptFilter]);
 
+  const facultyList = facultySummary?.faculty_list || [];
+  const currentFaculty = facultyList.find(f => f.faculty_id === selectedFacultyId) || facultyList[0] || {};
+  const handledCourses = currentFaculty.handled_courses || [];
+  const activeCourse = handledCourses[selectedCourseIndex] || handledCourses[0] || {};
+  const enrolledStudents = activeCourse.students || [];
+
   const handleSaveLog = (e) => {
     e.preventDefault();
     if (!newLog.student_id || !newLog.topic) {
-      addToast('Please enter student ID and discussion topic', 'warning');
+      addToast('Please fill in required student ID and topic', 'warning');
       return;
     }
 
     const entry = {
       id: Date.now(),
-      faculty_name: user?.name || 'Department Faculty',
+      faculty_name: currentFaculty.faculty_name || 'Faculty Member',
       student_id: newLog.student_id,
       student_name: newLog.student_name || 'Advisee Student',
+      course_code: newLog.course_code || activeCourse.course_code || 'GEN101',
       date: new Date().toISOString().split('T')[0],
       topic: newLog.topic,
       action: newLog.action || 'Counseling notes recorded.',
@@ -81,70 +100,106 @@ export default function FacultyPortal() {
     setMentorshipLogs(updated);
     localStorage.setItem('FACULTY_MENTORSHIP_LOGS', JSON.stringify(updated));
     addToast(`Counseling note recorded for ${entry.student_name}`, 'success');
-    setNewLog({ student_id: '', student_name: '', topic: '', action: '' });
+    setNewLog({ student_id: '', student_name: '', course_code: '', topic: '', action: '' });
     setShowLogModal(false);
   };
 
-  if (loading && !data) {
+  const handleDispatchWarning = (stu) => {
+    addToast(`Official Attendance Notice dispatched to ${stu.student_name} (${stu.email}) for ${activeCourse.course_code}`, 'success');
+    setSelectedStudentForWarning(null);
+  };
+
+  if (loading && !facultySummary) {
     return (
       <div className="p-4 text-center py-5">
         <div className="spinner-border text-primary" role="status"></div>
-        <p className="mt-2 text-muted small">Loading Faculty & Academic Leadership analytics...</p>
+        <p className="mt-2 text-muted small">Loading Faculty Courses & Class Roster...</p>
       </div>
     );
   }
 
-  const facList = data?.faculty_list || [];
-  const filteredFaculty = facList.filter(f =>
-    f.faculty_name.toLowerCase().includes(searchFaculty.toLowerCase()) ||
-    f.designation.toLowerCase().includes(searchFaculty.toLowerCase()) ||
-    f.faculty_id.toLowerCase().includes(searchFaculty.toLowerCase())
-  );
-
   return (
     <div className="p-3 p-md-4">
-      {/* Faculty Command Header Banner */}
+      {/* Header Banner */}
       <div className="p-4 rounded-4 text-white mb-4 shadow-sm" style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)' }}>
         <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
           <div>
-            <span className="badge bg-info text-dark mb-2 fw-semibold">Faculty & Academic Leadership Hub</span>
-            <h3 className="fw-bold mb-1">
-              {user?.role === 'ADMIN' ? 'University Faculty & Teaching Staff Directorate' : `Welcome, ${user?.name || 'Faculty Member'}`}
-            </h3>
+            <span className="badge bg-info text-dark mb-2 fw-semibold">Faculty Teaching & Course Directorate</span>
+            <h3 className="fw-bold mb-1">{currentFaculty.faculty_name || 'Faculty Teaching Hub'}</h3>
             <p className="mb-0 text-white-50 small">
-              Department: <span className="text-white">{user?.department_name || 'All University Departments'}</span> | Total Active Faculty: <span className="text-white">{data?.total_faculty || 30}</span>
+              Department: <span className="text-white">{currentFaculty.department_name}</span> | Designation: <span className="text-white">{currentFaculty.designation}</span> | ID: <span className="text-white font-mono">{currentFaculty.faculty_id}</span>
             </p>
           </div>
 
           <div className="d-flex gap-2">
             <button className="btn btn-light btn-sm fw-semibold shadow-sm" onClick={() => setShowLogModal(true)}>
-              <i className="bi bi-journal-plus text-primary me-1"></i> Log Mentorship Note
+              <i className="bi bi-journal-plus text-primary me-1"></i> Log Advisee Session
             </button>
           </div>
         </div>
       </div>
 
-      {/* 4 Faculty Summary KPI Cards */}
+      {/* Dean Faculty Switcher Dropdown (If logged in as Dean/Admin) */}
+      {isDean && (
+        <div className="metric-card mb-4 bg-white border-primary shadow-sm">
+          <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+            <div>
+              <span className="badge bg-primary text-white mb-1"><i className="bi bi-shield-lock-fill me-1"></i> Dean Faculty Inspector</span>
+              <h6 className="fw-bold mb-0">Switch Faculty Member to Inspect Teaching Courses & Class Rosters</h6>
+            </div>
+
+            <div className="d-flex gap-2">
+              <select
+                className="form-select form-select-sm"
+                value={selectedFacultyId}
+                onChange={(e) => {
+                  setSelectedFacultyId(e.target.value);
+                  setSelectedCourseIndex(0);
+                }}
+              >
+                {facultyList.map(f => (
+                  <option key={f.faculty_id} value={f.faculty_id}>
+                    {f.faculty_name} ({f.department_name} - {f.designation})
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 4 Core Faculty Overview Cards */}
       <div className="row g-3 mb-4">
         <div className="col-12 col-sm-6 col-lg-3">
           <div className="metric-card">
             <div className="d-flex justify-content-between text-muted small mb-1">
-              <span>Faculty Biometric Attendance</span>
+              <span>Biometric Attendance</span>
               <i className="bi bi-fingerprint text-success"></i>
             </div>
-            <h3 className="fw-bold mb-1 text-success">{data?.average_faculty_attendance || 95.8}%</h3>
-            <span className="badge bg-light text-success border">Biometric Punctuality</span>
+            <h3 className="fw-bold mb-1 text-success">{currentFaculty.attendance_percentage}%</h3>
+            <span className="badge bg-light text-success border">Status: {currentFaculty.biometric_status}</span>
           </div>
         </div>
 
         <div className="col-12 col-sm-6 col-lg-3">
           <div className="metric-card">
             <div className="d-flex justify-content-between text-muted small mb-1">
-              <span>Avg Teaching Workload</span>
-              <i className="bi bi-mortarboard-fill text-primary"></i>
+              <span>Weekly Teaching Load</span>
+              <i className="bi bi-clock-history text-primary"></i>
             </div>
-            <h3 className="fw-bold mb-1 text-primary">{data?.average_weekly_workload_hours || 16.0} hrs/wk</h3>
-            <span className="badge bg-light text-muted border">Lectures & Labs</span>
+            <h3 className="fw-bold mb-1 text-primary">{currentFaculty.workload_hours_per_week} hrs/wk</h3>
+            <span className="badge bg-light text-primary border">{handledCourses.length} Courses Assigned</span>
+          </div>
+        </div>
+
+        <div className="col-12 col-sm-6 col-lg-3">
+          <div className="metric-card">
+            <div className="d-flex justify-content-between text-muted small mb-1">
+              <span>Assigned Advisees</span>
+              <i className="bi bi-people-fill text-info"></i>
+            </div>
+            <h3 className="fw-bold mb-1 text-info">{currentFaculty.advisees_count} Students</h3>
+            <span className="badge bg-light text-info border">Mentorship Directorate</span>
           </div>
         </div>
 
@@ -152,205 +207,250 @@ export default function FacultyPortal() {
           <div className="metric-card">
             <div className="d-flex justify-content-between text-muted small mb-1">
               <span>Research Publications</span>
-              <i className="bi bi-journal-bookmark-fill text-info"></i>
+              <i className="bi bi-journal-check text-warning"></i>
             </div>
-            <h3 className="fw-bold mb-1 text-info">{data?.total_research_publications || 128}</h3>
-            <span className="badge bg-light text-info border">Scopus / IEEE Indexed</span>
-          </div>
-        </div>
-
-        <div className="col-12 col-sm-6 col-lg-3">
-          <div className="metric-card">
-            <div className="d-flex justify-content-between text-muted small mb-1">
-              <span>Staff on Approved Leave</span>
-              <i className="bi bi-calendar-event text-warning"></i>
-            </div>
-            <h3 className="fw-bold mb-1 text-warning">{data?.faculty_on_leave_count || 2}</h3>
-            <span className="badge bg-light text-muted border">Substitute Covered</span>
+            <h3 className="fw-bold mb-1 text-dark">{currentFaculty.research_publications} Papers</h3>
+            <span className="badge bg-light text-muted border">Experience: {currentFaculty.experience_years} Years</span>
           </div>
         </div>
       </div>
 
-      {/* Filter & Search Bar */}
+      {/* Courses Handled by this Faculty */}
       <div className="metric-card mb-4">
-        <div className="row g-2 align-items-center">
-          <div className="col-12 col-md-6">
-            <div className="input-group input-group-sm">
-              <span className="input-group-text bg-light"><i className="bi bi-search"></i></span>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Search faculty by name, designation, or ID..."
-                value={searchFaculty}
-                onChange={(e) => setSearchFaculty(e.target.value)}
-              />
-            </div>
+        <div className="d-flex align-items-center justify-content-between mb-3">
+          <div>
+            <h5 className="fw-bold mb-0"><i className="bi bi-book-half text-primary me-2"></i> Assigned Courses & Teaching Sections</h5>
+            <span className="text-muted small">Select a course to view classroom schedule and enrolled student roster.</span>
           </div>
-
-          <div className="col-12 col-md-6">
-            <select className="form-select form-select-sm" value={deptFilter} onChange={(e) => setDeptFilter(e.target.value)}>
-              <option value="">All 5 Academic Departments</option>
-              <option value="DEPT_CSE">Computer Science & Engineering</option>
-              <option value="DEPT_ECE">Electronics & Communication</option>
-              <option value="DEPT_MECH">Mechanical Engineering</option>
-              <option value="DEPT_CIVIL">Civil Engineering</option>
-              <option value="DEPT_AIDS">Artificial Intelligence & Data Science</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <div className="row g-3 mb-4">
-        {/* Left: Department Faculty Roster Table */}
-        <div className="col-12 col-lg-8">
-          <div className="metric-card">
-            <div className="d-flex align-items-center justify-content-between mb-3">
-              <h6 className="fw-bold mb-0"><i className="bi bi-person-video3 text-primary me-1"></i> Faculty Teaching Staff Roster (dim_faculty)</h6>
-              <span className="badge bg-light text-dark border">{filteredFaculty.length} Professors</span>
-            </div>
-
-            <div className="table-responsive">
-              <table className="table table-hover align-middle mb-0 small">
-                <thead className="table-light">
-                  <tr>
-                    <th>Faculty ID</th>
-                    <th>Name</th>
-                    <th>Department</th>
-                    <th>Designation</th>
-                    <th>Attendance</th>
-                    <th>Workload</th>
-                    <th>Research</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredFaculty.map(f => (
-                    <tr key={f.faculty_id} style={{ cursor: 'pointer' }} onClick={() => setSelectedFacultyModal(f)}>
-                      <td className="font-mono fw-bold text-primary">{f.faculty_id}</td>
-                      <td>
-                        <div className="fw-semibold text-dark">{f.faculty_name}</div>
-                        <div className="text-muted" style={{ fontSize: '0.72rem' }}>{f.email}</div>
-                      </td>
-                      <td><span className="badge bg-light text-dark border">{f.department_name}</span></td>
-                      <td>{f.designation}</td>
-                      <td>
-                        <span className={`badge ${f.attendance_percentage >= 94 ? 'bg-light text-success border' : 'bg-light text-warning border'}`}>
-                          {f.attendance_percentage}% ({f.biometric_status})
-                        </span>
-                      </td>
-                      <td><span className="badge bg-light text-primary border">{f.workload_hours_per_week} hrs/wk</span></td>
-                      <td><span className="badge bg-light text-info text-dark border">{f.research_publications} papers</span></td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
+          <span className="badge bg-light text-dark border">{handledCourses.length} Assigned Subjects</span>
         </div>
 
-        {/* Right: Faculty Mentorship & Counseling Activity Log */}
-        <div className="col-12 col-lg-4">
-          <div className="metric-card">
-            <div className="d-flex align-items-center justify-content-between mb-3">
-              <h6 className="fw-bold mb-0"><i className="bi bi-journal-text text-primary me-1"></i> Advisee Counseling Sessions</h6>
-              <button className="btn btn-sm btn-outline-primary py-0 px-2" onClick={() => setShowLogModal(true)}>
-                + New Log
-              </button>
-            </div>
-
-            <div className="list-group list-group-flush small">
-              {mentorshipLogs.slice(0, 5).map(log => (
-                <div key={log.id} className="list-group-item px-0 bg-transparent py-2 border-bottom">
-                  <div className="d-flex justify-content-between align-items-center mb-1">
-                    <span className="fw-bold text-dark">{log.student_name} (<span className="font-mono">{log.student_id}</span>)</span>
-                    <span className="badge bg-light text-muted border">{log.date}</span>
+        <div className="row g-3">
+          {handledCourses.map((course, idx) => {
+            const isSelected = selectedCourseIndex === idx;
+            return (
+              <div key={course.course_code} className="col-12 col-md-6">
+                <div
+                  className={`p-3 rounded-4 border transition-all ${
+                    isSelected
+                      ? 'border-primary bg-white shadow-sm ring-2'
+                      : 'bg-light hover-shadow'
+                  }`}
+                  style={{
+                    cursor: 'pointer',
+                    borderColor: isSelected ? '#4f46e5' : '#e2e8f0',
+                    borderWidth: isSelected ? '2px' : '1px'
+                  }}
+                  onClick={() => setSelectedCourseIndex(idx)}
+                >
+                  <div className="d-flex justify-content-between align-items-start mb-2">
+                    <div>
+                      <span className="badge bg-primary text-white font-mono me-2">{course.course_code}</span>
+                      <span className="badge bg-light text-dark border">{course.section}</span>
+                    </div>
+                    <span className="badge bg-light text-success border">Sem {course.semester} ({course.credits} Credits)</span>
                   </div>
-                  <div className="text-muted small"><strong>Counselor:</strong> {log.faculty_name}</div>
-                  <div className="text-muted small"><strong>Topic:</strong> {log.topic}</div>
-                  <div className="text-muted small"><strong>Action:</strong> {log.action}</div>
+
+                  <h6 className="fw-bold mb-1 text-dark">{course.course_title}</h6>
+
+                  <div className="small text-muted mb-2">
+                    <div><i className="bi bi-calendar-event me-1 text-primary"></i> <strong>Schedule:</strong> {course.class_schedule}</div>
+                    <div><i className="bi bi-geo-alt me-1 text-danger"></i> <strong>Location:</strong> {course.classroom}</div>
+                  </div>
+
+                  <div className="d-flex justify-content-between align-items-center pt-2 border-top small">
+                    <span>Enrolled: <strong>{course.total_enrolled} Students</strong></span>
+                    <span>Avg Att: <strong className="text-success">{course.average_attendance}%</strong></span>
+                    {course.shortage_alerts_count > 0 && (
+                      <span className="badge badge-risk-high">{course.shortage_alerts_count} Shortages</span>
+                    )}
+                  </div>
                 </div>
-              ))}
-            </div>
-          </div>
+              </div>
+            );
+          })}
         </div>
       </div>
 
-      {/* Single Faculty Profile Modal */}
-      {selectedFacultyModal && (
+      {/* Enrolled Students Roster for Active Course */}
+      <div className="metric-card mb-4">
+        <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3 gap-2">
+          <div>
+            <h5 className="fw-bold mb-0">
+              <i className="bi bi-people text-primary me-2"></i>
+              Enrolled Student Roster: <span className="text-primary font-mono">{activeCourse.course_code}</span> - {activeCourse.course_title} ({activeCourse.section})
+            </h5>
+            <span className="text-muted small">
+              Managing {enrolledStudents.length} enrolled students | Conducted: {activeCourse.total_classes_conducted} lectures
+            </span>
+          </div>
+
+          <div className="badge bg-light text-dark border p-2">
+            Classroom: {activeCourse.classroom}
+          </div>
+        </div>
+
+        <div className="table-responsive">
+          <table className="table table-hover align-middle mb-0 small">
+            <thead className="table-light">
+              <tr>
+                <th>Student ID</th>
+                <th>Student Name & Email</th>
+                <th>Section</th>
+                <th>Lectures Attended</th>
+                <th>Course Attendance</th>
+                <th>Internal Marks (30)</th>
+                <th>Grade</th>
+                <th>Risk Level</th>
+                <th className="text-end">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {enrolledStudents.map(s => (
+                <tr key={s.student_id}>
+                  <td className="font-mono fw-bold text-primary">{s.student_id}</td>
+                  <td>
+                    <div className="fw-semibold text-dark">{s.student_name}</div>
+                    <div className="text-muted" style={{ fontSize: '0.72rem' }}>{s.email}</div>
+                  </td>
+                  <td><span className="badge bg-light text-dark border">{s.section}</span></td>
+                  <td>{s.classes_attended} / {s.total_classes}</td>
+                  <td>
+                    <div className="d-flex align-items-center gap-2">
+                      <div className="progress flex-grow-1" style={{ height: '6px', minWidth: '70px' }}>
+                        <div
+                          className={`progress-bar ${s.attendance_percentage >= 75 ? 'bg-success' : 'bg-danger'}`}
+                          style={{ width: `${Math.min(100, s.attendance_percentage)}%` }}
+                        ></div>
+                      </div>
+                      <span className={`fw-bold ${s.attendance_percentage >= 75 ? 'text-success' : 'text-danger'}`}>
+                        {s.attendance_percentage}%
+                      </span>
+                    </div>
+                  </td>
+                  <td>
+                    <strong className="font-mono">{s.internal_marks}</strong> / 30
+                  </td>
+                  <td><span className="badge bg-light text-dark border font-mono">{s.grade_letter}</span></td>
+                  <td>
+                    <span className={`badge ${s.risk_level === 'HIGH' ? 'badge-risk-high' : 'badge-risk-low'}`}>
+                      {s.risk_level}
+                    </span>
+                  </td>
+                  <td className="text-end">
+                    {s.is_shortage ? (
+                      <button
+                        className="btn btn-sm btn-outline-danger py-1 px-2 shadow-sm rounded-pill"
+                        style={{ fontSize: '0.72rem' }}
+                        onClick={() => setSelectedStudentForWarning(s)}
+                      >
+                        <i className="bi bi-exclamation-triangle me-1"></i> Send Warning
+                      </button>
+                    ) : (
+                      <button
+                        className="btn btn-sm btn-outline-primary py-1 px-2 rounded-pill"
+                        style={{ fontSize: '0.72rem' }}
+                        onClick={() => {
+                          setNewLog({
+                            student_id: s.student_id,
+                            student_name: s.student_name,
+                            course_code: activeCourse.course_code,
+                            topic: `Academic Progress in ${activeCourse.course_code}`,
+                            action: ''
+                          });
+                          setShowLogModal(true);
+                        }}
+                      >
+                        <i className="bi bi-pencil-square me-1"></i> Log Note
+                      </button>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Faculty Mentorship Counseling Log */}
+      <div className="metric-card">
+        <div className="d-flex align-items-center justify-content-between mb-3">
+          <div>
+            <h6 className="fw-bold mb-0"><i className="bi bi-journal-text text-primary me-2"></i> Advisee Mentorship & Counseling History</h6>
+            <span className="text-muted small">Recorded counseling sessions across assigned advisees.</span>
+          </div>
+          <button className="btn btn-sm btn-outline-primary" onClick={() => setShowLogModal(true)}>
+            + Log New Session
+          </button>
+        </div>
+
+        <div className="list-group list-group-flush small">
+          {mentorshipLogs.map(log => (
+            <div key={log.id} className="list-group-item px-0 bg-transparent py-2 border-bottom">
+              <div className="d-flex justify-content-between align-items-center mb-1">
+                <span className="fw-bold text-dark">
+                  {log.student_name} (<span className="font-mono">{log.student_id}</span>) - <span className="badge bg-light text-primary border">{log.course_code || 'CS501'}</span>
+                </span>
+                <span className="badge bg-light text-muted border">{log.date}</span>
+              </div>
+              <div className="text-muted small"><strong>Counselor:</strong> {log.faculty_name}</div>
+              <div className="text-muted small"><strong>Discussion:</strong> {log.topic}</div>
+              <div className="text-muted small"><strong>Agreed Action Plan:</strong> {log.action}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Warning Notice Dispatch Modal */}
+      {selectedStudentForWarning && (
         <div className="modal show d-block" style={{ backgroundColor: 'rgba(15,23,42,0.65)', backdropFilter: 'blur(6px)' }} tabIndex="-1">
           <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
-              <div className="modal-header bg-dark text-white p-3 px-4">
-                <h5 className="modal-title fs-6 fw-bold"><i className="bi bi-person-badge me-2"></i> Faculty Profile: {selectedFacultyModal.faculty_name}</h5>
-                <button type="button" className="btn-close btn-close-white" onClick={() => setSelectedFacultyModal(null)}></button>
+              <div className="modal-header bg-danger text-white p-3 px-4">
+                <h5 className="modal-title fs-6"><i className="bi bi-exclamation-triangle-fill me-2"></i> Official Course Attendance Warning Notice</h5>
+                <button type="button" className="btn-close btn-close-white" onClick={() => setSelectedStudentForWarning(null)}></button>
               </div>
               <div className="modal-body p-4 bg-light">
-                <div className="bg-white p-3 rounded-3 border mb-3">
-                  <h5 className="fw-bold mb-1">{selectedFacultyModal.faculty_name}</h5>
-                  <div className="text-muted small mb-2">{selectedFacultyModal.designation} - {selectedFacultyModal.department_name}</div>
-                  <div className="text-muted small font-mono">{selectedFacultyModal.email} | ID: {selectedFacultyModal.faculty_id}</div>
-                </div>
-
-                <div className="row g-2 text-center small mb-3">
-                  <div className="col-4">
-                    <div className="p-2 bg-white rounded border">
-                      <div className="text-muted">Biometric Attendance</div>
-                      <div className="fw-bold text-success fs-6">{selectedFacultyModal.attendance_percentage}%</div>
-                    </div>
-                  </div>
-                  <div className="col-4">
-                    <div className="p-2 bg-white rounded border">
-                      <div className="text-muted">Weekly Load</div>
-                      <div className="fw-bold text-primary fs-6">{selectedFacultyModal.workload_hours_per_week} hrs</div>
-                    </div>
-                  </div>
-                  <div className="col-4">
-                    <div className="p-2 bg-white rounded border">
-                      <div className="text-muted">Research Papers</div>
-                      <div className="fw-bold text-info fs-6">{selectedFacultyModal.research_publications}</div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-white p-3 rounded-3 border small">
-                  <div className="d-flex justify-content-between mb-1">
-                    <span>Assigned Advisees:</span>
-                    <strong>{selectedFacultyModal.advisees_count} Students</strong>
-                  </div>
-                  <div className="d-flex justify-content-between mb-1">
-                    <span>Monthly Classes Conducted:</span>
-                    <strong>{selectedFacultyModal.monthly_classes_conducted} Sessions</strong>
-                  </div>
-                  <div className="d-flex justify-content-between">
-                    <span>Casual Leave Balance:</span>
-                    <strong>{selectedFacultyModal.leave_balance_days} Days</strong>
-                  </div>
+                <div className="border p-3 rounded-3 bg-white font-mono small mb-3">
+                  <div className="text-center fw-bold border-bottom pb-2 mb-2">OFFICIAL COURSE DEBARMENT ADVISORY</div>
+                  <div><strong>Student:</strong> {selectedStudentForWarning.student_name} ({selectedStudentForWarning.student_id})</div>
+                  <div><strong>Course:</strong> {activeCourse.course_code} - {activeCourse.course_title} ({activeCourse.section})</div>
+                  <div><strong>Instructor:</strong> {currentFaculty.faculty_name}</div>
+                  <div><strong>Current Attendance:</strong> <span className="text-danger fw-bold">{selectedStudentForWarning.attendance_percentage}%</span> (Classes: {selectedStudentForWarning.classes_attended}/{selectedStudentForWarning.total_classes})</div>
+                  <hr />
+                  <p className="mb-0 text-muted" style={{ fontSize: '0.8rem' }}>
+                    Warning: Your attendance in {activeCourse.course_code} is below the mandatory 75.0% requirement. Failure to attend mandatory classes will lead to end-semester examination debarment.
+                  </p>
                 </div>
               </div>
               <div className="modal-footer bg-white p-3">
-                <button type="button" className="btn btn-secondary btn-sm" onClick={() => setSelectedFacultyModal(null)}>Close</button>
+                <button type="button" className="btn btn-secondary btn-sm" onClick={() => setSelectedStudentForWarning(null)}>Cancel</button>
+                <button type="button" className="btn btn-danger btn-sm" onClick={() => handleDispatchWarning(selectedStudentForWarning)}>
+                  <i className="bi bi-send me-1"></i> Dispatch Official Notice
+                </button>
               </div>
             </div>
           </div>
         </div>
       )}
 
-      {/* Record Mentorship Session Modal */}
+      {/* Record Counseling Session Modal */}
       {showLogModal && (
         <div className="modal show d-block" style={{ backgroundColor: 'rgba(15,23,42,0.65)', backdropFilter: 'blur(6px)' }} tabIndex="-1">
           <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
-              <div className="modal-header bg-primary text-white" style={{ background: '#4f46e5' }}>
-                <h5 className="modal-title fs-6"><i className="bi bi-journal-plus me-2"></i> Log Advisee Counseling Session</h5>
+              <div className="modal-header bg-primary text-white p-3 px-4" style={{ background: '#4f46e5' }}>
+                <h5 className="modal-title fs-6"><i className="bi bi-journal-plus me-2"></i> Log Advisee Mentorship Session</h5>
                 <button type="button" className="btn-close btn-close-white" onClick={() => setShowLogModal(false)}></button>
               </div>
               <form onSubmit={handleSaveLog}>
-                <div className="modal-body p-4">
+                <div className="modal-body p-4 bg-light">
                   <div className="mb-3">
-                    <label className="form-label small fw-semibold">Advisee Student ID</label>
+                    <label className="form-label small fw-semibold">Student ID</label>
                     <input
                       type="text"
                       className="form-control form-control-sm"
-                      placeholder="e.g. STU20210016"
+                      placeholder="e.g. STU20210001"
                       value={newLog.student_id}
                       onChange={(e) => setNewLog({ ...newLog, student_id: e.target.value.toUpperCase() })}
                       required
@@ -362,10 +462,21 @@ export default function FacultyPortal() {
                     <input
                       type="text"
                       className="form-control form-control-sm"
-                      placeholder="e.g. Rohan Verma"
+                      placeholder="e.g. Aarav Sharma"
                       value={newLog.student_name}
                       onChange={(e) => setNewLog({ ...newLog, student_name: e.target.value })}
                       required
+                    />
+                  </div>
+
+                  <div className="mb-3">
+                    <label className="form-label small fw-semibold">Course Code</label>
+                    <input
+                      type="text"
+                      className="form-control form-control-sm font-mono"
+                      placeholder="e.g. CS501"
+                      value={newLog.course_code || activeCourse.course_code || ''}
+                      onChange={(e) => setNewLog({ ...newLog, course_code: e.target.value.toUpperCase() })}
                     />
                   </div>
 
@@ -393,10 +504,10 @@ export default function FacultyPortal() {
                   </div>
                 </div>
 
-                <div className="modal-footer bg-light p-3">
+                <div className="modal-footer bg-white p-3">
                   <button type="button" className="btn btn-secondary btn-sm" onClick={() => setShowLogModal(false)}>Cancel</button>
                   <button type="submit" className="btn btn-primary btn-sm" style={{ background: '#4f46e5', borderColor: '#4f46e5' }}>
-                    Save Counseling Note
+                    Save Session Note
                   </button>
                 </div>
               </form>
