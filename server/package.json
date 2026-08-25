@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node server.js",
+    "build": "cd .. && npm install && npm install --prefix frontend && npm run build --prefix frontend",
     "dev": "node --watch server.js",
     "seed": "node src/scripts/seed.js",
     "etl": "node src/etl/pipeline.js",
