@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Executive Dashboard - ERP Data Warehouse</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="d-flex" id="wrapper">
+
+  <!-- Sidebar -->
+  <div id="sidebar-wrapper">
+    <div class="sidebar-heading d-flex align-items-center">
+      <i class="bi bi-mortarboard-fill text-indigo me-2" style="color: #818cf8;"></i>
+      <span>UnivAnalytics</span>
+    </div>
+    <div class="sidebar-nav">
+      <a href="dashboard.html" class="sidebar-link active"><i class="bi bi-speedometer2"></i> Dashboard</a>
+      <a href="students.html" class="sidebar-link"><i class="bi bi-people"></i> Students 360</a>
+      <a href="attendance.html" class="sidebar-link"><i class="bi bi-calendar-check"></i> Attendance</a>
+      <a href="examinations.html" class="sidebar-link"><i class="bi bi-award"></i> Examinations</a>
+      <a href="fees.html" class="sidebar-link"><i class="bi bi-cash-stack"></i> Fee Collections</a>
+      <a href="library.html" class="sidebar-link"><i class="bi bi-book"></i> Library</a>
+      <a href="faculty.html" class="sidebar-link"><i class="bi bi-person-video3"></i> Faculty</a>
+      <div class="px-3 my-2 small text-uppercase fw-bold text-muted" style="font-size: 0.7rem;">Decision Support & Governance</div>
+      <a href="risk-analysis.html" class="sidebar-link"><i class="bi bi-shield-exclamation text-danger"></i> Risk Prediction & What-If</a>
+      <a href="data-quality.html" class="sidebar-link"><i class="bi bi-check2-circle text-success"></i> Data Quality Audit</a>
+    </div>
+  </div>
+
+  <!-- Page Content -->
+  <div id="page-content-wrapper">
+    
+    <!-- Top Navbar -->
+    <nav class="top-navbar d-flex align-items-center justify-content-between">
+      <div class="d-flex align-items-center gap-3">
+        <h5 class="m-0 fw-bold">Executive Institutional Overview</h5>
+      </div>
+      
+      <div class="d-flex align-items-center gap-3">
+        <!-- Global Filters -->
+        <select id="filterDept" class="form-select form-select-sm" style="width: 180px;" onchange="loadDashboardData()">
+          <option value="">All Departments</option>
+          <option value="DEPT_CSE">Computer Science</option>
+          <option value="DEPT_ECE">ECE</option>
+          <option value="DEPT_MECH">Mechanical</option>
+          <option value="DEPT_CIVIL">Civil</option>
+          <option value="DEPT_AIDS">AI & Data Science</option>
+        </select>
+
+        <select id="filterSem" class="form-select form-select-sm" style="width: 140px;" onchange="loadDashboardData()">
+          <option value="">All Semesters</option>
+          <option value="1">Semester 1</option>
+          <option value="2">Semester 2</option>
+          <option value="3">Semester 3</option>
+          <option value="4">Semester 4</option>
+          <option value="5">Semester 5</option>
+          <option value="6">Semester 6</option>
+          <option value="7">Semester 7</option>
+          <option value="8">Semester 8</option>
+        </select>
+
+        <div class="vr"></div>
+
+        <!-- User Session Profile -->
+        <div class="dropdown">
+          <button class="btn btn-sm btn-light dropdown-toggle d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown">
+            <i class="bi bi-person-circle fs-5 text-indigo"></i>
+            <span id="nav-user-name" class="fw-semibold small">Dean's Office</span>
+            <span id="nav-user-badge" class="badge bg-indigo">ADMIN</span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+            <li><a class="dropdown-item small" href="index.html"><i class="bi bi-arrow-repeat me-2"></i> Switch Persona</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><button class="dropdown-item small text-danger" onclick="Auth.logout()"><i class="bi bi-box-arrow-right me-2"></i> Logout</button></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="main-container">
+      <div id="alert-container"></div>
+
+      <!-- KPI Metrics Row -->
+      <div class="row g-3 mb-4">
+        
+        <!-- Total Students -->
+        <div class="col-md-4 col-xl-2">
+          <div class="kpi-card kpi-indigo">
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="kpi-label">Students</span>
+              <button class="lineage-badge" data-lineage-metric="total_students"><i class="bi bi-info-circle"></i> Lineage</button>
+            </div>
+            <div id="kpiTotalStudents" class="kpi-value">--</div>
+            <div class="small text-muted"><i class="bi bi-building me-1"></i> Active Enrolled</div>
+          </div>
+        </div>
+
+        <!-- Avg Attendance -->
+        <div class="col-md-4 col-xl-2">
+          <div class="kpi-card kpi-blue">
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="kpi-label">Attendance</span>
+              <button class="lineage-badge" data-lineage-metric="average_attendance"><i class="bi bi-info-circle"></i> Lineage</button>
+            </div>
+            <div id="kpiAvgAttendance" class="kpi-value">--%</div>
+            <div class="small text-muted"><i class="bi bi-check-circle me-1"></i> Institutional Avg</div>
+          </div>
+        </div>
+
+        <!-- Avg Marks -->
+        <div class="col-md-4 col-xl-2">
+          <div class="kpi-card kpi-emerald">
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="kpi-label">Avg Score</span>
+              <button class="lineage-badge" data-lineage-metric="average_marks"><i class="bi bi-info-circle"></i> Lineage</button>
+            </div>
+            <div id="kpiAvgMarks" class="kpi-value">--</div>
+            <div class="small text-muted"><i class="bi bi-graph-up me-1"></i> Out of 100</div>
+          </div>
+        </div>
+
+        <!-- Fee Collection Rate -->
+        <div class="col-md-4 col-xl-2">
+          <div class="kpi-card kpi-amber">
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="kpi-label">Fee Rate</span>
+              <button class="lineage-badge" data-lineage-metric="fee_collection_rate"><i class="bi bi-info-circle"></i> Lineage</button>
+            </div>
+            <div id="kpiFeeRate" class="kpi-value">--%</div>
+            <div class="small text-muted"><i class="bi bi-wallet2 me-1"></i> Efficiency</div>
+          </div>
+        </div>
+
+        <!-- High Risk Students -->
+        <div class="col-md-4 col-xl-2">
+          <div class="kpi-card kpi-rose">
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="kpi-label">Risk Alerts</span>
+              <button class="lineage-badge" data-lineage-metric="high_risk_students"><i class="bi bi-info-circle"></i> Lineage</button>
+            </div>
+            <div id="kpiHighRisk" class="kpi-value text-danger">--</div>
+            <div class="small text-muted"><i class="bi bi-exclamation-triangle text-danger me-1"></i> Action Needed</div>
+          </div>
+        </div>
+
+        <!-- Data Quality Score -->
+        <div class="col-md-4 col-xl-2">
+          <div class="kpi-card kpi-indigo">
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="kpi-label">Data Quality</span>
+              <button class="lineage-badge" data-lineage-metric="data_quality_score"><i class="bi bi-info-circle"></i> Lineage</button>
+            </div>
+            <div id="kpiDataQuality" class="kpi-value text-success">--%</div>
+            <div class="small text-muted"><i class="bi bi-shield-check text-success me-1"></i> 5 Dimensions</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Charts Row 1 -->
+      <div class="row g-3 mb-4">
+        
+        <!-- Department Distribution Bar Chart -->
+        <div class="col-lg-7">
+          <div class="dashboard-card h-100">
+            <div class="card-title-header">
+              <span><i class="bi bi-bar-chart-fill text-indigo me-2"></i> Department Enrollment & Academic Performance</span>
+              <span class="badge bg-light text-muted border">DW Dimension Aggregation</span>
+            </div>
+            <div style="position: relative; height: 280px;">
+              <canvas id="deptPerformanceChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grade Distribution Doughnut Chart -->
+        <div class="col-lg-5">
+          <div class="dashboard-card h-100">
+            <div class="card-title-header">
+              <span><i class="bi bi-pie-chart-fill text-emerald me-2"></i> Examination Grade Distribution</span>
+              <span class="badge bg-light text-muted border">10-Point Scale</span>
+            </div>
+            <div style="position: relative; height: 280px;">
+              <canvas id="gradeDistributionChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Charts Row 2 -->
+      <div class="row g-3 mb-4">
+        
+        <!-- Monthly Attendance Trend -->
+        <div class="col-lg-6">
+          <div class="dashboard-card h-100">
+            <div class="card-title-header">
+              <span><i class="bi bi-graph-up text-blue me-2"></i> Attendance Longitudinal Trend</span>
+              <span class="badge bg-light text-muted border">Monthly fact_attendance</span>
+            </div>
+            <div style="position: relative; height: 240px;">
+              <canvas id="attendanceTrendChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Summary Table -->
+        <div class="col-lg-6">
+          <div class="dashboard-card h-100">
+            <div class="card-title-header">
+              <span><i class="bi bi-table text-secondary me-2"></i> Departmental Analytical Breakdown</span>
+              <a href="students.html" class="btn btn-sm btn-outline-primary py-0 px-2" style="font-size: 0.8rem;">View Students</a>
+            </div>
+            <div class="table-responsive">
+              <table class="table custom-table table-hover mb-0 align-middle">
+                <thead>
+                  <tr>
+                    <th>Department</th>
+                    <th>Students</th>
+                    <th>Attendance</th>
+                    <th>Avg Score</th>
+                    <th>Risk Cases</th>
+                  </tr>
+                </thead>
+                <tbody id="deptTableBody">
+                  <tr><td colspan="5" class="text-center text-muted py-4"><span class="spinner-border spinner-border-sm me-2"></span>Loading departmental metrics...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Reusable Data Lineage Modal -->
+<div class="modal fade" id="lineageModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg rounded-4">
+      <div class="modal-header bg-dark text-white">
+        <h6 class="modal-title fw-bold" id="lineageModalTitle"><i class="bi bi-diagram-3-fill text-indigo me-2"></i> Data Lineage & Origin</h6>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body p-4">
+        
+        <div class="lineage-step">
+          <div class="small text-uppercase fw-bold text-muted mb-1"><i class="bi bi-database me-1"></i> 1. Source Collection (erp_source)</div>
+          <div id="lineageSourceCol" class="fw-semibold text-dark font-monospace small">--</div>
+        </div>
+
+        <div class="lineage-step">
+          <div class="small text-uppercase fw-bold text-muted mb-1"><i class="bi bi-cpu me-1"></i> 2. ETL Processing & Cleansing</div>
+          <ul id="lineageTransformationsList" class="small mb-0 ps-3"></ul>
+        </div>
+
+        <div class="lineage-step">
+          <div class="small text-uppercase fw-bold text-muted mb-1"><i class="bi bi-box-seam me-1"></i> 3. Warehouse Collection (erp_warehouse)</div>
+          <div id="lineageWarehouseCol" class="fw-semibold text-dark font-monospace small">--</div>
+        </div>
+
+        <div class="p-3 bg-light rounded-3 border">
+          <div class="small text-uppercase fw-bold text-indigo mb-1"><i class="bi bi-calculator me-1"></i> Analytical Formula</div>
+          <code id="lineageFormula" class="fw-bold text-dark small">--</code>
+        </div>
+
+      </div>
+      <div class="modal-footer bg-light">
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close Lineage</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/lineage.js"></script>
+<script>
+  let deptChartInstance = null;
+  let gradeChartInstance = null;
+  let trendChartInstance = null;
+
+  async function loadDashboardData() {
+    const deptId = document.getElementById("filterDept").value;
+    const sem = document.getElementById("filterSem").value;
+
+    let query = "/analytics/dashboard?";
+    if (deptId) query += `department_id=${deptId}&`;
+    if (sem) query += `semester=${sem}&`;
+
+    try {
+      const data = await fetchAPI(query);
+      renderKPIs(data.summary_kpis);
+      renderDepartmentTable(data.department_breakdown);
+      renderCharts(data);
+    } catch (err) {
+      showAlert("Failed to load dashboard metrics from backend API.", "danger");
+    }
+  }
+
+  function renderKPIs(kpis) {
+    if (!kpis) return;
+    document.getElementById("kpiTotalStudents").textContent = kpis.total_students.toLocaleString();
+    document.getElementById("kpiAvgAttendance").textContent = `${kpis.average_attendance}%`;
+    document.getElementById("kpiAvgMarks").textContent = kpis.average_marks;
+    document.getElementById("kpiFeeRate").textContent = `${kpis.fee_collection_rate}%`;
+    document.getElementById("kpiHighRisk").textContent = kpis.high_risk_students_count;
+    document.getElementById("kpiDataQuality").textContent = `${kpis.data_quality_score}%`;
+  }
+
+  function renderDepartmentTable(deptList) {
+    const tbody = document.getElementById("deptTableBody");
+    tbody.innerHTML = "";
+    if (!deptList || deptList.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="5" class="text-center text-muted py-3">No department data found.</td></tr>`;
+      return;
+    }
+
+    deptList.forEach(d => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td class="fw-semibold">${d.department_name}</td>
+        <td>${d.student_count}</td>
+        <td><span class="badge ${d.avg_attendance >= 75 ? 'bg-success' : 'bg-warning text-dark'}">${d.avg_attendance}%</span></td>
+        <td>${d.avg_marks}/100</td>
+        <td><span class="badge ${d.high_risk_count > 0 ? 'bg-danger' : 'bg-secondary'}">${d.high_risk_count}</span></td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  function renderCharts(data) {
+    const depts = data.department_breakdown || [];
+    const labels = depts.map(d => d.department_name.replace("Engineering", "Engg").replace("Computer Science & Engg", "CSE"));
+    const studentsData = depts.map(d => d.student_count);
+    const marksData = depts.map(d => d.avg_marks);
+
+    // 1. Dept Performance Chart
+    const ctx1 = document.getElementById("deptPerformanceChart").getContext("2d");
+    if (deptChartInstance) deptChartInstance.destroy();
+    deptChartInstance = new Chart(ctx1, {
+      type: "bar",
+      data: {
+        labels: labels,
+        datasets: [
+          { label: "Enrolled Students", data: studentsData, backgroundColor: "#4f46e5", borderRadius: 4 },
+          { label: "Avg Marks (/100)", data: marksData, backgroundColor: "#10b981", borderRadius: 4 }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { position: "top" } }
+      }
+    });
+
+    // 2. Grade Distribution Chart
+    const grades = data.grade_distribution || { "O": 15, "A+": 25, "A": 30, "B+": 20, "B": 10, "C": 5, "F": 2 };
+    const ctx2 = document.getElementById("gradeDistributionChart").getContext("2d");
+    if (gradeChartInstance) gradeChartInstance.destroy();
+    gradeChartInstance = new Chart(ctx2, {
+      type: "doughnut",
+      data: {
+        labels: Object.keys(grades),
+        datasets: [{
+          data: Object.values(grades),
+          backgroundColor: ["#10b981", "#059669", "#0284c7", "#6366f1", "#f59e0b", "#d97706", "#ef4444"]
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { position: "right" } }
+      }
+    });
+
+    // 3. Attendance Trend Chart
+    const trends = data.monthly_attendance_trend || [];
+    const ctx3 = document.getElementById("attendanceTrendChart").getContext("2d");
+    if (trendChartInstance) trendChartInstance.destroy();
+    trendChartInstance = new Chart(ctx3, {
+      type: "line",
+      data: {
+        labels: trends.map(t => t.month),
+        datasets: [{
+          label: "Avg Monthly Attendance (%)",
+          data: trends.map(t => t.attendance),
+          borderColor: "#0284c7",
+          backgroundColor: "rgba(2, 132, 199, 0.1)",
+          fill: true,
+          tension: 0.3
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: { y: { min: 50, max: 100 } }
+      }
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    loadDashboardData();
+  });
+</script>
+</body>
+</html>

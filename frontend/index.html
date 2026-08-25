@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - ERP Data Warehouse & Decision Support System</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-light d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+
+  <div class="container" style="max-width: 950px;">
+    <div class="card border-0 shadow-lg overflow-hidden rounded-4">
+      <div class="row g-0">
+        
+        <!-- Left Branding Panel -->
+        <div class="col-lg-6 bg-dark text-white p-5 d-flex flex-column justify-content-between" style="background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);">
+          <div>
+            <div class="d-flex align-items-center mb-4">
+              <i class="bi bi-mortarboard-fill text-indigo fs-2 me-2" style="color: #818cf8;"></i>
+              <h4 class="m-0 fw-bold tracking-wide">UnivAnalytics DSS</h4>
+            </div>
+            <h2 class="fw-bold mb-3">ERP Data Warehouse & Decision Support System</h2>
+            <p class="text-secondary small leading-relaxed">
+              Institutional analytical intelligence integrating heterogeneous academic, attendance, examination, fee, and library records into a high-performance star-schema data warehouse.
+            </p>
+          </div>
+
+          <div class="border-top border-secondary pt-3 mt-4">
+            <div class="d-flex align-items-center justify-content-between small text-secondary">
+              <span><i class="bi bi-shield-check text-success me-1"></i> MongoDB Atlas DW</span>
+              <span><i class="bi bi-cpu text-info me-1"></i> Scikit-Learn ML</span>
+              <span><i class="bi bi-lightning-charge text-warning me-1"></i> Flask API</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Login Panel -->
+        <div class="col-lg-6 p-5 bg-white">
+          <div class="mb-4">
+            <h4 class="fw-bold text-dark mb-1">Institutional Portal Login</h4>
+            <p class="text-muted small">Select a pre-configured demo persona or enter credentials.</p>
+          </div>
+
+          <div id="alert-container"></div>
+
+          <!-- Quick Demo Persona Switcher -->
+          <div class="mb-4">
+            <label class="form-label small fw-bold text-uppercase text-muted">Quick Demo Login (1-Click)</label>
+            <div class="d-grid gap-2">
+              <button class="btn btn-outline-primary btn-sm text-start py-2 d-flex align-items-center justify-content-between" onclick="quickLogin('admin@univ.edu')">
+                <div>
+                  <i class="bi bi-person-gear text-primary me-2"></i>
+                  <strong>Admin / Dean</strong> <span class="text-muted small">(Full DW & Quality)</span>
+                </div>
+                <i class="bi bi-arrow-right-short fs-5"></i>
+              </button>
+              <button class="btn btn-outline-secondary btn-sm text-start py-2 d-flex align-items-center justify-content-between" onclick="quickLogin('faculty@univ.edu')">
+                <div>
+                  <i class="bi bi-person-badge text-secondary me-2"></i>
+                  <strong>Department Faculty</strong> <span class="text-muted small">(Academics & Risk)</span>
+                </div>
+                <i class="bi bi-arrow-right-short fs-5"></i>
+              </button>
+              <button class="btn btn-outline-success btn-sm text-start py-2 d-flex align-items-center justify-content-between" onclick="quickLogin('student@univ.edu')">
+                <div>
+                  <i class="bi bi-person text-success me-2"></i>
+                  <strong>Student</strong> <span class="text-muted small">(Aarav Sharma - 360)</span>
+                </div>
+                <i class="bi bi-arrow-right-short fs-5"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="position-relative my-4 text-center">
+            <hr class="text-muted">
+            <span class="position-absolute top-50 start-50 translate-middle bg-white px-3 small text-muted">OR CREDENTIALS</span>
+          </div>
+
+          <form id="loginForm" onsubmit="handleLoginSubmit(event)">
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Institutional Email</label>
+              <div class="input-group">
+                <span class="input-group-text bg-light border-end-0"><i class="bi bi-envelope text-muted"></i></span>
+                <input type="email" id="emailInput" class="form-control bg-light border-start-0" placeholder="e.g. admin@univ.edu" required value="admin@univ.edu">
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label small fw-semibold">Password</label>
+              <div class="input-group">
+                <span class="input-group-text bg-light border-end-0"><i class="bi bi-lock text-muted"></i></span>
+                <input type="password" id="passwordInput" class="form-control bg-light border-start-0" placeholder="••••••••" required value="demo1234">
+              </div>
+              <small class="text-muted" style="font-size: 0.75rem;">Default demo password: <code>demo1234</code></small>
+            </div>
+
+            <div class="d-grid">
+              <button type="submit" id="loginBtn" class="btn btn-primary py-2 fw-semibold" style="background: #4f46e5; border-color: #4f46e5;">
+                <span id="loginBtnText">Sign In to Dashboard</span>
+                <span id="loginSpinner" class="spinner-border spinner-border-sm ms-2 d-none" role="status"></span>
+              </button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    async function quickLogin(email) {
+      document.getElementById("emailInput").value = email;
+      document.getElementById("passwordInput").value = "demo1234";
+      document.getElementById("loginForm").dispatchEvent(new Event("submit"));
+    }
+
+    async function handleLoginSubmit(e) {
+      e.preventDefault();
+      const email = document.getElementById("emailInput").value;
+      const password = document.getElementById("passwordInput").value;
+
+      const btn = document.getElementById("loginBtn");
+      const btnText = document.getElementById("loginBtnText");
+      const spinner = document.getElementById("loginSpinner");
+
+      btn.disabled = true;
+      btnText.textContent = "Authenticating...";
+      spinner.classList.remove("d-none");
+
+      try {
+        const res = await fetchAPI("/auth/login", {
+          method: "POST",
+          body: JSON.stringify({ email, password })
+        });
+
+        Auth.setUser(res, res.token);
+        
+        // Redirect to dashboard
+        window.location.href = "dashboard.html";
+      } catch (err) {
+        showAlert(err.message || "Invalid credentials. Please try again.", "danger");
+      } finally {
+        btn.disabled = false;
+        btnText.textContent = "Sign In to Dashboard";
+        spinner.classList.add("d-none");
+      }
+    }
+  </script>
+</body>
+</html>

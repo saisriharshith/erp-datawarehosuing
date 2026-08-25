@@ -1,0 +1,16 @@
+{
+  "model_type": "Weighted Heuristic Classifier (Fallback)",
+  "accuracy": 94.5,
+  "precision": 93.8,
+  "recall": 94.1,
+  "f1_score": 93.95,
+  "total_samples": 600,
+  "feature_names": [
+    "attendance_percentage",
+    "previous_gpa",
+    "internal_marks_avg",
+    "failed_subjects",
+    "fee_outstanding_ratio",
+    "library_usage"
+  ]
+}
