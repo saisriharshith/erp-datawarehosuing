@@ -67,6 +67,8 @@ async function getFacultyCourseDetails(departmentId = null, facultyId = null) {
           student_id: stu.student_id,
           student_name: stu.full_name,
           email: stu.email,
+          department_id: stu.department_id,
+          department_name: stu.department_name,
           semester: stu.current_semester,
           section: section,
           classes_attended: attendedCls,

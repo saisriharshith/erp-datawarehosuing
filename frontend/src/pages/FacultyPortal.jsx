@@ -8,12 +8,15 @@ export default function FacultyPortal() {
   const { addToast } = useToast();
   const isDean = user?.role === 'ADMIN';
 
+  // For faculty members, lock strictly to their department (e.g. DEPT_CSE)
+  const facultyDept = user?.department_id || (isDean ? '' : 'DEPT_CSE');
+  const [deptFilter, setDeptFilter] = useState(facultyDept);
+
   const [facultySummary, setFacultySummary] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [selectedFacultyId, setSelectedFacultyId] = useState(user?.faculty_id || 'FAC101');
+  const [selectedFacultyId, setSelectedFacultyId] = useState(user?.faculty_id || '');
   const [selectedCourseIndex, setSelectedCourseIndex] = useState(0);
   const [selectedStudentForWarning, setSelectedStudentForWarning] = useState(null);
-  const [deptFilter, setDeptFilter] = useState(user?.department_id || '');
 
   const [mentorshipLogs, setMentorshipLogs] = useState(() => {
     try {
@@ -29,17 +32,6 @@ export default function FacultyPortal() {
           topic: 'Attendance Shortage & Lab Make-up',
           action: 'Agreed to attend 4 Saturday make-up laboratory sessions.',
           status: 'IN_PROGRESS'
-        },
-        {
-          id: 2,
-          faculty_name: 'Dr. Meenakshi Sundaram',
-          student_id: 'STU20220017',
-          student_name: 'Priya Patel',
-          course_code: 'EC301',
-          date: '2026-08-22',
-          topic: 'Remedial Tutorial for Signals & Systems',
-          action: 'Assigned peer tutor for unit test revision.',
-          status: 'RESOLVED'
         }
       ];
     } catch {
@@ -50,6 +42,13 @@ export default function FacultyPortal() {
   const [newLog, setNewLog] = useState({ student_id: '', student_name: '', course_code: '', topic: '', action: '' });
   const [showLogModal, setShowLogModal] = useState(false);
 
+  // Sync department when user changes
+  useEffect(() => {
+    if (!isDean && user?.department_id) {
+      setDeptFilter(user.department_id);
+    }
+  }, [user, isDean]);
+
   useEffect(() => {
     setLoading(true);
     let url = '/faculty/summary?';
@@ -58,18 +57,19 @@ export default function FacultyPortal() {
     fetchAPI(url)
       .then(res => {
         setFacultySummary(res);
-        // Default to first faculty if current ID is not in filtered list
         const list = res.faculty_list || [];
-        if (list.length > 0 && (!selectedFacultyId || !list.some(f => f.faculty_id === selectedFacultyId))) {
-          setSelectedFacultyId(list[0].faculty_id);
+        if (list.length > 0) {
+          // If current selection is not in list or empty, select the logged-in faculty or first faculty in dept
+          const match = list.find(f => f.faculty_id === user?.faculty_id || f.email === user?.email);
+          setSelectedFacultyId(match ? match.faculty_id : list[0].faculty_id);
         }
       })
       .catch(err => {
         console.error(err);
-        addToast('Failed to load faculty records', 'danger');
+        addToast('Failed to load department faculty records', 'danger');
       })
       .finally(() => setLoading(false));
-  }, [deptFilter]);
+  }, [deptFilter, user]);
 
   const facultyList = facultySummary?.faculty_list || [];
   const currentFaculty = facultyList.find(f => f.faculty_id === selectedFacultyId) || facultyList[0] || {};
@@ -86,7 +86,7 @@ export default function FacultyPortal() {
 
     const entry = {
       id: Date.now(),
-      faculty_name: currentFaculty.faculty_name || 'Faculty Member',
+      faculty_name: currentFaculty.faculty_name || user?.name || 'Faculty Member',
       student_id: newLog.student_id,
       student_name: newLog.student_name || 'Advisee Student',
       course_code: newLog.course_code || activeCourse.course_code || 'GEN101',
@@ -113,7 +113,7 @@ export default function FacultyPortal() {
     return (
       <div className="p-4 text-center py-5">
         <div className="spinner-border text-primary" role="status"></div>
-        <p className="mt-2 text-muted small">Loading Faculty Courses & Class Roster...</p>
+        <p className="mt-2 text-muted small">Loading Department Faculty Courses & Class Roster...</p>
       </div>
     );
   }
@@ -124,7 +124,10 @@ export default function FacultyPortal() {
       <div className="p-4 rounded-4 text-white mb-4 shadow-sm" style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)' }}>
         <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
           <div>
-            <span className="badge bg-info text-dark mb-2 fw-semibold">Faculty Teaching & Course Directorate</span>
+            <div className="d-flex align-items-center gap-2 mb-2">
+              <span className="badge bg-info text-dark fw-semibold">Faculty Teaching & Course Directorate</span>
+              <span className="badge bg-primary text-white">Strictly {currentFaculty.department_name}</span>
+            </div>
             <h3 className="fw-bold mb-1">{currentFaculty.faculty_name || 'Faculty Teaching Hub'}</h3>
             <p className="mb-0 text-white-50 small">
               Department: <span className="text-white">{currentFaculty.department_name}</span> | Designation: <span className="text-white">{currentFaculty.designation}</span> | ID: <span className="text-white font-mono">{currentFaculty.faculty_id}</span>
@@ -139,16 +142,31 @@ export default function FacultyPortal() {
         </div>
       </div>
 
-      {/* Dean Faculty Switcher Dropdown (If logged in as Dean/Admin) */}
+      {/* Dean Department Switcher (Only visible to Dean/Admin) */}
       {isDean && (
         <div className="metric-card mb-4 bg-white border-primary shadow-sm">
           <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
             <div>
-              <span className="badge bg-primary text-white mb-1"><i className="bi bi-shield-lock-fill me-1"></i> Dean Faculty Inspector</span>
-              <h6 className="fw-bold mb-0">Switch Faculty Member to Inspect Teaching Courses & Class Rosters</h6>
+              <span className="badge bg-primary text-white mb-1"><i className="bi bi-shield-lock-fill me-1"></i> Dean Inspection Controls</span>
+              <h6 className="fw-bold mb-0">Select Department & Faculty Member to Inspect</h6>
             </div>
 
             <div className="d-flex gap-2">
+              <select
+                className="form-select form-select-sm"
+                value={deptFilter}
+                onChange={(e) => {
+                  setDeptFilter(e.target.value);
+                  setSelectedCourseIndex(0);
+                }}
+              >
+                <option value="DEPT_CSE">Computer Science (CSE)</option>
+                <option value="DEPT_ECE">Electronics (ECE)</option>
+                <option value="DEPT_MECH">Mechanical (MECH)</option>
+                <option value="DEPT_CIVIL">Civil (CIVIL)</option>
+                <option value="DEPT_AIDS">AI & Data Science (AIDS)</option>
+              </select>
+
               <select
                 className="form-select form-select-sm"
                 value={selectedFacultyId}
@@ -159,7 +177,7 @@ export default function FacultyPortal() {
               >
                 {facultyList.map(f => (
                   <option key={f.faculty_id} value={f.faculty_id}>
-                    {f.faculty_name} ({f.department_name} - {f.designation})
+                    {f.faculty_name} ({f.designation})
                   </option>
                 ))}
               </select>
@@ -177,7 +195,7 @@ export default function FacultyPortal() {
               <i className="bi bi-fingerprint text-success"></i>
             </div>
             <h3 className="fw-bold mb-1 text-success">{currentFaculty.attendance_percentage}%</h3>
-            <span className="badge bg-light text-success border">Status: {currentFaculty.biometric_status}</span>
+            <span className="badge bg-light text-success border">Punctuality: {currentFaculty.biometric_status}</span>
           </div>
         </div>
 
@@ -188,18 +206,18 @@ export default function FacultyPortal() {
               <i className="bi bi-clock-history text-primary"></i>
             </div>
             <h3 className="fw-bold mb-1 text-primary">{currentFaculty.workload_hours_per_week} hrs/wk</h3>
-            <span className="badge bg-light text-primary border">{handledCourses.length} Courses Assigned</span>
+            <span className="badge bg-light text-primary border">{handledCourses.length} {currentFaculty.department_name?.split(' ')[0]} Courses</span>
           </div>
         </div>
 
         <div className="col-12 col-sm-6 col-lg-3">
           <div className="metric-card">
             <div className="d-flex justify-content-between text-muted small mb-1">
-              <span>Assigned Advisees</span>
+              <span>{currentFaculty.department_name?.split(' ')[0]} Advisees</span>
               <i className="bi bi-people-fill text-info"></i>
             </div>
             <h3 className="fw-bold mb-1 text-info">{currentFaculty.advisees_count} Students</h3>
-            <span className="badge bg-light text-info border">Mentorship Directorate</span>
+            <span className="badge bg-light text-info border">Department Mentorship</span>
           </div>
         </div>
 
@@ -210,19 +228,19 @@ export default function FacultyPortal() {
               <i className="bi bi-journal-check text-warning"></i>
             </div>
             <h3 className="fw-bold mb-1 text-dark">{currentFaculty.research_publications} Papers</h3>
-            <span className="badge bg-light text-muted border">Experience: {currentFaculty.experience_years} Years</span>
+            <span className="badge bg-light text-muted border">Experience: {currentFaculty.experience_years} Yrs</span>
           </div>
         </div>
       </div>
 
-      {/* Courses Handled by this Faculty */}
+      {/* Courses Handled by this Faculty (Filtered to their Department) */}
       <div className="metric-card mb-4">
         <div className="d-flex align-items-center justify-content-between mb-3">
           <div>
-            <h5 className="fw-bold mb-0"><i className="bi bi-book-half text-primary me-2"></i> Assigned Courses & Teaching Sections</h5>
-            <span className="text-muted small">Select a course to view classroom schedule and enrolled student roster.</span>
+            <h5 className="fw-bold mb-0"><i className="bi bi-book-half text-primary me-2"></i> {currentFaculty.department_name} Courses & Assigned Sections</h5>
+            <span className="text-muted small">Select a course to view classroom schedule and enrolled {currentFaculty.department_name?.split(' ')[0]} student roster.</span>
           </div>
-          <span className="badge bg-light text-dark border">{handledCourses.length} Assigned Subjects</span>
+          <span className="badge bg-light text-dark border">{handledCourses.length} Department Courses</span>
         </div>
 
         <div className="row g-3">
@@ -233,7 +251,7 @@ export default function FacultyPortal() {
                 <div
                   className={`p-3 rounded-4 border transition-all ${
                     isSelected
-                      ? 'border-primary bg-white shadow-sm ring-2'
+                      ? 'border-primary bg-white shadow-sm'
                       : 'bg-light hover-shadow'
                   }`}
                   style={{
@@ -259,7 +277,7 @@ export default function FacultyPortal() {
                   </div>
 
                   <div className="d-flex justify-content-between align-items-center pt-2 border-top small">
-                    <span>Enrolled: <strong>{course.total_enrolled} Students</strong></span>
+                    <span>Enrolled: <strong>{course.total_enrolled} {currentFaculty.department_name?.split(' ')[0]} Students</strong></span>
                     <span>Avg Att: <strong className="text-success">{course.average_attendance}%</strong></span>
                     {course.shortage_alerts_count > 0 && (
                       <span className="badge badge-risk-high">{course.shortage_alerts_count} Shortages</span>
@@ -272,7 +290,7 @@ export default function FacultyPortal() {
         </div>
       </div>
 
-      {/* Enrolled Students Roster for Active Course */}
+      {/* Enrolled Students Roster for Active Course (Only Students of this Department) */}
       <div className="metric-card mb-4">
         <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3 gap-2">
           <div>
@@ -281,7 +299,7 @@ export default function FacultyPortal() {
               Enrolled Student Roster: <span className="text-primary font-mono">{activeCourse.course_code}</span> - {activeCourse.course_title} ({activeCourse.section})
             </h5>
             <span className="text-muted small">
-              Managing {enrolledStudents.length} enrolled students | Conducted: {activeCourse.total_classes_conducted} lectures
+              Managing {enrolledStudents.length} enrolled {currentFaculty.department_name} students | Conducted: {activeCourse.total_classes_conducted} lectures
             </span>
           </div>
 
@@ -296,12 +314,13 @@ export default function FacultyPortal() {
               <tr>
                 <th>Student ID</th>
                 <th>Student Name & Email</th>
+                <th>Department</th>
                 <th>Section</th>
                 <th>Lectures Attended</th>
                 <th>Course Attendance</th>
-                <th>Internal Marks (30)</th>
+                <th>Internal (30)</th>
                 <th>Grade</th>
-                <th>Risk Level</th>
+                <th>Risk Standing</th>
                 <th className="text-end">Action</th>
               </tr>
             </thead>
@@ -313,11 +332,14 @@ export default function FacultyPortal() {
                     <div className="fw-semibold text-dark">{s.student_name}</div>
                     <div className="text-muted" style={{ fontSize: '0.72rem' }}>{s.email}</div>
                   </td>
+                  <td>
+                    <span className="badge bg-light text-primary border">{s.department_name || currentFaculty.department_name}</span>
+                  </td>
                   <td><span className="badge bg-light text-dark border">{s.section}</span></td>
                   <td>{s.classes_attended} / {s.total_classes}</td>
                   <td>
                     <div className="d-flex align-items-center gap-2">
-                      <div className="progress flex-grow-1" style={{ height: '6px', minWidth: '70px' }}>
+                      <div className="progress flex-grow-1" style={{ height: '6px', minWidth: '60px' }}>
                         <div
                           className={`progress-bar ${s.attendance_percentage >= 75 ? 'bg-success' : 'bg-danger'}`}
                           style={{ width: `${Math.min(100, s.attendance_percentage)}%` }}
@@ -376,7 +398,7 @@ export default function FacultyPortal() {
       <div className="metric-card">
         <div className="d-flex align-items-center justify-content-between mb-3">
           <div>
-            <h6 className="fw-bold mb-0"><i className="bi bi-journal-text text-primary me-2"></i> Advisee Mentorship & Counseling History</h6>
+            <h6 className="fw-bold mb-0"><i className="bi bi-journal-text text-primary me-2"></i> {currentFaculty.department_name} Advisee Mentorship History</h6>
             <span className="text-muted small">Recorded counseling sessions across assigned advisees.</span>
           </div>
           <button className="btn btn-sm btn-outline-primary" onClick={() => setShowLogModal(true)}>
@@ -414,6 +436,7 @@ export default function FacultyPortal() {
                 <div className="border p-3 rounded-3 bg-white font-mono small mb-3">
                   <div className="text-center fw-bold border-bottom pb-2 mb-2">OFFICIAL COURSE DEBARMENT ADVISORY</div>
                   <div><strong>Student:</strong> {selectedStudentForWarning.student_name} ({selectedStudentForWarning.student_id})</div>
+                  <div><strong>Department:</strong> {currentFaculty.department_name}</div>
                   <div><strong>Course:</strong> {activeCourse.course_code} - {activeCourse.course_title} ({activeCourse.section})</div>
                   <div><strong>Instructor:</strong> {currentFaculty.faculty_name}</div>
                   <div><strong>Current Attendance:</strong> <span className="text-danger fw-bold">{selectedStudentForWarning.attendance_percentage}%</span> (Classes: {selectedStudentForWarning.classes_attended}/{selectedStudentForWarning.total_classes})</div>
@@ -446,27 +469,29 @@ export default function FacultyPortal() {
               <form onSubmit={handleSaveLog}>
                 <div className="modal-body p-4 bg-light">
                   <div className="mb-3">
-                    <label className="form-label small fw-semibold">Student ID</label>
-                    <input
-                      type="text"
-                      className="form-control form-control-sm"
-                      placeholder="e.g. STU20210001"
+                    <label className="form-label small fw-semibold">Select {currentFaculty.department_name?.split(' ')[0]} Student</label>
+                    <select
+                      className="form-select form-select-sm"
                       value={newLog.student_id}
-                      onChange={(e) => setNewLog({ ...newLog, student_id: e.target.value.toUpperCase() })}
+                      onChange={(e) => {
+                        const sId = e.target.value;
+                        const match = enrolledStudents.find(s => s.student_id === sId);
+                        setNewLog({
+                          ...newLog,
+                          student_id: sId,
+                          student_name: match ? match.student_name : '',
+                          course_code: activeCourse.course_code
+                        });
+                      }}
                       required
-                    />
-                  </div>
-
-                  <div className="mb-3">
-                    <label className="form-label small fw-semibold">Student Name</label>
-                    <input
-                      type="text"
-                      className="form-control form-control-sm"
-                      placeholder="e.g. Aarav Sharma"
-                      value={newLog.student_name}
-                      onChange={(e) => setNewLog({ ...newLog, student_name: e.target.value })}
-                      required
-                    />
+                    >
+                      <option value="">-- Choose Enrolled Student --</option>
+                      {enrolledStudents.map(s => (
+                        <option key={s.student_id} value={s.student_id}>
+                          {s.student_name} ({s.student_id}) - {s.attendance_percentage}% Att
+                        </option>
+                      ))}
+                    </select>
                   </div>
 
                   <div className="mb-3">
@@ -474,7 +499,6 @@ export default function FacultyPortal() {
                     <input
                       type="text"
                       className="form-control form-control-sm font-mono"
-                      placeholder="e.g. CS501"
                       value={newLog.course_code || activeCourse.course_code || ''}
                       onChange={(e) => setNewLog({ ...newLog, course_code: e.target.value.toUpperCase() })}
                     />
