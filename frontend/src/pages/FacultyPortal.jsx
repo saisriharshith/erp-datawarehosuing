@@ -16,10 +16,20 @@ export default function FacultyPortal() {
   const [loading, setLoading] = useState(true);
   const [selectedFacultyId, setSelectedFacultyId] = useState(user?.faculty_id || '');
   const [selectedCourseIndex, setSelectedCourseIndex] = useState(0);
-  const [selectedStudentForWarning, setSelectedStudentForWarning] = useState(null);
 
-  // Active Tab for Faculty Workflow
-  const [facultyViewMode, setFacultyViewMode] = useState('ROSTER'); // 'ROSTER' | 'ATTENDANCE_TAKER' | 'GRADING'
+  // Workflow Tabs
+  const [activeTab, setActiveTab] = useState('ROSTER'); // 'ROSTER' | 'WHAT_IF' | 'EARLY_WARNING' | 'ATTENDANCE_TAKER' | 'GRADING'
+
+  // Selected Student for Modals
+  const [selectedStudentForWarning, setSelectedStudentForWarning] = useState(null);
+  const [selectedStudentDetail, setSelectedStudentDetail] = useState(null);
+
+  // Faculty What-If Simulation State
+  const [whatIfStudent, setWhatIfStudent] = useState(null);
+  const [simAttendance, setSimAttendance] = useState(58);
+  const [simInternals, setSimInternals] = useState(14);
+  const [simBacklogs, setSimBacklogs] = useState(1);
+  const [simulatedRisk, setSimulatedRisk] = useState('MEDIUM');
 
   // Daily Attendance Marker State
   const [attendanceDate, setAttendanceDate] = useState(() => new Date().toISOString().split('T')[0]);
@@ -28,6 +38,7 @@ export default function FacultyPortal() {
   // Editable Internal Marks State
   const [editingMarks, setEditingMarks] = useState({});
 
+  // Advisee Mentorship Logs
   const [mentorshipLogs, setMentorshipLogs] = useState(() => {
     try {
       const saved = localStorage.getItem('FACULTY_MENTORSHIP_LOGS');
@@ -52,7 +63,6 @@ export default function FacultyPortal() {
   const [newLog, setNewLog] = useState({ student_id: '', student_name: '', course_code: '', topic: '', action: '' });
   const [showLogModal, setShowLogModal] = useState(false);
 
-  // Sync department when user changes
   useEffect(() => {
     if (!isDean && user?.department_id) {
       setDeptFilter(user.department_id);
@@ -86,9 +96,26 @@ export default function FacultyPortal() {
   const activeCourse = handledCourses[selectedCourseIndex] || handledCourses[0] || {};
   const enrolledStudents = activeCourse.students || [];
 
-  // Initialize Daily Attendance Map when active course changes
+  // Attendance Distribution Buckets (90-100%, 75-89%, 60-74%, <60%)
+  const bucket90_100 = enrolledStudents.filter(s => s.attendance_percentage >= 90).length;
+  const bucket75_89 = enrolledStudents.filter(s => s.attendance_percentage >= 75 && s.attendance_percentage < 90).length;
+  const bucket60_74 = enrolledStudents.filter(s => s.attendance_percentage >= 60 && s.attendance_percentage < 75).length;
+  const bucketBelow60 = enrolledStudents.filter(s => s.attendance_percentage < 60).length;
+
+  // Risk Distribution Buckets
+  const highRiskStudents = enrolledStudents.filter(s => s.risk_level === 'HIGH' || s.attendance_percentage < 65);
+  const medRiskStudents = enrolledStudents.filter(s => s.risk_level === 'MEDIUM' || (s.attendance_percentage >= 65 && s.attendance_percentage < 75));
+  const lowRiskStudents = enrolledStudents.filter(s => s.risk_level === 'LOW' && s.attendance_percentage >= 75);
+
+  // Initialize What-If target when active course changes
   useEffect(() => {
     if (enrolledStudents.length > 0) {
+      const firstTarget = highRiskStudents[0] || enrolledStudents[0];
+      setWhatIfStudent(firstTarget);
+      setSimAttendance(firstTarget.attendance_percentage || 58);
+      setSimInternals(firstTarget.internal_marks || 14);
+      setSimBacklogs(firstTarget.is_shortage ? 1 : 0);
+
       const initialMap = {};
       const marksMap = {};
       enrolledStudents.forEach(s => {
@@ -99,6 +126,22 @@ export default function FacultyPortal() {
       setEditingMarks(marksMap);
     }
   }, [selectedCourseIndex, selectedFacultyId, facultySummary]);
+
+  // Recalculate What-If Simulation
+  useEffect(() => {
+    let score = 0;
+    if (simAttendance < 65) score += 40;
+    else if (simAttendance < 75) score += 20;
+
+    if (simInternals < 15) score += 35;
+    else if (simInternals < 20) score += 15;
+
+    if (simBacklogs > 0) score += 25;
+
+    if (score >= 50) setSimulatedRisk('HIGH');
+    else if (score >= 25) setSimulatedRisk('MEDIUM');
+    else setSimulatedRisk('LOW');
+  }, [simAttendance, simInternals, simBacklogs]);
 
   const handleMarkAll = (status) => {
     const updated = {};
@@ -112,17 +155,17 @@ export default function FacultyPortal() {
   const handleSaveDailyAttendance = () => {
     const presentCount = Object.values(dailyAttendanceMap).filter(v => v === 'PRESENT').length;
     addToast(`Saved attendance for ${presentCount}/${enrolledStudents.length} students on ${attendanceDate}`, 'success');
-    setFacultyViewMode('ROSTER');
+    setActiveTab('ROSTER');
   };
 
   const handleSaveMarks = () => {
     addToast(`Updated internal assessment scores for ${activeCourse.course_code} (${activeCourse.section})`, 'success');
-    setFacultyViewMode('ROSTER');
+    setActiveTab('ROSTER');
   };
 
-  const handleBatchDispatchWarnings = () => {
-    const shortageCount = enrolledStudents.filter(s => s.is_shortage).length;
-    addToast(`Dispatched official attendance warning letters to ${shortageCount} students via university email.`, 'success');
+  const handleDispatchWarning = (stu) => {
+    addToast(`Official Attendance Notice dispatched to ${stu.student_name} (${stu.email}) for ${activeCourse.course_code}`, 'success');
+    setSelectedStudentForWarning(null);
   };
 
   const handleSaveLog = (e) => {
@@ -152,61 +195,60 @@ export default function FacultyPortal() {
     setShowLogModal(false);
   };
 
-  const handleDispatchWarning = (stu) => {
-    addToast(`Official Attendance Notice dispatched to ${stu.student_name} (${stu.email}) for ${activeCourse.course_code}`, 'success');
-    setSelectedStudentForWarning(null);
-  };
-
   if (loading && !facultySummary) {
     return (
       <div className="p-4 text-center py-5">
         <div className="spinner-border text-primary" role="status"></div>
-        <p className="mt-2 text-muted small">Loading Department Faculty Courses & Class Roster...</p>
+        <p className="mt-2 text-muted small">Loading Department Academic Portal...</p>
       </div>
     );
   }
 
   return (
     <div className="p-3 p-md-4">
-      {/* Header Banner */}
+      {/* 1. Header Banner */}
       <div className="p-4 rounded-4 text-white mb-4 shadow-sm" style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)' }}>
         <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
           <div>
-            <div className="d-flex align-items-center gap-2 mb-2">
-              <span className="badge bg-info text-dark fw-semibold">Faculty Teaching & Course Directorate</span>
-              <span className="badge bg-primary text-white">Strictly {currentFaculty.department_name}</span>
+            <span className="badge bg-info text-dark mb-2 fw-semibold">
+              <i className="bi bi-people-fill me-1"></i> Department Academic Portal ("How Are My Students Doing?")
+            </span>
+            <h3 className="fw-bold mb-1">Welcome, {currentFaculty.faculty_name || 'Dr. Sunita Rao'}</h3>
+            <div className="d-flex flex-wrap gap-2 text-white-50 small mt-2">
+              <span><strong>Department:</strong> <span className="text-white">{currentFaculty.department_name}</span></span>
+              <span>•</span>
+              <span><strong>Assigned Courses:</strong> <span className="text-white">{handledCourses.map(c => c.course_code).join(', ')}</span></span>
+              <span>•</span>
+              <span><strong>Total Students:</strong> <span className="text-white">{enrolledStudents.length * handledCourses.length || 120}</span></span>
+              <span>•</span>
+              <span><strong>Average Attendance:</strong> <span className="text-white">{activeCourse.average_attendance || 78.4}%</span></span>
+              <span>•</span>
+              <span><strong>Below 75%:</strong> <span className="badge badge-risk-high">{activeCourse.shortage_alerts_count || 12} Students</span></span>
             </div>
-            <h3 className="fw-bold mb-1">{currentFaculty.faculty_name || 'Faculty Teaching Hub'}</h3>
-            <p className="mb-0 text-white-50 small">
-              Department: <span className="text-white">{currentFaculty.department_name}</span> | Designation: <span className="text-white">{currentFaculty.designation}</span> | ID: <span className="text-white font-mono">{currentFaculty.faculty_id}</span>
-            </p>
           </div>
 
           <div className="d-flex gap-2">
             <button className="btn btn-light btn-sm fw-semibold shadow-sm" onClick={() => setShowLogModal(true)}>
-              <i className="bi bi-journal-plus text-primary me-1"></i> Log Advisee Session
+              <i className="bi bi-journal-plus text-primary me-1"></i> Log Mentoring Session
             </button>
           </div>
         </div>
       </div>
 
-      {/* Dean Department Switcher (Only visible to Dean/Admin) */}
+      {/* Dean Faculty Switcher (If logged in as Dean/Admin) */}
       {isDean && (
         <div className="metric-card mb-4 bg-white border-primary shadow-sm">
           <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
             <div>
-              <span className="badge bg-primary text-white mb-1"><i className="bi bi-shield-lock-fill me-1"></i> Dean Inspection Controls</span>
-              <h6 className="fw-bold mb-0">Select Department & Faculty Member to Inspect</h6>
+              <span className="badge bg-primary text-white mb-1"><i className="bi bi-shield-lock-fill me-1"></i> Dean Inspection View</span>
+              <h6 className="fw-bold mb-0">Select Department & Faculty to Inspect Assigned Courses</h6>
             </div>
 
             <div className="d-flex gap-2">
               <select
                 className="form-select form-select-sm"
                 value={deptFilter}
-                onChange={(e) => {
-                  setDeptFilter(e.target.value);
-                  setSelectedCourseIndex(0);
-                }}
+                onChange={(e) => { setDeptFilter(e.target.value); setSelectedCourseIndex(0); }}
               >
                 <option value="DEPT_CSE">Computer Science (CSE)</option>
                 <option value="DEPT_ECE">Electronics (ECE)</option>
@@ -218,10 +260,7 @@ export default function FacultyPortal() {
               <select
                 className="form-select form-select-sm"
                 value={selectedFacultyId}
-                onChange={(e) => {
-                  setSelectedFacultyId(e.target.value);
-                  setSelectedCourseIndex(0);
-                }}
+                onChange={(e) => { setSelectedFacultyId(e.target.value); setSelectedCourseIndex(0); }}
               >
                 {facultyList.map(f => (
                   <option key={f.faculty_id} value={f.faculty_id}>
@@ -234,61 +273,11 @@ export default function FacultyPortal() {
         </div>
       )}
 
-      {/* 4 Core Faculty Overview Cards */}
-      <div className="row g-3 mb-4">
-        <div className="col-12 col-sm-6 col-lg-3">
-          <div className="metric-card">
-            <div className="d-flex justify-content-between text-muted small mb-1">
-              <span>Biometric Attendance</span>
-              <i className="bi bi-fingerprint text-success"></i>
-            </div>
-            <h3 className="fw-bold mb-1 text-success">{currentFaculty.attendance_percentage}%</h3>
-            <span className="badge bg-light text-success border">Punctuality: {currentFaculty.biometric_status}</span>
-          </div>
-        </div>
-
-        <div className="col-12 col-sm-6 col-lg-3">
-          <div className="metric-card">
-            <div className="d-flex justify-content-between text-muted small mb-1">
-              <span>Weekly Teaching Load</span>
-              <i className="bi bi-clock-history text-primary"></i>
-            </div>
-            <h3 className="fw-bold mb-1 text-primary">{currentFaculty.workload_hours_per_week} hrs/wk</h3>
-            <span className="badge bg-light text-primary border">{handledCourses.length} {currentFaculty.department_name?.split(' ')[0]} Courses</span>
-          </div>
-        </div>
-
-        <div className="col-12 col-sm-6 col-lg-3">
-          <div className="metric-card">
-            <div className="d-flex justify-content-between text-muted small mb-1">
-              <span>{currentFaculty.department_name?.split(' ')[0]} Advisees</span>
-              <i className="bi bi-people-fill text-info"></i>
-            </div>
-            <h3 className="fw-bold mb-1 text-info">{currentFaculty.advisees_count} Students</h3>
-            <span className="badge bg-light text-info border">Department Mentorship</span>
-          </div>
-        </div>
-
-        <div className="col-12 col-sm-6 col-lg-3">
-          <div className="metric-card">
-            <div className="d-flex justify-content-between text-muted small mb-1">
-              <span>Research Publications</span>
-              <i className="bi bi-journal-check text-warning"></i>
-            </div>
-            <h3 className="fw-bold mb-1 text-dark">{currentFaculty.research_publications} Papers</h3>
-            <span className="badge bg-light text-muted border">Experience: {currentFaculty.experience_years} Yrs</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Courses Handled by this Faculty */}
+      {/* 2. Course Selector Tabs */}
       <div className="metric-card mb-4">
         <div className="d-flex align-items-center justify-content-between mb-3">
-          <div>
-            <h5 className="fw-bold mb-0"><i className="bi bi-book-half text-primary me-2"></i> {currentFaculty.department_name} Courses & Assigned Sections</h5>
-            <span className="text-muted small">Select a course to view classroom schedule and enrolled {currentFaculty.department_name?.split(' ')[0]} student roster.</span>
-          </div>
-          <span className="badge bg-light text-dark border">{handledCourses.length} Department Courses</span>
+          <h6 className="fw-bold mb-0"><i className="bi bi-book-half text-primary me-2"></i> Handled Teaching Courses</h6>
+          <span className="badge bg-light text-dark border">{handledCourses.length} Courses Assigned</span>
         </div>
 
         <div className="row g-3">
@@ -298,9 +287,7 @@ export default function FacultyPortal() {
               <div key={course.course_code} className="col-12 col-md-6">
                 <div
                   className={`p-3 rounded-4 border transition-all ${
-                    isSelected
-                      ? 'border-primary bg-white shadow-sm'
-                      : 'bg-light hover-shadow'
+                    isSelected ? 'border-primary bg-white shadow-sm ring-2' : 'bg-light hover-shadow'
                   }`}
                   style={{
                     cursor: 'pointer',
@@ -321,14 +308,14 @@ export default function FacultyPortal() {
 
                   <div className="small text-muted mb-2">
                     <div><i className="bi bi-calendar-event me-1 text-primary"></i> <strong>Schedule:</strong> {course.class_schedule}</div>
-                    <div><i className="bi bi-geo-alt me-1 text-danger"></i> <strong>Location:</strong> {course.classroom}</div>
+                    <div><i className="bi bi-geo-alt me-1 text-danger"></i> <strong>Room:</strong> {course.classroom}</div>
                   </div>
 
                   <div className="d-flex justify-content-between align-items-center pt-2 border-top small">
-                    <span>Enrolled: <strong>{course.total_enrolled} {currentFaculty.department_name?.split(' ')[0]} Students</strong></span>
-                    <span>Avg Att: <strong className="text-success">{course.average_attendance}%</strong></span>
+                    <span>Enrolled: <strong>{course.total_enrolled} Students</strong></span>
+                    <span>Avg Attendance: <strong className="text-success">{course.average_attendance}%</strong></span>
                     {course.shortage_alerts_count > 0 && (
-                      <span className="badge badge-risk-high">{course.shortage_alerts_count} Shortages</span>
+                      <span className="badge badge-risk-high">{course.shortage_alerts_count} Below 75%</span>
                     )}
                   </div>
                 </div>
@@ -338,59 +325,153 @@ export default function FacultyPortal() {
         </div>
       </div>
 
-      {/* Faculty Persona Workflow Toolbar */}
+      {/* 3. Section: Course Attendance Monitoring & Distribution Buckets */}
+      <div className="metric-card mb-4">
+        <h6 className="fw-bold mb-3">
+          <i className="bi bi-bar-chart-fill text-primary me-2"></i>
+          Attendance Monitoring & Distribution: <span className="text-primary font-mono">{activeCourse.course_code}</span> ({enrolledStudents.length} Students)
+        </h6>
+
+        <div className="row g-3 text-center small mb-3">
+          <div className="col-6 col-md-3">
+            <div className="p-3 bg-light rounded-3 border border-success">
+              <div className="text-success fw-bold">90% – 100%</div>
+              <h4 className="fw-bold text-dark my-1">{bucket90_100}</h4>
+              <span className="text-muted" style={{ fontSize: '0.72rem' }}>Optimal Attendance</span>
+            </div>
+          </div>
+          <div className="col-6 col-md-3">
+            <div className="p-3 bg-light rounded-3 border border-primary">
+              <div className="text-primary fw-bold">75% – 89%</div>
+              <h4 className="fw-bold text-dark my-1">{bucket75_89}</h4>
+              <span className="text-muted" style={{ fontSize: '0.72rem' }}>Compliant Range</span>
+            </div>
+          </div>
+          <div className="col-6 col-md-3">
+            <div className="p-3 bg-light rounded-3 border border-warning">
+              <div className="text-warning fw-bold">60% – 74%</div>
+              <h4 className="fw-bold text-dark my-1">{bucket60_74}</h4>
+              <span className="text-muted" style={{ fontSize: '0.72rem' }}>Warning Shortage</span>
+            </div>
+          </div>
+          <div className="col-6 col-md-3">
+            <div className="p-3 bg-light rounded-3 border border-danger">
+              <div className="text-danger fw-bold">&lt; 60%</div>
+              <h4 className="fw-bold text-dark my-1">{bucketBelow60}</h4>
+              <span className="text-muted" style={{ fontSize: '0.72rem' }}>Critical Debarment</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* 4. Section: Faculty Early Warning System (ML Risk Breakdown) */}
+      <div className="metric-card mb-4 border-primary">
+        <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3 gap-2">
+          <div>
+            <h6 className="fw-bold mb-0 text-primary">
+              <i className="bi bi-shield-exclamation text-danger me-2"></i>
+              Faculty Early Warning ML System
+            </h6>
+            <span className="text-muted small">AI-assisted identification of students requiring immediate academic intervention</span>
+          </div>
+
+          <div className="d-flex gap-2">
+            <span className="badge badge-risk-high p-2">🔴 {highRiskStudents.length} High Risk</span>
+            <span className="badge badge-risk-med p-2">🟠 {medRiskStudents.length} Medium Risk</span>
+            <span className="badge badge-risk-low p-2">🟢 {lowRiskStudents.length} Low Risk</span>
+          </div>
+        </div>
+
+        {/* At-Risk Student Cards */}
+        <div className="row g-3">
+          {highRiskStudents.slice(0, 3).map(stu => (
+            <div key={stu.student_id} className="col-12 col-md-4">
+              <div className="p-3 bg-light rounded-3 border border-danger h-100">
+                <div className="d-flex justify-content-between align-items-start mb-2">
+                  <div>
+                    <h6 className="fw-bold mb-0 text-dark">{stu.student_name}</h6>
+                    <span className="text-muted font-mono" style={{ fontSize: '0.72rem' }}>{stu.student_id}</span>
+                  </div>
+                  <span className="badge badge-risk-high">HIGH RISK</span>
+                </div>
+
+                <div className="small text-danger mb-2">
+                  <div>• Attendance: <strong>{stu.attendance_percentage}%</strong> (Shortage)</div>
+                  <div>• Internal Marks: <strong>{stu.internal_marks} / 30</strong></div>
+                  <div>• Status: Exam Debarment Risk</div>
+                </div>
+
+                <div className="p-2 bg-white rounded border small text-muted mb-2" style={{ fontSize: '0.75rem' }}>
+                  <strong>Recommended Action:</strong> Schedule urgent 1-on-1 mentoring meeting.
+                </div>
+
+                <div className="d-flex gap-2">
+                  <button
+                    className="btn btn-sm btn-outline-danger flex-grow-1"
+                    style={{ fontSize: '0.72rem' }}
+                    onClick={() => setSelectedStudentForWarning(stu)}
+                  >
+                    <i className="bi bi-envelope me-1"></i> Send Notice
+                  </button>
+                  <button
+                    className="btn btn-sm btn-outline-primary flex-grow-1"
+                    style={{ fontSize: '0.72rem' }}
+                    onClick={() => {
+                      setWhatIfStudent(stu);
+                      setSimAttendance(stu.attendance_percentage);
+                      setSimInternals(stu.internal_marks);
+                      setActiveTab('WHAT_IF');
+                    }}
+                  >
+                    <i className="bi bi-sliders me-1"></i> What-If
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* 5. Workflow Mode Switcher Bar */}
       <div className="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
         <div className="btn-group btn-group-sm shadow-sm">
           <button
-            className={`btn ${facultyViewMode === 'ROSTER' ? 'btn-primary' : 'btn-light border'}`}
-            style={facultyViewMode === 'ROSTER' ? { background: '#4f46e5', borderColor: '#4f46e5' } : {}}
-            onClick={() => setFacultyViewMode('ROSTER')}
+            className={`btn ${activeTab === 'ROSTER' ? 'btn-primary' : 'btn-light border'}`}
+            style={activeTab === 'ROSTER' ? { background: '#4f46e5', borderColor: '#4f46e5' } : {}}
+            onClick={() => setActiveTab('ROSTER')}
           >
-            <i className="bi bi-table me-1"></i> Course Roster
+            <i className="bi bi-table me-1"></i> Enrolled Student Roster
           </button>
           <button
-            className={`btn ${facultyViewMode === 'ATTENDANCE_TAKER' ? 'btn-primary' : 'btn-light border'}`}
-            style={facultyViewMode === 'ATTENDANCE_TAKER' ? { background: '#4f46e5', borderColor: '#4f46e5' } : {}}
-            onClick={() => setFacultyViewMode('ATTENDANCE_TAKER')}
+            className={`btn ${activeTab === 'WHAT_IF' ? 'btn-primary' : 'btn-light border'}`}
+            style={activeTab === 'WHAT_IF' ? { background: '#4f46e5', borderColor: '#4f46e5' } : {}}
+            onClick={() => setActiveTab('WHAT_IF')}
           >
-            <i className="bi bi-check2-square me-1"></i> Mark Today's Attendance
+            <i className="bi bi-sliders me-1"></i> Faculty What-If Simulator
           </button>
           <button
-            className={`btn ${facultyViewMode === 'GRADING' ? 'btn-primary' : 'btn-light border'}`}
-            style={facultyViewMode === 'GRADING' ? { background: '#4f46e5', borderColor: '#4f46e5' } : {}}
-            onClick={() => setFacultyViewMode('GRADING')}
+            className={`btn ${activeTab === 'ATTENDANCE_TAKER' ? 'btn-primary' : 'btn-light border'}`}
+            style={activeTab === 'ATTENDANCE_TAKER' ? { background: '#4f46e5', borderColor: '#4f46e5' } : {}}
+            onClick={() => setActiveTab('ATTENDANCE_TAKER')}
           >
-            <i className="bi bi-input-cursor-text me-1"></i> Grade Internal Assessment
+            <i className="bi bi-check2-square me-1"></i> Mark Daily Roll Call
+          </button>
+          <button
+            className={`btn ${activeTab === 'GRADING' ? 'btn-primary' : 'btn-light border'}`}
+            style={activeTab === 'GRADING' ? { background: '#4f46e5', borderColor: '#4f46e5' } : {}}
+            onClick={() => setActiveTab('GRADING')}
+          >
+            <i className="bi bi-input-cursor-text me-1"></i> Grade Sheet Editor
           </button>
         </div>
-
-        {activeCourse.shortage_alerts_count > 0 && (
-          <button
-            className="btn btn-sm btn-outline-danger shadow-sm"
-            onClick={handleBatchDispatchWarnings}
-          >
-            <i className="bi bi-envelope-exclamation-fill me-1"></i> Batch Send Debarment Notices ({activeCourse.shortage_alerts_count})
-          </button>
-        )}
       </div>
 
-      {/* MODE 1: ENROLLED STUDENTS ROSTER TABLE */}
-      {facultyViewMode === 'ROSTER' && (
+      {/* MODE 1: ENROLLED STUDENT ROSTER TABLE */}
+      {activeTab === 'ROSTER' && (
         <div className="metric-card mb-4">
-          <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3 gap-2">
-            <div>
-              <h5 className="fw-bold mb-0">
-                <i className="bi bi-people text-primary me-2"></i>
-                Enrolled Student Roster: <span className="text-primary font-mono">{activeCourse.course_code}</span> - {activeCourse.course_title} ({activeCourse.section})
-              </h5>
-              <span className="text-muted small">
-                Managing {enrolledStudents.length} enrolled {currentFaculty.department_name} students | Conducted: {activeCourse.total_classes_conducted} lectures
-              </span>
-            </div>
-
-            <div className="badge bg-light text-dark border p-2">
-              Classroom: {activeCourse.classroom}
-            </div>
+          <div className="d-flex justify-content-between align-items-center mb-3">
+            <h6 className="fw-bold mb-0">Enrolled Student Roster & Shortage Tracker</h6>
+            <span className="badge bg-light text-dark border">Managing {enrolledStudents.length} Students</span>
           </div>
 
           <div className="table-responsive">
@@ -398,98 +479,179 @@ export default function FacultyPortal() {
               <thead className="table-light">
                 <tr>
                   <th>Student ID</th>
-                  <th>Student Name & Email</th>
-                  <th>Department</th>
-                  <th>Section</th>
-                  <th>Lectures Attended</th>
-                  <th>Course Attendance</th>
-                  <th>Internal (30)</th>
-                  <th>Grade</th>
-                  <th>Risk Standing</th>
-                  <th className="text-end">Action</th>
+                  <th>Student Name</th>
+                  <th>Attendance Rate</th>
+                  <th>Status</th>
+                  <th>Internal Marks (30)</th>
+                  <th>Projected Grade</th>
+                  <th className="text-end">Actions</th>
                 </tr>
               </thead>
               <tbody>
-                {enrolledStudents.map(s => (
-                  <tr key={s.student_id}>
-                    <td className="font-mono fw-bold text-primary">{s.student_id}</td>
-                    <td>
-                      <div className="fw-semibold text-dark">{s.student_name}</div>
-                      <div className="text-muted" style={{ fontSize: '0.72rem' }}>{s.email}</div>
-                    </td>
-                    <td>
-                      <span className="badge bg-light text-primary border">{s.department_name || currentFaculty.department_name}</span>
-                    </td>
-                    <td><span className="badge bg-light text-dark border">{s.section}</span></td>
-                    <td>{s.classes_attended} / {s.total_classes}</td>
-                    <td>
-                      <div className="d-flex align-items-center gap-2">
-                        <div className="progress flex-grow-1" style={{ height: '6px', minWidth: '60px' }}>
-                          <div
-                            className={`progress-bar ${s.attendance_percentage >= 75 ? 'bg-success' : 'bg-danger'}`}
-                            style={{ width: `${Math.min(100, s.attendance_percentage)}%` }}
-                          ></div>
+                {enrolledStudents.map(s => {
+                  const isCritical = s.attendance_percentage < 60;
+                  const isWarning = s.attendance_percentage >= 60 && s.attendance_percentage < 75;
+                  const isGood = s.attendance_percentage >= 75;
+                  return (
+                    <tr key={s.student_id}>
+                      <td className="font-mono fw-bold text-primary">{s.student_id}</td>
+                      <td>
+                        <div className="fw-semibold text-dark">{s.student_name}</div>
+                        <div className="text-muted" style={{ fontSize: '0.72rem' }}>{s.email}</div>
+                      </td>
+                      <td>
+                        <div className="d-flex align-items-center gap-2">
+                          <div className="progress flex-grow-1" style={{ height: '6px', minWidth: '60px' }}>
+                            <div
+                              className={`progress-bar ${isGood ? 'bg-success' : isWarning ? 'bg-warning' : 'bg-danger'}`}
+                              style={{ width: `${Math.min(100, s.attendance_percentage)}%` }}
+                            ></div>
+                          </div>
+                          <span className="fw-bold">{s.attendance_percentage}%</span>
                         </div>
-                        <span className={`fw-bold ${s.attendance_percentage >= 75 ? 'text-success' : 'text-danger'}`}>
-                          {s.attendance_percentage}%
+                      </td>
+                      <td>
+                        <span className={`badge ${isGood ? 'bg-light text-success border' : isWarning ? 'bg-warning text-dark' : 'bg-danger text-white'}`}>
+                          {isGood ? 'Good' : isWarning ? 'Warning' : 'Critical'}
                         </span>
-                      </div>
-                    </td>
-                    <td>
-                      <strong className="font-mono">{editingMarks[s.student_id] ?? s.internal_marks}</strong> / 30
-                    </td>
-                    <td><span className="badge bg-light text-dark border font-mono">{s.grade_letter}</span></td>
-                    <td>
-                      <span className={`badge ${s.risk_level === 'HIGH' ? 'badge-risk-high' : 'badge-risk-low'}`}>
-                        {s.risk_level}
-                      </span>
-                    </td>
-                    <td className="text-end">
-                      {s.is_shortage ? (
-                        <button
-                          className="btn btn-sm btn-outline-danger py-1 px-2 shadow-sm rounded-pill"
-                          style={{ fontSize: '0.72rem' }}
-                          onClick={() => setSelectedStudentForWarning(s)}
-                        >
-                          <i className="bi bi-exclamation-triangle me-1"></i> Send Warning
-                        </button>
-                      ) : (
-                        <button
-                          className="btn btn-sm btn-outline-primary py-1 px-2 rounded-pill"
-                          style={{ fontSize: '0.72rem' }}
-                          onClick={() => {
-                            setNewLog({
-                              student_id: s.student_id,
-                              student_name: s.student_name,
-                              course_code: activeCourse.course_code,
-                              topic: `Academic Progress in ${activeCourse.course_code}`,
-                              action: ''
-                            });
-                            setShowLogModal(true);
-                          }}
-                        >
-                          <i className="bi bi-pencil-square me-1"></i> Log Note
-                        </button>
-                      )}
-                    </td>
-                  </tr>
-                ))}
+                      </td>
+                      <td>
+                        <strong>{editingMarks[s.student_id] ?? s.internal_marks}</strong> / 30
+                      </td>
+                      <td><span className="badge bg-light text-dark border font-mono">{s.grade_letter}</span></td>
+                      <td className="text-end">
+                        <div className="d-flex gap-1 justify-content-end">
+                          {s.is_shortage && (
+                            <button
+                              className="btn btn-sm btn-outline-danger py-0 px-2 rounded-pill"
+                              style={{ fontSize: '0.72rem' }}
+                              onClick={() => setSelectedStudentForWarning(s)}
+                            >
+                              <i className="bi bi-exclamation-triangle me-1"></i> Warning
+                            </button>
+                          )}
+                          <button
+                            className="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill"
+                            style={{ fontSize: '0.72rem' }}
+                            onClick={() => {
+                              setWhatIfStudent(s);
+                              setSimAttendance(s.attendance_percentage);
+                              setSimInternals(s.internal_marks);
+                              setActiveTab('WHAT_IF');
+                            }}
+                          >
+                            <i className="bi bi-sliders me-1"></i> What-If
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
         </div>
       )}
 
-      {/* MODE 2: DAILY ATTENDANCE MARKER TOOL */}
-      {facultyViewMode === 'ATTENDANCE_TAKER' && (
+      {/* MODE 2: FACULTY WHAT-IF SCENARIO ANALYZER */}
+      {activeTab === 'WHAT_IF' && whatIfStudent && (
+        <div className="metric-card mb-4 border-primary">
+          <div className="d-flex justify-content-between align-items-center mb-3">
+            <div>
+              <h5 className="fw-bold mb-0 text-primary"><i className="bi bi-sliders me-2"></i> Faculty Scenario Analysis (What-If Simulation)</h5>
+              <span className="text-muted small">Test academic remediation interventions for advisee candidate</span>
+            </div>
+            <button className="btn btn-sm btn-outline-secondary" onClick={() => setActiveTab('ROSTER')}>
+              ← Back to Roster
+            </button>
+          </div>
+
+          <div className="bg-light p-3 rounded-3 border mb-4">
+            <div className="d-flex justify-content-between align-items-center">
+              <div>
+                <h6 className="fw-bold mb-1">{whatIfStudent.student_name} ({whatIfStudent.student_id})</h6>
+                <div className="text-muted small">Course: {activeCourse.course_code} - {activeCourse.course_title}</div>
+              </div>
+              <div className="text-end">
+                <div className="small text-muted">Current Risk Standing</div>
+                <span className={`badge fs-6 ${whatIfStudent.risk_level === 'HIGH' ? 'badge-risk-high' : 'badge-risk-low'}`}>
+                  {whatIfStudent.risk_level || 'HIGH'} RISK
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div className="row g-4 mb-4">
+            <div className="col-12 col-md-6">
+              <label className="form-label small fw-semibold">
+                Simulated Attendance Rate: <strong className="text-primary">{simAttendance}%</strong>
+              </label>
+              <input
+                type="range"
+                className="form-range"
+                min="40"
+                max="95"
+                step="1"
+                value={simAttendance}
+                onChange={(e) => setSimAttendance(parseInt(e.target.value))}
+              />
+              <div className="d-flex justify-content-between text-muted" style={{ fontSize: '0.72rem' }}>
+                <span>40% (Debarred)</span>
+                <span>75% (Eligibility)</span>
+                <span>95% (Distinction)</span>
+              </div>
+            </div>
+
+            <div className="col-12 col-md-6">
+              <label className="form-label small fw-semibold">
+                Simulated Internal Assessment Marks: <strong className="text-primary">{simInternals} / 30</strong>
+              </label>
+              <input
+                type="range"
+                className="form-range"
+                min="5"
+                max="30"
+                step="1"
+                value={simInternals}
+                onChange={(e) => setSimInternals(parseInt(e.target.value))}
+              />
+              <div className="d-flex justify-content-between text-muted" style={{ fontSize: '0.72rem' }}>
+                <span>5 / 30 (Fail)</span>
+                <span>15 / 30 (Pass)</span>
+                <span>30 / 30 (Centum)</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Simulation Outcome Card */}
+          <div className="p-4 bg-white rounded-3 border text-center">
+            <div className="text-muted small mb-1">Scenario Outcome Impact:</div>
+            <div className="d-flex justify-content-center align-items-center gap-3 my-2">
+              <span className="badge badge-risk-high fs-6 p-2">Current Risk: {whatIfStudent.risk_level || 'HIGH'}</span>
+              <i className="bi bi-arrow-right fs-4 text-muted"></i>
+              <span className={`badge fs-6 p-2 ${simulatedRisk === 'LOW' ? 'bg-success text-white' : simulatedRisk === 'MEDIUM' ? 'bg-warning text-dark' : 'bg-danger text-white'}`}>
+                Simulated Risk: {simulatedRisk} RISK
+              </span>
+            </div>
+            <p className="text-muted small mb-0">
+              {simulatedRisk === 'LOW'
+                ? '✓ Reaching 75% attendance and 20+ internal marks successfully restores the student to safe standing.'
+                : '⚠ Remedial tutoring and mandatory laboratory attendance required to further mitigate academic risk.'}
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* MODE 3: DAILY ATTENDANCE MARKER TOOL */}
+      {activeTab === 'ATTENDANCE_TAKER' && (
         <div className="metric-card mb-4 border-primary">
           <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3 gap-2">
             <div>
               <h5 className="fw-bold mb-0 text-primary">
                 <i className="bi bi-calendar2-check-fill me-2"></i>
-                Daily Attendance Marker: {activeCourse.course_code} ({activeCourse.section})
+                Daily Roll Call Marker: {activeCourse.course_code} ({activeCourse.section})
               </h5>
-              <span className="text-muted small">Record today's lecture roll call and save directly to warehouse facts.</span>
+              <span className="text-muted small">Record today's lecture roll call and save to warehouse.</span>
             </div>
 
             <div className="d-flex gap-2 align-items-center">
@@ -563,7 +725,7 @@ export default function FacultyPortal() {
           </div>
 
           <div className="d-flex justify-content-end gap-2">
-            <button className="btn btn-sm btn-secondary" onClick={() => setFacultyViewMode('ROSTER')}>Cancel</button>
+            <button className="btn btn-sm btn-secondary" onClick={() => setActiveTab('ROSTER')}>Cancel</button>
             <button className="btn btn-sm btn-primary" onClick={handleSaveDailyAttendance} style={{ background: '#4f46e5', borderColor: '#4f46e5' }}>
               <i className="bi bi-cloud-check-fill me-1"></i> Save Attendance Session
             </button>
@@ -571,16 +733,16 @@ export default function FacultyPortal() {
         </div>
       )}
 
-      {/* MODE 3: INTERNAL ASSESSMENT GRADING SHEET */}
-      {facultyViewMode === 'GRADING' && (
+      {/* MODE 4: INTERNAL ASSESSMENT GRADING SHEET */}
+      {activeTab === 'GRADING' && (
         <div className="metric-card mb-4 border-info">
           <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3 gap-2">
             <div>
               <h5 className="fw-bold mb-0 text-info">
                 <i className="bi bi-card-checklist me-2"></i>
-                Mid-Term Internal Marks Grading Sheet (Max: 30 Marks)
+                Internal Assessment Grading Sheet (Max: 30 Marks)
               </h5>
-              <span className="text-muted small">Update internal examination marks and view class distribution.</span>
+              <span className="text-muted small">Update mid-term scores and evaluate class performance.</span>
             </div>
           </div>
 
@@ -591,7 +753,7 @@ export default function FacultyPortal() {
                   <th>Student ID</th>
                   <th>Student Name</th>
                   <th>Current Marks (out of 30)</th>
-                  <th>Status</th>
+                  <th>Standing</th>
                 </tr>
               </thead>
               <tbody>
@@ -631,7 +793,7 @@ export default function FacultyPortal() {
           </div>
 
           <div className="d-flex justify-content-end gap-2">
-            <button className="btn btn-sm btn-secondary" onClick={() => setFacultyViewMode('ROSTER')}>Cancel</button>
+            <button className="btn btn-sm btn-secondary" onClick={() => setActiveTab('ROSTER')}>Cancel</button>
             <button className="btn btn-sm btn-info text-white" onClick={handleSaveMarks} style={{ background: '#0ea5e9', borderColor: '#0ea5e9' }}>
               <i className="bi bi-save me-1"></i> Save Grade Sheet
             </button>
@@ -639,62 +801,39 @@ export default function FacultyPortal() {
         </div>
       )}
 
-      {/* Faculty Mentorship Counseling Log */}
-      <div className="metric-card">
-        <div className="d-flex align-items-center justify-content-between mb-3">
-          <div>
-            <h6 className="fw-bold mb-0"><i className="bi bi-journal-text text-primary me-2"></i> {currentFaculty.department_name} Advisee Mentorship History</h6>
-            <span className="text-muted small">Recorded counseling sessions across assigned advisees.</span>
-          </div>
-          <button className="btn btn-sm btn-outline-primary" onClick={() => setShowLogModal(true)}>
-            + Log New Session
-          </button>
-        </div>
-
-        <div className="list-group list-group-flush small">
-          {mentorshipLogs.map(log => (
-            <div key={log.id} className="list-group-item px-0 bg-transparent py-2 border-bottom">
-              <div className="d-flex justify-content-between align-items-center mb-1">
-                <span className="fw-bold text-dark">
-                  {log.student_name} (<span className="font-mono">{log.student_id}</span>) - <span className="badge bg-light text-primary border">{log.course_code || 'CS501'}</span>
-                </span>
-                <span className="badge bg-light text-muted border">{log.date}</span>
-              </div>
-              <div className="text-muted small"><strong>Counselor:</strong> {log.faculty_name}</div>
-              <div className="text-muted small"><strong>Discussion:</strong> {log.topic}</div>
-              <div className="text-muted small"><strong>Agreed Action Plan:</strong> {log.action}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-
       {/* Warning Notice Dispatch Modal */}
       {selectedStudentForWarning && (
         <div className="modal show d-block" style={{ backgroundColor: 'rgba(15,23,42,0.65)', backdropFilter: 'blur(6px)' }} tabIndex="-1">
           <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
-              <div className="modal-header bg-danger text-white p-3 px-4">
-                <h5 className="modal-title fs-6"><i className="bi bi-exclamation-triangle-fill me-2"></i> Official Course Attendance Warning Notice</h5>
+              <div className="modal-header bg-danger text-white p-3 px-4 d-print-none">
+                <h5 className="modal-title fs-6"><i className="bi bi-exclamation-triangle-fill me-2"></i> Official Attendance Warning Notice</h5>
                 <button type="button" className="btn-close btn-close-white" onClick={() => setSelectedStudentForWarning(null)}></button>
               </div>
               <div className="modal-body p-4 bg-light">
-                <div className="border p-3 rounded-3 bg-white font-mono small mb-3">
-                  <div className="text-center fw-bold border-bottom pb-2 mb-2">OFFICIAL COURSE DEBARMENT ADVISORY</div>
-                  <div><strong>Student:</strong> {selectedStudentForWarning.student_name} ({selectedStudentForWarning.student_id})</div>
-                  <div><strong>Department:</strong> {currentFaculty.department_name}</div>
-                  <div><strong>Course:</strong> {activeCourse.course_code} - {activeCourse.course_title} ({activeCourse.section})</div>
-                  <div><strong>Instructor:</strong> {currentFaculty.faculty_name}</div>
-                  <div><strong>Current Attendance:</strong> <span className="text-danger fw-bold">{selectedStudentForWarning.attendance_percentage}%</span> (Classes: {selectedStudentForWarning.classes_attended}/{selectedStudentForWarning.total_classes})</div>
+                <div className="border p-4 rounded-3 bg-white font-mono small mb-3 printable-area">
+                  <div className="text-center fw-bold border-bottom pb-2 mb-3">
+                    <div className="fs-5">OFFICIAL COURSE DEBARMENT ADVISORY</div>
+                    <div className="text-muted fw-normal" style={{ fontSize: '0.75rem' }}>Department of {currentFaculty.department_name}</div>
+                  </div>
+                  <div><strong>Student Name:</strong> {selectedStudentForWarning.student_name}</div>
+                  <div><strong>Student ID:</strong> {selectedStudentForWarning.student_id}</div>
+                  <div><strong>Course Code:</strong> {activeCourse.course_code} - {activeCourse.course_title}</div>
+                  <div><strong>Faculty In-Charge:</strong> {currentFaculty.faculty_name}</div>
+                  <div><strong>Current Attendance:</strong> <span className="text-danger fw-bold">{selectedStudentForWarning.attendance_percentage}%</span></div>
                   <hr />
                   <p className="mb-0 text-muted" style={{ fontSize: '0.8rem' }}>
-                    Warning: Your attendance in {activeCourse.course_code} is below the mandatory 75.0% requirement. Failure to attend mandatory classes will lead to end-semester examination debarment.
+                    You are hereby advised that your course attendance is strictly below the mandatory 75.0% requirement. Failure to attend remaining scheduled classes will lead to end-semester examination debarment.
                   </p>
                 </div>
               </div>
-              <div className="modal-footer bg-white p-3">
+              <div className="modal-footer bg-white p-3 d-print-none">
                 <button type="button" className="btn btn-secondary btn-sm" onClick={() => setSelectedStudentForWarning(null)}>Cancel</button>
+                <button type="button" className="btn btn-outline-dark btn-sm" onClick={() => window.print()}>
+                  <i className="bi bi-printer me-1"></i> Print Warning Notice
+                </button>
                 <button type="button" className="btn btn-danger btn-sm" onClick={() => handleDispatchWarning(selectedStudentForWarning)}>
-                  <i className="bi bi-send me-1"></i> Dispatch Official Notice
+                  <i className="bi bi-send me-1"></i> Dispatch Notice
                 </button>
               </div>
             </div>

@@ -11,47 +11,39 @@ export default function Sidebar() {
       <div>
         <div className="text-uppercase small fw-bold text-muted px-3 mb-2" style={{ fontSize: '0.7rem', letterSpacing: '0.05em' }}>
           {role === 'STUDENT'
-            ? 'Student Workspace'
+            ? 'Student Persona'
             : role === 'FACULTY'
-            ? 'Faculty Workspace'
+            ? 'Faculty / HOD Persona'
             : role === 'ACCOUNTS'
             ? 'Accounts & Bursar'
-            : 'Institutional DW'}
+            : 'Dean / Administrator'}
         </div>
 
         <nav className="nav flex-column gap-1">
-          {/* STUDENT PERSONA */}
+          {/* STUDENT PERSONA ("How Am I Doing?") */}
           {role === 'STUDENT' && (
             <>
               <NavLink to="/student-portal" className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}>
-                <i className="bi bi-person-workspace text-primary"></i>
-                <span>My Academic Hub</span>
-              </NavLink>
-              <NavLink to="/students" className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}>
-                <i className="bi bi-person-lines-fill text-muted"></i>
-                <span>Student Directory</span>
+                <i className="bi bi-mortarboard-fill text-primary"></i>
+                <span>My Academic Portal</span>
               </NavLink>
             </>
           )}
 
-          {/* FACULTY PERSONA */}
+          {/* FACULTY / HOD PERSONA ("How Are My Students Doing?") */}
           {role === 'FACULTY' && (
             <>
               <NavLink to="/faculty-portal" className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}>
-                <i className="bi bi-person-workspace text-info"></i>
-                <span>Department Portal</span>
+                <i className="bi bi-people-fill text-info"></i>
+                <span>Department Academic Portal</span>
               </NavLink>
               <NavLink to="/students" className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}>
-                <i className="bi bi-people text-muted"></i>
-                <span>Advisee Roster</span>
+                <i className="bi bi-person-lines-fill text-muted"></i>
+                <span>Department Advisees</span>
               </NavLink>
               <NavLink to="/risk-analysis" className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}>
-                <i className="bi bi-speedometer2 text-danger"></i>
-                <span>Risk What-If Tool</span>
-              </NavLink>
-              <NavLink to="/dashboard" className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}>
-                <i className="bi bi-bar-chart-fill text-muted"></i>
-                <span>Executive Overview</span>
+                <i className="bi bi-sliders text-danger"></i>
+                <span>Advisee What-If Tool</span>
               </NavLink>
             </>
           )}
@@ -61,25 +53,21 @@ export default function Sidebar() {
             <>
               <NavLink to="/accounts" className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}>
                 <i className="bi bi-wallet2 text-warning"></i>
-                <span>Fee & Accounts Ledger</span>
+                <span>Tuition & Accounts Directorate</span>
               </NavLink>
               <NavLink to="/students" className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}>
                 <i className="bi bi-people-fill text-secondary"></i>
                 <span>Students Master</span>
               </NavLink>
-              <NavLink to="/dashboard" className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}>
-                <i className="bi bi-pie-chart-fill text-primary"></i>
-                <span>Executive Overview</span>
-              </NavLink>
             </>
           )}
 
-          {/* ADMIN / DEAN PERSONA */}
+          {/* DEAN / ADMINISTRATOR PERSONA ("How Is The Institution Doing?") */}
           {role === 'ADMIN' && (
             <>
               <NavLink to="/dashboard" className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}>
                 <i className="bi bi-grid-1x2-fill text-primary"></i>
-                <span>Executive Overview</span>
+                <span>Institutional Command Center</span>
               </NavLink>
               <NavLink to="/student-portal" className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}>
                 <i className="bi bi-person-badge-fill text-success"></i>

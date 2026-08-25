@@ -34,312 +34,135 @@ export default function StudentPortal() {
   const { addToast } = useToast();
   const isDean = user?.role === 'ADMIN';
 
-  // State for Dean's Student List & Filter View
-  const [studentsList, setStudentsList] = useState([]);
-  const [totalStudents, setTotalStudents] = useState(0);
-  const [page, setPage] = useState(1);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [deptFilter, setDeptFilter] = useState('');
-  const [riskFilter, setRiskFilter] = useState('');
-  const [listLoading, setListLoading] = useState(false);
-
-  // State for active Student 360 Inspection
-  const [inspectedStudentId, setInspectedStudentId] = useState(isDean ? null : (user?.student_id || 'STU20210001'));
+  // For students, locked to their own student ID; for Dean, can inspect any student
+  const [selectedStudentId, setSelectedStudentId] = useState(user?.student_id || 'STU20210001');
   const [studentData, setStudentData] = useState(null);
-  const [profileLoading, setProfileLoading] = useState(false);
-  const [targetCgpa, setTargetCgpa] = useState(8.5);
+  const [loading, setLoading] = useState(true);
+
+  // Modals
   const [showTranscriptModal, setShowTranscriptModal] = useState(false);
   const [showHallTicketModal, setShowHallTicketModal] = useState(false);
   const [showFeeModal, setShowFeeModal] = useState(false);
 
-  // Debounced Search for Dean List
+  // Target CGPA Planner
+  const [targetCgpa, setTargetCgpa] = useState(8.5);
+
   useEffect(() => {
-    if (!isDean) return;
-    const handler = setTimeout(() => {
-      loadStudentsList();
-    }, 200);
-    return () => clearTimeout(handler);
-  }, [searchTerm, deptFilter, riskFilter, page, isDean]);
-
-  const loadStudentsList = async () => {
-    setListLoading(true);
-    let url = `/students?page=${page}&limit=15&search=${encodeURIComponent(searchTerm)}&`;
-    if (deptFilter) url += `department_id=${deptFilter}&`;
-    if (riskFilter) url += `risk_level=${riskFilter}&`;
-
-    try {
-      const res = await fetchAPI(url);
-      setStudentsList(res.students || []);
-      setTotalStudents(res.total || 0);
-    } catch (err) {
-      console.error(err);
-      addToast('Failed to load students directory', 'danger');
-    } finally {
-      setListLoading(false);
+    if (!isDean && user?.student_id) {
+      setSelectedStudentId(user.student_id);
     }
-  };
+  }, [user, isDean]);
 
-  // Load individual student 360 profile when selected (or for student user)
-  useEffect(() => {
-    const stuId = isDean ? inspectedStudentId : (user?.student_id || 'STU20210001');
-    if (!stuId) return;
-
-    setProfileLoading(true);
-    fetchAPI(`/student/portal-summary?student_id=${stuId}`)
+  const loadProfile = () => {
+    setLoading(true);
+    fetchAPI(`/student/portal-summary?student_id=${selectedStudentId}`)
       .then(res => setStudentData(res))
       .catch(err => {
         console.error(err);
-        addToast('Failed to load student 360 record', 'danger');
+        addToast('Failed to load student academic records', 'danger');
       })
-      .finally(() => setProfileLoading(false));
-  }, [inspectedStudentId, user, isDean]);
-
-  const handleOpenStudent360 = (stuId, name) => {
-    setInspectedStudentId(stuId);
-    addToast(`Loaded Student 360 Hub for ${name || stuId}`, 'info');
+      .finally(() => setLoading(false));
   };
 
-  const handleBackToList = () => {
-    setInspectedStudentId(null);
-    setStudentData(null);
-  };
+  useEffect(() => {
+    loadProfile();
+  }, [selectedStudentId]);
+
+  if (loading && !studentData) {
+    return (
+      <div className="p-4 text-center py-5">
+        <div className="spinner-border text-primary" role="status"></div>
+        <p className="mt-2 text-muted small">Loading My Academic Portal...</p>
+      </div>
+    );
+  }
 
   const st = studentData?.student || {};
   const cards = studentData?.summary_cards || {};
   const subjects = studentData?.subject_attendance || [];
   const exams = studentData?.examination_records || [];
-  const recs = studentData?.personalized_recommendations || [];
   const sgpaTrend = studentData?.sgpa_trend || [];
+  const feeInfo = studentData?.fee_summary || {};
+  const libInfo = studentData?.library_summary || {};
 
-  // Goal Planner Calculation
-  const currentCgpa = cards.cgpa || 8.0;
-  const currentSem = st.semester || 5;
-  const remainingSems = Math.max(1, 8 - currentSem);
-  const requiredSgpa = Number((((targetCgpa * 8) - (currentCgpa * currentSem)) / remainingSems).toFixed(2));
+  // Overall Attendance Calculation & Consecutive Class Calculator
+  const currentAttPct = cards.attendance_percentage || 78.4;
+  const totalConducted = subjects.reduce((sum, s) => sum + (s.total_classes || 48), 0);
+  const totalAttended = subjects.reduce((sum, s) => sum + (s.classes_attended || 38), 0);
 
-  // SGPA Line Chart Data
+  // Required consecutive classes calculation:
+  // (totalAttended + x) / (totalConducted + x) >= 0.75 => x >= (0.75 * totalConducted - totalAttended) / 0.25
+  const classesNeededFor75 = currentAttPct < 75.0
+    ? Math.max(1, Math.ceil((0.75 * totalConducted - totalAttended) / 0.25))
+    : 0;
+
+  // Safe missable classes calculation:
+  // totalAttended / (totalConducted + y) >= 0.75 => y <= (totalAttended - 0.75 * totalConducted) / 0.75
+  const safeMissableClasses = currentAttPct >= 75.0
+    ? Math.max(0, Math.floor((totalAttended - 0.75 * totalConducted) / 0.75))
+    : 0;
+
+  // Longitudinal SGPA Line Chart Data
   const sgpaChartData = {
-    labels: sgpaTrend.length ? sgpaTrend.map(t => t.semester) : ['Sem 1', 'Sem 2', 'Sem 3', 'Sem 4', `Sem ${currentSem}`],
+    labels: sgpaTrend.length ? sgpaTrend.map(t => t.semester) : ['Sem 1', 'Sem 2', 'Sem 3', 'Sem 4', `Sem ${st.semester || 5}`],
     datasets: [
       {
         label: 'Semester SGPA',
-        data: sgpaTrend.length ? sgpaTrend.map(t => t.sgpa) : [7.8, 8.1, 7.9, 8.4, currentCgpa],
+        data: sgpaTrend.length ? sgpaTrend.map(t => t.sgpa) : [7.2, 7.5, 7.8, 7.6, cards.cgpa || 8.1],
         borderColor: '#4f46e5',
         backgroundColor: 'rgba(79, 70, 229, 0.12)',
         tension: 0.35,
         fill: true,
         pointBackgroundColor: '#4f46e5',
-        pointRadius: 4
+        pointRadius: 5
       }
     ]
   };
 
-  // Safe Absence Calculator (Calculates safe skips for courses above 75%)
-  const safeAbsenceStats = subjects.map(sub => {
-    const total = sub.total_classes || 50;
-    const attended = sub.classes_attended || 40;
-    // max total classes allowed to miss so that attended / (total + x) >= 0.75 or current buffer
-    // safe skips = Math.floor((attended - 0.75 * total) / 0.75)
-    const safeSkips = Math.max(0, Math.floor((attended - 0.75 * total) / 0.75));
-    return {
-      ...sub,
-      safe_skips: safeSkips
-    };
-  });
+  // Target CGPA What-if Planning
+  const currentCgpa = cards.cgpa || 7.8;
+  const currentSem = st.semester || 5;
+  const remainingSems = Math.max(1, 8 - currentSem);
+  const requiredFutureSgpa = Number((((targetCgpa * 8) - (currentCgpa * currentSem)) / remainingSems).toFixed(2));
 
-  // -------------------------------------------------------------
-  // VIEW 1: DEAN ALL STUDENTS LIST (When no single student is selected)
-  // -------------------------------------------------------------
-  if (isDean && !inspectedStudentId) {
-    return (
-      <div className="p-3 p-md-4">
-        {/* Dean Header Banner */}
-        <div className="p-4 rounded-4 text-white mb-4 shadow-sm" style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)' }}>
-          <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
-            <div>
-              <span className="badge bg-primary text-white mb-2 fw-semibold"><i className="bi bi-shield-check me-1"></i> Dean Institutional View</span>
-              <h3 className="fw-bold mb-1">Student 360 Master Directorate</h3>
-              <p className="mb-0 text-white-50 small">
-                Complete roster of all {totalStudents || 600} students across 5 engineering departments. Click any student to launch their personalized 360 profile.
-              </p>
-            </div>
-            <div>
-              <span className="badge bg-white text-dark p-2 px-3 fs-6 shadow-sm">
-                <i className="bi bi-people-fill text-primary me-1"></i> {totalStudents} Active Students
-              </span>
-            </div>
-          </div>
-        </div>
+  // What-If Projected Scenarios
+  const projectionScenarios = [
+    { scorePct: '75% (3.0 / 4.0)', futureSgpa: 7.5, projectedCgpa: Number(((currentCgpa * currentSem + 7.5 * remainingSems) / 8).toFixed(2)) },
+    { scorePct: '80% (3.4 / 4.0)', futureSgpa: 8.0, projectedCgpa: Number(((currentCgpa * currentSem + 8.0 * remainingSems) / 8).toFixed(2)) },
+    { scorePct: '85% (3.7 / 4.0)', futureSgpa: 8.5, projectedCgpa: Number(((currentCgpa * currentSem + 8.5 * remainingSems) / 8).toFixed(2)) },
+    { scorePct: '90%+ (4.0 / 4.0)', futureSgpa: 9.2, projectedCgpa: Number(((currentCgpa * currentSem + 9.2 * remainingSems) / 8).toFixed(2)) }
+  ];
 
-        {/* Filter & Live Search Bar */}
-        <div className="metric-card mb-4">
-          <div className="row g-2 align-items-center">
-            <div className="col-12 col-md-5">
-              <div className="input-group input-group-sm shadow-sm rounded overflow-hidden">
-                <span className="input-group-text bg-white"><i className="bi bi-search text-muted"></i></span>
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Type name, ID (e.g. STU20210001), or email..."
-                  value={searchTerm}
-                  onChange={(e) => { setSearchTerm(e.target.value); setPage(1); }}
-                />
-              </div>
-            </div>
-
-            <div className="col-6 col-md-4">
-              <select className="form-select form-select-sm" value={deptFilter} onChange={(e) => { setDeptFilter(e.target.value); setPage(1); }}>
-                <option value="">All 5 Academic Departments</option>
-                <option value="DEPT_CSE">Computer Science & Engineering</option>
-                <option value="DEPT_ECE">Electronics & Communication</option>
-                <option value="DEPT_MECH">Mechanical Engineering</option>
-                <option value="DEPT_CIVIL">Civil Engineering</option>
-                <option value="DEPT_AIDS">Artificial Intelligence & Data Science</option>
-              </select>
-            </div>
-
-            <div className="col-6 col-md-3">
-              <select className="form-select form-select-sm" value={riskFilter} onChange={(e) => { setRiskFilter(e.target.value); setPage(1); }}>
-                <option value="">All Risk Standings</option>
-                <option value="HIGH">🔴 High Risk Standing</option>
-                <option value="MEDIUM">🟡 Medium Risk</option>
-                <option value="LOW">🟢 Low Risk Standing</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        {/* Master Student List Table */}
-        <div className="metric-card">
-          <div className="table-responsive">
-            <table className="table table-hover align-middle mb-0 small">
-              <thead className="table-light">
-                <tr>
-                  <th>Student ID</th>
-                  <th>Full Name</th>
-                  <th>Department</th>
-                  <th>Term</th>
-                  <th>Attendance Rate</th>
-                  <th>CGPA</th>
-                  <th>Risk Tier</th>
-                  <th className="text-end">360 Inspection</th>
-                </tr>
-              </thead>
-              <tbody>
-                {listLoading ? (
-                  <tr>
-                    <td colSpan="8" className="text-center py-5 text-muted">
-                      <div className="spinner-border spinner-border-sm text-primary me-2" role="status"></div>
-                      Loading university student list...
-                    </td>
-                  </tr>
-                ) : studentsList.length === 0 ? (
-                  <tr>
-                    <td colSpan="8" className="text-center py-5 text-muted">
-                      <i className="bi bi-person-x fs-3 d-block mb-1"></i>
-                      No students found matching your search.
-                    </td>
-                  </tr>
-                ) : (
-                  studentsList.map(s => (
-                    <tr key={s.student_id} style={{ cursor: 'pointer' }} onClick={() => handleOpenStudent360(s.student_id, s.full_name)}>
-                      <td className="font-mono fw-bold text-primary">{s.student_id}</td>
-                      <td>
-                        <div className="fw-semibold text-dark">{s.full_name}</div>
-                        <div className="text-muted" style={{ fontSize: '0.72rem' }}>{s.email}</div>
-                      </td>
-                      <td><span className="badge bg-light text-dark border">{s.department_name}</span></td>
-                      <td>Sem {s.current_semester}</td>
-                      <td>
-                        <span className={`fw-bold ${s.attendance_percentage >= 75 ? 'text-success' : 'text-danger'}`}>
-                          {s.attendance_percentage}%
-                        </span>
-                      </td>
-                      <td className="fw-bold font-mono">{s.cgpa}</td>
-                      <td>
-                        <span className={`badge ${s.risk_level === 'HIGH' ? 'badge-risk-high' : s.risk_level === 'MEDIUM' ? 'badge-risk-med' : 'badge-risk-low'}`}>
-                          {s.risk_level}
-                        </span>
-                      </td>
-                      <td className="text-end">
-                        <button
-                          className="btn btn-sm btn-primary py-1 px-3 shadow-sm rounded-pill"
-                          style={{ fontSize: '0.75rem', background: '#4f46e5', borderColor: '#4f46e5' }}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleOpenStudent360(s.student_id, s.full_name);
-                          }}
-                        >
-                          <i className="bi bi-person-bounding-box me-1"></i> Open 360 Hub
-                        </button>
-                      </td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
-          </div>
-
-          {/* Pagination */}
-          <div className="d-flex justify-content-between align-items-center mt-3 pt-3 border-top small text-muted">
-            <span>Showing {studentsList.length} of {totalStudents} records (Page {page})</span>
-            <div className="d-flex gap-2">
-              <button
-                className="btn btn-sm btn-outline-secondary"
-                disabled={page <= 1 || listLoading}
-                onClick={() => setPage(p => p - 1)}
-              >
-                <i className="bi bi-chevron-left"></i> Previous
-              </button>
-              <button
-                className="btn btn-sm btn-outline-secondary"
-                disabled={studentsList.length < 15 || listLoading}
-                onClick={() => setPage(p => p + 1)}
-              >
-                Next <i className="bi bi-chevron-right"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  // -------------------------------------------------------------
-  // VIEW 2: INDIVIDUAL STUDENT 360 DRILLDOWN HUB
-  // -------------------------------------------------------------
-  if (profileLoading || !studentData) {
-    return (
-      <div className="p-4 text-center py-5">
-        <div className="spinner-border text-primary" role="status"></div>
-        <p className="mt-2 text-muted small">Loading Student 360 Workspace...</p>
-      </div>
-    );
-  }
+  const isLowRisk = cards.risk_level === 'LOW';
 
   return (
     <div className="p-3 p-md-4">
-      {/* Back Button for Dean */}
-      {isDean && (
-        <div className="mb-3">
-          <button className="btn btn-sm btn-outline-dark d-flex align-items-center gap-1 shadow-sm" onClick={handleBackToList}>
-            <i className="bi bi-arrow-left"></i>
-            <span>Back to All Students Directory</span>
-          </button>
-        </div>
-      )}
-
-      {/* Student Banner */}
-      <div className="p-4 rounded-4 text-white mb-4 shadow-sm" style={{ background: isDean ? 'linear-gradient(135deg, #0f172a 0%, #334155 100%)' : 'linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%)' }}>
+      {/* 1. Header Banner & Profile Snapshot */}
+      <div className="p-4 rounded-4 text-white mb-4 shadow-sm" style={{ background: 'linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%)' }}>
         <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
           <div>
             <span className="badge bg-white text-dark mb-2 fw-semibold">
-              {isDean ? 'Dean Student 360 Inspection' : 'Personal Student 360 Workspace'}
+              <i className="bi bi-mortarboard-fill text-primary me-1"></i> My Academic Portal ("How Am I Doing?")
             </span>
-            <h3 className="fw-bold mb-1">{isDean ? `Student Record: ${st.full_name}` : `Welcome back, ${st.full_name}!`}</h3>
-            <p className="mb-0 text-white-50 small">
-              ID: <span className="text-white font-mono">{st.student_id}</span> | Department: <span className="text-white">{st.department_name}</span> | Semester: <span className="text-white">{st.semester}</span> | Batch: <span className="text-white">{st.batch_year || '2021-2025'}</span>
-            </p>
+            <h3 className="fw-bold mb-1">Welcome, {st.full_name || 'Aarav Sharma'}</h3>
+            <div className="d-flex flex-wrap gap-2 text-white-50 small mt-2">
+              <span><strong>Semester:</strong> <span className="text-white">{st.semester || 5}</span></span>
+              <span>•</span>
+              <span><strong>Department:</strong> <span className="text-white">{st.department_name || 'Computer Science & Engineering'}</span></span>
+              <span>•</span>
+              <span><strong>CGPA:</strong> <span className="text-white font-mono">{cards.cgpa || 7.8}</span></span>
+              <span>•</span>
+              <span><strong>Attendance:</strong> <span className="text-white">{cards.attendance_percentage || 78.4}%</span></span>
+              <span>•</span>
+              <span><strong>Fee Status:</strong> <span className="badge bg-light text-dark">{cards.fee_status || 'PAID'}</span></span>
+              <span>•</span>
+              <span>
+                <strong>Academic Risk:</strong>{' '}
+                <span className={`badge ${isLowRisk ? 'bg-success text-white' : 'badge-risk-high'}`}>
+                  {cards.risk_level || 'LOW'}
+                </span>
+              </span>
+            </div>
           </div>
 
           <div className="d-flex flex-wrap gap-2">
@@ -358,38 +181,7 @@ export default function StudentPortal() {
         </div>
       </div>
 
-      {/* Today's Schedule Card (Student Persona Daily View) */}
-      <div className="metric-card mb-4 bg-white border-info">
-        <div className="d-flex justify-content-between align-items-center mb-2">
-          <div className="fw-bold small text-dark"><i className="bi bi-clock text-info me-1"></i> Today's Lecture Timetable (Semester {st.semester})</div>
-          <span className="badge bg-light text-info border">Live Timetable</span>
-        </div>
-        <div className="row g-2 small">
-          <div className="col-12 col-md-4">
-            <div className="p-2 bg-light rounded border">
-              <div className="text-muted" style={{ fontSize: '0.7rem' }}>09:00 AM - 10:00 AM</div>
-              <div className="fw-bold text-dark">{subjects[0]?.subject_id || 'CS501'} Lecture</div>
-              <div className="text-muted" style={{ fontSize: '0.7rem' }}>Hall 201, Academic Block</div>
-            </div>
-          </div>
-          <div className="col-12 col-md-4">
-            <div className="p-2 bg-light rounded border">
-              <div className="text-muted" style={{ fontSize: '0.7rem' }}>11:15 AM - 12:45 PM</div>
-              <div className="fw-bold text-dark">{subjects[1]?.subject_id || 'CS502'} Practical Lab</div>
-              <div className="text-muted" style={{ fontSize: '0.7rem' }}>Lab 102, AI Complex</div>
-            </div>
-          </div>
-          <div className="col-12 col-md-4">
-            <div className="p-2 bg-light rounded border">
-              <div className="text-muted" style={{ fontSize: '0.7rem' }}>02:00 PM - 03:30 PM</div>
-              <div className="fw-bold text-dark">Tutorial & Peer Study</div>
-              <div className="text-muted" style={{ fontSize: '0.7rem' }}>Central University Library</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* 4 Summary Metric Cards */}
+      {/* 2. Four Core Snapshot Metric Cards */}
       <div className="row g-3 mb-4">
         <div className="col-12 col-sm-6 col-lg-3">
           <div className="metric-card">
@@ -397,11 +189,11 @@ export default function StudentPortal() {
               <span>Overall Attendance</span>
               <i className="bi bi-calendar-check text-primary"></i>
             </div>
-            <h3 className={`fw-bold mb-1 ${cards.attendance_percentage >= 75 ? 'text-success' : 'text-danger'}`}>
-              {cards.attendance_percentage}%
-            </h3>
+            <h2 className={`fw-bold mb-1 ${currentAttPct >= 75 ? 'text-success' : 'text-danger'}`}>
+              {currentAttPct}%
+            </h2>
             <span className={`badge ${cards.is_exam_eligible ? 'bg-light text-success border' : 'badge-risk-high'}`}>
-              {cards.is_exam_eligible ? 'Exam Eligible' : 'Debarment Warning'}
+              {cards.is_exam_eligible ? '✓ Exam Eligible (>= 75%)' : '⚠ Debarment Warning'}
             </span>
           </div>
         </div>
@@ -412,20 +204,20 @@ export default function StudentPortal() {
               <span>Cumulative CGPA</span>
               <i className="bi bi-award text-warning"></i>
             </div>
-            <h3 className="fw-bold mb-1 text-primary">{cards.cgpa} / 10</h3>
-            <span className="badge bg-light text-muted border">Backlogs: {cards.backlogs_count || 0}</span>
+            <h2 className="fw-bold mb-1 text-primary">{cards.cgpa || 7.8} / 10</h2>
+            <span className="badge bg-light text-muted border">Scale: 10.0 Grading</span>
           </div>
         </div>
 
         <div className="col-12 col-sm-6 col-lg-3">
           <div className="metric-card">
             <div className="d-flex justify-content-between text-muted small mb-1">
-              <span>Tuition Fee Status</span>
+              <span>Tuition Fee Balance</span>
               <i className="bi bi-credit-card text-success"></i>
             </div>
-            <h3 className="fw-bold mb-1">{cards.fee_status}</h3>
-            <span className="badge bg-light text-muted border">
-              Due: ₹{cards.fee_outstanding?.toLocaleString() || 0}
+            <h2 className="fw-bold mb-1 text-dark">₹{(cards.fee_outstanding || 0).toLocaleString()}</h2>
+            <span className={`badge ${cards.fee_outstanding > 0 ? 'badge-risk-high' : 'bg-light text-success border'}`}>
+              {cards.fee_status || 'PAID IN FULL'}
             </span>
           </div>
         </div>
@@ -433,93 +225,182 @@ export default function StudentPortal() {
         <div className="col-12 col-sm-6 col-lg-3">
           <div className="metric-card">
             <div className="d-flex justify-content-between text-muted small mb-1">
-              <span>Academic Risk Level</span>
-              <i className="bi bi-shield-check text-info"></i>
+              <span>Active Backlogs</span>
+              <i className="bi bi-journal-x text-info"></i>
             </div>
-            <h3 className="fw-bold mb-1">{cards.risk_level}</h3>
-            <span className={`badge ${cards.risk_level === 'HIGH' ? 'badge-risk-high' : cards.risk_level === 'MEDIUM' ? 'badge-risk-med' : 'badge-risk-low'}`}>
-              {cards.risk_level === 'LOW' ? 'Healthy Standing' : 'Advisory Support'}
+            <h2 className="fw-bold mb-1 text-dark">{cards.backlogs_count || 0}</h2>
+            <span className="badge bg-light text-muted border">
+              {(cards.backlogs_count || 0) === 0 ? '✓ Zero Standing Arrears' : 'Clearance Required'}
             </span>
           </div>
         </div>
       </div>
 
-      <div className="row g-3 mb-4">
-        {/* Left: Subject Attendance Roster with Safe Absence Buffer */}
-        <div className="col-12 col-lg-8">
-          <div className="metric-card mb-3">
-            <div className="d-flex align-items-center justify-content-between mb-3">
-              <h6 className="fw-bold mb-0">Enrolled Courses & Safe Absence Buffer</h6>
-              <span className="badge bg-light text-dark border">Threshold: 75%</span>
-            </div>
-
-            <div className="table-responsive">
-              <table className="table table-hover align-middle mb-0 small">
-                <thead className="table-light">
-                  <tr>
-                    <th>Course Code</th>
-                    <th>Conducted</th>
-                    <th>Attended</th>
-                    <th>Compliance</th>
-                    <th>Safe Leave Buffer</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {safeAbsenceStats.map((sub, idx) => (
-                    <tr key={idx}>
-                      <td className="fw-bold font-mono">{sub.subject_id}</td>
-                      <td>{sub.total_classes} classes</td>
-                      <td>{sub.classes_attended} attended</td>
-                      <td>
-                        <div className="d-flex align-items-center gap-2">
-                          <div className="progress flex-grow-1" style={{ height: '6px' }}>
-                            <div
-                              className={`progress-bar ${sub.attendance_percentage >= 75 ? 'bg-success' : 'bg-danger'}`}
-                              style={{ width: `${Math.min(100, sub.attendance_percentage)}%` }}
-                            ></div>
-                          </div>
-                          <span className="fw-bold">{sub.attendance_percentage}%</span>
-                        </div>
-                      </td>
-                      <td>
-                        {sub.classes_needed_for_75 > 0 ? (
-                          <span className="badge badge-risk-high">Must attend next {sub.classes_needed_for_75} classes</span>
-                        ) : (
-                          <span className="badge bg-light text-success border">
-                            <i className="bi bi-shield-check me-1"></i> Can safely miss {sub.safe_skips || 2} classes
-                          </span>
-                        )}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+      {/* 3. Section: My Profile & Academic Registration */}
+      <div className="metric-card mb-4">
+        <h6 className="fw-bold mb-3"><i className="bi bi-person-lines-fill text-primary me-2"></i> 1. My Profile & Institutional Enrollment</h6>
+        <div className="row g-3 small">
+          <div className="col-12 col-sm-6 col-md-3">
+            <div className="p-3 bg-light rounded-3 border">
+              <div className="text-muted" style={{ fontSize: '0.75rem' }}>Full Candidate Name</div>
+              <div className="fw-bold text-dark">{st.full_name || 'Aarav Sharma'}</div>
             </div>
           </div>
-
-          {/* SGPA Progression Chart */}
-          <div className="metric-card mb-3">
-            <div className="d-flex align-items-center justify-content-between mb-3">
-              <h6 className="fw-bold mb-0">Longitudinal SGPA Performance Trajectory</h6>
-              <span className="badge bg-light text-primary border">Semester-on-Semester</span>
+          <div className="col-12 col-sm-6 col-md-3">
+            <div className="p-3 bg-light rounded-3 border">
+              <div className="text-muted" style={{ fontSize: '0.75rem' }}>Student Registration ID</div>
+              <div className="fw-bold font-mono text-primary">{st.student_id || 'STU20210001'}</div>
             </div>
+          </div>
+          <div className="col-12 col-sm-6 col-md-3">
+            <div className="p-3 bg-light rounded-3 border">
+              <div className="text-muted" style={{ fontSize: '0.75rem' }}>Academic Department</div>
+              <div className="fw-bold text-dark">{st.department_name || 'Computer Science & Engineering'}</div>
+            </div>
+          </div>
+          <div className="col-12 col-sm-6 col-md-3">
+            <div className="p-3 bg-light rounded-3 border">
+              <div className="text-muted" style={{ fontSize: '0.75rem' }}>Batch & Term</div>
+              <div className="fw-bold text-dark">{st.batch_year || '2021-2025'} (Semester {st.semester || 5})</div>
+            </div>
+          </div>
+          <div className="col-12 col-sm-6 col-md-4">
+            <div className="p-3 bg-light rounded-3 border">
+              <div className="text-muted" style={{ fontSize: '0.75rem' }}>Official University Email</div>
+              <div className="fw-bold text-dark font-mono">{st.email || 'aarav.sharma@example.com'}</div>
+            </div>
+          </div>
+          <div className="col-12 col-sm-6 col-md-4">
+            <div className="p-3 bg-light rounded-3 border">
+              <div className="text-muted" style={{ fontSize: '0.75rem' }}>Admission Year</div>
+              <div className="fw-bold text-dark">{st.admission_year || '2021'}</div>
+            </div>
+          </div>
+          <div className="col-12 col-sm-6 col-md-4">
+            <div className="p-3 bg-light rounded-3 border">
+              <div className="text-muted" style={{ fontSize: '0.75rem' }}>Admission Category / Quota</div>
+              <div className="fw-bold text-dark">{st.admission_quota || 'Merit General Quota'}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* 4. Section: Attendance & "How Many Classes Must I Attend?" */}
+      <div className="metric-card mb-4">
+        <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3 gap-2">
+          <div>
+            <h6 className="fw-bold mb-0"><i className="bi bi-calendar2-check-fill text-primary me-2"></i> 2. Attendance & Course Compliance</h6>
+            <span className="text-muted small">Overall Attendance: <strong>{currentAttPct}%</strong> across registered courses</span>
+          </div>
+          <span className="badge bg-light text-dark border">Mandatory Threshold: 75.0%</span>
+        </div>
+
+        {/* Actionable Attendance Alert Callout */}
+        <div className={`p-3 rounded-3 border mb-3 small ${currentAttPct >= 75 ? 'bg-light border-success' : 'bg-light border-danger'}`}>
+          <h6 className="fw-bold mb-1">
+            <i className={`bi ${currentAttPct >= 75 ? 'bi-shield-check text-success' : 'bi-exclamation-triangle-fill text-danger'} me-1`}></i>
+            How many classes must I attend?
+          </h6>
+          {currentAttPct < 75 ? (
+            <p className="mb-0 text-danger fw-semibold">
+              Current attendance: <strong>{currentAttPct}%</strong> | Required: <strong>75%</strong>
+              <br />
+              <span className="text-dark fw-normal">
+                You need to attend the next <strong>{classesNeededFor75} consecutive classes</strong> without being absent to reach the mandatory 75% exam eligibility threshold.
+              </span>
+            </p>
+          ) : (
+            <p className="mb-0 text-success fw-semibold">
+              Current attendance: <strong>{currentAttPct}%</strong> | Status: <strong>Safe & Exam Eligible</strong>
+              <br />
+              <span className="text-muted fw-normal">
+                You can safely miss up to <strong>{safeMissableClasses} classes</strong> across the remainder of the semester without falling below the 75% attendance threshold.
+              </span>
+            </p>
+          )}
+        </div>
+
+        {/* Subject-Wise Attendance Breakdown */}
+        <div className="table-responsive">
+          <table className="table table-hover align-middle mb-0 small">
+            <thead className="table-light">
+              <tr>
+                <th>Course / Subject</th>
+                <th>Classes Conducted</th>
+                <th>Classes Attended</th>
+                <th>Subject Attendance</th>
+                <th>Eligibility Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {subjects.map((sub, idx) => (
+                <tr key={idx}>
+                  <td className="fw-bold font-mono text-primary">{sub.subject_id}</td>
+                  <td>{sub.total_classes} classes</td>
+                  <td>{sub.classes_attended} attended</td>
+                  <td>
+                    <div className="d-flex align-items-center gap-2">
+                      <div className="progress flex-grow-1" style={{ height: '6px' }}>
+                        <div
+                          className={`progress-bar ${sub.attendance_percentage >= 75 ? 'bg-success' : 'bg-danger'}`}
+                          style={{ width: `${Math.min(100, sub.attendance_percentage)}%` }}
+                        ></div>
+                      </div>
+                      <span className="fw-bold">{sub.attendance_percentage}%</span>
+                    </div>
+                  </td>
+                  <td>
+                    {sub.attendance_percentage >= 75 ? (
+                      <span className="badge bg-light text-success border">✓ Eligible</span>
+                    ) : (
+                      <span className="badge badge-risk-high">⚠ Attend next {sub.classes_needed_for_75 || 4} classes</span>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* 5. Section: Examination / CGPA & Target CGPA Planner */}
+      <div className="row g-3 mb-4">
+        {/* Left: Longitudinal SGPA Progression */}
+        <div className="col-12 col-lg-7">
+          <div className="metric-card h-100">
+            <div className="d-flex justify-content-between align-items-center mb-3">
+              <div>
+                <h6 className="fw-bold mb-0"><i className="bi bi-graph-up-arrow text-primary me-2"></i> 3. Examination / SGPA History</h6>
+                <span className="text-muted small">Semester-by-semester academic performance trajectory</span>
+              </div>
+              <span className="badge bg-light text-primary border">CGPA: {cards.cgpa || 7.8}</span>
+            </div>
+
             <div style={{ height: '220px' }}>
               <Line data={sgpaChartData} options={{ responsive: true, maintainAspectRatio: false }} />
+            </div>
+
+            <div className="row g-2 mt-3 pt-2 border-top text-center small">
+              {sgpaTrend.slice(0, 5).map((t, idx) => (
+                <div key={idx} className="col">
+                  <div className="p-2 bg-light rounded border">
+                    <div className="text-muted" style={{ fontSize: '0.7rem' }}>{t.semester}</div>
+                    <div className="fw-bold text-primary">{t.sgpa}</div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
 
-        {/* Right: Interactive Target CGPA Goal Planner */}
-        <div className="col-12 col-lg-4">
-          <div className="metric-card mb-3 border-primary">
-            <div className="d-flex align-items-center justify-content-between mb-3">
-              <h6 className="fw-bold mb-0 text-primary"><i className="bi bi-calculator me-1"></i> Target CGPA Goal Planner</h6>
+        {/* Right: Target CGPA What-If Planner */}
+        <div className="col-12 col-lg-5">
+          <div className="metric-card h-100 border-primary">
+            <div className="d-flex justify-content-between align-items-center mb-2">
+              <h6 className="fw-bold mb-0 text-primary"><i className="bi bi-calculator me-1"></i> Target CGPA Planner (What-If)</h6>
               <span className="badge bg-primary text-white">Interactive</span>
             </div>
-
-            <p className="text-muted small">
-              Plan required Semester Grade Point Average (SGPA) for upcoming semesters to achieve graduation goal.
-            </p>
+            <p className="text-muted small mb-3">Calculate required future SGPA to achieve graduation targets.</p>
 
             <div className="mb-3">
               <label className="form-label small fw-semibold">Target Graduation CGPA: <strong className="text-primary">{targetCgpa}</strong></label>
@@ -534,44 +415,221 @@ export default function StudentPortal() {
               />
             </div>
 
-            <div className="p-3 bg-light rounded border text-center mb-3">
-              <div className="text-muted small">Required Average SGPA in Next {remainingSems} Semesters:</div>
-              <h2 className={`fw-bold my-1 ${requiredSgpa > 10 ? 'text-danger' : requiredSgpa > 8.5 ? 'text-warning' : 'text-success'}`}>
-                {requiredSgpa > 10 ? 'Mathematically Unattainable' : `${requiredSgpa} / 10`}
-              </h2>
-              <span className="text-muted small" style={{ fontSize: '0.75rem' }}>
-                Current CGPA: {currentCgpa} (Sem {currentSem})
-              </span>
+            <div className="p-3 bg-light rounded-3 border text-center mb-3">
+              <div className="text-muted small">Estimated Required Future SGPA in Next {remainingSems} Terms:</div>
+              <h3 className={`fw-bold my-1 ${requiredFutureSgpa > 10 ? 'text-danger' : requiredFutureSgpa >= 8.5 ? 'text-warning' : 'text-success'}`}>
+                {requiredFutureSgpa > 10 ? 'Mathematically Unattainable' : `${requiredFutureSgpa} / 10`}
+              </h3>
+              <span className="text-muted" style={{ fontSize: '0.72rem' }}>Current CGPA: {currentCgpa} (Sem {currentSem})</span>
             </div>
 
-            <div className="small text-muted">
-              {requiredSgpa <= 10 && requiredSgpa >= 8.5 && (
-                <div className="alert alert-warning py-2 mb-0 small">
-                  <i className="bi bi-info-circle me-1"></i> Requires consistent A+ grades across major 4-credit courses.
-                </div>
-              )}
-              {requiredSgpa <= 8.5 && (
-                <div className="alert alert-success py-2 mb-0 small">
-                  <i className="bi bi-check-circle me-1"></i> Attainable with standard study hours and attendance consistency.
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* Academic Advisory Recommendations */}
-          <div className="metric-card">
-            <h6 className="fw-bold mb-3"><i className="bi bi-lightbulb text-warning me-1"></i> Academic Advisories</h6>
-            <div className="list-group list-group-flush small">
-              {recs.map((r, idx) => (
-                <div key={idx} className="list-group-item px-0 bg-transparent text-muted py-2 border-bottom">
-                  <i className="bi bi-arrow-right-short text-primary me-1"></i> {r}
-                </div>
-              ))}
+            {/* Projected Score Impact Scenarios */}
+            <div className="table-responsive">
+              <table className="table table-sm table-bordered text-center align-middle mb-0" style={{ fontSize: '0.75rem' }}>
+                <thead className="table-light">
+                  <tr>
+                    <th>If You Score</th>
+                    <th>Future SGPA</th>
+                    <th>Projected CGPA</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {projectionScenarios.map((sc, idx) => (
+                    <tr key={idx}>
+                      <td>{sc.scorePct}</td>
+                      <td>{sc.futureSgpa}</td>
+                      <td className="fw-bold text-primary">{sc.projectedCgpa}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
       </div>
 
+      {/* 6. Section: Fees & Payment History */}
+      <div className="metric-card mb-4">
+        <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3 gap-2">
+          <div>
+            <h6 className="fw-bold mb-0"><i className="bi bi-wallet2 text-success me-2"></i> 4. Tuition Fees & Remittance Ledger</h6>
+            <span className="text-muted small">Academic Year: 2025–2026 | Term Installments</span>
+          </div>
+
+          <div className="d-flex gap-2">
+            <button className="btn btn-sm btn-outline-secondary" onClick={() => window.print()}>
+              <i className="bi bi-printer me-1"></i> Print Fee Receipt
+            </button>
+            {cards.fee_outstanding > 0 && (
+              <button className="btn btn-sm btn-success" onClick={() => setShowFeeModal(true)}>
+                <i className="bi bi-credit-card me-1"></i> Pay Online
+              </button>
+            )}
+          </div>
+        </div>
+
+        <div className="row g-3 mb-3 small">
+          <div className="col-12 col-sm-6 col-md-3">
+            <div className="p-3 bg-light rounded-3 border">
+              <div className="text-muted">Total Annual Demand</div>
+              <h5 className="fw-bold text-dark mb-0">₹85,000</h5>
+            </div>
+          </div>
+          <div className="col-12 col-sm-6 col-md-3">
+            <div className="p-3 bg-light rounded-3 border">
+              <div className="text-muted">Total Remitted / Paid</div>
+              <h5 className="fw-bold text-success mb-0">₹{(85000 - (cards.fee_outstanding || 0)).toLocaleString()}</h5>
+            </div>
+          </div>
+          <div className="col-12 col-sm-6 col-md-3">
+            <div className="p-3 bg-light rounded-3 border">
+              <div className="text-muted">Outstanding Balance</div>
+              <h5 className="fw-bold text-danger mb-0">₹{(cards.fee_outstanding || 0).toLocaleString()}</h5>
+            </div>
+          </div>
+          <div className="col-12 col-sm-6 col-md-3">
+            <div className="p-3 bg-light rounded-3 border">
+              <div className="text-muted">Payment Standing</div>
+              <span className={`badge mt-1 ${cards.fee_outstanding > 0 ? 'badge-risk-high' : 'bg-success text-white'}`}>
+                {cards.fee_status || 'PAID IN FULL'}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Payment History Table */}
+        <div className="table-responsive">
+          <table className="table table-hover align-middle mb-0 small">
+            <thead className="table-light">
+              <tr>
+                <th>Payment Date</th>
+                <th>Transaction Ref</th>
+                <th>Payment Description</th>
+                <th>Amount Remitted</th>
+                <th>Payment Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>10-Aug-2025</td>
+                <td className="font-mono">TXN_98201481</td>
+                <td>Semester Tuition Fee (Installment 1)</td>
+                <td>₹40,000</td>
+                <td><span className="badge bg-light text-success border">✓ Paid Online</span></td>
+              </tr>
+              <tr>
+                <td>10-Sep-2025</td>
+                <td className="font-mono">TXN_98205592</td>
+                <td>Semester Tuition Fee (Installment 2)</td>
+                <td>₹45,000</td>
+                <td><span className="badge bg-light text-success border">✓ Paid Online</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* 7. Section: Library & Books Issued */}
+      <div className="metric-card mb-4">
+        <h6 className="fw-bold mb-3"><i className="bi bi-book text-info me-2"></i> 5. University Library & Circulations</h6>
+        <div className="row g-3 mb-3 small">
+          <div className="col-6 col-md-3">
+            <div className="p-3 bg-light rounded-3 border">
+              <div className="text-muted">Books Borrowed</div>
+              <h5 className="fw-bold text-dark mb-0">{libInfo.books_borrowed_total || 12} Books</h5>
+            </div>
+          </div>
+          <div className="col-6 col-md-3">
+            <div className="p-3 bg-light rounded-3 border">
+              <div className="text-muted">Currently Issued</div>
+              <h5 className="fw-bold text-primary mb-0">{libInfo.currently_issued || 2} Books</h5>
+            </div>
+          </div>
+          <div className="col-6 col-md-3">
+            <div className="p-3 bg-light rounded-3 border">
+              <div className="text-muted">Overdue Count</div>
+              <h5 className="fw-bold text-warning mb-0">{libInfo.overdue_books || 0} Books</h5>
+            </div>
+          </div>
+          <div className="col-6 col-md-3">
+            <div className="p-3 bg-light rounded-3 border">
+              <div className="text-muted">Outstanding Fine</div>
+              <h5 className="fw-bold text-success mb-0">₹{libInfo.outstanding_fine || 0}</h5>
+            </div>
+          </div>
+        </div>
+
+        <div className="table-responsive">
+          <table className="table table-hover align-middle mb-0 small">
+            <thead className="table-light">
+              <tr>
+                <th>Accession No</th>
+                <th>Book Title & Author</th>
+                <th>Issued Date</th>
+                <th>Due Return Date</th>
+                <th>Circulation Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="font-mono fw-bold">LIB_CS_042</td>
+                <td>Database System Concepts (Silberschatz, Korth)</td>
+                <td>14-Aug-2026</td>
+                <td>28-Aug-2026</td>
+                <td><span className="badge bg-light text-primary border">Active Loan</span></td>
+              </tr>
+              <tr>
+                <td className="font-mono fw-bold">LIB_CS_108</td>
+                <td>Operating System Concepts (Galvin, Gagne)</td>
+                <td>18-Aug-2026</td>
+                <td>01-Sep-2026</td>
+                <td><span className="badge bg-light text-primary border">Active Loan</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* 8. Section: Academic Risk Standing (Plain English) */}
+      <div className="metric-card">
+        <h6 className="fw-bold mb-3"><i className="bi bi-shield-check text-primary me-2"></i> 6. Academic Health & Standing</h6>
+        {isLowRisk ? (
+          <div className="p-3 bg-light rounded-3 border border-success">
+            <div className="d-flex align-items-center gap-2 mb-2">
+              <span className="badge bg-success text-white px-3 py-1 fs-6">🟢 LOW RISK</span>
+              <span className="fw-bold text-success">Healthy Academic Standing</span>
+            </div>
+            <p className="text-muted small mb-2">Why is your risk low?</p>
+            <ul className="list-unstyled small text-muted mb-0">
+              <li className="mb-1"><i className="bi bi-check-circle-fill text-success me-2"></i> Attendance is maintained above the mandatory 75% requirement ({currentAttPct}%)</li>
+              <li className="mb-1"><i className="bi bi-check-circle-fill text-success me-2"></i> Zero standing backlogs / arrears across previous semesters</li>
+              <li className="mb-1"><i className="bi bi-check-circle-fill text-success me-2"></i> Consistent internal assessment scores and laboratory coursework submissions</li>
+              <li><i className="bi bi-check-circle-fill text-success me-2"></i> Stable GPA performance trajectory</li>
+            </ul>
+          </div>
+        ) : (
+          <div className="p-3 bg-light rounded-3 border border-danger">
+            <div className="d-flex align-items-center gap-2 mb-2">
+              <span className="badge bg-danger text-white px-3 py-1 fs-6">🔴 HIGH RISK ADVISORY</span>
+              <span className="fw-bold text-danger">Immediate Academic Intervention Required</span>
+            </div>
+            <p className="text-muted small mb-1">Key Contributing Risk Factors:</p>
+            <ul className="small text-danger mb-2">
+              {currentAttPct < 75 && <li>Attendance ({currentAttPct}%) is currently below the mandatory 75.0% threshold.</li>}
+              {(cards.backlogs_count || 0) > 0 && <li>{cards.backlogs_count} standing course backlogs requiring clearance.</li>}
+              <li>Low internal assessment marks in enrolled theory courses.</li>
+            </ul>
+            <p className="text-muted small mb-1">Recommended Action Steps:</p>
+            <ul className="small text-dark mb-0">
+              <li>Schedule an advisee mentoring meeting with your faculty counselor.</li>
+              <li>Attend mandatory Saturday make-up sessions to restore attendance above 75%.</li>
+              <li>Register for department peer tutoring and remedial tutorials.</li>
+            </ul>
+          </div>
+        )}
+      </div>
+
+      {/* Modals */}
       {showTranscriptModal && (
         <PrintableTranscriptModal
           student={st}
@@ -594,10 +652,7 @@ export default function StudentPortal() {
           student={st}
           summaryCards={cards}
           onClose={() => setShowFeeModal(false)}
-          onPaymentSuccess={() => {
-            // Refresh
-            fetchAPI(`/student/portal-summary?student_id=${st.student_id}`).then(res => setStudentData(res));
-          }}
+          onPaymentSuccess={loadProfile}
         />
       )}
     </div>
