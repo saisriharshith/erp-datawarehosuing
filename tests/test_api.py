@@ -133,7 +133,7 @@ def test_auth_login(client):
 
 def test_student_portal_summary_api(client):
     """Test /api/student/portal-summary personal student endpoint."""
-    res = client.get("/api/student/portal-summary?student_id=STU2023001")
+    res = client.get("/api/student/portal-summary?student_id=STU20210001")
     assert res.status_code == 200
     json_data = res.get_json()
     assert json_data["success"] is True

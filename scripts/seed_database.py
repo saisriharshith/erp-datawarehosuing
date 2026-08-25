@@ -25,7 +25,11 @@ SOURCE_DB_NAME = os.getenv("SOURCE_DB_NAME", "erp_source")
 
 def get_mongo_client(uri: str, timeout_ms: int = 5000) -> pymongo.MongoClient:
     """Creates a PyMongo client with a short timeout for health check."""
-    return pymongo.MongoClient(uri, serverSelectionTimeoutMS=timeout_ms)
+    try:
+        import certifi
+        return pymongo.MongoClient(uri, serverSelectionTimeoutMS=timeout_ms, tlsCAFile=certifi.where())
+    except Exception:
+        return pymongo.MongoClient(uri, serverSelectionTimeoutMS=timeout_ms)
 
 
 def seed_source_database(num_students: int = 600, drop_existing: bool = True):

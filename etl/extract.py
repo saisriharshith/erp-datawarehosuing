@@ -20,7 +20,11 @@ def extract_from_mongodb(uri: str, db_name: str) -> Dict[str, List[Dict[str, Any
     Extracts all raw collections from MongoDB erp_source.
     """
     print(f"[ETL-EXTRACT] Connecting to MongoDB: {uri} (DB: {db_name})...")
-    client = pymongo.MongoClient(uri, serverSelectionTimeoutMS=5000)
+    try:
+        import certifi
+        client = pymongo.MongoClient(uri, serverSelectionTimeoutMS=5000, tlsCAFile=certifi.where())
+    except Exception:
+        client = pymongo.MongoClient(uri, serverSelectionTimeoutMS=5000)
     db = client[db_name]
 
     collections = [
@@ -64,7 +68,8 @@ def extract_data(uri: str = "mongodb://localhost:27017", db_name: str = "erp_sou
     Main extract entry point with automatic fallback to local snapshot.
     """
     try:
-        client = pymongo.MongoClient(uri, serverSelectionTimeoutMS=3000)
+        import certifi
+        client = pymongo.MongoClient(uri, serverSelectionTimeoutMS=3000, tlsCAFile=certifi.where())
         client.admin.command("ping")
         client.close()
         return extract_from_mongodb(uri, db_name)

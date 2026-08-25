@@ -37,7 +37,9 @@ class DatabaseManager:
             return
 
         try:
-            self.client = pymongo.MongoClient(uri, serverSelectionTimeoutMS=3000)
+            import certifi
+            ca = certifi.where()
+            self.client = pymongo.MongoClient(uri, serverSelectionTimeoutMS=3000, tlsCAFile=ca)
             self.client.admin.command("ping")
             self.warehouse_db = self.client[warehouse_db_name]
             self.source_db = self.client[source_db_name]
@@ -70,7 +72,9 @@ class DatabaseManager:
         """
         if self.is_connected and self.warehouse_db is not None:
             try:
-                return list(self.warehouse_db[collection_name].find({}, {"_id": 0}))
+                live_data = list(self.warehouse_db[collection_name].find({}, {"_id": 0}))
+                if live_data and len(live_data) > 0:
+                    return live_data
             except Exception as e:
                 print(f"[DB-MANAGER] Live query failed on '{collection_name}', falling back to cache: {e}")
 

@@ -65,43 +65,58 @@ DEPARTMENTS_CONFIG = [
 SUBJECT_TEMPLATES = {
     "DEPT_CSE": [
         {"code": "CS101", "title": "Programming in Python", "sem": 1, "credits": 4},
+        {"code": "MA101", "title": "Engineering Mathematics I", "sem": 1, "credits": 4},
+        {"code": "PH101", "title": "Engineering Physics", "sem": 1, "credits": 3},
         {"code": "CS201", "title": "Data Structures & Algorithms", "sem": 2, "credits": 4},
+        {"code": "MA201", "title": "Discrete Mathematics", "sem": 2, "credits": 4},
+        {"code": "CS202", "title": "Digital Logic & Computer Design", "sem": 2, "credits": 3},
         {"code": "CS301", "title": "Computer Organization & Architecture", "sem": 3, "credits": 3},
+        {"code": "CS302", "title": "Object Oriented Programming in Java", "sem": 3, "credits": 4},
         {"code": "CS401", "title": "Database Management Systems", "sem": 4, "credits": 4},
+        {"code": "CS402", "title": "Design & Analysis of Algorithms", "sem": 4, "credits": 4},
         {"code": "CS501", "title": "Operating Systems", "sem": 5, "credits": 4},
-        {"code": "CS502", "title": "Computer Networks", "sem": 5, "credits": 3},
-        {"code": "CS601", "title": "Web Technologies", "sem": 6, "credits": 3},
-        {"code": "CS701", "title": "Cloud Computing", "sem": 7, "credits": 3},
+        {"code": "CS502", "title": "Computer Networks", "sem": 5, "credits": 4},
+        {"code": "CS503", "title": "Software Engineering & Agile", "sem": 5, "credits": 3},
+        {"code": "CS601", "title": "Web Technologies & Fullstack", "sem": 6, "credits": 3},
+        {"code": "CS602", "title": "Compiler Design", "sem": 6, "credits": 4},
+        {"code": "CS701", "title": "Cloud Computing & Distributed Systems", "sem": 7, "credits": 3},
         {"code": "CS801", "title": "Information Security & Cryptography", "sem": 8, "credits": 3}
     ],
     "DEPT_ECE": [
         {"code": "EC101", "title": "Basic Electrical & Electronics", "sem": 1, "credits": 4},
-        {"code": "EC201", "title": "Electronic Circuits", "sem": 2, "credits": 4},
+        {"code": "MA101", "title": "Engineering Mathematics I", "sem": 1, "credits": 4},
+        {"code": "EC201", "title": "Electronic Circuits & Devices", "sem": 2, "credits": 4},
+        {"code": "EC202", "title": "Network Analysis & Synthesis", "sem": 2, "credits": 3},
         {"code": "EC301", "title": "Signals & Systems", "sem": 3, "credits": 4},
-        {"code": "EC401", "title": "Analog Communication", "sem": 4, "credits": 3},
+        {"code": "EC302", "title": "Electromagnetic Fields", "sem": 3, "credits": 3},
+        {"code": "EC401", "title": "Analog Communication Systems", "sem": 4, "credits": 3},
+        {"code": "EC402", "title": "Linear Integrated Circuits", "sem": 4, "credits": 4},
         {"code": "EC501", "title": "Digital Signal Processing", "sem": 5, "credits": 4},
         {"code": "EC502", "title": "Microprocessors & Microcontrollers", "sem": 5, "credits": 4},
-        {"code": "EC601", "title": "VLSI Design", "sem": 6, "credits": 3},
-        {"code": "EC701", "title": "Wireless Communications", "sem": 7, "credits": 3},
-        {"code": "EC801", "title": "Embedded Systems", "sem": 8, "credits": 3}
+        {"code": "EC601", "title": "VLSI Design & Embedded Systems", "sem": 6, "credits": 3},
+        {"code": "EC701", "title": "Wireless Communications & 5G", "sem": 7, "credits": 3},
+        {"code": "EC801", "title": "Radar & Satellite Systems", "sem": 8, "credits": 3}
     ],
     "DEPT_MECH": [
-        {"code": "ME101", "title": "Engineering Graphics", "sem": 1, "credits": 4},
+        {"code": "ME101", "title": "Engineering Graphics & Design", "sem": 1, "credits": 4},
+        {"code": "MA101", "title": "Engineering Mathematics I", "sem": 1, "credits": 4},
         {"code": "ME201", "title": "Engineering Mechanics", "sem": 2, "credits": 4},
-        {"code": "ME301", "title": "Thermodynamics", "sem": 3, "credits": 4},
-        {"code": "ME401", "title": "Fluid Mechanics", "sem": 4, "credits": 4},
+        {"code": "ME202", "title": "Material Science & Metallurgy", "sem": 2, "credits": 3},
+        {"code": "ME301", "title": "Thermodynamics & Heat Transfer", "sem": 3, "credits": 4},
+        {"code": "ME401", "title": "Fluid Mechanics & Machinery", "sem": 4, "credits": 4},
         {"code": "ME501", "title": "Manufacturing Technology", "sem": 5, "credits": 4},
-        {"code": "ME502", "title": "Kinematics of Machinery", "sem": 5, "credits": 3},
+        {"code": "ME502", "title": "Kinematics & Dynamics of Machinery", "sem": 5, "credits": 3},
         {"code": "ME601", "title": "Heat & Mass Transfer", "sem": 6, "credits": 4},
         {"code": "ME701", "title": "Automobile Engineering", "sem": 7, "credits": 3},
-        {"code": "ME801", "title": "Robotics & Automation", "sem": 8, "credits": 3}
+        {"code": "ME801", "title": "Robotics & Automation Systems", "sem": 8, "credits": 3}
     ],
     "DEPT_CIVIL": [
         {"code": "CE101", "title": "Basic Civil Engineering", "sem": 1, "credits": 4},
-        {"code": "CE201", "title": "Surveying", "sem": 2, "credits": 4},
+        {"code": "MA101", "title": "Engineering Mathematics I", "sem": 1, "credits": 4},
+        {"code": "CE201", "title": "Surveying & Geomatics", "sem": 2, "credits": 4},
         {"code": "CE301", "title": "Strength of Materials", "sem": 3, "credits": 4},
         {"code": "CE401", "title": "Building Construction & Materials", "sem": 4, "credits": 3},
-        {"code": "CE501", "title": "Structural Analysis", "sem": 5, "credits": 4},
+        {"code": "CE501", "title": "Structural Analysis I", "sem": 5, "credits": 4},
         {"code": "CE502", "title": "Geotechnical Engineering", "sem": 5, "credits": 4},
         {"code": "CE601", "title": "Environmental Engineering", "sem": 6, "credits": 3},
         {"code": "CE701", "title": "Transportation Engineering", "sem": 7, "credits": 3},
@@ -109,14 +124,15 @@ SUBJECT_TEMPLATES = {
     ],
     "DEPT_AIDS": [
         {"code": "AD101", "title": "Foundations of Data Science", "sem": 1, "credits": 4},
-        {"code": "AD201", "title": "Data Structures & Python", "sem": 2, "credits": 4},
+        {"code": "MA101", "title": "Engineering Mathematics I", "sem": 1, "credits": 4},
+        {"code": "AD201", "title": "Data Structures & Python for AI", "sem": 2, "credits": 4},
         {"code": "AD301", "title": "Statistical Methods for AI", "sem": 3, "credits": 4},
         {"code": "AD401", "title": "Applied Machine Learning", "sem": 4, "credits": 4},
         {"code": "AD501", "title": "Deep Learning & Neural Networks", "sem": 5, "credits": 4},
-        {"code": "AD502", "title": "Big Data Analytics", "sem": 5, "credits": 3},
+        {"code": "AD502", "title": "Big Data Analytics & Spark", "sem": 5, "credits": 3},
         {"code": "AD601", "title": "Natural Language Processing", "sem": 6, "credits": 3},
-        {"code": "AD701", "title": "Computer Vision", "sem": 7, "credits": 3},
-        {"code": "AD801", "title": "AI Ethics & Governance", "sem": 8, "credits": 3}
+        {"code": "AD701", "title": "Computer Vision & Generative AI", "sem": 7, "credits": 3},
+        {"code": "AD801", "title": "AI Ethics, Governance & MLOps", "sem": 8, "credits": 3}
     ]
 }
 

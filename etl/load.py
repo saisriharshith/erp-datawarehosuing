@@ -124,7 +124,11 @@ def load_to_mongodb(
     Performs idempotent bulk upserts into MongoDB erp_warehouse.
     """
     print(f"[ETL-LOAD] Connecting to MongoDB Warehouse: {uri} (DB: {db_name})...")
-    client = pymongo.MongoClient(uri, serverSelectionTimeoutMS=5000)
+    try:
+        import certifi
+        client = pymongo.MongoClient(uri, serverSelectionTimeoutMS=5000, tlsCAFile=certifi.where())
+    except Exception:
+        client = pymongo.MongoClient(uri, serverSelectionTimeoutMS=5000)
     db = client[db_name]
 
     dims = transformed_data["dimensions"]
@@ -214,7 +218,8 @@ def load_data(
     save_warehouse_snapshot(transformed_data, quality_report, snapshot_path)
 
     try:
-        client = pymongo.MongoClient(uri, serverSelectionTimeoutMS=3000)
+        import certifi
+        client = pymongo.MongoClient(uri, serverSelectionTimeoutMS=3000, tlsCAFile=certifi.where())
         client.admin.command("ping")
         client.close()
         return load_to_mongodb(uri, db_name, transformed_data, quality_report)

@@ -47,29 +47,37 @@
 
           <!-- Quick Demo Persona Switcher -->
           <div class="mb-4">
-            <label class="form-label small fw-bold text-uppercase text-muted">Quick Demo Login (1-Click)</label>
-            <div class="d-grid gap-2">
-              <button class="btn btn-outline-primary btn-sm text-start py-2 d-flex align-items-center justify-content-between" onclick="quickLogin('admin@univ.edu')">
-                <div>
-                  <i class="bi bi-person-gear text-primary me-2"></i>
-                  <strong>Admin / Dean</strong> <span class="text-muted small">(Full DW & Quality)</span>
-                </div>
-                <i class="bi bi-arrow-right-short fs-5"></i>
-              </button>
-              <button class="btn btn-outline-secondary btn-sm text-start py-2 d-flex align-items-center justify-content-between" onclick="quickLogin('faculty@univ.edu')">
-                <div>
-                  <i class="bi bi-person-badge text-secondary me-2"></i>
-                  <strong>Department Faculty</strong> <span class="text-muted small">(Academics & Risk)</span>
-                </div>
-                <i class="bi bi-arrow-right-short fs-5"></i>
-              </button>
-              <button class="btn btn-outline-success btn-sm text-start py-2 d-flex align-items-center justify-content-between" onclick="quickLogin('student@univ.edu')">
-                <div>
-                  <i class="bi bi-person text-success me-2"></i>
-                  <strong>Student</strong> <span class="text-muted small">(Aarav Sharma - 360)</span>
-                </div>
-                <i class="bi bi-arrow-right-short fs-5"></i>
-              </button>
+            <label class="form-label small fw-bold text-uppercase text-muted">Select From 20 Verified Demo Accounts (1-Click)</label>
+            <div class="mb-3">
+              <select id="quickAccountSelect" class="form-select form-select-sm" onchange="selectQuickAccount(this.value)">
+                <option value="">-- Choose Demo Account (Admin / Faculty / Student) --</option>
+                <optgroup label="👔 Institutional Leadership & Deans (2)">
+                  <option value="admin@univ.edu">Dr. Sarah Jenkins - Dean of Academic Affairs (Full Admin)</option>
+                  <option value="provost@univ.edu">Prof. Arthur Pendelton - University Provost (Admin)</option>
+                </optgroup>
+                <optgroup label="👨‍🏫 Department Faculty & HODs (8)">
+                  <option value="cse.hod@univ.edu">Dr. R. Ramanujan - Professor & CSE HOD</option>
+                  <option value="ece.hod@univ.edu">Dr. Meenakshi Sundaram - ECE HOD</option>
+                  <option value="mech.hod@univ.edu">Dr. K. Vikram - Mechanical HOD</option>
+                  <option value="civil.hod@univ.edu">Dr. S. Ananth - Civil HOD</option>
+                  <option value="aids.hod@univ.edu">Dr. Priya Venkatesh - AI & Data Science HOD</option>
+                  <option value="prof.sharma@univ.edu">Prof. Amit Sharma - Associate Professor (CSE)</option>
+                  <option value="prof.reddy@univ.edu">Prof. Kavitha Reddy - Assistant Professor (ECE)</option>
+                  <option value="faculty@univ.edu">Prof. Rajeshwar Rao - Senior CSE Faculty</option>
+                </optgroup>
+                <optgroup label="🎓 Students Across 5 Departments (10)">
+                  <option value="aarav@univ.edu">Aarav Sharma (STU20210001) - CSE, Sem 5 (High Performer)</option>
+                  <option value="sneha@univ.edu">Sneha Verma (STU20220013) - CSE, Sem 2 (Freshman)</option>
+                  <option value="vikram@univ.edu">Vikram Gupta (STU20230014) - AI&DS, Sem 8 (Senior)</option>
+                  <option value="ananya@univ.edu">Ananya Iyer (STU20240015) - ECE, Sem 4 (Merit Scholar)</option>
+                  <option value="rohan@univ.edu">Rohan Verma (STU20210016) - MECH, Sem 3 (Attendance Alert)</option>
+                  <option value="priya.patel@univ.edu">Priya Patel (STU20220017) - CIVIL, Sem 6 (Remedial Advisee)</option>
+                  <option value="karthik@univ.edu">Karthik Nair (STU20230018) - CSE, Sem 7 (Placed Final Year)</option>
+                  <option value="pooja@univ.edu">Pooja Joshi (STU20240019) - AI&DS, Sem 1 (Freshman)</option>
+                  <option value="rahul@univ.edu">Rahul Deshmukh (STU20210020) - ECE, Sem 5 (Fee Due)</option>
+                  <option value="divya@univ.edu">Divya Sundaram (STU20220021) - MECH, Sem 6 (Dean's Honors)</option>
+                </optgroup>
+              </select>
             </div>
           </div>
 
@@ -114,10 +122,15 @@
   <script src="js/api.js"></script>
   <script src="js/auth.js"></script>
   <script>
-    async function quickLogin(email) {
+    function selectQuickAccount(email) {
+      if (!email) return;
       document.getElementById("emailInput").value = email;
       document.getElementById("passwordInput").value = "demo1234";
       document.getElementById("loginForm").dispatchEvent(new Event("submit"));
+    }
+
+    async function quickLogin(email) {
+      selectQuickAccount(email);
     }
 
     async function handleLoginSubmit(e) {
@@ -141,8 +154,14 @@
 
         Auth.setUser(res, res.token);
         
-        // Redirect to dashboard
-        window.location.href = "dashboard.html";
+        // Redirect to appropriate role portal
+        if (res.role === "STUDENT") {
+          window.location.href = "student-portal.html";
+        } else if (res.role === "FACULTY") {
+          window.location.href = "faculty-portal.html";
+        } else {
+          window.location.href = "dashboard.html";
+        }
       } catch (err) {
         showAlert(err.message || "Invalid credentials. Please try again.", "danger");
       } finally {
