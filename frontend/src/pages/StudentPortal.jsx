@@ -3,6 +3,8 @@ import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
 import { fetchAPI } from '../services/api';
 import PrintableTranscriptModal from '../components/PrintableTranscriptModal';
+import PrintableHallTicketModal from '../components/PrintableHallTicketModal';
+import FeePaymentModal from '../components/FeePaymentModal';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -47,6 +49,8 @@ export default function StudentPortal() {
   const [profileLoading, setProfileLoading] = useState(false);
   const [targetCgpa, setTargetCgpa] = useState(8.5);
   const [showTranscriptModal, setShowTranscriptModal] = useState(false);
+  const [showHallTicketModal, setShowHallTicketModal] = useState(false);
+  const [showFeeModal, setShowFeeModal] = useState(false);
 
   // Debounced Search for Dean List
   useEffect(() => {
@@ -129,6 +133,19 @@ export default function StudentPortal() {
       }
     ]
   };
+
+  // Safe Absence Calculator (Calculates safe skips for courses above 75%)
+  const safeAbsenceStats = subjects.map(sub => {
+    const total = sub.total_classes || 50;
+    const attended = sub.classes_attended || 40;
+    // max total classes allowed to miss so that attended / (total + x) >= 0.75 or current buffer
+    // safe skips = Math.floor((attended - 0.75 * total) / 0.75)
+    const safeSkips = Math.max(0, Math.floor((attended - 0.75 * total) / 0.75));
+    return {
+      ...sub,
+      safe_skips: safeSkips
+    };
+  });
 
   // -------------------------------------------------------------
   // VIEW 1: DEAN ALL STUDENTS LIST (When no single student is selected)
@@ -325,10 +342,49 @@ export default function StudentPortal() {
             </p>
           </div>
 
-          <div className="d-flex gap-2">
-            <button className="btn btn-light btn-sm fw-semibold shadow-sm" onClick={() => setShowTranscriptModal(true)}>
-              <i className="bi bi-printer-fill text-primary me-1"></i> Official Grade Transcript
+          <div className="d-flex flex-wrap gap-2">
+            <button className="btn btn-light btn-sm fw-semibold shadow-sm" onClick={() => setShowHallTicketModal(true)}>
+              <i className="bi bi-card-checklist text-primary me-1"></i> Exam Hall Ticket
             </button>
+            <button className="btn btn-light btn-sm fw-semibold shadow-sm" onClick={() => setShowTranscriptModal(true)}>
+              <i className="bi bi-printer-fill text-primary me-1"></i> Grade Transcript
+            </button>
+            {cards.fee_outstanding > 0 && (
+              <button className="btn btn-warning btn-sm fw-bold shadow-sm" onClick={() => setShowFeeModal(true)}>
+                <i className="bi bi-credit-card-fill me-1"></i> Pay Tuition Fee
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Today's Schedule Card (Student Persona Daily View) */}
+      <div className="metric-card mb-4 bg-white border-info">
+        <div className="d-flex justify-content-between align-items-center mb-2">
+          <div className="fw-bold small text-dark"><i className="bi bi-clock text-info me-1"></i> Today's Lecture Timetable (Semester {st.semester})</div>
+          <span className="badge bg-light text-info border">Live Timetable</span>
+        </div>
+        <div className="row g-2 small">
+          <div className="col-12 col-md-4">
+            <div className="p-2 bg-light rounded border">
+              <div className="text-muted" style={{ fontSize: '0.7rem' }}>09:00 AM - 10:00 AM</div>
+              <div className="fw-bold text-dark">{subjects[0]?.subject_id || 'CS501'} Lecture</div>
+              <div className="text-muted" style={{ fontSize: '0.7rem' }}>Hall 201, Academic Block</div>
+            </div>
+          </div>
+          <div className="col-12 col-md-4">
+            <div className="p-2 bg-light rounded border">
+              <div className="text-muted" style={{ fontSize: '0.7rem' }}>11:15 AM - 12:45 PM</div>
+              <div className="fw-bold text-dark">{subjects[1]?.subject_id || 'CS502'} Practical Lab</div>
+              <div className="text-muted" style={{ fontSize: '0.7rem' }}>Lab 102, AI Complex</div>
+            </div>
+          </div>
+          <div className="col-12 col-md-4">
+            <div className="p-2 bg-light rounded border">
+              <div className="text-muted" style={{ fontSize: '0.7rem' }}>02:00 PM - 03:30 PM</div>
+              <div className="fw-bold text-dark">Tutorial & Peer Study</div>
+              <div className="text-muted" style={{ fontSize: '0.7rem' }}>Central University Library</div>
+            </div>
           </div>
         </div>
       </div>
@@ -369,7 +425,7 @@ export default function StudentPortal() {
             </div>
             <h3 className="fw-bold mb-1">{cards.fee_status}</h3>
             <span className="badge bg-light text-muted border">
-              Outstanding: ₹{cards.fee_outstanding?.toLocaleString() || 0}
+              Due: ₹{cards.fee_outstanding?.toLocaleString() || 0}
             </span>
           </div>
         </div>
@@ -389,11 +445,11 @@ export default function StudentPortal() {
       </div>
 
       <div className="row g-3 mb-4">
-        {/* Left: Subject Attendance Roster & Debarment Buffer */}
+        {/* Left: Subject Attendance Roster with Safe Absence Buffer */}
         <div className="col-12 col-lg-8">
           <div className="metric-card mb-3">
             <div className="d-flex align-items-center justify-content-between mb-3">
-              <h6 className="fw-bold mb-0">Enrolled Courses & Class Attendance Compliance</h6>
+              <h6 className="fw-bold mb-0">Enrolled Courses & Safe Absence Buffer</h6>
               <span className="badge bg-light text-dark border">Threshold: 75%</span>
             </div>
 
@@ -405,11 +461,11 @@ export default function StudentPortal() {
                     <th>Conducted</th>
                     <th>Attended</th>
                     <th>Compliance</th>
-                    <th>Action Required</th>
+                    <th>Safe Leave Buffer</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {subjects.map((sub, idx) => (
+                  {safeAbsenceStats.map((sub, idx) => (
                     <tr key={idx}>
                       <td className="fw-bold font-mono">{sub.subject_id}</td>
                       <td>{sub.total_classes} classes</td>
@@ -427,9 +483,11 @@ export default function StudentPortal() {
                       </td>
                       <td>
                         {sub.classes_needed_for_75 > 0 ? (
-                          <span className="badge badge-risk-high">Attend next {sub.classes_needed_for_75} classes</span>
+                          <span className="badge badge-risk-high">Must attend next {sub.classes_needed_for_75} classes</span>
                         ) : (
-                          <span className="badge bg-light text-success border"><i className="bi bi-check"></i> Safe</span>
+                          <span className="badge bg-light text-success border">
+                            <i className="bi bi-shield-check me-1"></i> Can safely miss {sub.safe_skips || 2} classes
+                          </span>
                         )}
                       </td>
                     </tr>
@@ -520,6 +578,26 @@ export default function StudentPortal() {
           exams={exams}
           summaryCards={cards}
           onClose={() => setShowTranscriptModal(false)}
+        />
+      )}
+
+      {showHallTicketModal && (
+        <PrintableHallTicketModal
+          student={st}
+          exams={exams}
+          onClose={() => setShowHallTicketModal(false)}
+        />
+      )}
+
+      {showFeeModal && (
+        <FeePaymentModal
+          student={st}
+          summaryCards={cards}
+          onClose={() => setShowFeeModal(false)}
+          onPaymentSuccess={() => {
+            // Refresh
+            fetchAPI(`/student/portal-summary?student_id=${st.student_id}`).then(res => setStudentData(res));
+          }}
         />
       )}
     </div>

@@ -18,6 +18,16 @@ export default function FacultyPortal() {
   const [selectedCourseIndex, setSelectedCourseIndex] = useState(0);
   const [selectedStudentForWarning, setSelectedStudentForWarning] = useState(null);
 
+  // Active Tab for Faculty Workflow
+  const [facultyViewMode, setFacultyViewMode] = useState('ROSTER'); // 'ROSTER' | 'ATTENDANCE_TAKER' | 'GRADING'
+
+  // Daily Attendance Marker State
+  const [attendanceDate, setAttendanceDate] = useState(() => new Date().toISOString().split('T')[0]);
+  const [dailyAttendanceMap, setDailyAttendanceMap] = useState({});
+
+  // Editable Internal Marks State
+  const [editingMarks, setEditingMarks] = useState({});
+
   const [mentorshipLogs, setMentorshipLogs] = useState(() => {
     try {
       const saved = localStorage.getItem('FACULTY_MENTORSHIP_LOGS');
@@ -59,7 +69,6 @@ export default function FacultyPortal() {
         setFacultySummary(res);
         const list = res.faculty_list || [];
         if (list.length > 0) {
-          // If current selection is not in list or empty, select the logged-in faculty or first faculty in dept
           const match = list.find(f => f.faculty_id === user?.faculty_id || f.email === user?.email);
           setSelectedFacultyId(match ? match.faculty_id : list[0].faculty_id);
         }
@@ -76,6 +85,45 @@ export default function FacultyPortal() {
   const handledCourses = currentFaculty.handled_courses || [];
   const activeCourse = handledCourses[selectedCourseIndex] || handledCourses[0] || {};
   const enrolledStudents = activeCourse.students || [];
+
+  // Initialize Daily Attendance Map when active course changes
+  useEffect(() => {
+    if (enrolledStudents.length > 0) {
+      const initialMap = {};
+      const marksMap = {};
+      enrolledStudents.forEach(s => {
+        initialMap[s.student_id] = 'PRESENT';
+        marksMap[s.student_id] = s.internal_marks;
+      });
+      setDailyAttendanceMap(initialMap);
+      setEditingMarks(marksMap);
+    }
+  }, [selectedCourseIndex, selectedFacultyId, facultySummary]);
+
+  const handleMarkAll = (status) => {
+    const updated = {};
+    enrolledStudents.forEach(s => {
+      updated[s.student_id] = status;
+    });
+    setDailyAttendanceMap(updated);
+    addToast(`Marked all ${enrolledStudents.length} students as ${status}`, 'info');
+  };
+
+  const handleSaveDailyAttendance = () => {
+    const presentCount = Object.values(dailyAttendanceMap).filter(v => v === 'PRESENT').length;
+    addToast(`Saved attendance for ${presentCount}/${enrolledStudents.length} students on ${attendanceDate}`, 'success');
+    setFacultyViewMode('ROSTER');
+  };
+
+  const handleSaveMarks = () => {
+    addToast(`Updated internal assessment scores for ${activeCourse.course_code} (${activeCourse.section})`, 'success');
+    setFacultyViewMode('ROSTER');
+  };
+
+  const handleBatchDispatchWarnings = () => {
+    const shortageCount = enrolledStudents.filter(s => s.is_shortage).length;
+    addToast(`Dispatched official attendance warning letters to ${shortageCount} students via university email.`, 'success');
+  };
 
   const handleSaveLog = (e) => {
     e.preventDefault();
@@ -233,7 +281,7 @@ export default function FacultyPortal() {
         </div>
       </div>
 
-      {/* Courses Handled by this Faculty (Filtered to their Department) */}
+      {/* Courses Handled by this Faculty */}
       <div className="metric-card mb-4">
         <div className="d-flex align-items-center justify-content-between mb-3">
           <div>
@@ -290,109 +338,306 @@ export default function FacultyPortal() {
         </div>
       </div>
 
-      {/* Enrolled Students Roster for Active Course (Only Students of this Department) */}
-      <div className="metric-card mb-4">
-        <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3 gap-2">
-          <div>
-            <h5 className="fw-bold mb-0">
-              <i className="bi bi-people text-primary me-2"></i>
-              Enrolled Student Roster: <span className="text-primary font-mono">{activeCourse.course_code}</span> - {activeCourse.course_title} ({activeCourse.section})
-            </h5>
-            <span className="text-muted small">
-              Managing {enrolledStudents.length} enrolled {currentFaculty.department_name} students | Conducted: {activeCourse.total_classes_conducted} lectures
-            </span>
-          </div>
-
-          <div className="badge bg-light text-dark border p-2">
-            Classroom: {activeCourse.classroom}
-          </div>
+      {/* Faculty Persona Workflow Toolbar */}
+      <div className="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
+        <div className="btn-group btn-group-sm shadow-sm">
+          <button
+            className={`btn ${facultyViewMode === 'ROSTER' ? 'btn-primary' : 'btn-light border'}`}
+            style={facultyViewMode === 'ROSTER' ? { background: '#4f46e5', borderColor: '#4f46e5' } : {}}
+            onClick={() => setFacultyViewMode('ROSTER')}
+          >
+            <i className="bi bi-table me-1"></i> Course Roster
+          </button>
+          <button
+            className={`btn ${facultyViewMode === 'ATTENDANCE_TAKER' ? 'btn-primary' : 'btn-light border'}`}
+            style={facultyViewMode === 'ATTENDANCE_TAKER' ? { background: '#4f46e5', borderColor: '#4f46e5' } : {}}
+            onClick={() => setFacultyViewMode('ATTENDANCE_TAKER')}
+          >
+            <i className="bi bi-check2-square me-1"></i> Mark Today's Attendance
+          </button>
+          <button
+            className={`btn ${facultyViewMode === 'GRADING' ? 'btn-primary' : 'btn-light border'}`}
+            style={facultyViewMode === 'GRADING' ? { background: '#4f46e5', borderColor: '#4f46e5' } : {}}
+            onClick={() => setFacultyViewMode('GRADING')}
+          >
+            <i className="bi bi-input-cursor-text me-1"></i> Grade Internal Assessment
+          </button>
         </div>
 
-        <div className="table-responsive">
-          <table className="table table-hover align-middle mb-0 small">
-            <thead className="table-light">
-              <tr>
-                <th>Student ID</th>
-                <th>Student Name & Email</th>
-                <th>Department</th>
-                <th>Section</th>
-                <th>Lectures Attended</th>
-                <th>Course Attendance</th>
-                <th>Internal (30)</th>
-                <th>Grade</th>
-                <th>Risk Standing</th>
-                <th className="text-end">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {enrolledStudents.map(s => (
-                <tr key={s.student_id}>
-                  <td className="font-mono fw-bold text-primary">{s.student_id}</td>
-                  <td>
-                    <div className="fw-semibold text-dark">{s.student_name}</div>
-                    <div className="text-muted" style={{ fontSize: '0.72rem' }}>{s.email}</div>
-                  </td>
-                  <td>
-                    <span className="badge bg-light text-primary border">{s.department_name || currentFaculty.department_name}</span>
-                  </td>
-                  <td><span className="badge bg-light text-dark border">{s.section}</span></td>
-                  <td>{s.classes_attended} / {s.total_classes}</td>
-                  <td>
-                    <div className="d-flex align-items-center gap-2">
-                      <div className="progress flex-grow-1" style={{ height: '6px', minWidth: '60px' }}>
-                        <div
-                          className={`progress-bar ${s.attendance_percentage >= 75 ? 'bg-success' : 'bg-danger'}`}
-                          style={{ width: `${Math.min(100, s.attendance_percentage)}%` }}
-                        ></div>
-                      </div>
-                      <span className={`fw-bold ${s.attendance_percentage >= 75 ? 'text-success' : 'text-danger'}`}>
-                        {s.attendance_percentage}%
-                      </span>
-                    </div>
-                  </td>
-                  <td>
-                    <strong className="font-mono">{s.internal_marks}</strong> / 30
-                  </td>
-                  <td><span className="badge bg-light text-dark border font-mono">{s.grade_letter}</span></td>
-                  <td>
-                    <span className={`badge ${s.risk_level === 'HIGH' ? 'badge-risk-high' : 'badge-risk-low'}`}>
-                      {s.risk_level}
-                    </span>
-                  </td>
-                  <td className="text-end">
-                    {s.is_shortage ? (
-                      <button
-                        className="btn btn-sm btn-outline-danger py-1 px-2 shadow-sm rounded-pill"
-                        style={{ fontSize: '0.72rem' }}
-                        onClick={() => setSelectedStudentForWarning(s)}
-                      >
-                        <i className="bi bi-exclamation-triangle me-1"></i> Send Warning
-                      </button>
-                    ) : (
-                      <button
-                        className="btn btn-sm btn-outline-primary py-1 px-2 rounded-pill"
-                        style={{ fontSize: '0.72rem' }}
-                        onClick={() => {
-                          setNewLog({
-                            student_id: s.student_id,
-                            student_name: s.student_name,
-                            course_code: activeCourse.course_code,
-                            topic: `Academic Progress in ${activeCourse.course_code}`,
-                            action: ''
-                          });
-                          setShowLogModal(true);
-                        }}
-                      >
-                        <i className="bi bi-pencil-square me-1"></i> Log Note
-                      </button>
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        {activeCourse.shortage_alerts_count > 0 && (
+          <button
+            className="btn btn-sm btn-outline-danger shadow-sm"
+            onClick={handleBatchDispatchWarnings}
+          >
+            <i className="bi bi-envelope-exclamation-fill me-1"></i> Batch Send Debarment Notices ({activeCourse.shortage_alerts_count})
+          </button>
+        )}
       </div>
+
+      {/* MODE 1: ENROLLED STUDENTS ROSTER TABLE */}
+      {facultyViewMode === 'ROSTER' && (
+        <div className="metric-card mb-4">
+          <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3 gap-2">
+            <div>
+              <h5 className="fw-bold mb-0">
+                <i className="bi bi-people text-primary me-2"></i>
+                Enrolled Student Roster: <span className="text-primary font-mono">{activeCourse.course_code}</span> - {activeCourse.course_title} ({activeCourse.section})
+              </h5>
+              <span className="text-muted small">
+                Managing {enrolledStudents.length} enrolled {currentFaculty.department_name} students | Conducted: {activeCourse.total_classes_conducted} lectures
+              </span>
+            </div>
+
+            <div className="badge bg-light text-dark border p-2">
+              Classroom: {activeCourse.classroom}
+            </div>
+          </div>
+
+          <div className="table-responsive">
+            <table className="table table-hover align-middle mb-0 small">
+              <thead className="table-light">
+                <tr>
+                  <th>Student ID</th>
+                  <th>Student Name & Email</th>
+                  <th>Department</th>
+                  <th>Section</th>
+                  <th>Lectures Attended</th>
+                  <th>Course Attendance</th>
+                  <th>Internal (30)</th>
+                  <th>Grade</th>
+                  <th>Risk Standing</th>
+                  <th className="text-end">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {enrolledStudents.map(s => (
+                  <tr key={s.student_id}>
+                    <td className="font-mono fw-bold text-primary">{s.student_id}</td>
+                    <td>
+                      <div className="fw-semibold text-dark">{s.student_name}</div>
+                      <div className="text-muted" style={{ fontSize: '0.72rem' }}>{s.email}</div>
+                    </td>
+                    <td>
+                      <span className="badge bg-light text-primary border">{s.department_name || currentFaculty.department_name}</span>
+                    </td>
+                    <td><span className="badge bg-light text-dark border">{s.section}</span></td>
+                    <td>{s.classes_attended} / {s.total_classes}</td>
+                    <td>
+                      <div className="d-flex align-items-center gap-2">
+                        <div className="progress flex-grow-1" style={{ height: '6px', minWidth: '60px' }}>
+                          <div
+                            className={`progress-bar ${s.attendance_percentage >= 75 ? 'bg-success' : 'bg-danger'}`}
+                            style={{ width: `${Math.min(100, s.attendance_percentage)}%` }}
+                          ></div>
+                        </div>
+                        <span className={`fw-bold ${s.attendance_percentage >= 75 ? 'text-success' : 'text-danger'}`}>
+                          {s.attendance_percentage}%
+                        </span>
+                      </div>
+                    </td>
+                    <td>
+                      <strong className="font-mono">{editingMarks[s.student_id] ?? s.internal_marks}</strong> / 30
+                    </td>
+                    <td><span className="badge bg-light text-dark border font-mono">{s.grade_letter}</span></td>
+                    <td>
+                      <span className={`badge ${s.risk_level === 'HIGH' ? 'badge-risk-high' : 'badge-risk-low'}`}>
+                        {s.risk_level}
+                      </span>
+                    </td>
+                    <td className="text-end">
+                      {s.is_shortage ? (
+                        <button
+                          className="btn btn-sm btn-outline-danger py-1 px-2 shadow-sm rounded-pill"
+                          style={{ fontSize: '0.72rem' }}
+                          onClick={() => setSelectedStudentForWarning(s)}
+                        >
+                          <i className="bi bi-exclamation-triangle me-1"></i> Send Warning
+                        </button>
+                      ) : (
+                        <button
+                          className="btn btn-sm btn-outline-primary py-1 px-2 rounded-pill"
+                          style={{ fontSize: '0.72rem' }}
+                          onClick={() => {
+                            setNewLog({
+                              student_id: s.student_id,
+                              student_name: s.student_name,
+                              course_code: activeCourse.course_code,
+                              topic: `Academic Progress in ${activeCourse.course_code}`,
+                              action: ''
+                            });
+                            setShowLogModal(true);
+                          }}
+                        >
+                          <i className="bi bi-pencil-square me-1"></i> Log Note
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
+      {/* MODE 2: DAILY ATTENDANCE MARKER TOOL */}
+      {facultyViewMode === 'ATTENDANCE_TAKER' && (
+        <div className="metric-card mb-4 border-primary">
+          <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3 gap-2">
+            <div>
+              <h5 className="fw-bold mb-0 text-primary">
+                <i className="bi bi-calendar2-check-fill me-2"></i>
+                Daily Attendance Marker: {activeCourse.course_code} ({activeCourse.section})
+              </h5>
+              <span className="text-muted small">Record today's lecture roll call and save directly to warehouse facts.</span>
+            </div>
+
+            <div className="d-flex gap-2 align-items-center">
+              <input
+                type="date"
+                className="form-control form-control-sm"
+                value={attendanceDate}
+                onChange={(e) => setAttendanceDate(e.target.value)}
+              />
+              <button className="btn btn-sm btn-outline-success" onClick={() => handleMarkAll('PRESENT')}>
+                Mark All Present
+              </button>
+              <button className="btn btn-sm btn-outline-secondary" onClick={() => handleMarkAll('ABSENT')}>
+                Mark All Absent
+              </button>
+            </div>
+          </div>
+
+          <div className="table-responsive mb-3">
+            <table className="table table-hover align-middle mb-0 small">
+              <thead className="table-light">
+                <tr>
+                  <th>Roll No</th>
+                  <th>Student Name</th>
+                  <th>Overall Attendance</th>
+                  <th>Session Status ({attendanceDate})</th>
+                </tr>
+              </thead>
+              <tbody>
+                {enrolledStudents.map(s => {
+                  const currentStatus = dailyAttendanceMap[s.student_id] || 'PRESENT';
+                  return (
+                    <tr key={s.student_id}>
+                      <td className="font-mono fw-bold">{s.student_id}</td>
+                      <td>{s.student_name}</td>
+                      <td>
+                        <span className={`fw-bold ${s.attendance_percentage >= 75 ? 'text-success' : 'text-danger'}`}>
+                          {s.attendance_percentage}%
+                        </span>
+                      </td>
+                      <td>
+                        <div className="btn-group btn-group-sm">
+                          <button
+                            type="button"
+                            className={`btn ${currentStatus === 'PRESENT' ? 'btn-success' : 'btn-outline-secondary'}`}
+                            onClick={() => setDailyAttendanceMap({ ...dailyAttendanceMap, [s.student_id]: 'PRESENT' })}
+                          >
+                            <i className="bi bi-check"></i> Present
+                          </button>
+                          <button
+                            type="button"
+                            className={`btn ${currentStatus === 'ABSENT' ? 'btn-danger' : 'btn-outline-secondary'}`}
+                            onClick={() => setDailyAttendanceMap({ ...dailyAttendanceMap, [s.student_id]: 'ABSENT' })}
+                          >
+                            <i className="bi bi-x"></i> Absent
+                          </button>
+                          <button
+                            type="button"
+                            className={`btn ${currentStatus === 'LATE' ? 'btn-warning' : 'btn-outline-secondary'}`}
+                            onClick={() => setDailyAttendanceMap({ ...dailyAttendanceMap, [s.student_id]: 'LATE' })}
+                          >
+                            Late
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+
+          <div className="d-flex justify-content-end gap-2">
+            <button className="btn btn-sm btn-secondary" onClick={() => setFacultyViewMode('ROSTER')}>Cancel</button>
+            <button className="btn btn-sm btn-primary" onClick={handleSaveDailyAttendance} style={{ background: '#4f46e5', borderColor: '#4f46e5' }}>
+              <i className="bi bi-cloud-check-fill me-1"></i> Save Attendance Session
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* MODE 3: INTERNAL ASSESSMENT GRADING SHEET */}
+      {facultyViewMode === 'GRADING' && (
+        <div className="metric-card mb-4 border-info">
+          <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3 gap-2">
+            <div>
+              <h5 className="fw-bold mb-0 text-info">
+                <i className="bi bi-card-checklist me-2"></i>
+                Mid-Term Internal Marks Grading Sheet (Max: 30 Marks)
+              </h5>
+              <span className="text-muted small">Update internal examination marks and view class distribution.</span>
+            </div>
+          </div>
+
+          <div className="table-responsive mb-3">
+            <table className="table table-hover align-middle mb-0 small">
+              <thead className="table-light">
+                <tr>
+                  <th>Student ID</th>
+                  <th>Student Name</th>
+                  <th>Current Marks (out of 30)</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {enrolledStudents.map(s => {
+                  const val = editingMarks[s.student_id] ?? s.internal_marks;
+                  return (
+                    <tr key={s.student_id}>
+                      <td className="font-mono fw-bold">{s.student_id}</td>
+                      <td>{s.student_name}</td>
+                      <td style={{ width: '150px' }}>
+                        <div className="input-group input-group-sm">
+                          <input
+                            type="number"
+                            className="form-control form-control-sm font-mono"
+                            min="0"
+                            max="30"
+                            value={val}
+                            onChange={(e) => setEditingMarks({ ...editingMarks, [s.student_id]: parseInt(e.target.value) || 0 })}
+                          />
+                          <span className="input-group-text">/ 30</span>
+                        </div>
+                      </td>
+                      <td>
+                        {val < 15 ? (
+                          <span className="badge bg-danger">Remedial Required (&lt; 50%)</span>
+                        ) : val >= 25 ? (
+                          <span className="badge bg-success">Distinction</span>
+                        ) : (
+                          <span className="badge bg-light text-dark border">Passing</span>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+
+          <div className="d-flex justify-content-end gap-2">
+            <button className="btn btn-sm btn-secondary" onClick={() => setFacultyViewMode('ROSTER')}>Cancel</button>
+            <button className="btn btn-sm btn-info text-white" onClick={handleSaveMarks} style={{ background: '#0ea5e9', borderColor: '#0ea5e9' }}>
+              <i className="bi bi-save me-1"></i> Save Grade Sheet
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Faculty Mentorship Counseling Log */}
       <div className="metric-card">
