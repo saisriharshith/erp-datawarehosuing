@@ -34,10 +34,25 @@ export default function StudentPortal() {
   const { addToast } = useToast();
   const isDean = user?.role === 'ADMIN';
 
-  // For students, locked to their own student ID; for Dean, can inspect any student
-  const [selectedStudentId, setSelectedStudentId] = useState(user?.student_id || '');
+  // For Student: locked to own student ID.
+  // For Dean: null initially (showing all-student master list), or set to specific student ID when inspecting.
+  const [inspectedStudentId, setInspectedStudentId] = useState(
+    isDean ? null : (user?.student_id || 'STU20220001')
+  );
+
+  // Master Student List State (for Dean view)
+  const [masterStudents, setMasterStudents] = useState([]);
+  const [masterTotal, setMasterTotal] = useState(0);
+  const [masterPage, setMasterPage] = useState(1);
+  const [masterTotalPages, setMasterTotalPages] = useState(1);
+  const [deptFilter, setDeptFilter] = useState('');
+  const [riskFilter, setRiskFilter] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [masterLoading, setMasterLoading] = useState(false);
+
+  // Single Student 360 Profile State
   const [studentData, setStudentData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [profileLoading, setProfileLoading] = useState(false);
 
   // Modals
   const [showTranscriptModal, setShowTranscriptModal] = useState(false);
@@ -47,45 +62,261 @@ export default function StudentPortal() {
   // Target CGPA Planner
   const [targetCgpa, setTargetCgpa] = useState(8.5);
 
+  // If student persona, keep inspectedStudentId tied to logged-in user
   useEffect(() => {
     if (!isDean && user?.student_id) {
-      setSelectedStudentId(user.student_id);
+      setInspectedStudentId(user.student_id);
     }
   }, [user, isDean]);
 
-  // Dean default: dynamically load the first enrolled student from the registry
-  useEffect(() => {
-    if (isDean && !selectedStudentId) {
-      fetchAPI('/students?page=1&limit=1')
-        .then(res => {
-          const first = res.students && res.students[0];
-          if (first) setSelectedStudentId(first.student_id);
-        })
-        .catch(() => {});
-    }
-  }, [isDean, selectedStudentId]);
+  // Load All Students Directory for Dean
+  const loadMasterStudents = () => {
+    if (!isDean) return;
+    setMasterLoading(true);
+    let url = `/students?page=${masterPage}&limit=12&`;
+    if (deptFilter) url += `department_id=${deptFilter}&`;
+    if (riskFilter) url += `risk_level=${riskFilter}&`;
+    if (searchTerm) url += `search=${encodeURIComponent(searchTerm)}&`;
 
-  const loadProfile = () => {
-    setLoading(true);
-    fetchAPI(`/student/portal-summary?student_id=${selectedStudentId}`)
-      .then(res => setStudentData(res))
+    fetchAPI(url)
+      .then(res => {
+        setMasterStudents(res.students || []);
+        setMasterTotal(res.total || 0);
+        setMasterTotalPages(res.total_pages || 1);
+      })
+      .catch(err => {
+        console.error(err);
+        addToast('Failed to load students directory', 'danger');
+      })
+      .finally(() => setMasterLoading(false));
+  };
+
+  useEffect(() => {
+    if (isDean) {
+      loadMasterStudents();
+    }
+  }, [isDean, masterPage, deptFilter, riskFilter, searchTerm]);
+
+  // Load Specific Student 360 Profile
+  const loadStudent360 = (sId) => {
+    if (!sId) return;
+    setProfileLoading(true);
+    fetchAPI(`/student/portal-summary?student_id=${sId}`)
+      .then(res => {
+        setStudentData(res);
+      })
       .catch(err => {
         console.error(err);
         addToast('Failed to load student academic records', 'danger');
       })
-      .finally(() => setLoading(false));
+      .finally(() => setProfileLoading(false));
   };
 
   useEffect(() => {
-    if (!selectedStudentId) return undefined;
-    loadProfile();
-  }, [selectedStudentId]);
+    if (inspectedStudentId) {
+      loadStudent360(inspectedStudentId);
+    } else {
+      setStudentData(null);
+    }
+  }, [inspectedStudentId]);
 
-  if (loading && !studentData) {
+  // ==========================================
+  // VIEW 1: DEAN ALL-STUDENTS DIRECTORY MASTER
+  // ==========================================
+  if (isDean && !inspectedStudentId) {
+    return (
+      <div className="p-3 p-md-4">
+        {/* Header */}
+        <div className="p-4 rounded-4 text-white mb-4 shadow-sm" style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)' }}>
+          <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+            <div>
+              <span className="badge bg-success text-white mb-2 fw-semibold">
+                <i className="bi bi-people-fill me-1"></i> Dean Directorate: Student 360 Hub
+              </span>
+              <h3 className="fw-bold mb-1">University Student Roster ({masterTotal} Enrolled Students)</h3>
+              <p className="mb-0 text-white-50 small">
+                Search and click on any student across all 5 engineering departments to open their complete 360-degree academic hub.
+              </p>
+            </div>
+
+            <div className="d-flex gap-2">
+              <span className="badge bg-white text-dark p-2 px-3 align-self-center">
+                Total: <strong>{masterTotal}</strong> Students
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Filter & Search Bar */}
+        <div className="metric-card mb-4">
+          <div className="row g-2 align-items-center">
+            <div className="col-12 col-md-5">
+              <div className="input-group input-group-sm">
+                <span className="input-group-text bg-white"><i className="bi bi-search text-muted"></i></span>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Search by student name, ID (e.g. STU20220001), email..."
+                  value={searchTerm}
+                  onChange={(e) => { setSearchTerm(e.target.value); setMasterPage(1); }}
+                />
+                {searchTerm && (
+                  <button className="btn btn-outline-secondary" onClick={() => setSearchTerm('')}>Clear</button>
+                )}
+              </div>
+            </div>
+
+            <div className="col-6 col-md-3">
+              <select
+                className="form-select form-select-sm"
+                value={deptFilter}
+                onChange={(e) => { setDeptFilter(e.target.value); setMasterPage(1); }}
+              >
+                <option value="">All Departments</option>
+                <option value="DEPT_CSE">Computer Science (CSE)</option>
+                <option value="DEPT_ECE">Electronics (ECE)</option>
+                <option value="DEPT_MECH">Mechanical (MECH)</option>
+                <option value="DEPT_CIVIL">Civil (CIVIL)</option>
+                <option value="DEPT_AIDS">AI & Data Science (AIDS)</option>
+              </select>
+            </div>
+
+            <div className="col-6 col-md-2">
+              <select
+                className="form-select form-select-sm"
+                value={riskFilter}
+                onChange={(e) => { setRiskFilter(e.target.value); setMasterPage(1); }}
+              >
+                <option value="">All Risk Levels</option>
+                <option value="HIGH">High Risk Only</option>
+                <option value="MEDIUM">Medium Risk</option>
+                <option value="LOW">Low Risk Only</option>
+              </select>
+            </div>
+
+            <div className="col-12 col-md-2 text-md-end">
+              <button className="btn btn-sm btn-outline-primary w-100" onClick={loadMasterStudents}>
+                <i className="bi bi-arrow-clockwise me-1"></i> Refresh List
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Master Students Table */}
+        <div className="metric-card mb-4">
+          <div className="d-flex justify-content-between align-items-center mb-3">
+            <h6 className="fw-bold mb-0">Enrolled Student Directory</h6>
+            <span className="text-muted small">Showing Page {masterPage} of {masterTotalPages} ({masterTotal} total)</span>
+          </div>
+
+          {masterLoading ? (
+            <div className="text-center py-5">
+              <div className="spinner-border text-primary" role="status"></div>
+              <p className="mt-2 text-muted small">Loading student records...</p>
+            </div>
+          ) : masterStudents.length === 0 ? (
+            <div className="text-center py-5 text-muted">
+              <i className="bi bi-person-x fs-1"></i>
+              <p className="mt-2 mb-0">No students matched your filter criteria.</p>
+            </div>
+          ) : (
+            <div className="table-responsive">
+              <table className="table table-hover align-middle mb-0 small">
+                <thead className="table-light">
+                  <tr>
+                    <th>Student ID</th>
+                    <th>Candidate Name</th>
+                    <th>Department</th>
+                    <th>Semester</th>
+                    <th>Attendance</th>
+                    <th>CGPA</th>
+                    <th>Fee Status</th>
+                    <th>Academic Risk</th>
+                    <th className="text-end">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {masterStudents.map((s) => (
+                    <tr
+                      key={s.student_id}
+                      style={{ cursor: 'pointer' }}
+                      onClick={() => setInspectedStudentId(s.student_id)}
+                    >
+                      <td className="font-mono fw-bold text-primary">{s.student_id}</td>
+                      <td>
+                        <div className="fw-semibold text-dark">{s.full_name}</div>
+                        <div className="text-muted" style={{ fontSize: '0.72rem' }}>{s.email}</div>
+                      </td>
+                      <td><span className="badge bg-light text-dark border">{s.department_name}</span></td>
+                      <td>Sem {s.current_semester}</td>
+                      <td>
+                        <span className={`fw-bold ${s.attendance_percentage >= 75 ? 'text-success' : 'text-danger'}`}>
+                          {s.attendance_percentage}%
+                        </span>
+                      </td>
+                      <td className="font-mono fw-bold text-primary">{s.cgpa}</td>
+                      <td>
+                        <span className={`badge ${s.fee_status === 'PAID' ? 'bg-light text-success border' : 'badge-risk-high'}`}>
+                          {s.fee_status}
+                        </span>
+                      </td>
+                      <td>
+                        <span className={`badge ${s.risk_level === 'LOW' ? 'bg-success text-white' : s.risk_level === 'MEDIUM' ? 'bg-warning text-dark' : 'badge-risk-high'}`}>
+                          {s.risk_level}
+                        </span>
+                      </td>
+                      <td className="text-end">
+                        <button
+                          className="btn btn-sm btn-primary py-1 px-2 rounded-pill"
+                          style={{ fontSize: '0.72rem', background: '#4f46e5', borderColor: '#4f46e5' }}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setInspectedStudentId(s.student_id);
+                          }}
+                        >
+                          <i className="bi bi-person-bounding-box me-1"></i> Open 360 Hub
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+
+          {/* Pagination */}
+          {masterTotalPages > 1 && (
+            <div className="d-flex justify-content-between align-items-center mt-3 pt-3 border-top">
+              <button
+                className="btn btn-sm btn-outline-secondary"
+                disabled={masterPage <= 1}
+                onClick={() => setMasterPage(p => Math.max(1, p - 1))}
+              >
+                ← Previous
+              </button>
+              <span className="small text-muted">Page {masterPage} of {masterTotalPages}</span>
+              <button
+                className="btn btn-sm btn-outline-secondary"
+                disabled={masterPage >= masterTotalPages}
+                onClick={() => setMasterPage(p => Math.min(masterTotalPages, p + 1))}
+              >
+                Next →
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  // ==========================================
+  // VIEW 2: INDIVIDUAL STUDENT 360-DEGREE HUB
+  // ==========================================
+  if (profileLoading || !studentData) {
     return (
       <div className="p-4 text-center py-5">
         <div className="spinner-border text-primary" role="status"></div>
-        <p className="mt-2 text-muted small">Loading My Academic Portal...</p>
+        <p className="mt-2 text-muted small">Loading Student 360 Hub...</p>
       </div>
     );
   }
@@ -95,27 +326,22 @@ export default function StudentPortal() {
   const subjects = studentData?.subject_attendance || [];
   const exams = studentData?.examination_records || [];
   const sgpaTrend = studentData?.sgpa_trend || [];
-  const feeInfo = studentData?.fee_summary || {};
   const feeTxns = studentData?.fee_transactions || [];
   const libInfo = studentData?.library_summary || {};
   const issuedBooks = libInfo.issued_books || [];
 
-  // Dynamic Overall Attendance Calculation & Consecutive Class Calculator
   const currentAttPct = cards.attendance_percentage || 78.4;
   const totalConducted = subjects.reduce((sum, s) => sum + (s.total_classes || 0), 0) || 240;
   const totalAttended = subjects.reduce((sum, s) => sum + (s.classes_attended || 0), 0) || 192;
 
-  // Required consecutive classes calculation:
   const classesNeededFor75 = currentAttPct < 75.0
     ? Math.max(1, Math.ceil((0.75 * totalConducted - totalAttended) / 0.25))
     : 0;
 
-  // Safe missable classes calculation:
   const safeMissableClasses = currentAttPct >= 75.0
     ? Math.max(0, Math.floor((totalAttended - 0.75 * totalConducted) / 0.75))
     : 0;
 
-  // Longitudinal SGPA Line Chart Data
   const sgpaChartData = {
     labels: sgpaTrend.length ? sgpaTrend.map(t => t.semester) : [`Sem ${st.semester || 1}`],
     datasets: [
@@ -132,13 +358,11 @@ export default function StudentPortal() {
     ]
   };
 
-  // Target CGPA What-if Planning
   const currentCgpa = cards.cgpa || 7.8;
-  const currentSem = st.semester || 5;
+  const currentSem = st.semester || 1;
   const remainingSems = Math.max(1, 8 - currentSem);
   const requiredFutureSgpa = Number((((targetCgpa * 8) - (currentCgpa * currentSem)) / remainingSems).toFixed(2));
 
-  // What-If Projected Scenarios
   const projectionScenarios = [
     { scorePct: '75% Marks', futureSgpa: 7.5, projectedCgpa: Number(((currentCgpa * currentSem + 7.5 * remainingSems) / 8).toFixed(2)) },
     { scorePct: '80% Marks', futureSgpa: 8.0, projectedCgpa: Number(((currentCgpa * currentSem + 8.0 * remainingSems) / 8).toFixed(2)) },
@@ -150,6 +374,16 @@ export default function StudentPortal() {
 
   return (
     <div className="p-3 p-md-4">
+      {/* Dean Back-To-List Navigation Bar */}
+      {isDean && (
+        <div className="d-flex justify-content-between align-items-center mb-3">
+          <button className="btn btn-sm btn-outline-dark fw-semibold" onClick={() => setInspectedStudentId(null)}>
+            <i className="bi bi-arrow-left me-1"></i> Back to All Students List
+          </button>
+          <span className="badge bg-primary text-white">Dean Inspection: {st.full_name} ({st.student_id})</span>
+        </div>
+      )}
+
       {/* 1. Header Banner & Profile Snapshot */}
       <div className="p-4 rounded-4 text-white mb-4 shadow-sm" style={{ background: 'linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%)' }}>
         <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
@@ -308,7 +542,6 @@ export default function StudentPortal() {
           <span className="badge bg-light text-dark border">Mandatory Threshold: 75.0%</span>
         </div>
 
-        {/* Actionable Attendance Alert Callout */}
         <div className={`p-3 rounded-3 border mb-3 small ${currentAttPct >= 75 ? 'bg-light border-success' : 'bg-light border-danger'}`}>
           <h6 className="fw-bold mb-1">
             <i className={`bi ${currentAttPct >= 75 ? 'bi-shield-check text-success' : 'bi-exclamation-triangle-fill text-danger'} me-1`}></i>
@@ -333,7 +566,6 @@ export default function StudentPortal() {
           )}
         </div>
 
-        {/* Subject-Wise Attendance Breakdown */}
         <div className="table-responsive">
           <table className="table table-hover align-middle mb-0 small">
             <thead className="table-light">
@@ -378,7 +610,6 @@ export default function StudentPortal() {
 
       {/* 5. Section: Examination / CGPA & Target CGPA Planner */}
       <div className="row g-3 mb-4">
-        {/* Left: Longitudinal SGPA Progression */}
         <div className="col-12 col-lg-7">
           <div className="metric-card h-100">
             <div className="d-flex justify-content-between align-items-center mb-3">
@@ -406,7 +637,6 @@ export default function StudentPortal() {
           </div>
         </div>
 
-        {/* Right: Target CGPA What-If Planner */}
         <div className="col-12 col-lg-5">
           <div className="metric-card h-100 border-primary">
             <div className="d-flex justify-content-between align-items-center mb-2">
@@ -436,7 +666,6 @@ export default function StudentPortal() {
               <span className="text-muted" style={{ fontSize: '0.72rem' }}>Current CGPA: {currentCgpa} (Sem {currentSem})</span>
             </div>
 
-            {/* Projected Score Impact Scenarios */}
             <div className="table-responsive">
               <table className="table table-sm table-bordered text-center align-middle mb-0" style={{ fontSize: '0.75rem' }}>
                 <thead className="table-light">
@@ -510,7 +739,6 @@ export default function StudentPortal() {
           </div>
         </div>
 
-        {/* Payment History Table (Dynamic from Database) */}
         <div className="table-responsive">
           <table className="table table-hover align-middle mb-0 small">
             <thead className="table-light">
@@ -655,7 +883,7 @@ export default function StudentPortal() {
           student={st}
           summaryCards={cards}
           onClose={() => setShowFeeModal(false)}
-          onPaymentSuccess={loadProfile}
+          onPaymentSuccess={() => loadStudent360(st.student_id)}
         />
       )}
     </div>
