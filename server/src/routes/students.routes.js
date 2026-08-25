@@ -1,5 +1,7 @@
 /**
- * Students Directory & 360 Profiles
+ * Students Directory & 360 Profiles REST API
+ * -------------------------------------------
+ * Provides high-speed search, filtering, pagination, and multi-dimensional student profile drilldown.
  */
 
 import express from 'express';
@@ -11,11 +13,15 @@ const router = express.Router();
 export async function getStudentProfile(studentId) {
   const students = await dbManager.getCollectionData('dim_students');
   let student = students.find(s => s.student_id === studentId);
+  if (!student) {
+    student = students.find(s => s.student_id && s.student_id.toUpperCase().includes(studentId.toUpperCase()));
+  }
   if (!student && students.length > 0) {
-    student = students.find(s => s.student_id && s.student_id.toUpperCase().includes(studentId.toUpperCase())) || students[0];
-    studentId = student.student_id;
+    student = students[0];
   }
   if (!student) return null;
+
+  studentId = student.student_id;
 
   const allAttendance = await dbManager.getCollectionData('fact_attendance');
   const allExams = await dbManager.getCollectionData('fact_examinations');
@@ -26,8 +32,12 @@ export async function getStudentProfile(studentId) {
   const attendance = allAttendance.filter(a => a.student_id === studentId);
   const exams = allExams.filter(e => e.student_id === studentId);
   const fees = allFees.filter(f => f.student_id === studentId);
-  const library = allLibrary.find(l => l.student_id === studentId) || { total_books_borrowed: 0, unpaid_fines: 0 };
-  const risk = allRisk.find(r => r.student_id === studentId) || { risk_level: "LOW", risk_score: 0.15, risk_factors: ["Satisfactory academic standing"] };
+  const library = allLibrary.find(l => l.student_id === studentId) || { total_books_borrowed: 0, unpaid_fines: 0, active_borrowed_count: 0 };
+  const risk = allRisk.find(r => r.student_id === studentId) || {
+    risk_level: "LOW",
+    risk_score: 0.15,
+    risk_factors: ["Satisfactory academic standing", "Consistent attendance record"]
+  };
 
   const attPcts = attendance.map(a => a.attendance_percentage || 0);
   const totalClasses = attendance.reduce((s, a) => s + (a.total_classes || 0), 0);
@@ -49,6 +59,7 @@ export async function getStudentProfile(studentId) {
       overall_percentage: avgAtt,
       total_classes: totalClasses,
       classes_attended: classesAttended,
+      is_eligible: avgAtt >= 75.0,
       subject_records: attendance
     },
     examinations: {
@@ -62,108 +73,131 @@ export async function getStudentProfile(studentId) {
       total_paid: totalPaid,
       outstanding_balance: outstanding,
       status: feeStatus,
-      transaction_records: fees
+      transactions: fees
     },
-    library,
+    library: {
+      total_books_borrowed: library.total_books_borrowed || 0,
+      active_borrowed_count: library.active_borrowed_count || 0,
+      overdue_books_count: library.overdue_books_count || 0,
+      unpaid_fines: library.unpaid_fines || 0
+    },
     risk_assessment: risk
   };
 }
 
-router.get('/students', async (req, res) => {
-  const page = parseInt(req.query.page || '1');
-  const limit = parseInt(req.query.limit || '20');
-  const search = (req.query.search || '').trim().toLowerCase();
-  const deptId = req.query.department_id;
-  const semester = req.query.semester ? parseInt(req.query.semester) : null;
-  const riskLevel = req.query.risk_level;
-
-  try {
-    const students = await dbManager.getCollectionData('dim_students');
-    const attendance = await dbManager.getCollectionData('fact_attendance');
-    const exams = await dbManager.getCollectionData('fact_examinations');
-    const predictions = await dbManager.getCollectionData('risk_predictions');
-
-    const attMap = {};
-    attendance.forEach(a => {
-      if (!attMap[a.student_id]) attMap[a.student_id] = [];
-      attMap[a.student_id].push(a.attendance_percentage || 0);
-    });
-
-    const gpaMap = {};
-    const backlogMap = {};
-    exams.forEach(e => {
-      if (!gpaMap[e.student_id]) gpaMap[e.student_id] = [];
-      gpaMap[e.student_id].push(e.grade_point || 0);
-      if (!e.is_passed) backlogMap[e.student_id] = (backlogMap[e.student_id] || 0) + 1;
-    });
-
-    const riskMap = {};
-    predictions.forEach(p => {
-      riskMap[p.student_id] = p;
-    });
-
-    let enriched = students.map(s => {
-      const atts = attMap[s.student_id] || [];
-      const attAvg = atts.length ? Number((atts.reduce((a, b) => a + b, 0) / atts.length).toFixed(1)) : 80.0;
-      const gpas = gpaMap[s.student_id] || [];
-      const cgpa = gpas.length ? Number((gpas.reduce((a, b) => a + b, 0) / gpas.length).toFixed(2)) : 7.8;
-      const r = riskMap[s.student_id] || { risk_level: 'LOW', risk_score: 0.15 };
-
-      return {
-        student_id: s.student_id,
-        full_name: s.full_name,
-        email: s.email,
-        department_id: s.department_id,
-        department_name: s.department_name,
-        current_semester: s.current_semester,
-        admission_quota: s.admission_quota,
-        attendance_percentage: attAvg,
-        cgpa: cgpa,
-        backlogs_count: backlogMap[s.student_id] || 0,
-        risk_level: r.risk_level,
-        risk_score: r.risk_score
-      };
-    });
-
-    if (search) {
-      enriched = enriched.filter(s =>
-        (s.full_name && s.full_name.toLowerCase().includes(search)) ||
-        (s.student_id && s.student_id.toLowerCase().includes(search)) ||
-        (s.email && s.email.toLowerCase().includes(search))
-      );
-    }
-    if (deptId) enriched = enriched.filter(s => s.department_id === deptId);
-    if (semester) enriched = enriched.filter(s => s.current_semester === semester);
-    if (riskLevel) enriched = enriched.filter(s => s.risk_level === riskLevel);
-
-    const total = enriched.length;
-    const totalPages = Math.ceil(total / limit) || 1;
-    const startIdx = (page - 1) * limit;
-    const paginated = enriched.slice(startIdx, startIdx + limit);
-
-    return successResponse(res, {
-      total,
-      page,
-      limit,
-      total_pages: totalPages,
-      students: paginated
-    }, 'Students fetched successfully');
-  } catch (err) {
-    return errorResponse(res, err.message, 500);
+// Fast Search Auto-complete Endpoint
+router.get('/students/search', async (req, res) => {
+  const query = (req.query.q || '').trim().toLowerCase();
+  if (!query) {
+    return successResponse(res, { results: [] });
   }
+
+  const students = await dbManager.getCollectionData('dim_students');
+  const matched = students
+    .filter(s =>
+      (s.student_id && s.student_id.toLowerCase().includes(query)) ||
+      (s.full_name && s.full_name.toLowerCase().includes(query)) ||
+      (s.department_name && s.department_name.toLowerCase().includes(query)) ||
+      (s.email && s.email.toLowerCase().includes(query))
+    )
+    .slice(0, 10)
+    .map(s => ({
+      student_id: s.student_id,
+      full_name: s.full_name,
+      department_name: s.department_name,
+      current_semester: s.current_semester,
+      batch_year: s.batch_year
+    }));
+
+  return successResponse(res, { results: matched });
 });
 
-router.get('/students/:student_id', async (req, res) => {
-  const { student_id } = req.params;
-  try {
-    const profile = await getStudentProfile(student_id.trim().toUpperCase());
-    if (!profile) {
-      return errorResponse(res, `Student with ID '${student_id}' not found`, 404);
+// Master Student Directory with Multi-Filters & Pagination
+router.get('/students', async (req, res) => {
+  const page = parseInt(req.query.page || '1', 10);
+  const limit = parseInt(req.query.limit || '20', 10);
+  const deptFilter = req.query.department_id;
+  const semFilter = req.query.semester ? parseInt(req.query.semester, 10) : null;
+  const riskFilter = req.query.risk_level;
+  const searchQuery = (req.query.search || '').trim().toLowerCase();
+
+  const students = await dbManager.getCollectionData('dim_students');
+  const attendance = await dbManager.getCollectionData('fact_attendance');
+  const exams = await dbManager.getCollectionData('fact_examinations');
+  const risks = await dbManager.getCollectionData('risk_predictions');
+
+  // Pre-calculate metrics map
+  const attMap = {};
+  attendance.forEach(a => {
+    if (!attMap[a.student_id]) attMap[a.student_id] = [];
+    attMap[a.student_id].push(a.attendance_percentage || 0);
+  });
+
+  const gpaMap = {};
+  exams.forEach(e => {
+    if (!gpaMap[e.student_id]) gpaMap[e.student_id] = [];
+    gpaMap[e.student_id].push(e.grade_point || 0);
+  });
+
+  const riskMap = {};
+  risks.forEach(r => {
+    riskMap[r.student_id] = r;
+  });
+
+  // Filter students
+  let filtered = students.filter(s => {
+    if (deptFilter && s.department_id !== deptFilter) return false;
+    if (semFilter && s.current_semester !== semFilter) return false;
+
+    if (searchQuery) {
+      const matchId = s.student_id && s.student_id.toLowerCase().includes(searchQuery);
+      const matchName = s.full_name && s.full_name.toLowerCase().includes(searchQuery);
+      const matchEmail = s.email && s.email.toLowerCase().includes(searchQuery);
+      if (!matchId && !matchName && !matchEmail) return false;
     }
-    return successResponse(res, profile, 'Student 360 profile fetched');
-  } catch (err) {
-    return errorResponse(res, err.message, 500);
+
+    const rObj = riskMap[s.student_id];
+    const riskLevel = rObj ? rObj.risk_level : "LOW";
+    if (riskFilter && riskLevel !== riskFilter) return false;
+
+    return true;
+  });
+
+  const total = filtered.length;
+  const startIndex = (page - 1) * limit;
+  const paginated = filtered.slice(startIndex, startIndex + limit).map(s => {
+    const pcts = attMap[s.student_id] || [];
+    const avgAtt = pcts.length ? Number((pcts.reduce((a, b) => a + b, 0) / pcts.length).toFixed(1)) : 80.0;
+    const gpas = gpaMap[s.student_id] || [];
+    const cgpa = gpas.length ? Number((gpas.reduce((a, b) => a + b, 0) / gpas.length).toFixed(2)) : 8.10;
+    const rObj = riskMap[s.student_id] || { risk_level: "LOW", risk_score: 0.15 };
+
+    return {
+      ...s,
+      attendance_percentage: avgAtt,
+      cgpa,
+      risk_level: rObj.risk_level,
+      risk_score: rObj.risk_score
+    };
+  });
+
+  return successResponse(res, {
+    total,
+    page,
+    limit,
+    total_pages: Math.ceil(total / limit),
+    students: paginated
+  });
+});
+
+// Single Student 360 Drilldown
+router.get('/students/:id', async (req, res) => {
+  const studentId = req.params.id;
+  const profile = await getStudentProfile(studentId);
+  if (!profile) {
+    return errorResponse(res, `Student record '${studentId}' not found.`, 404);
   }
+  return successResponse(res, profile);
 });
 
 export default router;

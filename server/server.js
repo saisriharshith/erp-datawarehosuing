@@ -1,5 +1,11 @@
 import app from "./src/app.js";
 
-app.listen(3000, () => {
-    console.log("server is running on port 3000");
+const PORT = process.env.PORT || 5001;
+
+app.listen(PORT, () => {
+  console.log(`======================================================================`);
+  console.log(`🚀 MERN BACKEND SERVER RUNNING ON: http://localhost:${PORT}`);
+  console.log(`📡 Health Check:  http://localhost:${PORT}/api/health`);
+  console.log(`📊 Dashboard API: http://localhost:${PORT}/api/analytics/dashboard`);
+  console.log(`======================================================================`);
 });
