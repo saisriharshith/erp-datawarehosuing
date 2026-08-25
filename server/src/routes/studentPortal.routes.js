@@ -89,6 +89,17 @@ router.get('/student/portal-summary', async (req, res) => {
       recs.push("Semester tuition fees are fully settled with zero arrears.");
     }
 
+    let evaluatedRisk = risk.risk_level;
+    if (!evaluatedRisk || evaluatedRisk === 'LOW') {
+      if (att.overall_percentage < 65 || exams.backlogs >= 2 || exams.cgpa < 6.0) {
+        evaluatedRisk = 'HIGH';
+      } else if (att.overall_percentage < 75 || exams.backlogs === 1 || exams.cgpa < 7.0) {
+        evaluatedRisk = 'MEDIUM';
+      } else {
+        evaluatedRisk = 'LOW';
+      }
+    }
+
     return successResponse(res, {
       student: {
         student_id: st.student_id,
@@ -108,7 +119,7 @@ router.get('/student/portal-summary', async (req, res) => {
         fee_outstanding: fees.outstanding_balance,
         books_borrowed: lib.total_books_borrowed || 0,
         unpaid_fines: lib.unpaid_fines || 0,
-        risk_level: risk.risk_level || 'LOW'
+        risk_level: evaluatedRisk
       },
       subject_attendance: subjectDetails,
       shortage_alerts: shortageAlerts,

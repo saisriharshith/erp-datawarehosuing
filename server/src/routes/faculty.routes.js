@@ -37,9 +37,12 @@ async function getFacultyCourseDetails(departmentId = null, facultyId = null) {
     const deptStudents = allStudents.filter(s => s.department_id === f.department_id);
 
     // Assign 2 distinct courses to this faculty member
-    const assignedSubs = deptSubs.length > 0
+    let assignedSubs = deptSubs.length > 0
       ? [deptSubs[fIdx % deptSubs.length], deptSubs[(fIdx + 1) % deptSubs.length]]
-      : [];
+      : [
+          { subject_id: 'CS501', subject_name: 'Operating Systems', semester: 5, credits: 4, department_id: f.department_id },
+          { subject_id: 'CS401', subject_name: 'Database Management Systems', semester: 4, credits: 4, department_id: f.department_id }
+        ];
 
     const sections = ['Section A', 'Section B', 'Section C'];
     const days = ['Mon / Wed / Fri 09:00 AM - 10:00 AM', 'Tue / Thu 11:15 AM - 12:45 PM', 'Mon / Wed 02:00 PM - 03:30 PM'];
