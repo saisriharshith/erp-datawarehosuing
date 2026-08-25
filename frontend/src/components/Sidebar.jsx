@@ -10,7 +10,13 @@ export default function Sidebar() {
     <aside className="app-sidebar p-3 d-flex flex-column justify-content-between">
       <div>
         <div className="text-uppercase small fw-bold text-muted px-3 mb-2" style={{ fontSize: '0.7rem', letterSpacing: '0.05em' }}>
-          {role === 'STUDENT' ? 'Student Workspace' : role === 'FACULTY' ? 'Faculty Workspace' : 'Institutional DW'}
+          {role === 'STUDENT'
+            ? 'Student Workspace'
+            : role === 'FACULTY'
+            ? 'Faculty Workspace'
+            : role === 'ACCOUNTS'
+            ? 'Accounts & Bursar'
+            : 'Institutional DW'}
         </div>
 
         <nav className="nav flex-column gap-1">
@@ -50,6 +56,24 @@ export default function Sidebar() {
             </>
           )}
 
+          {/* ACCOUNTS & FINANCE PERSONA */}
+          {role === 'ACCOUNTS' && (
+            <>
+              <NavLink to="/accounts" className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}>
+                <i className="bi bi-wallet2 text-warning"></i>
+                <span>Fee & Accounts Ledger</span>
+              </NavLink>
+              <NavLink to="/students" className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}>
+                <i className="bi bi-people-fill text-secondary"></i>
+                <span>Students Master</span>
+              </NavLink>
+              <NavLink to="/dashboard" className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}>
+                <i className="bi bi-pie-chart-fill text-primary"></i>
+                <span>Executive Overview</span>
+              </NavLink>
+            </>
+          )}
+
           {/* ADMIN / DEAN PERSONA */}
           {role === 'ADMIN' && (
             <>
@@ -64,6 +88,10 @@ export default function Sidebar() {
               <NavLink to="/faculty-portal" className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}>
                 <i className="bi bi-mortarboard-fill text-info"></i>
                 <span>Faculty & HOD Hub</span>
+              </NavLink>
+              <NavLink to="/accounts" className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}>
+                <i className="bi bi-wallet2 text-warning"></i>
+                <span>Tuition & Accounts</span>
               </NavLink>
               <NavLink to="/students" className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}>
                 <i className="bi bi-people-fill text-secondary"></i>

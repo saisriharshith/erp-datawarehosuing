@@ -21,6 +21,7 @@ export default function PersonaSwitcherModal({ onClose }) {
     if (activeTab === 'ALL') return true;
     if (activeTab === 'ADMIN') return p.role === 'ADMIN';
     if (activeTab === 'FACULTY') return p.role === 'FACULTY';
+    if (activeTab === 'ACCOUNTS') return p.role === 'ACCOUNTS';
     if (activeTab === 'STUDENT') return p.role === 'STUDENT';
     return true;
   });
@@ -32,6 +33,7 @@ export default function PersonaSwitcherModal({ onClose }) {
       onClose();
       if (loggedUser.role === 'STUDENT') navigate('/student-portal');
       else if (loggedUser.role === 'FACULTY') navigate('/faculty-portal');
+      else if (loggedUser.role === 'ACCOUNTS') navigate('/accounts');
       else navigate('/dashboard');
     } catch (err) {
       addToast(err.message || 'Failed to switch account', 'danger');
@@ -50,7 +52,7 @@ export default function PersonaSwitcherModal({ onClose }) {
             <div className="d-flex align-items-center gap-2">
               <span className="fs-5 text-warning"><i className="bi bi-people-fill"></i></span>
               <div>
-                <h5 className="modal-title fs-6 fw-bold mb-0">Role & Persona Switcher (20 Verified Accounts)</h5>
+                <h5 className="modal-title fs-6 fw-bold mb-0">Role & Persona Switcher (22 Verified Accounts)</h5>
                 <span className="text-white-50" style={{ fontSize: '0.75rem' }}>
                   Simulate any institutional perspective with 1-click
                 </span>
@@ -74,11 +76,12 @@ export default function PersonaSwitcherModal({ onClose }) {
             </div>
 
             {/* Category Filter Pills */}
-            <div className="d-flex gap-2 mb-3">
+            <div className="d-flex flex-wrap gap-2 mb-3">
               {[
-                { key: 'ALL', label: 'All 20 Accounts' },
+                { key: 'ALL', label: 'All 22 Accounts' },
                 { key: 'ADMIN', label: '👔 Leadership (2)' },
                 { key: 'FACULTY', label: '👨‍🏫 Faculty & HODs (8)' },
+                { key: 'ACCOUNTS', label: '💰 Accounts & Finance (2)' },
                 { key: 'STUDENT', label: '🎓 Students (10)' }
               ].map((tab) => (
                 <button
@@ -114,6 +117,8 @@ export default function PersonaSwitcherModal({ onClose }) {
                               ? 'bg-primary'
                               : acc.role === 'FACULTY'
                               ? 'bg-info text-dark'
+                              : acc.role === 'ACCOUNTS'
+                              ? 'bg-warning text-dark'
                               : 'bg-success'
                           }`}
                           style={{ width: '38px', height: '38px', fontSize: '0.85rem' }}
@@ -135,6 +140,8 @@ export default function PersonaSwitcherModal({ onClose }) {
                               ? 'bg-light text-primary border'
                               : acc.role === 'FACULTY'
                               ? 'bg-light text-info text-dark border'
+                              : acc.role === 'ACCOUNTS'
+                              ? 'bg-light text-warning text-dark border'
                               : 'bg-light text-success border'
                           }`}
                           style={{ fontSize: '0.7rem' }}

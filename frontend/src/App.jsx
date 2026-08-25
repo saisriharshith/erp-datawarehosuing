@@ -13,6 +13,7 @@ import StudentsDirectory from './pages/StudentsDirectory';
 import RiskAnalysis from './pages/RiskAnalysis';
 import DataQuality from './pages/DataQuality';
 import FacultyDirectory from './pages/FacultyDirectory';
+import AccountsPortal from './pages/AccountsPortal';
 
 function ProtectedLayout({ children }) {
   const { isAuth } = useAuth();
@@ -40,6 +41,7 @@ export default function App() {
     if (!isAuth) return <Navigate to="/login" replace />;
     if (user?.role === 'STUDENT') return <Navigate to="/student-portal" replace />;
     if (user?.role === 'FACULTY') return <Navigate to="/faculty-portal" replace />;
+    if (user?.role === 'ACCOUNTS') return <Navigate to="/accounts" replace />;
     return <Navigate to="/dashboard" replace />;
   };
 
@@ -72,6 +74,15 @@ export default function App() {
         element={
           <ProtectedLayout>
             <FacultyPortal />
+          </ProtectedLayout>
+        }
+      />
+
+      <Route
+        path="/accounts"
+        element={
+          <ProtectedLayout>
+            <AccountsPortal />
           </ProtectedLayout>
         }
       />

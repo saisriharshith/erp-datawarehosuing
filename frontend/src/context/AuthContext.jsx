@@ -18,6 +18,10 @@ export const DEMO_PRESETS = [
   { email: 'prof.reddy@univ.edu', name: 'Prof. Kavitha Reddy (Assistant Prof)', role: 'FACULTY', dept: 'DEPT_ECE', badge: 'Faculty' },
   { email: 'faculty@univ.edu', name: 'Prof. Rajeshwar Rao (Senior CSE Faculty)', role: 'FACULTY', dept: 'DEPT_CSE', badge: 'Senior Faculty' },
 
+  // Accounts & Finance
+  { email: 'accounts@univ.edu', name: 'Mr. S. K. Sharma (Chief Accounts Officer / Bursar)', role: 'ACCOUNTS', badge: 'Accounts Officer' },
+  { email: 'bursar@univ.edu', name: 'Mrs. Anita Roy (Senior Finance Officer)', role: 'ACCOUNTS', badge: 'Finance Officer' },
+
   // Students
   { email: 'aarav@univ.edu', name: 'Aarav Sharma (STU20210001)', role: 'STUDENT', student_id: 'STU20210001', dept: 'DEPT_CSE', sem: 5, badge: 'High Performer' },
   { email: 'sneha@univ.edu', name: 'Sneha Verma (STU20220013)', role: 'STUDENT', student_id: 'STU20220013', dept: 'DEPT_CSE', sem: 2, badge: 'Freshman' },

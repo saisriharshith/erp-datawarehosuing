@@ -111,7 +111,25 @@ export const DEMO_USERS = {
     permissions: ["department_analytics", "student_intervention"]
   },
 
-  // 3. STUDENT ACCOUNTS (10)
+  // 3. ACCOUNTS & FINANCE OFFICER ACCOUNTS (2)
+  "accounts@univ.edu": {
+    user_id: "USR_ACC_01",
+    email: "accounts@univ.edu",
+    name: "Mr. S. K. Sharma (Chief Accounts Officer / Bursar)",
+    role: "ACCOUNTS",
+    password_hash: DEMO_PASSWORD_HASH,
+    permissions: ["fee_management", "revenue_analytics", "offline_receipting", "reminders"]
+  },
+  "bursar@univ.edu": {
+    user_id: "USR_ACC_02",
+    email: "bursar@univ.edu",
+    name: "Mrs. Anita Roy (Senior Finance Officer)",
+    role: "ACCOUNTS",
+    password_hash: DEMO_PASSWORD_HASH,
+    permissions: ["fee_management", "revenue_analytics", "offline_receipting"]
+  },
+
+  // 4. STUDENT ACCOUNTS (10)
   "student@univ.edu": {
     user_id: "STU20210001",
     email: "student@univ.edu",
