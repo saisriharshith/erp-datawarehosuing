@@ -1,11 +1,11 @@
 services:
   - type: web
     name: erp-decision-support
-    runtime: node
+    runtime: docker
     plan: free
     region: oregon
-    buildCommand: npm run build
-    startCommand: npm start
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
     envVars:
       - key: NODE_ENV
         value: production
