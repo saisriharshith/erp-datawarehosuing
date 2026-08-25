@@ -1,0 +1,21 @@
+# Core Web Framework
+Flask==3.0.3
+Flask-Cors==4.0.1
+gunicorn==22.0.0
+python-dotenv==1.0.1
+
+# Database & Drivers
+pymongo==4.7.2
+dnspython==2.6.1
+
+# Data Engineering & Analytics
+pandas==2.2.2
+numpy==1.26.4
+
+# Machine Learning
+scikit-learn==1.5.0
+joblib==1.4.2
+
+# Testing & Utilities
+pytest==8.2.2
+requests==2.32.3
