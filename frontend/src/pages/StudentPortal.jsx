@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useAuth } from '../context/AuthContext';
+import { useAuth, DEMO_PRESETS } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
 import { fetchAPI } from '../services/api';
 import PrintableTranscriptModal from '../components/PrintableTranscriptModal';
@@ -30,39 +30,74 @@ ChartJS.register(
 export default function StudentPortal() {
   const { user } = useAuth();
   const { addToast } = useToast();
+  const isDean = user?.role === 'ADMIN';
+
+  // For students, lock to their ID; for Dean, allow inspecting ANY student
+  const [selectedStudentId, setSelectedStudentId] = useState(user?.student_id || 'STU20210001');
+  const [studentSearch, setStudentSearch] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [targetCgpa, setTargetCgpa] = useState(8.5);
   const [showTranscriptModal, setShowTranscriptModal] = useState(false);
 
-  const studentId = user?.student_id || 'STU20210001';
+  // Sync when user changes
+  useEffect(() => {
+    if (!isDean && user?.student_id) {
+      setSelectedStudentId(user.student_id);
+    }
+  }, [user, isDean]);
 
+  // Load student profile
   useEffect(() => {
     setLoading(true);
-    fetchAPI(`/student/portal-summary?student_id=${studentId}`)
+    fetchAPI(`/student/portal-summary?student_id=${selectedStudentId}`)
       .then(res => setData(res))
       .catch(err => {
         console.error(err);
-        addToast('Failed to load profile', 'danger');
+        addToast('Failed to load student profile', 'danger');
       })
       .finally(() => setLoading(false));
-  }, [studentId]);
+  }, [selectedStudentId]);
 
-  if (loading || !data) {
+  // Debounced search for Dean student selector
+  useEffect(() => {
+    if (!isDean || !studentSearch.trim()) {
+      setSearchResults([]);
+      return;
+    }
+
+    const handler = setTimeout(() => {
+      fetchAPI(`/students/search?q=${encodeURIComponent(studentSearch)}`)
+        .then(res => setSearchResults(res.results || []))
+        .catch(err => console.error(err));
+    }, 200);
+
+    return () => clearTimeout(handler);
+  }, [studentSearch, isDean]);
+
+  const handleSelectStudent = (stuId, name) => {
+    setSelectedStudentId(stuId);
+    setStudentSearch('');
+    setSearchResults([]);
+    addToast(`Inspecting 360 profile for ${name || stuId}`, 'info');
+  };
+
+  if (loading && !data) {
     return (
       <div className="p-4 text-center py-5">
         <div className="spinner-border text-primary" role="status"></div>
-        <p className="mt-2 text-muted small">Loading your personalized academic profile...</p>
+        <p className="mt-2 text-muted small">Loading Student 360 profile...</p>
       </div>
     );
   }
 
-  const st = data.student || {};
-  const cards = data.summary_cards || {};
-  const subjects = data.subject_attendance || [];
-  const exams = data.examination_records || [];
-  const recs = data.personalized_recommendations || [];
-  const sgpaTrend = data.sgpa_trend || [];
+  const st = data?.student || {};
+  const cards = data?.summary_cards || {};
+  const subjects = data?.subject_attendance || [];
+  const exams = data?.examination_records || [];
+  const recs = data?.personalized_recommendations || [];
+  const sgpaTrend = data?.sgpa_trend || [];
 
   // Goal Planner Calculation
   const currentCgpa = cards.cgpa || 8.0;
@@ -87,16 +122,86 @@ export default function StudentPortal() {
     ]
   };
 
+  const demoStudents = DEMO_PRESETS.filter(p => p.role === 'STUDENT');
+
   return (
     <div className="p-3 p-md-4">
-      {/* Student Welcome Banner */}
-      <div className="p-4 rounded-4 text-white mb-4 shadow-sm" style={{ background: 'linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%)' }}>
+      {/* Dean Student 360 Selector Bar */}
+      {isDean && (
+        <div className="metric-card mb-4 bg-white border-primary shadow-sm">
+          <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+            <div>
+              <span className="badge bg-primary text-white mb-1"><i className="bi bi-shield-lock-fill me-1"></i> Dean Institutional 360 View</span>
+              <h5 className="fw-bold mb-0">Select Any University Student to Inspect</h5>
+              <p className="text-muted small mb-0">Search all 600 students across 5 engineering departments or pick a quick profile.</p>
+            </div>
+
+            {/* Instant Search Input */}
+            <div className="position-relative" style={{ minWidth: '280px' }}>
+              <div className="input-group input-group-sm shadow-sm rounded overflow-hidden">
+                <span className="input-group-text bg-white"><i className="bi bi-search text-muted"></i></span>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Search student ID, name, or dept..."
+                  value={studentSearch}
+                  onChange={(e) => setStudentSearch(e.target.value)}
+                />
+              </div>
+
+              {/* Autocomplete Dropdown */}
+              {searchResults.length > 0 && (
+                <div
+                  className="position-absolute start-0 end-0 bg-white border rounded-3 shadow-lg mt-1 p-1"
+                  style={{ zIndex: 1050, maxHeight: '240px', overflowY: 'auto' }}
+                >
+                  {searchResults.map(res => (
+                    <button
+                      key={res.student_id}
+                      type="button"
+                      className="dropdown-item p-2 small rounded text-start d-flex justify-content-between align-items-center"
+                      onClick={() => handleSelectStudent(res.student_id, res.full_name)}
+                    >
+                      <div>
+                        <strong>{res.full_name}</strong>
+                        <div className="text-muted" style={{ fontSize: '0.72rem' }}>{res.department_name} (Sem {res.current_semester})</div>
+                      </div>
+                      <span className="font-mono text-primary fw-semibold">{res.student_id}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Quick Pick Demo Students */}
+          <div className="d-flex flex-wrap gap-2 mt-3 pt-2 border-top">
+            <span className="text-muted small align-self-center me-1">Quick Select:</span>
+            {demoStudents.map(p => (
+              <button
+                key={p.email}
+                type="button"
+                className={`btn btn-sm rounded-pill px-3 py-1 ${selectedStudentId === p.student_id ? 'btn-primary shadow-sm' : 'btn-light border text-dark'}`}
+                style={selectedStudentId === p.student_id ? { background: '#4f46e5', borderColor: '#4f46e5' } : {}}
+                onClick={() => handleSelectStudent(p.student_id, p.name)}
+              >
+                {p.name} ({p.dept})
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Student Banner */}
+      <div className="p-4 rounded-4 text-white mb-4 shadow-sm" style={{ background: isDean ? 'linear-gradient(135deg, #0f172a 0%, #334155 100%)' : 'linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%)' }}>
         <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
           <div>
-            <span className="badge bg-white text-primary mb-2 fw-semibold">Personal Student 360 Workspace</span>
-            <h3 className="fw-bold mb-1">Welcome back, {st.full_name}!</h3>
+            <span className="badge bg-white text-dark mb-2 fw-semibold">
+              {isDean ? 'Institutional 360 Student Drilldown' : 'Personal Student 360 Workspace'}
+            </span>
+            <h3 className="fw-bold mb-1">{isDean ? `Student Record: ${st.full_name}` : `Welcome back, ${st.full_name}!`}</h3>
             <p className="mb-0 text-white-50 small">
-              ID: <span className="text-white font-mono">{st.student_id}</span> | Department: <span className="text-white">{st.department_name}</span> | Semester: <span className="text-white">{st.semester}</span>
+              ID: <span className="text-white font-mono">{st.student_id}</span> | Department: <span className="text-white">{st.department_name}</span> | Semester: <span className="text-white">{st.semester}</span> | Batch: <span className="text-white">{st.batch_year || '2021-2025'}</span>
             </p>
           </div>
 
@@ -132,7 +237,7 @@ export default function StudentPortal() {
               <i className="bi bi-award text-warning"></i>
             </div>
             <h3 className="fw-bold mb-1 text-primary">{cards.cgpa} / 10</h3>
-            <span className="badge bg-light text-muted border">Backlogs: {cards.backlogs_count}</span>
+            <span className="badge bg-light text-muted border">Backlogs: {cards.backlogs_count || 0}</span>
           </div>
         </div>
 
@@ -176,7 +281,7 @@ export default function StudentPortal() {
               <table className="table table-hover align-middle mb-0 small">
                 <thead className="table-light">
                   <tr>
-                    <th>Subject</th>
+                    <th>Course Code</th>
                     <th>Conducted</th>
                     <th>Attended</th>
                     <th>Compliance</th>
@@ -235,7 +340,7 @@ export default function StudentPortal() {
             </div>
 
             <p className="text-muted small">
-              Plan your required Semester Grade Point Average (SGPA) for upcoming semesters to achieve your graduation goal.
+              Plan required Semester Grade Point Average (SGPA) for upcoming semesters to achieve graduation goal.
             </p>
 
             <div className="mb-3">
