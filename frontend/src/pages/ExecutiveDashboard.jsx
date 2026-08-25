@@ -68,23 +68,45 @@ export default function ExecutiveDashboard() {
   const deptList = data?.department_breakdown || [];
   const riskDist = data?.risk_distribution || {};
   const feeStats = data?.fee_collection_stats || {};
-  const attTrend = data?.attendance_monthly_trend || [];
-  const gradeDist = data?.grade_distribution || [];
+  const attTrend = data?.monthly_attendance_trend || data?.attendance_monthly_trend || [];
+  const gradeDist = data?.grade_distribution || {};
+
+  // Normalization for Grade Distribution (handles both Object and Array shapes)
+  let gradeLabels = [];
+  let gradeCounts = [];
+  if (Array.isArray(gradeDist)) {
+    gradeLabels = gradeDist.map(g => `Grade ${g.grade}`);
+    gradeCounts = gradeDist.map(g => g.count);
+  } else if (gradeDist && typeof gradeDist === 'object') {
+    gradeLabels = Object.keys(gradeDist).map(g => `Grade ${g}`);
+    gradeCounts = Object.values(gradeDist);
+  } else {
+    gradeLabels = ['Grade O', 'Grade A+', 'Grade A', 'Grade B+', 'Grade B', 'Grade C', 'Grade F'];
+    gradeCounts = [120, 240, 310, 180, 95, 40, 15];
+  }
+
+  // Normalization for Monthly Attendance Trend
+  const attLabels = (Array.isArray(attTrend) && attTrend.length)
+    ? attTrend.map(t => t.month)
+    : ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan'];
+  const attValues = (Array.isArray(attTrend) && attTrend.length)
+    ? attTrend.map(t => t.attendance || t.attendance_rate || 80.0)
+    : [88.4, 85.2, 81.6, 76.8, 74.5, 78.4];
 
   // Chart 1: Department Enrollment & CGPA
   const deptChartData = {
-    labels: deptList.map(d => d.short_code || d.dept_id),
+    labels: deptList.map(d => d.short_code || d.short_name || d.department_name?.split(' ')[0] || d.department_id),
     datasets: [
       {
         label: 'Total Students',
-        data: deptList.map(d => d.total_students),
+        data: deptList.map(d => d.student_count || d.total_students || 0),
         backgroundColor: 'rgba(79, 70, 229, 0.8)',
         borderRadius: 6,
         yAxisID: 'y'
       },
       {
-        label: 'Avg CGPA (x10)',
-        data: deptList.map(d => (d.average_cgpa || 7.5) * 10),
+        label: 'Avg Marks (%)',
+        data: deptList.map(d => d.avg_marks || (d.average_cgpa ? d.average_cgpa * 10 : 75)),
         backgroundColor: 'rgba(14, 165, 233, 0.8)',
         borderRadius: 6,
         yAxisID: 'y'
@@ -93,11 +115,15 @@ export default function ExecutiveDashboard() {
   };
 
   // Chart 2: Risk Distribution Doughnut
+  const riskLow = riskDist.LOW ?? (kpis.low_risk_students_count || 450);
+  const riskMed = riskDist.MEDIUM ?? (kpis.medium_risk_students_count || 110);
+  const riskHigh = riskDist.HIGH ?? (kpis.high_risk_students_count || 40);
+
   const riskChartData = {
     labels: ['Low Risk (< 30%)', 'Medium Risk (30-60%)', 'High Risk (> 60%)'],
     datasets: [
       {
-        data: [riskDist.LOW || 450, riskDist.MEDIUM || 110, riskDist.HIGH || 40],
+        data: [riskLow, riskMed, riskHigh],
         backgroundColor: ['#22c55e', '#f59e0b', '#ef4444'],
         borderWidth: 2,
         borderColor: '#ffffff'
@@ -107,11 +133,11 @@ export default function ExecutiveDashboard() {
 
   // Chart 3: Monthly Attendance Trend
   const attTrendData = {
-    labels: attTrend.map(t => t.month),
+    labels: attLabels,
     datasets: [
       {
         label: 'Average Attendance (%)',
-        data: attTrend.map(t => t.attendance_rate),
+        data: attValues,
         borderColor: '#4f46e5',
         backgroundColor: 'rgba(79, 70, 229, 0.1)',
         tension: 0.35,
@@ -123,12 +149,12 @@ export default function ExecutiveDashboard() {
 
   // Chart 4: University Grade Distribution
   const gradeChartData = {
-    labels: gradeDist.map(g => `Grade ${g.grade}`),
+    labels: gradeLabels,
     datasets: [
       {
         label: 'Course Registrations',
-        data: gradeDist.map(g => g.count),
-        backgroundColor: ['#4f46e5', '#6366f1', '#818cf8', '#a5b4fc', '#c7d2fe', '#ef4444'],
+        data: gradeCounts,
+        backgroundColor: ['#4f46e5', '#6366f1', '#818cf8', '#a5b4fc', '#c7d2fe', '#fca5a5', '#ef4444'],
         borderRadius: 4
       }
     ]
@@ -185,19 +211,21 @@ export default function ExecutiveDashboard() {
               <span>Average Attendance</span>
               <i className="bi bi-calendar2-check-fill text-success"></i>
             </div>
-            <h3 className="fw-bold mb-1 text-success">{kpis.average_attendance_percentage || 80.2}%</h3>
-            <span className="badge bg-light text-success border">Above 75% Threshold</span>
+            <h3 className="fw-bold mb-1 text-success">{kpis.average_attendance || 78.4}%</h3>
+            <span className="badge bg-light text-success border">Institutional Benchmark</span>
           </div>
         </div>
 
         <div className="col-12 col-sm-6 col-lg-3">
           <div className="metric-card">
             <div className="d-flex justify-content-between text-muted small mb-1">
-              <span>Average Institution CGPA</span>
+              <span>Average Exam Score</span>
               <i className="bi bi-award-fill text-info"></i>
             </div>
-            <h3 className="fw-bold mb-1 text-info">{kpis.average_cgpa || 7.94} / 10</h3>
-            <span className="badge bg-light text-muted border">Pass Rate: {kpis.overall_pass_percentage || 91.5}%</span>
+            <h3 className="fw-bold mb-1 text-info">{kpis.average_marks || 72.5}%</h3>
+            <span className="badge bg-light text-muted border">
+              High Risk: {kpis.high_risk_students_count || 0} Students
+            </span>
           </div>
         </div>
 
@@ -207,9 +235,9 @@ export default function ExecutiveDashboard() {
               <span>Fee Realization Rate</span>
               <i className="bi bi-cash-stack text-warning"></i>
             </div>
-            <h3 className="fw-bold mb-1 text-dark">{feeStats.collection_efficiency_percentage || 89.2}%</h3>
+            <h3 className="fw-bold mb-1 text-dark">{kpis.fee_collection_rate || feeStats.collection_efficiency_percentage || 89.2}%</h3>
             <span className="badge bg-light text-muted border">
-              Total Remitted: ₹{((feeStats.total_fees_collected || 15000000) / 10000000).toFixed(2)} Cr
+              Total Remitted: ₹{(((kpis.total_fees_collected || feeStats.total_fees_collected || 15000000)) / 10000000).toFixed(2)} Cr
             </span>
           </div>
         </div>
@@ -281,27 +309,23 @@ export default function ExecutiveDashboard() {
             <thead className="table-light">
               <tr>
                 <th>Department</th>
-                <th>HOD In-Charge</th>
                 <th>Enrolled</th>
                 <th>Avg Attendance</th>
-                <th>Avg CGPA</th>
-                <th>Pass Rate</th>
+                <th>Avg Marks</th>
                 <th>High Risk Count</th>
               </tr>
             </thead>
             <tbody>
               {deptList.map(d => (
-                <tr key={d.dept_id}>
-                  <td className="fw-bold">{d.department_name} ({d.short_code})</td>
-                  <td className="text-muted">{d.hod_name}</td>
-                  <td>{d.total_students} students</td>
+                <tr key={d.department_id}>
+                  <td className="fw-bold">{d.department_name}</td>
+                  <td>{d.student_count || d.total_students} students</td>
                   <td>
-                    <span className={`fw-semibold ${d.average_attendance >= 75 ? 'text-success' : 'text-danger'}`}>
-                      {d.average_attendance}%
+                    <span className={`fw-semibold ${(d.avg_attendance || d.average_attendance) >= 75 ? 'text-success' : 'text-danger'}`}>
+                      {d.avg_attendance || d.average_attendance}%
                     </span>
                   </td>
-                  <td className="fw-bold font-mono">{d.average_cgpa}</td>
-                  <td>{d.pass_percentage}%</td>
+                  <td className="fw-bold font-mono">{d.avg_marks || d.average_cgpa}</td>
                   <td>
                     <span className={`badge ${d.high_risk_count > 10 ? 'badge-risk-high' : 'badge-risk-low'}`}>
                       {d.high_risk_count} students
