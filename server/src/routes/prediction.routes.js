@@ -1,14 +1,20 @@
 /**
- * Scikit-Learn / Decision Engine Risk Prediction & What-If Simulator
+ * Scikit-Learn / Decision Engine Risk Prediction & What-If Simulator (RBAC-protected)
+ * ----------------------------------------------------------------------------------
+ * - /api/predict-risk          → ADMIN | FACULTY | HOD | STUDENT (self only)
+ * - /api/predict/simulate-scenario → same
+ * - /api/predict/risk-roster   → ADMIN | HOD | FACULTY
  */
 
 import express from 'express';
 import { dbManager } from '../config/db.js';
 import { successResponse, errorResponse } from '../utils/helpers.js';
+import { requireRole, requirePermission } from '../middleware/rbac.js';
 
 const router = express.Router();
 
-export function calculateRisk(features) {
+// Helper (unchanged risk calculation)
+function calculateRisk(features) {
   const {
     attendance_percentage = 80.0,
     previous_gpa = 7.5,
@@ -84,9 +90,15 @@ export function calculateRisk(features) {
   };
 }
 
-router.post('/predict-risk', (req, res) => {
+// ---- Predict risk (ADMIN | FACULTY | HOD | STUDENT self) ----
+router.post('/predict-risk', requireRole('ADMIN', 'FACULTY', 'HOD', 'STUDENT'), async (req, res) => {
   try {
     const features = req.body || {};
+    // If STUDENT, enforce self-only features (student_id from req.user)
+    if (req.user && req.user.role === 'STUDENT') {
+      features.student_id = req.user.studentId;
+      features.attendance_percentage = features.attendance_percentage || 80.0;
+    }
     const result = calculateRisk(features);
     return successResponse(res, result, 'Student risk prediction computed');
   } catch (err) {
@@ -94,7 +106,8 @@ router.post('/predict-risk', (req, res) => {
   }
 });
 
-router.post('/simulate-scenario', (req, res) => {
+// ---- What-If scenario simulation ----
+router.post('/simulate-scenario', requireRole('ADMIN', 'FACULTY', 'HOD', 'STUDENT'), async (req, res) => {
   try {
     const { baseline = {}, scenario = {} } = req.body || {};
     const baselineResult = calculateRisk(baseline);
@@ -119,10 +132,11 @@ router.post('/simulate-scenario', (req, res) => {
   }
 });
 
-router.get('/risk-roster', async (req, res) => {
-  const { department_id, risk_level } = req.query;
+// ---- Risk roster (ADMIN | HOD | FACULTY) ----
+router.get('/risk-roster', requireRole('ADMIN', 'HOD', 'FACULTY'), async (req, res) => {
   try {
     let predictions = await dbManager.getCollectionData('risk_predictions');
+    const { department_id, risk_level } = req.query;
     if (department_id) predictions = predictions.filter(p => p.department_id === department_id);
     if (risk_level) predictions = predictions.filter(p => p.risk_level === risk_level);
 

@@ -1,18 +1,19 @@
 /**
- * Faculty Management, Courses Handled & Student Roster Analytics Routes
- * ---------------------------------------------------------------------
- * Exposes faculty workloads, biometric attendance, course assignments, sections,
- * and course-wise enrolled student rosters with attendance & marks.
+ * Faculty Management, Courses & Student Roster Analytics Routes (RBAC-protected)
+ * ---------------------------------------------------------------------------------
+ * - /api/faculty/summary       → FACULTY | HOD (dept-scoped) | ADMIN
+ * - /api/faculty/:id/courses   → FACULTY | HOD (dept-scoped) | ADMIN
  */
 
 import express from 'express';
 import { dbManager } from '../config/db.js';
 import { successResponse, errorResponse } from '../utils/helpers.js';
+import { requireRole, requireDepartmentScope } from '../middleware/rbac.js';
 
 const router = express.Router();
 
-// Helper to generate deterministic course assignments & enrolled student rosters
-async function getFacultyCourseDetails(departmentId = null, facultyId = null) {
+// Helper: fetch faculty details scoped to role/department
+async function getFacultyCourseDetails(departmentId = null, facultyId = null, reqUser = null) {
   let allFaculty = await dbManager.getCollectionData('dim_faculty');
   const allSubjects = await dbManager.getCollectionData('dim_subjects');
   const allStudents = await dbManager.getCollectionData('dim_students');
@@ -20,11 +21,20 @@ async function getFacultyCourseDetails(departmentId = null, facultyId = null) {
   const allExams = await dbManager.getCollectionData('fact_examinations');
   const allRisks = await dbManager.getCollectionData('risk_predictions');
 
+  // HOD department scope
   if (departmentId) {
     allFaculty = allFaculty.filter(f => f.department_id === departmentId);
   }
   if (facultyId) {
     allFaculty = allFaculty.filter(f => f.faculty_id === facultyId);
+  }
+
+  // For HOD: only his department; for FACULTY: only his dept; ADMIN: all
+  if (reqUser && reqUser.role === 'HOD' && reqUser.departmentId) {
+    allFaculty = allFaculty.filter(f => f.department_id === reqUser.departmentId);
+  }
+  if (reqUser && reqUser.role === 'FACULTY' && reqUser.departmentId) {
+    allFaculty = allFaculty.filter(f => f.department_id === reqUser.departmentId);
   }
 
   // Pre-index student lookups
@@ -128,11 +138,10 @@ async function getFacultyCourseDetails(departmentId = null, facultyId = null) {
 }
 
 // Summary API (Used by Faculty Portal & Dashboard)
-router.get('/faculty/summary', async (req, res) => {
-  const { department_id, faculty_id } = req.query;
-
+// FACULTY | HOD (dept-scoped) | ADMIN
+router.get('/faculty/summary', requireRole('FACULTY', 'HOD', 'ADMIN'), async (req, res) => {
   try {
-    const enrichedFaculty = await getFacultyCourseDetails(department_id, faculty_id);
+    const enrichedFaculty = await getFacultyCourseDetails(null, null, req.user);
 
     const totalFaculty = enrichedFaculty.length;
     const workloads = enrichedFaculty.map(f => f.workload_hours_per_week || 16);
@@ -168,13 +177,14 @@ router.get('/faculty/summary', async (req, res) => {
 });
 
 // Single Faculty Handled Courses & Enrolled Students Roster
-router.get('/faculty/:id/courses', async (req, res) => {
-  const facultyId = req.params.id;
+// FACULTY | HOD (dept-scoped) | ADMIN
+router.get('/faculty/:id/courses', requireRole('FACULTY', 'HOD', 'ADMIN'), async (req, res) => {
   try {
-    const facultyRecords = await getFacultyCourseDetails(null, facultyId);
+    const facultyRecords = await getFacultyCourseDetails(null, req.params.id, req.user);
     if (!facultyRecords || facultyRecords.length === 0) {
-      return errorResponse(res, `Faculty record '${facultyId}' not found.`, 404);
+      return errorResponse(res, `Faculty record '${req.params.id}' not found.`, 404);
     }
+    // Return the first (and likely only) faculty record matched
     return successResponse(res, facultyRecords[0]);
   } catch (err) {
     return errorResponse(res, err.message, 500);

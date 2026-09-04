@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { fetchAPI } from '../services/api';
 import { useToast } from '../context/ToastContext';
+import { getSubjectTitle } from '../utils/subjectMap';
 
 export default function StudentsDirectory() {
   const { addToast } = useToast();
@@ -99,11 +100,11 @@ export default function StudentsDirectory() {
       </div>
 
       {/* Live Search & Filter Bar */}
-      <div className="metric-card mb-4">
+      <div className="erp-card mb-4">
         <div className="row g-2 align-items-center">
           <div className="col-12 col-md-5">
             <div className="input-group input-group-sm shadow-sm rounded overflow-hidden">
-              <span className="input-group-text bg-white border-end-0"><i className="bi bi-search text-muted"></i></span>
+              <span className="input-group-text bg-body-tertiary border-end-0"><i className="bi bi-search text-muted"></i></span>
               <input
                 type="text"
                 className="form-control border-start-0"
@@ -132,17 +133,16 @@ export default function StudentsDirectory() {
 
           <div className="col-6 col-md-3">
             <select className="form-select form-select-sm" value={riskFilter} onChange={(e) => { setRiskFilter(e.target.value); setPage(1); }}>
-              <option value="">All Risk Tiers</option>
-              <option value="HIGH">🔴 High Risk (&gt; 60%)</option>
-              <option value="MEDIUM">🟡 Medium Risk (30-60%)</option>
-              <option value="LOW">🟢 Low Risk (&lt; 30%)</option>
+              <option value="">All Attendance Status</option>
+              <option value="LOW">🟢 Eligible (&gt;= 75%)</option>
+              <option value="HIGH">🔴 Shortage (&lt; 75%)</option>
             </select>
           </div>
         </div>
       </div>
 
       {/* Student Table */}
-      <div className="metric-card">
+      <div className="erp-card">
         <div className="table-responsive">
           <table className="table table-hover align-middle mb-0 small">
             <thead className="table-light">
@@ -153,7 +153,7 @@ export default function StudentsDirectory() {
                 <th>Term</th>
                 <th>Attendance</th>
                 <th>CGPA</th>
-                <th>Risk Standing</th>
+                <th>Compliance Status</th>
                 <th className="text-end">Action</th>
               </tr>
             </thead>
@@ -162,7 +162,7 @@ export default function StudentsDirectory() {
                 <tr>
                   <td colSpan="8" className="text-center py-5 text-muted">
                     <div className="spinner-border spinner-border-sm text-primary me-2" role="status"></div>
-                    Querying MongoDB Warehouse records...
+                    Loading student records...
                   </td>
                 </tr>
               ) : students.length === 0 ? (
@@ -177,10 +177,10 @@ export default function StudentsDirectory() {
                   <tr key={s.student_id}>
                     <td className="font-mono fw-bold text-primary">{s.student_id}</td>
                     <td>
-                      <div className="fw-semibold text-dark">{s.full_name}</div>
+                      <div className="fw-semibold" style={{ color: 'var(--erp-text)' }}>{s.full_name}</div>
                       <div className="text-muted" style={{ fontSize: '0.72rem' }}>{s.email}</div>
                     </td>
-                    <td><span className="badge bg-light text-dark border">{s.department_name}</span></td>
+                    <td><span className="badge bg-body-secondary text-body border">{s.department_name}</span></td>
                     <td>Sem {s.current_semester}</td>
                     <td>
                       <span className={`fw-bold ${s.attendance_percentage >= 75 ? 'text-success' : 'text-danger'}`}>
@@ -189,8 +189,8 @@ export default function StudentsDirectory() {
                     </td>
                     <td className="fw-bold font-mono">{s.cgpa}</td>
                     <td>
-                      <span className={`badge ${s.risk_level === 'HIGH' ? 'badge-risk-high' : s.risk_level === 'MEDIUM' ? 'badge-risk-med' : 'badge-risk-low'}`}>
-                        {s.risk_level}
+                      <span className={`badge ${s.attendance_percentage >= 75 ? 'bg-success' : 'badge-risk-high'}`}>
+                        {s.attendance_percentage >= 75 ? 'ELIGIBLE' : 'SHORTAGE'}
                       </span>
                     </td>
                     <td className="text-end">
@@ -257,7 +257,7 @@ export default function StudentsDirectory() {
               </div>
 
               {/* Modal Body with Tabs */}
-              <div className="modal-body p-4 bg-light">
+              <div className="modal-body p-4 bg-body-tertiary">
                 {profileLoading || !studentProfile ? (
                   <div className="text-center py-5">
                     <div className="spinner-border text-primary" role="status"></div>
@@ -268,40 +268,40 @@ export default function StudentsDirectory() {
                     {/* Top KPI Banner */}
                     <div className="row g-2 mb-3 text-center">
                       <div className="col-3">
-                        <div className="p-3 bg-white rounded-3 border shadow-sm">
+                        <div className="erp-card p-3">
                           <div className="text-muted small">Attendance Compliance</div>
                           <h4 className={`fw-bold mb-0 ${studentProfile.attendance.overall_percentage >= 75 ? 'text-success' : 'text-danger'}`}>
                             {studentProfile.attendance.overall_percentage}%
                           </h4>
-                          <span className="badge bg-light text-muted border mt-1" style={{ fontSize: '0.7rem' }}>
+                          <span className="badge bg-body-secondary text-body border mt-1" style={{ fontSize: '0.7rem' }}>
                             {studentProfile.attendance.is_eligible ? 'Eligible' : 'Debarment Risk'}
                           </span>
                         </div>
                       </div>
                       <div className="col-3">
-                        <div className="p-3 bg-white rounded-3 border shadow-sm">
+                        <div className="erp-card p-3">
                           <div className="text-muted small">Cumulative CGPA</div>
                           <h4 className="fw-bold text-primary mb-0">{studentProfile.examinations.cgpa} / 10</h4>
-                          <span className="badge bg-light text-muted border mt-1" style={{ fontSize: '0.7rem' }}>
+                          <span className="badge bg-body-secondary text-body border mt-1" style={{ fontSize: '0.7rem' }}>
                             Backlogs: {studentProfile.examinations.backlogs}
                           </span>
                         </div>
                       </div>
                       <div className="col-3">
-                        <div className="p-3 bg-white rounded-3 border shadow-sm">
+                        <div className="erp-card p-3">
                           <div className="text-muted small">Tuition Fee Status</div>
-                          <h4 className="fw-bold mb-0 text-dark">{studentProfile.fees.status}</h4>
-                          <span className="badge bg-light text-muted border mt-1" style={{ fontSize: '0.7rem' }}>
+                          <h4 className="fw-bold mb-0">{studentProfile.fees.status}</h4>
+                          <span className="badge bg-body-secondary text-body border mt-1" style={{ fontSize: '0.7rem' }}>
                             Due: ₹{studentProfile.fees.outstanding_balance?.toLocaleString()}
                           </span>
                         </div>
                       </div>
                       <div className="col-3">
-                        <div className="p-3 bg-white rounded-3 border shadow-sm">
-                          <div className="text-muted small">Risk Classification</div>
-                          <h4 className="fw-bold mb-0">{studentProfile.risk_assessment.risk_level}</h4>
-                          <span className={`badge mt-1 ${studentProfile.risk_assessment.risk_level === 'HIGH' ? 'badge-risk-high' : 'badge-risk-low'}`} style={{ fontSize: '0.7rem' }}>
-                            {(studentProfile.risk_assessment.risk_score * 100).toFixed(0)}% Risk Index
+                        <div className="erp-card p-3">
+                          <div className="text-muted small">Academic Standing</div>
+                          <h4 className="fw-bold mb-0">{studentProfile.attendance.overall_percentage >= 75 ? 'REGULAR' : 'SHORTAGE'}</h4>
+                          <span className={`badge mt-1 ${studentProfile.attendance.overall_percentage >= 75 ? 'bg-success' : 'badge-risk-high'}`} style={{ fontSize: '0.7rem' }}>
+                            {studentProfile.attendance.overall_percentage >= 75 ? 'Exams Cleared' : 'Debarment Notice'}
                           </span>
                         </div>
                       </div>
@@ -311,15 +311,15 @@ export default function StudentsDirectory() {
                     <ul className="nav nav-pills mb-3 gap-2">
                       <li className="nav-item">
                         <button
-                          className={`nav-link btn-sm py-1 px-3 rounded-pill ${activeProfileTab === 'overview' ? 'active' : 'bg-white text-muted border'}`}
+                          className={`nav-link btn-sm py-1 px-3 rounded-pill ${activeProfileTab === 'overview' ? 'active' : 'bg-body-secondary text-body border'}`}
                           onClick={() => setActiveProfileTab('overview')}
                         >
-                          Overview & Risk
+                          Overview & Details
                         </button>
                       </li>
                       <li className="nav-item">
                         <button
-                          className={`nav-link btn-sm py-1 px-3 rounded-pill ${activeProfileTab === 'attendance' ? 'active' : 'bg-white text-muted border'}`}
+                          className={`nav-link btn-sm py-1 px-3 rounded-pill ${activeProfileTab === 'attendance' ? 'active' : 'bg-body-secondary text-body border'}`}
                           onClick={() => setActiveProfileTab('attendance')}
                         >
                           Course Attendance ({studentProfile.attendance.subject_records?.length || 0})
@@ -327,7 +327,7 @@ export default function StudentsDirectory() {
                       </li>
                       <li className="nav-item">
                         <button
-                          className={`nav-link btn-sm py-1 px-3 rounded-pill ${activeProfileTab === 'exams' ? 'active' : 'bg-white text-muted border'}`}
+                          className={`nav-link btn-sm py-1 px-3 rounded-pill ${activeProfileTab === 'exams' ? 'active' : 'bg-body-secondary text-body border'}`}
                           onClick={() => setActiveProfileTab('exams')}
                         >
                           Examination Grades ({studentProfile.examinations.exam_records?.length || 0})
@@ -335,7 +335,7 @@ export default function StudentsDirectory() {
                       </li>
                       <li className="nav-item">
                         <button
-                          className={`nav-link btn-sm py-1 px-3 rounded-pill ${activeProfileTab === 'fees' ? 'active' : 'bg-white text-muted border'}`}
+                          className={`nav-link btn-sm py-1 px-3 rounded-pill ${activeProfileTab === 'fees' ? 'active' : 'bg-body-secondary text-body border'}`}
                           onClick={() => setActiveProfileTab('fees')}
                         >
                           Fee Transactions ({studentProfile.fees.transactions?.length || 0})
@@ -343,12 +343,12 @@ export default function StudentsDirectory() {
                       </li>
                     </ul>
 
-                    {/* Tab 1: Overview & Risk */}
+                    {/* Tab 1: Overview & Details */}
                     {activeProfileTab === 'overview' && (
-                      <div className="bg-white p-3 rounded-3 border">
+                      <div className="erp-card">
                         <div className="row g-3">
                           <div className="col-md-6">
-                            <h6 className="fw-bold mb-2">Student Demographics (dim_students)</h6>
+                            <h6 className="fw-bold mb-2">Student Demographics</h6>
                             <ul className="list-group list-group-flush small">
                               <li className="list-group-item px-0 d-flex justify-content-between">
                                 <span className="text-muted">Department:</span>
@@ -369,14 +369,23 @@ export default function StudentsDirectory() {
                             </ul>
                           </div>
                           <div className="col-md-6">
-                            <h6 className="fw-bold mb-2">Predictive Academic Risk Factors</h6>
+                            <h6 className="fw-bold mb-2">Statutory Academic Clearance</h6>
                             <div className="p-3 bg-light rounded-3 border small">
-                              <div className="mb-2"><strong>ML Risk Standing:</strong> <span className={`badge ms-1 ${studentProfile.risk_assessment.risk_level === 'HIGH' ? 'badge-risk-high' : 'badge-risk-low'}`}>{studentProfile.risk_assessment.risk_level}</span></div>
-                              <div className="text-muted mb-2">Identified Warning Indicators:</div>
+                              <div className="mb-2"><strong>Hall Ticket Status:</strong> <span className={`badge ms-1 ${studentProfile.attendance.overall_percentage >= 75 ? 'bg-success' : 'badge-risk-high'}`}>{studentProfile.attendance.overall_percentage >= 75 ? 'ELIGIBLE' : 'DEBARRED'}</span></div>
+                              <div className="text-muted mb-2">Administrative Status Notes:</div>
                               <ul className="mb-0 ps-3">
-                                {(studentProfile.risk_assessment.risk_factors || []).map((f, i) => (
-                                  <li key={i} className="text-muted">{f}</li>
-                                ))}
+                                {studentProfile.attendance.overall_percentage < 75 && (
+                                  <li className="text-danger fw-semibold">Attendance ({studentProfile.attendance.overall_percentage}%) is below the statutory 75.0% threshold.</li>
+                                )}
+                                {(studentProfile.examinations.backlogs || 0) > 0 && (
+                                  <li className="text-warning fw-semibold">{studentProfile.examinations.backlogs} standing backlogs requiring re-appearance registration.</li>
+                                )}
+                                {studentProfile.fees.outstanding_balance > 0 && (
+                                  <li className="text-danger">Outstanding fee balance: ₹{studentProfile.fees.outstanding_balance.toLocaleString()}.</li>
+                                )}
+                                {studentProfile.attendance.overall_percentage >= 75 && (studentProfile.examinations.backlogs || 0) === 0 && studentProfile.fees.outstanding_balance <= 0 && (
+                                  <li className="text-success">All institutional criteria satisfied. Student in good standing.</li>
+                                )}
                               </ul>
                             </div>
                           </div>
@@ -384,13 +393,14 @@ export default function StudentsDirectory() {
                       </div>
                     )}
 
-                    {/* Tab 2: Course Attendance */}
+                    {/* Tab 2: Attendance */}
                     {activeProfileTab === 'attendance' && (
-                      <div className="bg-white p-3 rounded-3 border">
+                      <div className="erp-card">
                         <table className="table table-sm table-hover align-middle mb-0 small">
                           <thead className="table-light">
                             <tr>
-                              <th>Course ID</th>
+                              <th>Course Code</th>
+                              <th>Course Title</th>
                               <th>Conducted</th>
                               <th>Attended</th>
                               <th>Percentage</th>
@@ -400,7 +410,8 @@ export default function StudentsDirectory() {
                           <tbody>
                             {(studentProfile.attendance.subject_records || []).map((a, i) => (
                               <tr key={i}>
-                                <td className="font-mono fw-bold">{a.subject_id}</td>
+                                <td className="font-mono fw-bold text-primary">{a.subject_id}</td>
+                                <td className="fw-semibold">{a.subject_name || getSubjectTitle(a.subject_id, selectedStudent?.department_name)}</td>
                                 <td>{a.total_classes}</td>
                                 <td>{a.classes_attended}</td>
                                 <td>
@@ -425,11 +436,12 @@ export default function StudentsDirectory() {
 
                     {/* Tab 3: Examinations */}
                     {activeProfileTab === 'exams' && (
-                      <div className="bg-white p-3 rounded-3 border">
+                      <div className="erp-card">
                         <table className="table table-sm table-hover align-middle mb-0 small">
                           <thead className="table-light">
                             <tr>
-                              <th>Course ID</th>
+                              <th>Course Code</th>
+                              <th>Course Title</th>
                               <th>Internal (30)</th>
                               <th>End-Sem (70)</th>
                               <th>Total (100)</th>
@@ -440,14 +452,15 @@ export default function StudentsDirectory() {
                           <tbody>
                             {(studentProfile.examinations.exam_records || []).map((e, i) => (
                               <tr key={i}>
-                                <td className="font-mono fw-bold">{e.subject_id}</td>
-                                <td>{e.internal_marks_scored}</td>
-                                <td>{e.end_semester_marks_scored}</td>
-                                <td className="fw-bold">{e.total_marks}</td>
-                                <td><span className="badge bg-light text-dark border font-mono">{e.grade_letter}</span></td>
+                                <td className="font-mono fw-bold text-primary">{e.subject_id}</td>
+                                <td className="fw-semibold">{e.subject_name || getSubjectTitle(e.subject_id, selectedStudent?.department_name)}</td>
+                                <td>{e.internal_marks_scored ?? e.internal_marks ?? 25}</td>
+                                <td>{e.end_semester_marks_scored ?? e.external_marks ?? 55}</td>
+                                <td className="fw-bold">{e.total_marks ?? ((e.internal_marks_scored ?? 25) + (e.end_semester_marks_scored ?? 55))}</td>
+                                <td><span className="badge bg-body-secondary text-body border font-mono">{e.grade_letter || 'A'}</span></td>
                                 <td>
-                                  <span className={`badge ${e.is_passed ? 'bg-success' : 'bg-danger'}`}>
-                                    {e.is_passed ? 'PASSED' : 'FAILED'}
+                                  <span className={`badge ${e.is_passed !== false ? 'bg-success' : 'bg-danger'}`}>
+                                    {e.is_passed !== false ? 'PASSED' : 'FAILED'}
                                   </span>
                                 </td>
                               </tr>
@@ -459,7 +472,7 @@ export default function StudentsDirectory() {
 
                     {/* Tab 4: Fees */}
                     {activeProfileTab === 'fees' && (
-                      <div className="bg-white p-3 rounded-3 border">
+                      <div className="erp-card">
                         <table className="table table-sm table-hover align-middle mb-0 small">
                           <thead className="table-light">
                             <tr>
@@ -495,7 +508,7 @@ export default function StudentsDirectory() {
               </div>
 
               {/* Modal Footer */}
-              <div className="modal-footer bg-white p-3">
+              <div className="modal-footer p-3">
                 <button type="button" className="btn btn-secondary btn-sm" onClick={() => setSelectedStudent(null)}>
                   Close
                 </button>

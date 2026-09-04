@@ -91,7 +91,7 @@ export default function AccountsPortal() {
             </span>
             <h3 className="fw-bold mb-1">Tuition Fees & Institutional Revenue Directorate</h3>
             <p className="mb-0 text-white-50 small">
-              Official: <span className="text-white">{user?.name || 'Mr. S. K. Sharma (Chief Accounts Officer)'}</span> | Realization Efficiency: <span className="text-success fw-bold">89.8%</span>
+              Official: <span className="text-white">{user?.role === 'ADMIN' ? 'Admin (All Institutional Records)' : (user?.name || 'Mr. S. K. Sharma (Chief Accounts Officer)')}</span> | Realization Efficiency: <span className="text-success fw-bold">89.8%</span>
             </p>
           </div>
 
@@ -106,7 +106,7 @@ export default function AccountsPortal() {
       {/* 4 Accounts KPI Metric Cards */}
       <div className="row g-3 mb-4">
         <div className="col-12 col-sm-6 col-lg-3">
-          <div className="metric-card">
+          <div className="erp-stat-card h-100">
             <div className="d-flex justify-content-between text-muted small mb-1">
               <span>Total Tuition Demand</span>
               <i className="bi bi-bank text-primary"></i>
@@ -117,7 +117,7 @@ export default function AccountsPortal() {
         </div>
 
         <div className="col-12 col-sm-6 col-lg-3">
-          <div className="metric-card">
+          <div className="erp-stat-card h-100">
             <div className="d-flex justify-content-between text-muted small mb-1">
               <span>Total Realized / Remitted</span>
               <i className="bi bi-check2-circle text-success"></i>
@@ -128,7 +128,7 @@ export default function AccountsPortal() {
         </div>
 
         <div className="col-12 col-sm-6 col-lg-3">
-          <div className="metric-card">
+          <div className="erp-stat-card h-100">
             <div className="d-flex justify-content-between text-muted small mb-1">
               <span>Total Outstanding Balance</span>
               <i className="bi bi-exclamation-octagon text-danger"></i>
@@ -139,7 +139,7 @@ export default function AccountsPortal() {
         </div>
 
         <div className="col-12 col-sm-6 col-lg-3">
-          <div className="metric-card">
+          <div className="erp-stat-card h-100">
             <div className="d-flex justify-content-between text-muted small mb-1">
               <span>Scholarships & Grants</span>
               <i className="bi bi-award text-info"></i>
@@ -151,7 +151,7 @@ export default function AccountsPortal() {
       </div>
 
       {/* Department Fee Realization Progress Breakdown */}
-      <div className="metric-card mb-4">
+      <div className="erp-card p-4 mb-4">
         <h6 className="fw-bold mb-3"><i className="bi bi-pie-chart-fill text-primary me-2"></i> Department-Wise Fee Realization Performance</h6>
         <div className="row g-3">
           {[
@@ -181,7 +181,7 @@ export default function AccountsPortal() {
       </div>
 
       {/* Student Fee Ledger Table & Filter Controls */}
-      <div className="metric-card">
+      <div className="erp-card p-4">
         <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3 gap-2">
           <div>
             <h5 className="fw-bold mb-0"><i className="bi bi-journal-check text-primary me-2"></i> Student Tuition Fee Dues & Ledger</h5>

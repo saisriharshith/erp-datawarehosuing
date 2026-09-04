@@ -119,4 +119,109 @@ describe('MERN Backend API Test Suite', () => {
     assert.strictEqual(json.success, true);
     assert.ok(json.data.latest_report.dimensions.overall_score >= 90.0);
   });
+
+  test('POST /api/auth/users should provision a new institutional account', async () => {
+    const res = await fetch(`${baseUrl}/auth/users`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: 'Dr. Anand Verma',
+        email: 'anand.verma@univ.edu',
+        role: 'FACULTY',
+        departmentId: 'DEPT_CSE',
+        departmentName: 'Computer Science & Engineering',
+        facultyId: 'FAC991',
+        password: 'SecurePassword123!'
+      })
+    });
+    assert.strictEqual(res.status, 201);
+    const json = await res.json();
+    assert.strictEqual(json.success, true);
+    assert.strictEqual(json.data.email, 'anand.verma@univ.edu');
+    assert.strictEqual(json.data.role, 'FACULTY');
+  });
+
+  test('POST /api/auth/login should authenticate the newly provisioned account', async () => {
+    const res = await fetch(`${baseUrl}/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: 'anand.verma@univ.edu',
+        password: 'SecurePassword123!'
+      })
+    });
+    assert.strictEqual(res.status, 200);
+    const json = await res.json();
+    assert.strictEqual(json.success, true);
+    assert.strictEqual(json.data.role, 'FACULTY');
+    assert.ok(json.data.token);
+  });
+
+  test('GET /api/auth/users should list all active institutional accounts', async () => {
+    const res = await fetch(`${baseUrl}/auth/users`);
+    assert.strictEqual(res.status, 200);
+    const json = await res.json();
+    assert.strictEqual(json.success, true);
+    assert.ok(Array.isArray(json.data));
+    assert.ok(json.data.some(u => u.email === 'anand.verma@univ.edu'));
+  });
+
+  test('POST /api/auth/change-password should allow an account to change their password', async () => {
+    const res = await fetch(`${baseUrl}/auth/change-password`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: 'anand.verma@univ.edu',
+        currentPassword: 'SecurePassword123!',
+        newPassword: 'BrandNewPassword456!'
+      })
+    });
+    assert.strictEqual(res.status, 200);
+    const json = await res.json();
+    assert.strictEqual(json.success, true);
+
+    // Verify login with new password
+    const loginRes = await fetch(`${baseUrl}/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: 'anand.verma@univ.edu',
+        password: 'BrandNewPassword456!'
+      })
+    });
+    assert.strictEqual(loginRes.status, 200);
+  });
+
+  test('POST /api/auth/users/:email/reset-password should allow Admin to reset user password', async () => {
+    const res = await fetch(`${baseUrl}/auth/users/anand.verma@univ.edu/reset-password`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        newPassword: 'AdminResetPass789!'
+      })
+    });
+    assert.strictEqual(res.status, 200);
+    const json = await res.json();
+    assert.strictEqual(json.success, true);
+
+    // Verify login with admin reset password
+    const loginRes = await fetch(`${baseUrl}/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: 'anand.verma@univ.edu',
+        password: 'AdminResetPass789!'
+      })
+    });
+    assert.strictEqual(loginRes.status, 200);
+  });
+
+  test('DELETE /api/auth/users/:email should deactivate the provisioned account', async () => {
+    const res = await fetch(`${baseUrl}/auth/users/anand.verma@univ.edu`, {
+      method: 'DELETE'
+    });
+    assert.strictEqual(res.status, 200);
+    const json = await res.json();
+    assert.strictEqual(json.success, true);
+  });
 });

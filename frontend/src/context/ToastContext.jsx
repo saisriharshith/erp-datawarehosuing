@@ -1,96 +1,127 @@
-import React, { createContext, useContext, useState, useCallback } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
 const ToastContext = createContext(null);
+
+export function ToastContainer({ toasts = [], removeToast }) {
+  if (!toasts || toasts.length === 0) return null;
+
+  return (
+    <div
+      style={{
+        position: 'fixed',
+        top: '20px',
+        right: '20px',
+        zIndex: 9999,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '10px',
+        maxWidth: '380px',
+        width: 'calc(100% - 40px)',
+        pointerEvents: 'none'
+      }}
+      aria-live="polite"
+      aria-atomic="true"
+    >
+      {toasts.map((toast) => {
+        const isError = toast.type === 'danger' || toast.type === 'error';
+        const isSuccess = toast.type === 'success';
+        const isWarning = toast.type === 'warning';
+        const bg = isError ? '#ef4444' : isSuccess ? '#10b981' : isWarning ? '#f59e0b' : '#3b82f6';
+        const icon = isError
+          ? 'bi-exclamation-triangle-fill'
+          : isSuccess
+          ? 'bi-check-circle-fill'
+          : isWarning
+          ? 'bi-exclamation-circle-fill'
+          : 'bi-info-circle-fill';
+
+        return (
+          <div
+            key={toast.id}
+            role="alert"
+            style={{
+              backgroundColor: bg,
+              color: '#ffffff',
+              padding: '12px 16px',
+              borderRadius: '8px',
+              boxShadow: '0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: '12px',
+              fontSize: '0.875rem',
+              fontWeight: '500',
+              pointerEvents: 'auto',
+              animation: 'slideIn 0.2s ease-out'
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <i className={`bi ${icon}`} style={{ fontSize: '1rem' }}></i>
+              <span>{toast.message}</span>
+            </div>
+            {removeToast && (
+              <button
+                type="button"
+                onClick={() => removeToast(toast.id)}
+                aria-label="Close notification"
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  color: 'rgba(255,255,255,0.8)',
+                  cursor: 'pointer',
+                  fontSize: '1rem',
+                  padding: '2px 4px',
+                  display: 'flex',
+                  alignItems: 'center'
+                }}
+              >
+                ✕
+              </button>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
 
 export function ToastProvider({ children }) {
   const [toasts, setToasts] = useState([]);
 
-  const addToast = useCallback((message, type = 'info', duration = 3500) => {
-    const id = Date.now() + Math.random().toString(36).substr(2, 4);
+  const addToast = (message, type = 'info') => {
+    const id = Date.now() + Math.random();
     const newToast = { id, message, type };
-
     setToasts((prev) => [...prev, newToast]);
 
     setTimeout(() => {
       setToasts((prev) => prev.filter((t) => t.id !== id));
-    }, duration);
-  }, []);
+    }, 4500);
+  };
 
-  const removeToast = useCallback((id) => {
+  const removeToast = (id) => {
     setToasts((prev) => prev.filter((t) => t.id !== id));
-  }, []);
+  };
 
   return (
-    <ToastContext.Provider value={{ addToast, removeToast, toasts }}>
+    <ToastContext.Provider value={{ toasts, addToast, removeToast }}>
       {children}
       <ToastContainer toasts={toasts} removeToast={removeToast} />
     </ToastContext.Provider>
   );
 }
 
-function ToastContainer({ toasts, removeToast }) {
-  if (!toasts.length) return null;
-
-  return (
-    <div
-      style={{
-        position: 'fixed',
-        bottom: '24px',
-        right: '24px',
-        zIndex: 9999,
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '10px',
-        maxWidth: '380px',
-        pointerEvents: 'none'
-      }}
-    >
-      {toasts.map((t) => (
-        <div
-          key={t.id}
-          className="shadow-lg rounded-3 p-3 text-white d-flex align-items-center justify-content-between"
-          style={{
-            pointerEvents: 'auto',
-            background:
-              t.type === 'success'
-                ? 'linear-gradient(135deg, #059669 0%, #10b981 100%)'
-                : t.type === 'danger'
-                ? 'linear-gradient(135deg, #dc2626 0%, #ef4444 100%)'
-                : t.type === 'warning'
-                ? 'linear-gradient(135deg, #d97706 0%, #f59e0b 100%)'
-                : 'linear-gradient(135deg, #4f46e5 0%, #6366f1 100%)',
-            boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.2)',
-            animation: 'slideInToast 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
-            fontSize: '0.85rem',
-            border: '1px solid rgba(255,255,255,0.2)'
-          }}
-        >
-          <div className="d-flex align-items-center gap-2">
-            <i
-              className={`bi ${
-                t.type === 'success'
-                  ? 'bi-check-circle-fill'
-                  : t.type === 'danger'
-                  ? 'bi-exclamation-octagon-fill'
-                  : t.type === 'warning'
-                  ? 'bi-exclamation-triangle-fill'
-                  : 'bi-info-circle-fill'
-              } fs-6`}
-            ></i>
-            <span className="fw-medium">{t.message}</span>
-          </div>
-          <button
-            type="button"
-            className="btn-close btn-close-white btn-sm ms-2"
-            onClick={() => removeToast(t.id)}
-            style={{ fontSize: '0.65rem' }}
-          ></button>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 export function useToast() {
-  return useContext(ToastContext);
+  const context = useContext(ToastContext);
+  if (!context) {
+    // Return a safe fallback so calling addToast outside provider won't crash
+    return {
+      toasts: [],
+      addToast: (msg, type) => console.log(`[TOAST:${type || 'info'}]`, msg),
+      removeToast: () => {}
+    };
+  }
+  return context;
 }
+
+export default ToastProvider;
+

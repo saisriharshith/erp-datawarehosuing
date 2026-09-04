@@ -1,0 +1,438 @@
+/* ==========================================================================
+   UI Component — Input
+   ==========================================================================
+   Based on design-ui-designer form-input specification.
+   ========================================================================== */
+
+/* ---- Base Input ---- */
+.input {
+  width: 100%;
+  padding: var(--space-3);
+  border: 1px solid var(--color-secondary-300);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-family: var(--font-family-primary);
+  background-color: var(--color-neutral-50);
+  color: var(--color-neutral-900);
+  transition: all var(--transition-fast);
+
+  &::placeholder {
+    color: var(--color-neutral-400);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--color-primary-500);
+    box-shadow: 0 0 0 3px rgb(59 130 246 / 0.1);
+  }
+
+  &::placeholder {
+    color: var(--color-neutral-400);
+    opacity: 1;
+  }
+}
+
+/* ---- Input with label wrapper ---- */
+.form-input-wrapper {
+  position: relative;
+  display: block;
+
+  & .form-label {
+    position: absolute;
+    left: var(--space-3);
+    top: var(--space-3);
+    color: var(--color-neutral-500);
+    font-size: var(--font-size-sm);
+    pointer-events: none;
+    transition: all var(--transition-fast);
+    transform-origin: left top;
+  }
+
+  & .form-input:focus + & .form-label,
+  & .form-input.has-value + & .form-label {
+    top: -var(--space-4);
+    font-size: var(--font-size-xs);
+    color: var(--color-primary-500);
+  }
+}
+
+/* ---- Input with helper text ---- */
+.form-input-wrapper .form-help {
+  display: block;
+  margin-top: var(--space-2);
+  font-size: var(--font-size-sm);
+  color: var(--color-neutral-400);
+}
+
+/* ---- Input with error ---- */
+.form-input-wrapper .form-error {
+  display: block;
+  margin-top: var(--space-1);
+  font-size: var(--font-size-xs);
+  color: var(--color-error-600);
+}
+
+/* ---- Show password toggle ---- */
+.form-input-wrapper .show-password {
+  position: absolute;
+  right: var(--space-3);
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: var(--color-neutral-400);
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  padding: var(--space-1);
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 2px;
+  }
+}
+
+/* ==========================================================================
+   UI Component — Card & Glassmorphic Surfaces
+   ========================================================================== */
+
+/* ---- Base Card ---- */
+.card {
+  background-color: var(--surface-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-surface);
+  overflow: hidden;
+  transition: transform var(--transition-magnetic), box-shadow var(--transition-normal), border-color var(--transition-fast);
+}
+
+.card.magnetic-hover:hover {
+  transform: translateY(-3px) scale(1.003);
+  box-shadow: var(--shadow-xl);
+  border-color: rgba(99, 102, 241, 0.35);
+}
+
+.card.magnetic-hover:active {
+  transform: translateY(-1px) scale(0.995);
+  transition: transform 80ms var(--ease-spring);
+}
+
+/* ---- Glassmorphism Surface Card ---- */
+.glass-surface {
+  background: var(--surface-glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--surface-glass-border);
+  box-shadow: var(--shadow-surface);
+}
+
+.glass-surface-heavy {
+  background: var(--surface-glass);
+  backdrop-filter: var(--glass-blur-heavy);
+  -webkit-backdrop-filter: var(--glass-blur-heavy);
+  border: 1px solid var(--surface-glass-border);
+  box-shadow: var(--shadow-xl);
+}
+
+/* ---- Magnetic Hover Utility ---- */
+.magnetic-btn {
+  transition: transform var(--transition-magnetic), box-shadow var(--transition-fast), background-color var(--transition-fast);
+  will-change: transform;
+}
+
+.magnetic-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.magnetic-btn:active {
+  transform: translateY(0px) scale(0.98);
+  transition: transform 80ms var(--ease-spring);
+}
+
+/* ---- Card Header ---- */
+.card-header {
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-header .title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.card-header .subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   UI Component — Badge
+   ==========================================================================
+   Role-colored status badges.
+   ========================================================================== */
+
+/* ---- Base Badge ---- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ---- Role-specific badges ---- */
+.badge--admin {
+  background-color: rgba(59, 130, 246, 0.15);
+  color: var(--color-primary-600);
+}
+
+.badge--faculty {
+  background-color: rgba(6, 147, 198, 0.15);
+  color: var(--color-primary-500);
+}
+
+.badge--student {
+  background-color: rgba(34, 197, 94, 0.15);
+  color: var(--color-success-500);
+}
+
+.badge--accounts {
+  background-color: rgba(245, 158, 11, 0.15);
+  color: var(--color-warning-500);
+}
+
+.badge--pill {
+  border-radius: 20px;
+  padding: var(--space-1) var(--space-2);
+}
+
+/* ==========================================================================
+   UI Component — Table
+   ==========================================================================
+   Sortable, responsive tables.
+   ========================================================================== */
+
+/* ---- Table ---- */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-sm);
+}
+
+.table th {
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+  font-weight: 600;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.table td {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.table tr:hover td {
+  background-color: var(--color-primary-50);
+}
+
+.table .sortable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.table .sortable::after {
+  content: "▼";
+  font-size: 0.6em;
+  color: var(--color-neutral-400);
+  margin-left: var(--space-1);
+  transition: transform var(--transition-fast);
+}
+
+.table .sortable.asc::after {
+  transform: rotate(180deg);
+}
+
+.table .sortable.desc::after {
+  transform: rotate(0deg);
+}
+
+/* ==========================================================================
+   UI Component — Modal
+   ==========================================================================
+   Accessible centered modal.
+   ========================================================================== */
+
+/* ---- Overlay ---- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-index-modal);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-fast), visibility var(--transition-fast);
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ---- Modal Content ---- */
+.modal-content {
+  background-color: var(--surface-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: scale(0.9) translateY(20px);
+  transition: transform var(--transition-fast);
+}
+
+.modal-overlay.open .modal-content {
+  transform: scale(1) translateY(0);
+}
+
+/* ---- Modal Header ---- */
+.modal-header {
+  padding: var(--space-4) var(--space-4);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header .title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.modal-header .close-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: var(--font-size-xl);
+  cursor: pointer;
+  padding: var(--space-1);
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 2px;
+  }
+}
+
+/* ---- Modal Body ---- */
+.modal-body {
+  padding: var(--space-4);
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+/* ---- Modal Footer ---- */
+.modal-footer {
+  padding: var(--space-4) var(--space-4);
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+}
+
+/* ==========================================================================
+   UI Component — Toast
+   ==========================================================================
+   Top-right slide-in notifications.
+   ========================================================================== */
+
+/* ---- Container ---- */
+.toast-container {
+  position: fixed;
+  top: var(--space-8);
+  right: var(--space-8);
+  z-index: var(--z-index-toast);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* ---- Toast ---- */
+.toast {
+  background-color: var(--surface-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-4);
+  min-width: 280px;
+  max-width: 360px;
+  box-shadow: var(--shadow-lg);
+  animation: slideIn var(--transition-fast) ease-out;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--text-primary);
+
+  & .toast-icon {
+    width: 20px;
+    opacity: 0.8;
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}
+
+/* ==========================================================================
+   UI Component — Theme Toggle (Navbar integration)
+   ========================================================================== */
+
+.theme-toggle-nav {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.theme-toggle-nav .option {
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 2px;
+  }
+
+  &.active {
+    background: var(--color-primary-500);
+    color: white;
+  }
+}

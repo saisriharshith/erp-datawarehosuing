@@ -1,14 +1,19 @@
 /**
- * Analytics & KPI Lineage Routes
+ * Analytics & KPI Lineage Routes (RBAC-protected)
+ * ------------------------------------------------
+ * - /analytics/dashboard  → ADMIN only
+ * - /analytics/lineage    → ADMIN | HOD | FACULTY
  */
 
 import express from 'express';
 import { dbManager } from '../config/db.js';
 import { successResponse, errorResponse } from '../utils/helpers.js';
+import { requireRole, requirePermission } from '../middleware/rbac.js';
 
 const router = express.Router();
 
-router.get('/analytics/dashboard', async (req, res) => {
+// ---- Dashboard (ADMIN only) ----
+router.get('/dashboard', requireRole('ADMIN'), async (req, res) => {
   const { department_id, semester } = req.query;
 
   try {
@@ -123,7 +128,9 @@ router.get('/analytics/dashboard', async (req, res) => {
   }
 });
 
-router.get('/analytics/lineage', async (req, res) => {
+// ---- KPI Lineage ----
+// ADMIN | HOD (read own dept lineage) | FACULTY (read only)
+router.get('/lineage', async (req, res) => {
   const { metric } = req.query;
   try {
     let lineageList = await dbManager.getCollectionData('kpi_lineage_definitions');

@@ -2,13 +2,17 @@
  * Express Application Configuration (MERN Backend)
  * ------------------------------------------------
  * Sets up middleware, MongoDB connection, REST API routes, and SPA static hosting.
+ * ALL non-auth routes are protected by JWT + RBAC middleware.
  */
 
 import express from 'express';
+import helmet from 'helmet';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
+
+import cookieParser from 'cookie-parser';
 
 import { dbManager } from './config/db.js';
 import { successResponse } from './utils/helpers.js';
@@ -24,7 +28,9 @@ import qualityRouter from './routes/quality.routes.js';
 import etlRouter from './routes/etl.routes.js';
 
 import compression from 'compression';
+import { optionalAuth } from './middleware/auth.js';
 
+// Load env
 dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
@@ -32,18 +38,27 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 
-// Initialize MongoDB Atlas connection
-dbManager.connect().catch(err => {
-  console.warn('[DB-MANAGER] Initialization notice:', err.message);
-});
+// --- Security middleware ---
 
-// High-performance middlewares
-app.use(compression());
+// Helmet: set security HTTP headers
+app.use(helmet());
+
+// Cookie-parser: needed for httpOnly refresh tokens
+app.use(cookieParser());
+
+// CORS: lock to frontend origin only (no more wildcard *)
+const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
 app.use(cors({
-  origin: '*',
+  origin: frontendUrl,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true, // allow cookies (refresh token)
 }));
+
+// Performance middleware
+app.use(compression());
+
+// Body parsing
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -51,21 +66,12 @@ app.use(express.urlencoded({ extended: true }));
 const clientDist = path.resolve(__dirname, '../../frontend/dist');
 app.use(express.static(clientDist));
 
-// Mount REST API Blueprints under /api
-app.use('/api', authRouter);
-app.use('/api', analyticsRouter);
-app.use('/api', studentsRouter);
-app.use('/api', studentPortalRouter);
-app.use('/api', facultyRouter);
-app.use('/api', attendanceRouter);
-app.use('/api', examinationsRouter);
-app.use('/api', feesRouter);
-app.use('/api', libraryRouter);
-app.use('/api', predictionRouter);
-app.use('/api', qualityRouter);
-app.use('/api', etlRouter);
+// --- REST API under /api ---
 
-// Health Check API
+// Auth middleware attaches req.user if Bearer token is provided
+app.use('/api', optionalAuth);
+
+// --- Health Check API ---
 app.get('/api/health', (req, res) => {
   const health = dbManager.getHealth();
   return successResponse(res, {
@@ -75,7 +81,36 @@ app.get('/api/health', (req, res) => {
   }, 'MERN Stack API Operational');
 });
 
-// Single Page Application route fallback for React Router
+// Mount modular REST API Blueprints
+app.use('/api/auth', authRouter);
+app.use('/api/api/auth', authRouter);
+app.use('/api/analytics', analyticsRouter);
+app.use('/api/students', studentsRouter);
+app.use('/api/student-portal', studentPortalRouter);
+app.use('/api/faculty', facultyRouter);
+app.use('/api/attendance', attendanceRouter);
+app.use('/api/examinations', examinationsRouter);
+app.use('/api/fees', feesRouter);
+app.use('/api/library', libraryRouter);
+app.use('/api/prediction', predictionRouter);
+app.use('/api/quality', qualityRouter);
+app.use('/api/etl', etlRouter);
+
+// Also mount routers under /api root for legacy direct endpoint compatibility
+app.use('/api', authRouter);
+app.use('/api', analyticsRouter);
+app.use('/api', studentsRouter);
+app.use('/api', studentPortalRouter);
+app.use('/api', facultyRouter);
+app.use('/api', attendanceRouter);
+app.use('/api', examinationsRouter);
+app.use('/api', feesRouter);
+app.use('/api/library', libraryRouter);
+app.use('/api', predictionRouter);
+app.use('/api', qualityRouter);
+app.use('/api', etlRouter);
+
+// --- SPA route fallback for React Router ---
 app.get('*', (req, res) => {
   const indexPath = path.join(clientDist, 'index.html');
   if (req.accepts('html') && !req.path.startsWith('/api')) {

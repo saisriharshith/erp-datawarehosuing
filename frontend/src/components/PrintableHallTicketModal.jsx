@@ -1,4 +1,5 @@
 import React from 'react';
+import { getSubjectTitle } from '../utils/subjectMap';
 
 export default function PrintableHallTicketModal({ student, exams, onClose }) {
   const handlePrint = () => {
@@ -24,7 +25,7 @@ export default function PrintableHallTicketModal({ student, exams, onClose }) {
             <button type="button" className="btn-close btn-close-white" onClick={onClose}></button>
           </div>
 
-          <div className="modal-body p-4 p-md-5 bg-white printable-area">
+          <div className="modal-body p-4 p-md-5 bg-white text-dark printable-area">
             {/* Letterhead */}
             <div className="text-center border-bottom pb-3 mb-4">
               <div className="fs-3 text-primary mb-1"><i className="bi bi-mortarboard-fill"></i></div>
@@ -66,7 +67,7 @@ export default function PrintableHallTicketModal({ student, exams, onClose }) {
                   {examList.map((e, idx) => (
                     <tr key={idx}>
                       <td className="fw-bold font-mono text-primary">{e.subject_id}</td>
-                      <td>Course Theory Examination</td>
+                      <td className="fw-semibold">{e.subject_name || getSubjectTitle(e.subject_id, st.department_name)}</td>
                       <td className="text-center font-mono">2026-11-{10 + idx * 3}</td>
                       <td className="text-center">10:00 AM - 01:00 PM</td>
                       <td className="text-center text-muted" style={{ height: '35px' }}>__________</td>

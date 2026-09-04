@@ -1,15 +1,13 @@
-/**
- * Live ETL Pipeline Trigger Routes (Pure Node.js)
- */
-
 import express from 'express';
 import { successResponse, errorResponse } from '../utils/helpers.js';
 import { dbManager } from '../config/db.js';
 import { runETLPipeline } from '../etl/pipeline.js';
+import { requireRole } from '../middleware/rbac.js';
 
 const router = express.Router();
 
-router.post('/etl/trigger', async (req, res) => {
+// Live ETL Pipeline Trigger — ADMIN only
+router.post('/etl/trigger', requireRole('ADMIN'), async (req, res) => {
   console.log('[ETL-TRIGGER] Live Node.js ETL requested by Administrator...');
 
   try {

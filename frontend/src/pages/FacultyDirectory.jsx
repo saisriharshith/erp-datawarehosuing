@@ -72,37 +72,37 @@ export default function FacultyDirectory() {
       {/* Metric Cards */}
       <div className="row g-3 mb-4">
         <div className="col-12 col-sm-6 col-lg-3">
-          <div className="metric-card">
+          <div className="erp-stat-card">
             <div className="text-muted small">Total Faculty Staff</div>
             <h3 className="fw-bold my-1 text-primary">{data.total_faculty || 30}</h3>
             <span className="badge bg-light text-muted border">Across 5 Departments</span>
           </div>
         </div>
         <div className="col-12 col-sm-6 col-lg-3">
-          <div className="metric-card">
+          <div className="erp-stat-card">
             <div className="text-muted small">Biometric Punctuality</div>
             <h3 className="fw-bold my-1 text-success">{data.average_faculty_attendance || 95.8}%</h3>
             <span className="badge bg-light text-success border">Faculty Attendance</span>
           </div>
         </div>
         <div className="col-12 col-sm-6 col-lg-3">
-          <div className="metric-card">
+          <div className="erp-stat-card">
             <div className="text-muted small">Avg Weekly Workload</div>
             <h3 className="fw-bold my-1 text-info">{data.average_weekly_workload_hours || 16.0} hrs/wk</h3>
             <span className="badge bg-light text-info border">Teaching & Labs</span>
           </div>
         </div>
         <div className="col-12 col-sm-6 col-lg-3">
-          <div className="metric-card">
+          <div className="erp-stat-card">
             <div className="text-muted small">Research Publications</div>
-            <h3 className="fw-bold my-1 text-dark">{data.total_research_publications || 128} Papers</h3>
+            <h3 className="fw-bold my-1">{data.total_research_publications || 128} Papers</h3>
             <span className="badge bg-light text-muted border">Scopus / IEEE Indexed</span>
           </div>
         </div>
       </div>
 
       {/* Faculty Table (All Faculty) */}
-      <div className="metric-card">
+      <div className="erp-card">
         <div className="d-flex justify-content-between align-items-center mb-3">
           <h6 className="fw-bold mb-0"><i className="bi bi-people-fill text-primary me-2"></i> All University Faculty Staff ({filteredList.length})</h6>
           <span className="text-muted small">Click any faculty member to inspect handled courses and department student roster.</span>
@@ -127,10 +127,10 @@ export default function FacultyDirectory() {
                 <tr key={f.faculty_id} style={{ cursor: 'pointer' }} onClick={() => setSelectedFacultyModal(f)}>
                   <td className="font-mono fw-bold text-primary">{f.faculty_id}</td>
                   <td>
-                    <div className="fw-semibold text-dark">{f.faculty_name}</div>
+                    <div className="fw-semibold" style={{ color: 'var(--erp-text)' }}>{f.faculty_name}</div>
                     <div className="text-muted" style={{ fontSize: '0.72rem' }}>{f.email}</div>
                   </td>
-                  <td><span className="badge bg-light text-dark border">{f.department_name}</span></td>
+                  <td><span className="badge bg-body-secondary text-body border">{f.department_name}</span></td>
                   <td>{f.designation}</td>
                   <td>
                     <span className={`badge ${f.attendance_percentage >= 94 ? 'bg-light text-success border' : 'bg-light text-warning border'}`}>
@@ -138,7 +138,7 @@ export default function FacultyDirectory() {
                     </span>
                   </td>
                   <td><span className="badge bg-light text-primary border">{f.workload_hours_per_week} hrs/wk</span></td>
-                  <td><span className="badge bg-light text-info text-dark border">{f.research_publications} papers</span></td>
+                  <td><span className="badge bg-body-secondary text-body border">{f.research_publications} papers</span></td>
                   <td className="text-end">
                     <button
                       className="btn btn-sm btn-outline-primary py-1 px-2 rounded-pill"
@@ -174,23 +174,23 @@ export default function FacultyDirectory() {
                 <button type="button" className="btn-close btn-close-white" onClick={() => setSelectedFacultyModal(null)}></button>
               </div>
 
-              <div className="modal-body p-4 bg-light">
+              <div className="modal-body p-4 bg-body-tertiary">
                 {/* Faculty Metrics Summary */}
                 <div className="row g-2 text-center small mb-3">
                   <div className="col-4">
-                    <div className="p-2 bg-white rounded border">
+                    <div className="erp-card p-2 text-center">
                       <div className="text-muted">Biometric Attendance</div>
                       <div className="fw-bold text-success fs-6">{selectedFacultyModal.attendance_percentage}%</div>
                     </div>
                   </div>
                   <div className="col-4">
-                    <div className="p-2 bg-white rounded border">
+                    <div className="erp-card p-2 text-center">
                       <div className="text-muted">Teaching Workload</div>
                       <div className="fw-bold text-primary fs-6">{selectedFacultyModal.workload_hours_per_week} hrs/wk</div>
                     </div>
                   </div>
                   <div className="col-4">
-                    <div className="p-2 bg-white rounded border">
+                    <div className="erp-card p-2 text-center">
                       <div className="text-muted">Department Advisees</div>
                       <div className="fw-bold text-info fs-6">{selectedFacultyModal.advisees_count} Students</div>
                     </div>
@@ -198,10 +198,10 @@ export default function FacultyDirectory() {
                 </div>
 
                 {/* Handled Courses & Enrolled Students */}
-                <h6 className="fw-bold mb-2 text-dark"><i className="bi bi-book-half text-primary me-1"></i> Handled Teaching Courses & Enrolled {selectedFacultyModal.department_name} Students:</h6>
+                <h6 className="fw-bold mb-2"><i className="bi bi-book-half text-primary me-1"></i> Handled Teaching Courses & Enrolled {selectedFacultyModal.department_name} Students:</h6>
 
                 {(selectedFacultyModal.handled_courses || []).map((course, cIdx) => (
-                  <div key={cIdx} className="bg-white p-3 rounded-3 border mb-3">
+                  <div key={cIdx} className="erp-card mb-3">
                     <div className="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom">
                       <div>
                         <strong className="text-primary font-mono">{course.course_code}</strong> - <strong>{course.course_title}</strong> ({course.section})
@@ -229,7 +229,7 @@ export default function FacultyDirectory() {
                             <tr key={stu.student_id}>
                               <td className="font-mono fw-bold">{stu.student_id}</td>
                               <td className="fw-semibold">{stu.student_name}</td>
-                              <td><span className="badge bg-light text-dark border">{stu.department_name || selectedFacultyModal.department_name}</span></td>
+                              <td><span className="badge bg-body-secondary text-body border">{stu.department_name || selectedFacultyModal.department_name}</span></td>
                               <td>{stu.section}</td>
                               <td>
                                 <span className={`fw-bold ${stu.attendance_percentage >= 75 ? 'text-success' : 'text-danger'}`}>
@@ -251,7 +251,7 @@ export default function FacultyDirectory() {
                 ))}
               </div>
 
-              <div className="modal-footer bg-white p-3">
+              <div className="modal-footer p-3">
                 <button type="button" className="btn btn-secondary btn-sm" onClick={() => setSelectedFacultyModal(null)}>Close</button>
               </div>
             </div>

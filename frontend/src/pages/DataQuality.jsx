@@ -91,11 +91,15 @@ export default function DataQuality() {
     maintainAspectRatio: false,
     scales: {
       r: {
-        angleLines: { color: '#e2e8f0' },
-        grid: { color: '#e2e8f0' },
+        angleLines: { color: 'rgba(148, 163, 184, 0.25)' },
+        grid: { color: 'rgba(148, 163, 184, 0.25)' },
+        pointLabels: {
+          font: { size: 11, weight: '600' },
+          color: '#64748b'
+        },
         suggestedMin: 80,
         suggestedMax: 100,
-        ticks: { stepSize: 5, font: { size: 10 } }
+        ticks: { stepSize: 5, font: { size: 10 }, backdropColor: 'transparent' }
       }
     },
     plugins: {
@@ -127,7 +131,7 @@ export default function DataQuality() {
       {/* Top Level Metric Cards */}
       <div className="row g-3 mb-4">
         <div className="col-12 col-sm-6 col-lg-3">
-          <div className="metric-card">
+          <div className="erp-stat-card">
             <div className="d-flex justify-content-between text-muted small mb-1">
               <span>Overall Quality Index</span>
               <i className="bi bi-shield-fill-check text-success"></i>
@@ -138,7 +142,7 @@ export default function DataQuality() {
         </div>
 
         <div className="col-12 col-sm-6 col-lg-3">
-          <div className="metric-card">
+          <div className="erp-stat-card">
             <div className="d-flex justify-content-between text-muted small mb-1">
               <span>Raw Records Audited</span>
               <i className="bi bi-database-check text-primary"></i>
@@ -149,7 +153,7 @@ export default function DataQuality() {
         </div>
 
         <div className="col-12 col-sm-6 col-lg-3">
-          <div className="metric-card">
+          <div className="erp-stat-card">
             <div className="d-flex justify-content-between text-muted small mb-1">
               <span>Cleaned & Standardized</span>
               <i className="bi bi-stars text-info"></i>
@@ -160,7 +164,7 @@ export default function DataQuality() {
         </div>
 
         <div className="col-12 col-sm-6 col-lg-3">
-          <div className="metric-card">
+          <div className="erp-stat-card">
             <div className="d-flex justify-content-between text-muted small mb-1">
               <span>Sanitized Anomalies</span>
               <i className="bi bi-bug-fill text-warning"></i>
@@ -174,7 +178,7 @@ export default function DataQuality() {
       <div className="row g-3 mb-4">
         {/* Radar Chart */}
         <div className="col-12 col-lg-6">
-          <div className="metric-card">
+          <div className="erp-card">
             <div className="d-flex justify-content-between align-items-center mb-3">
               <h6 className="fw-bold mb-0"><i className="bi bi-radar text-primary me-1"></i> 5-Dimension Quality Radar</h6>
               <span className="badge bg-light text-dark border font-mono">DAMA-DMBOK Framework</span>
@@ -187,7 +191,7 @@ export default function DataQuality() {
 
         {/* 5-Dimension Score Progress Bars */}
         <div className="col-12 col-lg-6">
-          <div className="metric-card">
+          <div className="erp-card">
             <h6 className="fw-bold mb-3"><i className="bi bi-bar-chart-steps text-primary me-1"></i> Dimension Compliance Breakdown</h6>
 
             <div className="mb-3">
@@ -244,7 +248,7 @@ export default function DataQuality() {
       </div>
 
       {/* Audit Action Log */}
-      <div className="metric-card">
+      <div className="erp-card">
         <div className="d-flex align-items-center justify-content-between mb-3">
           <h6 className="fw-bold mb-0"><i className="bi bi-clipboard-check text-success me-1"></i> Data Quality Audit Remediation Log</h6>
           <span className="badge bg-light text-success border">ETL Auto-Healed</span>
@@ -287,13 +291,13 @@ export default function DataQuality() {
                 <button type="button" className="btn-close btn-close-white" onClick={() => setShowCertModal(false)}></button>
               </div>
 
-              <div className="modal-body p-5 bg-white text-center">
-                <div className="border border-2 border-primary p-4 rounded-3" style={{ background: '#fafafa' }}>
+              <div className="modal-body p-4 p-md-5 bg-white text-center text-dark">
+                <div className="border border-2 border-primary p-4 rounded-3 text-dark" style={{ background: '#fafafa' }}>
                   <div className="fs-2 text-primary mb-2"><i className="bi bi-shield-fill-check"></i></div>
-                  <h4 className="fw-bold text-uppercase mb-1">Certificate of Data Governance Compliance</h4>
+                  <h4 className="fw-bold text-uppercase mb-1 text-dark">Certificate of Data Governance Compliance</h4>
                   <p className="text-muted small mb-4">ISO/IEC 25012 & DAMA-DMBOK Certified Data Warehouse</p>
 
-                  <div className="p-3 bg-white rounded border my-3">
+                  <div className="p-3 bg-white rounded border my-3 text-dark">
                     <div className="row g-2 small">
                       <div className="col-6 text-start">
                         <div><strong>Report ID:</strong> <span className="font-mono">{report.report_id}</span></div>

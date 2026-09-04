@@ -1,98 +1,336 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { fetchAPI } from '../services/api';
+import api from '../services/api';
+
+export const INSTITUTIONAL_DIRECTORY = [
+  // 1. Leadership / Administration
+  {
+    email: 'admin@univ.edu',
+    name: 'Admin',
+    role: 'ADMIN',
+    title: 'System Administrator',
+    department: 'Institutional Governance',
+    accessLevel: 'Tier 1 — Full Executive Control (All Records)',
+    color: '#4f46e5',
+  },
+  {
+    email: 'provost@univ.edu',
+    name: 'Admin',
+    role: 'ADMIN',
+    title: 'University Provost',
+    department: 'Office of the Provost',
+    accessLevel: 'Tier 1 — Full Executive Control (All Records)',
+    color: '#4f46e5',
+  },
+
+  // 2. Faculty / Department HODs
+  {
+    email: 'cse.hod@univ.edu',
+    name: 'Dr. Sunita Deshmukh',
+    role: 'FACULTY',
+    title: 'HOD & Professor (CSE)',
+    department: 'Computer Science & Engineering',
+    accessLevel: 'Department-Scoped Academic & Advisee Control',
+    color: '#0284c7',
+  },
+  {
+    email: 'faculty@univ.edu',
+    name: 'Dr. Rajeshwar Rao',
+    role: 'FACULTY',
+    title: 'Senior Faculty (CSE)',
+    department: 'Computer Science & Engineering',
+    accessLevel: 'Department Advisees & Courses',
+    color: '#0284c7',
+  },
+  {
+    email: 'ece.hod@univ.edu',
+    name: 'Dr. Rajeshwar Rao',
+    role: 'FACULTY',
+    title: 'HOD & Professor (ECE)',
+    department: 'Electronics & Communication',
+    accessLevel: 'Department-Scoped Academic Control',
+    color: '#0284c7',
+  },
+  {
+    email: 'mech.hod@univ.edu',
+    name: 'Dr. Rajeshwar Rao',
+    role: 'FACULTY',
+    title: 'HOD & Professor (MECH)',
+    department: 'Mechanical Engineering',
+    accessLevel: 'Department-Scoped Academic Control',
+    color: '#0284c7',
+  },
+  {
+    email: 'civil.hod@univ.edu',
+    name: 'Dr. Rajeshwar Rao',
+    role: 'FACULTY',
+    title: 'HOD & Professor (CIVIL)',
+    department: 'Civil Engineering',
+    accessLevel: 'Department-Scoped Academic Control',
+    color: '#0284c7',
+  },
+  {
+    email: 'aids.hod@univ.edu',
+    name: 'Dr. Rajeshwar Rao',
+    role: 'FACULTY',
+    title: 'HOD & Professor (AI&DS)',
+    department: 'Artificial Intelligence & Data Science',
+    accessLevel: 'Department-Scoped Academic Control',
+    color: '#0284c7',
+  },
+
+  // 3. Accounts & Bursar
+  {
+    email: 'accounts@univ.edu',
+    name: 'Mr. S. K. Sharma',
+    role: 'ACCOUNTS',
+    title: 'Chief Accounts Officer & Bursar',
+    department: 'Tuition & Finance Directorate',
+    accessLevel: 'Fee Collection, Defaulters & Ledger Access',
+    color: '#d97706',
+  },
+  {
+    email: 'bursar@univ.edu',
+    name: 'Mrs. Anita Roy',
+    role: 'ACCOUNTS',
+    title: 'Senior Finance Officer',
+    department: 'Finance Directorate',
+    accessLevel: 'Fee Collection & Reconciliation',
+    color: '#d97706',
+  },
+
+  // 4. Students
+  {
+    email: 'sai@univ.edu',
+    name: 'Sai Gupta',
+    role: 'STUDENT',
+    title: 'B.Tech CSE Student (Sem 1)',
+    department: 'Computer Science',
+    studentId: 'STU20220001',
+    accessLevel: 'Self-Service Academic 360 & Hall Ticket',
+    color: '#059669',
+  },
+  {
+    email: 'student@univ.edu',
+    name: 'Sai Gupta',
+    role: 'STUDENT',
+    title: 'B.Tech CSE Student (Sem 1)',
+    department: 'Computer Science',
+    studentId: 'STU20220001',
+    accessLevel: 'Self-Service Academic 360 & Hall Ticket',
+    color: '#059669',
+  },
+  {
+    email: 'aadhya@univ.edu',
+    name: 'Aadhya Nair',
+    role: 'STUDENT',
+    title: 'B.Tech Civil Student (Sem 1)',
+    department: 'Civil Engineering',
+    studentId: 'STU20230002',
+    accessLevel: 'Self-Service Academic 360',
+    color: '#059669',
+  },
+  {
+    email: 'swati@univ.edu',
+    name: 'Swati Bose',
+    role: 'STUDENT',
+    title: 'B.Tech Civil Student (Sem 5)',
+    department: 'Civil Engineering',
+    studentId: 'STU20240003',
+    accessLevel: 'Self-Service Academic 360',
+    color: '#059669',
+  },
+  {
+    email: 'vihaan@univ.edu',
+    name: 'Vihaan Reddy',
+    role: 'STUDENT',
+    title: 'B.Tech ECE Student (Sem 6)',
+    department: 'Electronics & Communication',
+    studentId: 'STU20210004',
+    accessLevel: 'Self-Service Academic 360',
+    color: '#059669',
+  },
+  {
+    email: 'nikhil@univ.edu',
+    name: 'Nikhil Singh',
+    role: 'STUDENT',
+    title: 'B.Tech MECH Student (Sem 7)',
+    department: 'Mechanical Engineering',
+    studentId: 'STU20220005',
+    accessLevel: 'Self-Service Academic 360',
+    color: '#059669',
+  },
+  {
+    email: 'meera@univ.edu',
+    name: 'Meera Iyer',
+    role: 'STUDENT',
+    title: 'B.Tech ECE Student (Sem 4)',
+    department: 'Electronics & Communication',
+    studentId: 'STU20230006',
+    accessLevel: 'Self-Service Academic 360',
+    color: '#059669',
+  },
+  {
+    email: 'vikram@univ.edu',
+    name: 'Vikram Patel',
+    role: 'STUDENT',
+    title: 'B.Tech CSE Student (Sem 2)',
+    department: 'Computer Science',
+    studentId: 'STU20240007',
+    accessLevel: 'Self-Service Academic 360',
+    color: '#059669',
+  },
+  {
+    email: 'ananya@univ.edu',
+    name: 'Ananya Kumar',
+    role: 'STUDENT',
+    title: 'B.Tech Civil Student (Sem 4)',
+    department: 'Civil Engineering',
+    studentId: 'STU20210008',
+    accessLevel: 'Self-Service Academic 360',
+    color: '#059669',
+  },
+  {
+    email: 'aditya@univ.edu',
+    name: 'Aditya Das',
+    role: 'STUDENT',
+    title: 'B.Tech CSE Student (Sem 5)',
+    department: 'Computer Science',
+    studentId: 'STU20220009',
+    accessLevel: 'Self-Service Academic 360',
+    color: '#059669',
+  },
+  {
+    email: 'varun@univ.edu',
+    name: 'Varun Joshi',
+    role: 'STUDENT',
+    title: 'B.Tech CSE Student (Sem 7)',
+    department: 'Computer Science',
+    studentId: 'STU20230010',
+    accessLevel: 'Self-Service Academic 360',
+    color: '#059669',
+  }
+];
+
+// Alias for backwards compatibility
+export const DEMO_PRESETS = INSTITUTIONAL_DIRECTORY;
 
 const AuthContext = createContext(null);
-
-export const DEMO_PRESETS = [
-  // Deans / Admin
-  { email: 'admin@univ.edu', name: 'Dr. Sarah Jenkins (Dean of Academic Affairs)', role: 'ADMIN', badge: 'Dean' },
-  { email: 'provost@univ.edu', name: 'Prof. Arthur Pendelton (University Provost)', role: 'ADMIN', badge: 'Provost' },
-
-  // Faculty / HODs — mapped directly to dim_faculty records
-  { email: 'faculty@univ.edu', name: 'Dr. Rajeshwar Rao (Senior CSE Faculty)', role: 'FACULTY', faculty_id: 'FAC101', dept: 'DEPT_CSE', badge: 'Senior Faculty' },
-  { email: 'cse.hod@univ.edu', name: 'Dr. Sunita Deshmukh (CSE HOD)', role: 'FACULTY', faculty_id: 'FAC102', dept: 'DEPT_CSE', badge: 'CSE HOD' },
-  { email: 'prof.sharma@univ.edu', name: 'Dr. Amitabha Bose (Associate Prof, CSE)', role: 'FACULTY', faculty_id: 'FAC103', dept: 'DEPT_CSE', badge: 'Faculty' },
-  { email: 'ece.hod@univ.edu', name: 'Dr. Rajeshwar Rao (ECE HOD)', role: 'FACULTY', faculty_id: 'FAC107', dept: 'DEPT_ECE', badge: 'ECE HOD' },
-  { email: 'prof.reddy@univ.edu', name: 'Mr. Senthil Kumar (Assistant Prof, ECE)', role: 'FACULTY', faculty_id: 'FAC111', dept: 'DEPT_ECE', badge: 'Faculty' },
-  { email: 'mech.hod@univ.edu', name: 'Dr. Rajeshwar Rao (Mechanical HOD)', role: 'FACULTY', faculty_id: 'FAC113', dept: 'DEPT_MECH', badge: 'MECH HOD' },
-  { email: 'civil.hod@univ.edu', name: 'Dr. Rajeshwar Rao (Civil HOD)', role: 'FACULTY', faculty_id: 'FAC119', dept: 'DEPT_CIVIL', badge: 'CIVIL HOD' },
-  { email: 'aids.hod@univ.edu', name: 'Dr. Rajeshwar Rao (AI&DS HOD)', role: 'FACULTY', faculty_id: 'FAC125', dept: 'DEPT_AIDS', badge: 'AI&DS HOD' },
-
-  // Accounts & Finance
-  { email: 'accounts@univ.edu', name: 'Mr. S. K. Sharma (Chief Accounts Officer / Bursar)', role: 'ACCOUNTS', badge: 'Accounts Officer' },
-  { email: 'bursar@univ.edu', name: 'Mrs. Anita Roy (Senior Finance Officer)', role: 'ACCOUNTS', badge: 'Finance Officer' },
-
-  // Students — mapped directly to verified real dim_students records
-  { email: 'sai@univ.edu', name: 'Sai Gupta (STU20220001)', role: 'STUDENT', student_id: 'STU20220001', dept: 'DEPT_CSE', sem: 1, badge: 'Attendance Alert' },
-  { email: 'aadhya@univ.edu', name: 'Aadhya Nair (STU20230002)', role: 'STUDENT', student_id: 'STU20230002', dept: 'DEPT_CIVIL', sem: 1, badge: 'Freshman' },
-  { email: 'swati@univ.edu', name: 'Swati Bose (STU20240003)', role: 'STUDENT', student_id: 'STU20240003', dept: 'DEPT_CIVIL', sem: 5, badge: 'Merit Scholar' },
-  { email: 'vihaan@univ.edu', name: 'Vihaan Reddy (STU20210004)', role: 'STUDENT', student_id: 'STU20210004', dept: 'DEPT_ECE', sem: 6, badge: 'Honors' },
-  { email: 'nikhil@univ.edu', name: 'Nikhil Singh (STU20220005)', role: 'STUDENT', student_id: 'STU20220005', dept: 'DEPT_MECH', sem: 7, badge: 'Senior' },
-  { email: 'meera@univ.edu', name: 'Meera Iyer (STU20230006)', role: 'STUDENT', student_id: 'STU20230006', dept: 'DEPT_ECE', sem: 4, badge: 'High Performer' },
-  { email: 'vikram@univ.edu', name: 'Vikram Patel (STU20240007)', role: 'STUDENT', student_id: 'STU20240007', dept: 'DEPT_CSE', sem: 2, badge: 'Sports Quota' },
-  { email: 'ananya@univ.edu', name: 'Ananya Kumar (STU20210008)', role: 'STUDENT', student_id: 'STU20210008', dept: 'DEPT_CIVIL', sem: 4, badge: 'Merit Scholar' },
-  { email: 'aditya@univ.edu', name: 'Aditya Das (STU20220009)', role: 'STUDENT', student_id: 'STU20220009', dept: 'DEPT_CSE', sem: 5, badge: 'Dean List' },
-  { email: 'varun@univ.edu', name: 'Varun Joshi (STU20230010)', role: 'STUDENT', student_id: 'STU20230010', dept: 'DEPT_CSE', sem: 7, badge: 'Final Year' }
-];
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(() => {
     try {
       const saved = localStorage.getItem('ERP_USER_PROFILE');
-      return saved ? JSON.parse(saved) : {
-        email: 'admin@univ.edu',
-        name: 'Dr. Sarah Jenkins (Dean of Academic Affairs)',
-        role: 'ADMIN',
-        permissions: ['all']
-      };
+      return saved ? JSON.parse(saved) : null;
     } catch {
       return null;
     }
   });
 
   const [token, setToken] = useState(() => localStorage.getItem('ERP_AUTH_TOKEN'));
-  const [isAuth, setIsAuth] = useState(Boolean(token));
+  const [isAuth, setIsAuth] = useState(Boolean(token && user));
+  const [dbHealth, setDbHealth] = useState({ mongodb_connected: true });
 
-  const login = async (email, password = 'demo1234') => {
+  useEffect(() => {
+    setIsAuth(Boolean(token && user));
+  }, [token, user]);
+
+  // Fetch db health status
+  useEffect(() => {
+    fetch('/api/health')
+      .then(res => res.json())
+      .then(json => {
+        if (json && json.data) setDbHealth(json.data);
+      })
+      .catch(() => setDbHealth({ mongodb_connected: false }));
+  }, []);
+
+  const login = async (email, password) => {
     try {
-      const res = await fetchAPI('/auth/login', {
-        method: 'POST',
-        body: JSON.stringify({ email, password })
-      });
+      const res = await api.post('/auth/login', { email, password });
+      const body = res.data || res;
+      const data = body.data !== undefined ? body.data : body;
 
-      if (res && res.token) {
-        setToken(res.token);
-        setUser(res);
+      if (body.success || data.user || data.token || data.accessToken) {
+        const authedUser = data.user || {
+          email,
+          role: data.role || 'STUDENT',
+          name: email.split('@')[0],
+        };
+        const authToken = data.accessToken || data.token || 'jwt_active_session';
+
+        setUser(authedUser);
+        setToken(authToken);
         setIsAuth(true);
-        localStorage.setItem('ERP_AUTH_TOKEN', res.token);
-        localStorage.setItem('ERP_USER_PROFILE', JSON.stringify(res));
-        return { success: true, user: res };
+
+        localStorage.setItem('ERP_AUTH_TOKEN', authToken);
+        localStorage.setItem('ERP_USER_PROFILE', JSON.stringify(authedUser));
+
+        return { success: true, user: authedUser, role: authedUser.role };
       }
-      return { success: false, message: 'Invalid response' };
+
     } catch (err) {
-      console.error(err);
-      return { success: false, message: err.message };
+      console.error('[AUTH] Login error:', err);
+      let msg = err.response?.data?.message || err.message || 'Invalid institutional credentials';
+      if (err.response?.status === 429) {
+        msg = 'Too many requests. Please wait a moment and try signing in again.';
+      }
+      return { success: false, message: msg };
     }
+  };
+
+  const logout = async () => {
+    try {
+      await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' });
+    } catch (e) {
+      // Non-fatal
+    }
+    localStorage.removeItem('ERP_AUTH_TOKEN');
+    localStorage.removeItem('ERP_USER_PROFILE');
+    setToken(null);
+    setUser(null);
+    setIsAuth(false);
+  };
+
+  const hasRole = (role) => user?.role === role;
+
+  const hasPermission = (perm) => {
+    if (!user?.permissions) return false;
+    if (user.permissions.includes('*')) return true;
+    return user.permissions.includes(perm);
+  };
+
+  const canAccess = (role, permission) => {
+    if (user?.role === 'ADMIN') return true;
+    if (hasRole(role)) {
+      if (permission && hasPermission(permission)) return true;
+      if (!permission) return true;
+    }
+    return false;
   };
 
   const switchAccount = async (email) => {
     const res = await login(email, 'demo1234');
-    if (res.success) {
+    if (res && res.success) {
       return res.user;
     }
-    throw new Error(res.message || 'Failed to switch account');
-  };
-
-  const logout = () => {
-    setToken(null);
-    setUser(null);
-    setIsAuth(false);
-    localStorage.removeItem('ERP_AUTH_TOKEN');
-    localStorage.removeItem('ERP_USER_PROFILE');
+    throw new Error(res?.message || 'Failed to switch account');
   };
 
   return (
-    <AuthContext.Provider value={{ user, token, isAuth, login, logout, switchAccount }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        token,
+        isAuth,
+        dbHealth,
+        login,
+        logout,
+        switchAccount,
+        hasRole,
+        hasPermission,
+        canAccess,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
@@ -105,3 +343,15 @@ export function useAuth() {
   }
   return context;
 }
+
+export function useAuthStatus() {
+  const { isAuth } = useAuth();
+  return isAuth;
+}
+
+export function useUserRole() {
+  const { user } = useAuth();
+  return user?.role || null;
+}
+
+export default AuthContext;

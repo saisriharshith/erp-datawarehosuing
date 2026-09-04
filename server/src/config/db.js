@@ -26,7 +26,11 @@ class DatabaseManager {
     this._cacheTTL = 60 * 1000; // 60 seconds TTL for fast queries
   }
 
-  async connect(uri = process.env.MONGODB_URI, warehouseDbName = process.env.WAREHOUSE_DB_NAME || 'erp_warehouse', sourceDbName = process.env.SOURCE_DB_NAME || 'erp_source') {
+  async connect(
+    uri = process.env.MONGODB_URI || 'mongodb+srv://Sai:5201587sai@t-complete-backend.wyq5t6x.mongodb.net/?retryWrites=true&w=majority',
+    warehouseDbName = process.env.WAREHOUSE_DB_NAME || 'erp_warehouse',
+    sourceDbName = process.env.SOURCE_DB_NAME || 'erp_source'
+  ) {
     this.loadLocalCache();
 
     if (!uri) {

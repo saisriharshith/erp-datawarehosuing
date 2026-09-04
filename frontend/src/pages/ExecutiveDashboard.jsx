@@ -27,18 +27,16 @@ ChartJS.register(
   Legend
 );
 
+import UserManagementModal from '../components/UserManagementModal';
+
 export default function ExecutiveDashboard() {
   const { addToast } = useToast();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [deptFilter, setDeptFilter] = useState('');
   const [semFilter, setSemFilter] = useState('');
-
-  // Interactive Modals
-  const [selectedLineageMetric, setSelectedLineageMetric] = useState(null);
-  const [isEtlRunning, setIsEtlRunning] = useState(false);
-  const [etlStage, setEtlStage] = useState(0); // 0: Idle, 1: Extract, 2: Transform, 3: Validate, 4: Load, 5: Done
-  const [showEtlModal, setShowEtlModal] = useState(false);
+  const [activeTab, setActiveTab] = useState('OVERVIEW'); // 'OVERVIEW' | 'DEPARTMENTS' | 'ACADEMICS' | 'FINANCE'
+  const [showUsersModal, setShowUsersModal] = useState(false);
 
   const loadData = async () => {
     setLoading(true);
@@ -61,26 +59,11 @@ export default function ExecutiveDashboard() {
     loadData();
   }, [deptFilter, semFilter]);
 
-  const handleRunEtl = () => {
-    setIsEtlRunning(true);
-    setEtlStage(1);
-
-    setTimeout(() => setEtlStage(2), 700);
-    setTimeout(() => setEtlStage(3), 1400);
-    setTimeout(() => setEtlStage(4), 2100);
-    setTimeout(() => {
-      setEtlStage(5);
-      setIsEtlRunning(false);
-      addToast('ETL Pipeline successfully executed! Ingested 14,250 raw ERP records into MongoDB Star Schema.', 'success');
-      loadData();
-    }, 2800);
-  };
-
   if (loading && !data) {
     return (
       <div className="p-4 text-center py-5">
         <div className="spinner-border text-primary" role="status"></div>
-        <p className="mt-2 text-muted small">Loading Institutional Command Center...</p>
+        <p className="mt-2 text-muted small">Loading Admin Dashboard...</p>
       </div>
     );
   }
@@ -169,364 +152,362 @@ export default function ExecutiveDashboard() {
   };
 
   return (
-    <div className="p-3 p-md-4">
-      {/* 1. Dean Header Banner & Decision-Support Headline */}
-      <div className="p-4 rounded-4 text-white mb-4 shadow-sm" style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)' }}>
-        <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
-          <div>
-            <div className="d-flex align-items-center gap-2 mb-2">
-              <span className="badge bg-primary text-white fw-semibold">
-                <i className="bi bi-shield-check me-1"></i> Institutional Command Center ("How Is The Institution Doing?")
-              </span>
-              <span className="badge bg-success text-white">Data Quality: {kpis.data_quality_score || 99.68}%</span>
-            </div>
-            <h3 className="fw-bold mb-1">Executive Institutional Overview</h3>
-            <p className="mb-0 text-white-50 small">
-              Central Data Warehouse cross-department decision support system derived from MongoDB Atlas Star Schema.
-            </p>
-          </div>
+    <div>
+      {/* 1. Clean Dashboard Header */}
+      <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+        <div>
+          <h4 className="fw-bold mb-1" style={{ color: 'var(--text-primary)' }}>Admin Dashboard</h4>
+          <p className="text-muted small mb-0">Overview of institutional attendance, academic performance, department rosters, and tuition fee collections.</p>
+        </div>
 
-          <div className="d-flex flex-wrap gap-2">
-            <button className="btn btn-primary btn-sm fw-semibold shadow-sm" onClick={() => { setShowEtlModal(true); handleRunEtl(); }}>
-              <i className="bi bi-arrow-repeat me-1"></i> Trigger On-Demand ETL
-            </button>
+        <div className="d-flex gap-2">
+          <button className="btn btn-sm btn-outline-primary d-flex align-items-center gap-1 shadow-sm" onClick={() => setShowUsersModal(true)}>
+            <i className="bi bi-people-fill"></i>
+            <span>User Accounts</span>
+          </button>
+        </div>
+      </div>
+
+      {/* 2. Top-Level Institutional Metrics (Overview Rail) */}
+      <div className="row g-3 mb-4">
+        <div className="col-6 col-md-3 col-lg">
+          <div className="erp-stat-card h-100">
+            <div className="text-muted fw-semibold text-uppercase" style={{ fontSize: '0.7rem' }}>Total Students</div>
+            <h3 className="fw-bold text-primary my-1">{(kpis.total_students || 600).toLocaleString()}</h3>
+            <span className="text-muted small" style={{ fontSize: '0.72rem' }}>All Enrolled</span>
+          </div>
+        </div>
+
+        <div className="col-6 col-md-3 col-lg">
+          <div className="erp-stat-card h-100">
+            <div className="text-muted fw-semibold text-uppercase" style={{ fontSize: '0.7rem' }}>Active Faculty</div>
+            <h3 className="fw-bold my-1" style={{ color: 'var(--text-primary)' }}>30 Staff</h3>
+            <span className="text-muted small" style={{ fontSize: '0.72rem' }}>All Departments</span>
+          </div>
+        </div>
+
+        <div className="col-6 col-md-3 col-lg">
+          <div className="erp-stat-card h-100">
+            <div className="text-muted fw-semibold text-uppercase" style={{ fontSize: '0.7rem' }}>Departments</div>
+            <h3 className="fw-bold my-1" style={{ color: 'var(--text-primary)' }}>5 Branches</h3>
+            <span className="text-muted small" style={{ fontSize: '0.72rem' }}>CSE, ECE, MECH, CIVIL, AIDS</span>
+          </div>
+        </div>
+
+        <div className="col-6 col-md-3 col-lg">
+          <div className="erp-stat-card h-100">
+            <div className="text-muted fw-semibold text-uppercase" style={{ fontSize: '0.7rem' }}>Avg Attendance</div>
+            <h3 className="fw-bold text-success my-1">{kpis.average_attendance || 78.4}%</h3>
+            <span className="text-muted small" style={{ fontSize: '0.72rem' }}>Mandatory &gt;= 75%</span>
+          </div>
+        </div>
+
+        <div className="col-6 col-md-3 col-lg">
+          <div className="erp-stat-card h-100">
+            <div className="text-muted fw-semibold text-uppercase" style={{ fontSize: '0.7rem' }}>Average GPA</div>
+            <h3 className="fw-bold text-info my-1">{((kpis.average_marks || 72.5) / 10).toFixed(1)} / 10</h3>
+            <span className="text-muted small" style={{ fontSize: '0.72rem' }}>All Semesters</span>
+          </div>
+        </div>
+
+        <div className="col-6 col-md-3 col-lg">
+          <div className="erp-stat-card h-100">
+            <div className="text-muted fw-semibold text-uppercase" style={{ fontSize: '0.7rem' }}>Fee Realization</div>
+            <h3 className="fw-bold text-warning my-1">{kpis.fee_collection_rate || 89.2}%</h3>
+            <span className="text-muted small" style={{ fontSize: '0.72rem' }}>₹16.4 Cr Settled</span>
+          </div>
+        </div>
+
+        <div className="col-12 col-md-3 col-lg">
+          <div className="erp-stat-card h-100 border-start border-danger border-4">
+            <div className="text-danger fw-semibold text-uppercase" style={{ fontSize: '0.7rem' }}>Attendance Shortage</div>
+            <h3 className="fw-bold text-danger my-1">{kpis.high_risk_students_count || 38}</h3>
+            <span className="badge badge-risk-high" style={{ fontSize: '0.7rem' }}>&lt; 75% Debarment</span>
+          </div>
+        </div>
+      </div>
+
+      {/* 3. Navigation Tabs */}
+      <ul className="nav nav-pills p-2 rounded-3 border mb-4 gap-2" style={{ backgroundColor: 'var(--surface-card)', borderColor: 'var(--border-color)' }}>
+        {[
+          { id: 'OVERVIEW', label: 'Institutional Overview', icon: 'bi-grid-1x2-fill' },
+          { id: 'DEPARTMENTS', label: 'Department Analytics', icon: 'bi-building' },
+          { id: 'ACADEMICS', label: 'Academic Performance', icon: 'bi-mortarboard-fill' },
+          { id: 'FINANCE', label: 'Tuition & Financials', icon: 'bi-wallet2' },
+        ].map(tab => (
+          <li key={tab.id} className="nav-item">
             <button
-              className="btn btn-light btn-sm fw-semibold shadow-sm"
-              onClick={() => setSelectedLineageMetric({
-                name: 'Average Attendance Rate',
-                value: `${kpis.average_attendance || 78.4}%`,
-                formula: 'SUM(classes_attended) / SUM(total_classes) * 100',
-                factTable: 'fact_attendance',
-                sourceCollection: 'erp_source.attendance',
-                description: 'Aggregates class attendance percentages across all 5 engineering departments and 600 enrolled students.'
-              })}
+              onClick={() => setActiveTab(tab.id)}
+              className={`nav-link px-3 py-2 fw-bold d-flex align-items-center gap-2 rounded-3 border-0 ${
+                activeTab === tab.id
+                  ? 'bg-primary text-white shadow-sm'
+                  : 'text-secondary bg-transparent'
+              }`}
+              style={{ fontSize: '0.84rem' }}
             >
-              <i className="bi bi-diagram-3 text-primary me-1"></i> Trace KPI Lineage
+              <i className={`bi ${tab.icon}`}></i>
+              <span>{tab.label}</span>
             </button>
-          </div>
-        </div>
-      </div>
+          </li>
+        ))}
+      </ul>
 
-      {/* 2. Seven Top-Level Institutional Metrics (Dean Overview) */}
-      <div className="row g-3 mb-4">
-        <div className="col-6 col-md-3 col-lg-auto flex-grow-1">
-          <div className="metric-card h-100">
-            <div className="text-muted small">Total Students</div>
-            <h3 className="fw-bold mb-0 text-primary">{(kpis.total_students || 600).toLocaleString()}</h3>
-            <span className="badge bg-light text-muted border mt-1" style={{ fontSize: '0.68rem' }}>Enrolled</span>
-          </div>
-        </div>
-
-        <div className="col-6 col-md-3 col-lg-auto flex-grow-1">
-          <div className="metric-card h-100">
-            <div className="text-muted small">Active Faculty</div>
-            <h3 className="fw-bold mb-0 text-dark">30 Staff</h3>
-            <span className="badge bg-light text-muted border mt-1" style={{ fontSize: '0.68rem' }}>18:1 Ratio</span>
-          </div>
-        </div>
-
-        <div className="col-6 col-md-3 col-lg-auto flex-grow-1">
-          <div className="metric-card h-100">
-            <div className="text-muted small">Departments</div>
-            <h3 className="fw-bold mb-0 text-dark">5 Engg</h3>
-            <span className="badge bg-light text-muted border mt-1" style={{ fontSize: '0.68rem' }}>Accredited</span>
-          </div>
-        </div>
-
-        <div
-          className="col-6 col-md-3 col-lg-auto flex-grow-1 cursor-pointer"
-          style={{ cursor: 'pointer' }}
-          onClick={() => setSelectedLineageMetric({
-            name: 'Average Attendance Rate',
-            value: `${kpis.average_attendance || 78.4}%`,
-            formula: 'SUM(classes_attended) / SUM(total_classes) * 100',
-            factTable: 'fact_attendance',
-            sourceCollection: 'erp_source.attendance',
-            description: 'Aggregates class attendance percentages across all 5 engineering departments and 600 enrolled students.'
-          })}
-        >
-          <div className="metric-card h-100 border-primary">
-            <div className="d-flex justify-content-between text-muted small">
-              <span>Avg Attendance</span>
-              <i className="bi bi-info-circle text-primary" title="Click to trace lineage"></i>
+      {/* 4. TAB 1: EXECUTIVE OVERVIEW */}
+      {activeTab === 'OVERVIEW' && (
+        <div className="d-flex flex-column gap-4">
+          {/* Decision Matrix */}
+          <div className="erp-card p-4">
+            <div className="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
+              <h5 className="fw-bold mb-0" style={{ color: 'var(--text-primary)' }}>
+                <i className="bi bi-compass text-primary me-2"></i> Key Institutional Observations
+              </h5>
+              <span className="badge bg-body-secondary text-body border">Academic Standing</span>
             </div>
-            <h3 className="fw-bold mb-0 text-success">{kpis.average_attendance || 78.4}%</h3>
-            <span className="badge bg-light text-success border mt-1" style={{ fontSize: '0.68rem' }}>Trace Lineage</span>
-          </div>
-        </div>
 
-        <div className="col-6 col-md-3 col-lg-auto flex-grow-1">
-          <div className="metric-card h-100">
-            <div className="text-muted small">Average GPA</div>
-            <h3 className="fw-bold mb-0 text-info">{((kpis.average_marks || 72.5) / 10).toFixed(1)} / 10</h3>
-            <span className="badge bg-light text-muted border mt-1" style={{ fontSize: '0.68rem' }}>Exam Scale</span>
-          </div>
-        </div>
-
-        <div className="col-6 col-md-3 col-lg-auto flex-grow-1">
-          <div className="metric-card h-100">
-            <div className="text-muted small">Fee Realization</div>
-            <h3 className="fw-bold mb-0 text-warning">{kpis.fee_collection_rate || 89.2}%</h3>
-            <span className="badge bg-light text-muted border mt-1" style={{ fontSize: '0.68rem' }}>₹16.4 Cr Paid</span>
-          </div>
-        </div>
-
-        <div className="col-6 col-md-3 col-lg-auto flex-grow-1">
-          <div className="metric-card h-100 border-danger">
-            <div className="text-muted small">At-Risk Students</div>
-            <h3 className="fw-bold mb-0 text-danger">{kpis.high_risk_students_count || 38}</h3>
-            <span className="badge badge-risk-high mt-1" style={{ fontSize: '0.68rem' }}>Action Req</span>
-          </div>
-        </div>
-      </div>
-
-      {/* 3. Section: Academic Performance Decision-Support Matrix */}
-      <div className="metric-card mb-4">
-        <h5 className="fw-bold mb-3"><i className="bi bi-compass text-primary me-2"></i> Academic Performance & Institutional Decision Support</h5>
-        <div className="row g-3">
-          {/* Question 1: Best Performing Department */}
-          <div className="col-12 col-md-4">
-            <div className="p-3 bg-light rounded-3 border h-100">
-              <div className="d-flex justify-content-between align-items-center mb-2">
-                <span className="text-muted small fw-semibold">Which Dept is Performing Best?</span>
-                <span className="badge bg-success">Highest CGPA</span>
+            <div className="row g-3">
+              <div className="col-12 col-md-4">
+                <div className="p-3 bg-light rounded-3 border h-100 d-flex flex-column justify-content-between">
+                  <div>
+                    <div className="d-flex justify-content-between align-items-center mb-2">
+                      <span className="text-muted small fw-semibold">Top Performing Dept</span>
+                      <span className="badge bg-success">Highest CGPA</span>
+                    </div>
+                    <h5 className="fw-bold text-dark mb-1">Computer Science (CSE)</h5>
+                    <div className="small text-muted mb-2">Avg GPA: <strong className="text-success">8.1 / 10</strong> (Pass Rate: 96.2%)</div>
+                  </div>
+                  <div className="text-muted pt-2 border-top" style={{ fontSize: '0.75rem' }}>
+                    Followed by: AIDS (7.9), ECE (7.6), Civil (7.4), Mech (7.2).
+                  </div>
+                </div>
               </div>
-              <h4 className="fw-bold text-dark mb-1">Computer Science (CSE)</h4>
-              <div className="small text-muted mb-2">Average GPA: <strong className="text-success">8.1 / 10</strong> (Pass Rate: 96.2%)</div>
-              <div className="text-muted" style={{ fontSize: '0.75rem' }}>
-                Followed by: AI & Data Science (7.9), ECE (7.6), Civil (7.4), Mechanical (7.2).
+
+              <div className="col-12 col-md-4">
+                <div className="p-3 bg-light rounded-3 border h-100 d-flex flex-column justify-content-between">
+                  <div>
+                    <div className="d-flex justify-content-between align-items-center mb-2">
+                      <span className="text-muted small fw-semibold">Attendance Focus Area</span>
+                      <span className="badge badge-risk-high">Intervention</span>
+                    </div>
+                    <h5 className="fw-bold text-danger mb-1">Mechanical Engineering</h5>
+                    <div className="small text-danger mb-2">Avg Attendance: <strong>68.4%</strong> (28 Shortages)</div>
+                  </div>
+                  <div className="text-muted pt-2 border-top" style={{ fontSize: '0.75rem' }}>
+                    Civil Engineering also requires advisory oversight (74.1% compliance).
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-12 col-md-4">
+                <div className="p-3 bg-light rounded-3 border h-100 d-flex flex-column justify-content-between">
+                  <div>
+                    <div className="d-flex justify-content-between align-items-center mb-2">
+                      <span className="text-muted small fw-semibold">Attendance Shortage Roster</span>
+                      <span className="badge badge-risk-high">&lt;75% Attendance</span>
+                    </div>
+                    <h5 className="fw-bold mb-1" style={{ color: 'var(--text-primary)' }}>Mechanical & ECE</h5>
+                    <div className="small text-muted mb-2">ME: <strong className="text-danger">18 Students</strong> | ECE: <strong className="text-warning">12 Students</strong></div>
+                  </div>
+                  <div className="text-muted pt-2 border-top" style={{ fontSize: '0.75rem' }}>
+                    Total 38 students flagged below statutory 75% attendance requiring make-up classes.
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Question 2: Attendance Problems */}
-          <div className="col-12 col-md-4">
-            <div className="p-3 bg-light rounded-3 border h-100">
-              <div className="d-flex justify-content-between align-items-center mb-2">
-                <span className="text-muted small fw-semibold">Where are Attendance Problems?</span>
-                <span className="badge badge-risk-high">Intervention</span>
-              </div>
-              <h4 className="fw-bold text-danger mb-1">Mechanical Engineering</h4>
-              <div className="small text-danger mb-2">Average Attendance: <strong>68.4%</strong> (28 Shortages)</div>
-              <div className="text-muted" style={{ fontSize: '0.75rem' }}>
-                Civil Engineering also requires advisory oversight (74.1% attendance compliance).
+          {/* Charts Row */}
+          <div className="row g-4">
+            <div className="col-12 col-lg-8">
+              <div className="erp-card p-4 h-100">
+                <div className="d-flex justify-content-between align-items-center mb-3">
+                  <div>
+                    <h6 className="fw-bold mb-0">Monthly Attendance Progression</h6>
+                    <span className="text-muted small">Institutional aggregated attendance trend</span>
+                  </div>
+                  <span className="badge bg-body-secondary text-body border">Aggregated Monthly</span>
+                </div>
+                <div style={{ height: '260px' }}>
+                  <Line data={attTrendData} options={{ responsive: true, maintainAspectRatio: false }} />
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Question 3: Where are Students At-Risk? */}
-          <div className="col-12 col-md-4">
-            <div className="p-3 bg-light rounded-3 border h-100">
-              <div className="d-flex justify-content-between align-items-center mb-2">
-                <span className="text-muted small fw-semibold">Where are Students At Risk?</span>
-                <span className="badge badge-risk-med">Early Warning</span>
-              </div>
-              <h4 className="fw-bold text-dark mb-1">Mechanical & ECE</h4>
-              <div className="small text-muted mb-2">ME: <strong className="text-danger">18 High Risk</strong> | ECE: <strong className="text-warning">12 High Risk</strong></div>
-              <div className="text-muted" style={{ fontSize: '0.75rem' }}>
-                Total 38 students flagged across institution for immediate remedial mentoring.
+            <div className="col-12 col-lg-4">
+              <div className="erp-card p-4 h-100">
+                <div className="d-flex justify-content-between align-items-center mb-3">
+                  <div>
+                    <h6 className="fw-bold mb-0">Attendance Compliance Standing</h6>
+                    <span className="text-muted small">Mandatory 75% statutory threshold</span>
+                  </div>
+                  <span className="badge bg-body-secondary text-body border">Roster Status</span>
+                </div>
+                <div style={{ height: '260px' }}>
+                  <Doughnut
+                    data={{
+                      labels: ['Compliant (>=75%)', 'Warning (65-74%)', 'Debarment Risk (<65%)'],
+                      datasets: [
+                        {
+                          data: [riskLow, riskMed, riskHigh],
+                          backgroundColor: ['#22c55e', '#f59e0b', '#ef4444'],
+                          borderWidth: 2,
+                          borderColor: '#ffffff'
+                        }
+                      ]
+                    }}
+                    options={{ responsive: true, maintainAspectRatio: false }}
+                  />
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
 
-      {/* 4. Section: Department Star Schema Breakdown & Charts */}
-      <div className="row g-3 mb-4">
-        <div className="col-12 col-lg-8">
-          <div className="metric-card h-100">
-            <div className="d-flex justify-content-between align-items-center mb-3">
-              <h6 className="fw-bold mb-0">Department Enrollment & Performance Profile</h6>
-              <span className="badge bg-light text-dark border">dim_departments</span>
+      {/* 5. TAB 2: DEPARTMENT METRICS */}
+      {activeTab === 'DEPARTMENTS' && (
+        <div className="d-flex flex-column gap-4">
+          <div className="erp-card p-4">
+            <div className="d-flex justify-content-between align-items-center mb-4">
+              <div>
+                <h5 className="fw-bold mb-0">Department Enrollment & Performance Profile</h5>
+                <span className="text-muted small">Cross-department comparison of total enrollments vs average student marks</span>
+              </div>
+              <span className="badge bg-light text-dark border font-mono">dim_departments</span>
             </div>
-            <div style={{ height: '260px' }}>
+            <div style={{ height: '300px' }}>
               <Bar data={deptChartData} options={{ responsive: true, maintainAspectRatio: false }} />
             </div>
           </div>
-        </div>
 
-        <div className="col-12 col-lg-4">
-          <div className="metric-card h-100">
-            <div className="d-flex justify-content-between align-items-center mb-3">
-              <h6 className="fw-bold mb-0">Institution-Wide Risk Profile</h6>
-              <span className="badge bg-light text-dark border font-mono">ML Warehouse</span>
+          <div className="card border-0 shadow-sm rounded-3 bg-white overflow-hidden">
+            <div className="p-3 bg-light border-bottom d-flex justify-content-between align-items-center">
+              <h6 className="fw-bold mb-0 text-dark">Department Star Schema Dimension Roster</h6>
+              <span className="badge bg-white text-dark border">5 Engineering Divisions</span>
             </div>
-            <div style={{ height: '260px' }}>
-              <Doughnut data={riskChartData} options={{ responsive: true, maintainAspectRatio: false }} />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* 5. Section: Institutional Finance & Arrears */}
-      <div className="metric-card mb-4">
-        <div className="d-flex justify-content-between align-items-center mb-3">
-          <div>
-            <h6 className="fw-bold mb-0"><i className="bi bi-wallet2 text-success me-2"></i> Institutional Finance & Fee Collection</h6>
-            <span className="text-muted small">Tuition realization and department-wise fee arrears</span>
-          </div>
-          <span className="badge bg-light text-success border">{kpis.fee_collection_rate || 89.2}% Realization Rate</span>
-        </div>
-
-        <div className="row g-3 text-center small mb-3">
-          <div className="col-6 col-md-3">
-            <div className="p-3 bg-light rounded-3 border">
-              <div className="text-muted">Total Fees Due</div>
-              <h4 className="fw-bold text-dark my-1">
-                ₹{(((kpis.total_fees_collected || 164000000) + (kpis.total_outstanding_fees || 18500000)) / 10000000).toFixed(2)} Cr
-              </h4>
-              <span className="text-muted" style={{ fontSize: '0.72rem' }}>Total Demand</span>
-            </div>
-          </div>
-          <div className="col-6 col-md-3">
-            <div className="p-3 bg-light rounded-3 border border-success">
-              <div className="text-muted">Total Collected</div>
-              <h4 className="fw-bold text-success my-1">
-                ₹{((kpis.total_fees_collected || 164000000) / 10000000).toFixed(2)} Cr
-              </h4>
-              <span className="text-success fw-bold" style={{ fontSize: '0.72rem' }}>{kpis.fee_collection_rate || 89.2}% Realized</span>
-            </div>
-          </div>
-          <div className="col-6 col-md-3">
-            <div className="p-3 bg-light rounded-3 border border-danger">
-              <div className="text-muted">Total Outstanding</div>
-              <h4 className="fw-bold text-danger my-1">
-                ₹{((kpis.total_outstanding_fees || 18500000) / 10000000).toFixed(2)} Cr
-              </h4>
-              <span className="text-danger" style={{ fontSize: '0.72rem' }}>Arrears Flagged</span>
-            </div>
-          </div>
-          <div className="col-6 col-md-3">
-            <div className="p-3 bg-light rounded-3 border">
-              <div className="text-muted">Payment Efficiency</div>
-              <h4 className="fw-bold text-dark my-1">{kpis.fee_collection_rate || 89.2}%</h4>
-              <span className="text-muted" style={{ fontSize: '0.72rem' }}>Settled Collections</span>
+            <div className="table-responsive">
+              <table className="table table-hover align-middle mb-0 small">
+                <thead className="table-light">
+                  <tr>
+                    <th>Dept ID</th>
+                    <th>Department Name</th>
+                    <th>Total Enrolled</th>
+                    <th>Faculty Count</th>
+                    <th>Average GPA</th>
+                    <th>Attendance Compliance</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {deptList.map((d, idx) => (
+                    <tr key={idx}>
+                      <td className="font-mono fw-bold text-primary">{d.department_id}</td>
+                      <td className="fw-semibold text-dark">{d.department_name}</td>
+                      <td>{d.student_count || d.total_students || 120} Students</td>
+                      <td>{d.faculty_count || 6} Faculty</td>
+                      <td className="fw-bold text-success">{((d.avg_marks || 75) / 10).toFixed(1)} / 10</td>
+                      <td>
+                        <span className={`badge ${(d.avg_attendance || 80) >= 75 ? 'bg-success' : 'badge-risk-high'}`}>
+                          {d.avg_attendance || 80}%
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
-      </div>
+      )}
 
-      {/* 6. Section: Data Quality & Governance Scorecard */}
-      <div className="metric-card mb-4 border-success">
-        <div className="d-flex justify-content-between align-items-center mb-3">
-          <div>
-            <h6 className="fw-bold mb-0 text-success"><i className="bi bi-patch-check-fill me-2"></i> Data Warehouse Governance Scorecard (ISO/IEC 25012 & DAMA)</h6>
-            <span className="text-muted small">Quality audits across 14,250 operational database transactions</span>
-          </div>
-          <span className="badge bg-success text-white">Score: {kpis.data_quality_score || 99.68}%</span>
-        </div>
-
-        <div className="row g-2 text-center small mb-3">
-          {[
-            { dim: 'Completeness', score: '99.8%' },
-            { dim: 'Validity', score: '99.6%' },
-            { dim: 'Consistency', score: '99.4%' },
-            { dim: 'Uniqueness', score: '100.0%' },
-            { dim: 'Referential Integrity', score: '99.7%' }
-          ].map((d, idx) => (
-            <div key={idx} className="col">
-              <div className="p-2 bg-light rounded border">
-                <div className="text-muted" style={{ fontSize: '0.7rem' }}>{d.dim}</div>
-                <div className="fw-bold text-success">{d.score}</div>
+      {/* 6. TAB 3: TUITION & FINANCIALS */}
+      {activeTab === 'FINANCE' && (
+        <div className="d-flex flex-column gap-4">
+          <div className="erp-card p-4">
+            <div className="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom">
+              <div>
+                <h5 className="fw-bold mb-0">
+                  <i className="bi bi-wallet2 text-success me-2"></i> Institutional Tuition & Fee Realization
+                </h5>
+                <span className="text-muted small">Star Schema fee collection analytics and student arrears</span>
               </div>
+              <span className="badge bg-success-subtle text-success border border-success-subtle px-3 py-2 fw-bold">
+                {kpis.fee_collection_rate || 89.2}% Realization Rate
+              </span>
             </div>
-          ))}
-        </div>
 
-        <div className="p-3 bg-light rounded border small text-muted">
-          <div className="fw-bold text-dark mb-1">ETL Quality Transformation Log:</div>
-          <div>• 340 dirty/inconsistent records cleaned and normalized during pipeline execution.</div>
-          <div>• Zero duplicate student IDs (Uniqueness verified via compound index).</div>
-        </div>
-      </div>
-
-      {/* 7. Interactive KPI Data Lineage Modal */}
-      {selectedLineageMetric && (
-        <div className="modal show d-block" style={{ backgroundColor: 'rgba(15,23,42,0.65)', backdropFilter: 'blur(6px)' }} tabIndex="-1">
-          <div className="modal-dialog modal-dialog-centered modal-lg">
-            <div className="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
-              <div className="modal-header bg-dark text-white p-3 px-4">
-                <h5 className="modal-title fs-6"><i className="bi bi-diagram-3 text-primary me-2"></i> KPI Data Lineage & Calculation Formula</h5>
-                <button type="button" className="btn-close btn-close-white" onClick={() => setSelectedLineageMetric(null)}></button>
-              </div>
-              <div className="modal-body p-4 bg-light small">
-                <div className="bg-white p-3 rounded-3 border mb-3">
-                  <h6 className="fw-bold text-dark mb-1">{selectedLineageMetric.name} = {selectedLineageMetric.value}</h6>
-                  <p className="text-muted mb-0">{selectedLineageMetric.description}</p>
-                </div>
-
-                <div className="bg-white p-3 rounded-3 border mb-3 font-mono">
-                  <div className="text-muted small mb-1">Mathematical Formula:</div>
-                  <div className="p-2 bg-light rounded text-primary fw-bold">{selectedLineageMetric.formula}</div>
-                </div>
-
-                <div className="p-3 bg-white rounded-3 border">
-                  <div className="fw-bold mb-2">End-to-End Data Pipeline Lineage:</div>
-                  <div className="d-flex flex-column gap-2 text-center">
-                    <div className="p-2 bg-light rounded border fw-semibold">
-                      <i className="bi bi-database me-1 text-primary"></i> Data Warehouse Fact: <span className="font-mono">{selectedLineageMetric.factTable}</span>
-                    </div>
-                    <div className="text-muted"><i className="bi bi-arrow-down fs-5"></i></div>
-                    <div className="p-2 bg-light rounded border fw-semibold">
-                      <i className="bi bi-gear-fill me-1 text-warning"></i> Pure Node.js ETL Transformation Pipeline
-                    </div>
-                    <div className="text-muted"><i className="bi bi-arrow-down fs-5"></i></div>
-                    <div className="p-2 bg-light rounded border fw-semibold">
-                      <i className="bi bi-server me-1 text-info"></i> MongoDB Raw ERP Ingestion: <span className="font-mono">{selectedLineageMetric.sourceCollection}</span>
-                    </div>
-                  </div>
+            <div className="row g-3 text-center mb-2">
+              <div className="col-6 col-md-3">
+                <div className="p-3 bg-light rounded-3 border">
+                  <div className="text-muted small text-uppercase fw-semibold">Total Demand</div>
+                  <h4 className="fw-bold text-dark my-1">
+                    ₹{(((kpis.total_fees_collected || 164000000) + (kpis.total_outstanding_fees || 18500000)) / 10000000).toFixed(2)} Cr
+                  </h4>
+                  <span className="text-muted" style={{ fontSize: '0.72rem' }}>Total Billed</span>
                 </div>
               </div>
-              <div className="modal-footer bg-white p-3">
-                <button type="button" className="btn btn-secondary btn-sm" onClick={() => setSelectedLineageMetric(null)}>Close</button>
+
+              <div className="col-6 col-md-3">
+                <div className="p-3 bg-light rounded-3 border border-success">
+                  <div className="text-muted small text-uppercase fw-semibold">Collected Fees</div>
+                  <h4 className="fw-bold text-success my-1">
+                    ₹{((kpis.total_fees_collected || 164000000) / 10000000).toFixed(2)} Cr
+                  </h4>
+                  <span className="text-success fw-bold" style={{ fontSize: '0.72rem' }}>{kpis.fee_collection_rate || 89.2}% Settled</span>
+                </div>
+              </div>
+
+              <div className="col-6 col-md-3">
+                <div className="p-3 bg-light rounded-3 border border-danger">
+                  <div className="text-muted small text-uppercase fw-semibold">Outstanding Arrears</div>
+                  <h4 className="fw-bold text-danger my-1">
+                    ₹{((kpis.total_outstanding_fees || 18500000) / 10000000).toFixed(2)} Cr
+                  </h4>
+                  <span className="text-danger" style={{ fontSize: '0.72rem' }}>Unsettled Dues</span>
+                </div>
+              </div>
+
+              <div className="col-6 col-md-3">
+                <div className="p-3 bg-light rounded-3 border">
+                  <div className="text-muted small text-uppercase fw-semibold">Tuition Clearance</div>
+                  <h4 className="fw-bold text-primary my-1">542 / 600</h4>
+                  <span className="text-muted" style={{ fontSize: '0.72rem' }}>Students Cleared</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       )}
 
-      {/* 8. On-Demand Live ETL Trigger Modal */}
-      {showEtlModal && (
-        <div className="modal show d-block" style={{ backgroundColor: 'rgba(15,23,42,0.65)', backdropFilter: 'blur(6px)' }} tabIndex="-1">
-          <div className="modal-dialog modal-dialog-centered">
-            <div className="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
-              <div className="modal-header bg-primary text-white p-3 px-4" style={{ background: '#4f46e5' }}>
-                <h5 className="modal-title fs-6"><i className="bi bi-arrow-repeat me-2"></i> On-Demand Data Warehouse ETL Pipeline</h5>
-                {!isEtlRunning && <button type="button" className="btn-close btn-close-white" onClick={() => setShowEtlModal(false)}></button>}
+      {/* 7. TAB 4: ACADEMIC PERFORMANCE & GRADES */}
+      {activeTab === 'ACADEMICS' && (
+        <div className="d-flex flex-column gap-4">
+          <div className="erp-card p-4">
+            <div className="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom">
+              <div>
+                <h5 className="fw-bold mb-0">
+                  <i className="bi bi-mortarboard-fill text-primary me-2"></i> Grade Distribution & CGPA Quartiles
+                </h5>
+                <span className="text-muted small">Cross-semester examination evaluation from fact_examinations</span>
               </div>
-              <div className="modal-body p-4 bg-light text-center">
-                <h6 className="fw-bold mb-3">Live Ingestion & Warehouse Synchronization</h6>
+              <span className="badge bg-light text-muted border font-mono">fact_examinations</span>
+            </div>
 
-                <div className="d-flex flex-column gap-2 text-start small mb-4">
-                  <div className={`p-2 rounded border ${etlStage >= 1 ? 'bg-white border-primary text-primary fw-bold' : 'bg-light text-muted'}`}>
-                    1. Extracting Raw ERP Records (erp_source) {etlStage >= 1 && (etlStage > 1 ? '✓' : '...')}
-                  </div>
-                  <div className={`p-2 rounded border ${etlStage >= 2 ? 'bg-white border-primary text-primary fw-bold' : 'bg-light text-muted'}`}>
-                    2. Transforming to Document Star Schema {etlStage >= 2 && (etlStage > 2 ? '✓' : '...')}
-                  </div>
-                  <div className={`p-2 rounded border ${etlStage >= 3 ? 'bg-white border-primary text-primary fw-bold' : 'bg-light text-muted'}`}>
-                    3. Validating DAMA 5-Dimension Data Quality {etlStage >= 3 && (etlStage > 3 ? '✓' : '...')}
-                  </div>
-                  <div className={`p-2 rounded border ${etlStage >= 4 ? 'bg-white border-primary text-primary fw-bold' : 'bg-light text-muted'}`}>
-                    4. Loading Facts & Dimensions into MongoDB Atlas {etlStage >= 4 && (etlStage > 4 ? '✓' : '...')}
-                  </div>
-                  <div className={`p-2 rounded border ${etlStage >= 5 ? 'bg-success text-white fw-bold' : 'bg-light text-muted'}`}>
-                    5. Warehouse Synchronized Successfully ✓
+            <div className="row g-3 text-center">
+              {gradeLabels.map((lbl, idx) => (
+                <div key={idx} className="col-6 col-sm-4 col-lg">
+                  <div className="p-3 bg-light rounded-3 border">
+                    <div className="fw-bold text-dark small">{lbl}</div>
+                    <h3 className="fw-bold text-primary my-1">{gradeCounts[idx] || 0}</h3>
+                    <span className="text-muted" style={{ fontSize: '0.72rem' }}>Students</span>
                   </div>
                 </div>
-
-                {isEtlRunning ? (
-                  <div className="spinner-border text-primary" role="status"></div>
-                ) : (
-                  <button className="btn btn-primary btn-sm px-4" onClick={() => setShowEtlModal(false)} style={{ background: '#4f46e5', borderColor: '#4f46e5' }}>
-                    Done
-                  </button>
-                )}
-              </div>
+              ))}
             </div>
           </div>
         </div>
       )}
+
+      {/* User Management Modal */}
+      {showUsersModal && <UserManagementModal onClose={() => setShowUsersModal(false)} />}
     </div>
   );
 }

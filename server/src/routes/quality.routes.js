@@ -1,14 +1,18 @@
 /**
- * 5-Dimension Data Quality Governance Routes
+ * 5-Dimension Data Quality Governance Routes (RBAC-protected)
+ * -----------------------------------------------------------
+ * - /api/quality/data-quality  → ADMIN only
  */
 
 import express from 'express';
 import { dbManager } from '../config/db.js';
 import { successResponse, errorResponse } from '../utils/helpers.js';
+import { requireRole } from '../middleware/rbac.js';
 
 const router = express.Router();
 
-router.get('/data-quality', async (req, res) => {
+// Data quality report
+router.get('/data-quality', requireRole('ADMIN'), async (req, res) => {
   try {
     const reports = await dbManager.getCollectionData('data_quality_reports');
     let latest = reports && reports.length > 0 ? reports[0] : null;

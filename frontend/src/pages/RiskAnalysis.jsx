@@ -87,7 +87,7 @@ export default function RiskAnalysis() {
       <div className="row g-3 mb-4">
         {/* Left: What-If Slider Controls */}
         <div className="col-12 col-lg-7">
-          <div className="metric-card">
+          <div className="erp-card">
             <div className="d-flex justify-content-between align-items-center mb-3">
               <h6 className="fw-bold mb-0"><i className="bi bi-sliders text-primary me-1"></i> Simulated Scenario Adjustment</h6>
               <span className="badge bg-light text-primary border">Interactive Modeling</span>
@@ -185,7 +185,7 @@ export default function RiskAnalysis() {
 
         {/* Right: Dynamic Speedometer SVG Gauge */}
         <div className="col-12 col-lg-5">
-          <div className="metric-card text-center">
+          <div className="erp-card text-center">
             <h6 className="fw-bold mb-2">Real-Time Risk Probability Speedometer</h6>
             <p className="text-muted small mb-3">Multi-factor composite risk probability index</p>
 
@@ -193,7 +193,7 @@ export default function RiskAnalysis() {
               <div>
                 <svg width="220" height="120" viewBox="0 0 220 120" className="mx-auto d-block">
                   {/* Gauge Background Arc */}
-                  <path d="M 20 110 A 90 90 0 0 1 200 110" fill="none" stroke="#e2e8f0" strokeWidth="18" strokeLinecap="round" />
+                  <path d="M 20 110 A 90 90 0 0 1 200 110" fill="none" stroke="var(--erp-border, #e2e8f0)" strokeWidth="18" strokeLinecap="round" />
                   {/* Low Zone (Green) */}
                   <path d="M 20 110 A 90 90 0 0 1 70 38" fill="none" stroke="#22c55e" strokeWidth="18" strokeLinecap="round" />
                   {/* Medium Zone (Amber) */}
@@ -207,7 +207,7 @@ export default function RiskAnalysis() {
                     y1="110"
                     x2="110"
                     y2="30"
-                    stroke="#1e293b"
+                    stroke="var(--erp-text, #1e293b)"
                     strokeWidth="4"
                     strokeLinecap="round"
                     style={{
@@ -216,7 +216,7 @@ export default function RiskAnalysis() {
                       transition: 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)'
                     }}
                   />
-                  <circle cx="110" cy="110" r="8" fill="#1e293b" />
+                  <circle cx="110" cy="110" r="8" fill="var(--erp-text, #1e293b)" />
                 </svg>
 
                 <h3 className={`fw-bold mt-2 mb-0 ${simResult.scenario.risk_level === 'HIGH' ? 'text-danger' : simResult.scenario.risk_level === 'MEDIUM' ? 'text-warning' : 'text-success'}`}>
@@ -236,7 +236,7 @@ export default function RiskAnalysis() {
       </div>
 
       {/* Risk Advisory Roster Table */}
-      <div className="metric-card">
+      <div className="erp-card">
         <div className="d-flex align-items-center justify-content-between mb-3">
           <h6 className="fw-bold mb-0">Cohort Risk Advisory Roster</h6>
           <span className="badge bg-light text-dark border">Scikit-learn Model Inferences</span>

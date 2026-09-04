@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
 import { fetchAPI } from '../services/api';
@@ -6,37 +7,40 @@ import { fetchAPI } from '../services/api';
 export default function FacultyPortal() {
   const { user } = useAuth();
   const { addToast } = useToast();
+  const [searchParams, setSearchParams] = useSearchParams();
   const isDean = user?.role === 'ADMIN';
 
-  // For faculty members, lock strictly to their department (e.g. DEPT_CSE)
+  // Sub-tab: 'roster' | 'attendance' | 'marks' | 'warnings' | 'mentoring'
+  const activeTab = searchParams.get('tab') || 'roster';
+  const setActiveTab = (tabName) => {
+    setSearchParams({ tab: tabName });
+  };
+
   const facultyDept = user?.department_id || (isDean ? '' : 'DEPT_CSE');
   const [deptFilter, setDeptFilter] = useState(facultyDept);
-
   const [facultySummary, setFacultySummary] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedFacultyId, setSelectedFacultyId] = useState(user?.faculty_id || '');
   const [selectedCourseIndex, setSelectedCourseIndex] = useState(0);
 
-  // Workflow Tabs
-  const [activeTab, setActiveTab] = useState('ROSTER'); // 'ROSTER' | 'WHAT_IF' | 'EARLY_WARNING' | 'ATTENDANCE_TAKER' | 'GRADING'
-
-  // Selected Student for Modals
-  const [selectedStudentForWarning, setSelectedStudentForWarning] = useState(null);
-  const [selectedStudentDetail, setSelectedStudentDetail] = useState(null);
-
-  // Faculty What-If Simulation State
-  const [whatIfStudent, setWhatIfStudent] = useState(null);
-  const [simAttendance, setSimAttendance] = useState(58);
-  const [simInternals, setSimInternals] = useState(14);
-  const [simBacklogs, setSimBacklogs] = useState(1);
-  const [simulatedRisk, setSimulatedRisk] = useState('MEDIUM');
-
   // Daily Attendance Marker State
   const [attendanceDate, setAttendanceDate] = useState(() => new Date().toISOString().split('T')[0]);
   const [dailyAttendanceMap, setDailyAttendanceMap] = useState({});
+  const [submittedAttendanceSessions, setSubmittedAttendanceSessions] = useState(() => {
+    try {
+      const saved = localStorage.getItem('SAVED_ATTENDANCE_SESSIONS');
+      return saved ? JSON.parse(saved) : {};
+    } catch {
+      return {};
+    }
+  });
+  const [attendanceSearch, setAttendanceSearch] = useState('');
 
   // Editable Internal Marks State
   const [editingMarks, setEditingMarks] = useState({});
+  const [marksErrors, setMarksErrors] = useState({});
+  const [selectedAssessmentType, setSelectedAssessmentType] = useState('INTERNAL_1');
+  const [marksSearch, setMarksSearch] = useState('');
 
   // Advisee Mentorship Logs
   const [mentorshipLogs, setMentorshipLogs] = useState(() => {
@@ -45,13 +49,13 @@ export default function FacultyPortal() {
       return saved ? JSON.parse(saved) : [
         {
           id: 1,
-          faculty_name: 'Dr. Rajeshwar Rao',
-          student_id: 'STU20210016',
-          student_name: 'Shaurya Joshi',
+          faculty_name: 'Dr. Sunita Deshmukh',
+          student_id: 'STU20220001',
+          student_name: 'Sai Gupta',
           course_code: 'CS501',
           date: '2026-08-24',
-          topic: 'Attendance Shortage & Lab Make-up',
-          action: 'Agreed to attend 4 Saturday make-up laboratory sessions.',
+          topic: 'Attendance Shortage Remediation Plan',
+          action: 'Agreed to attend Saturday make-up practical sessions and submit makeup assignments.',
           status: 'IN_PROGRESS'
         }
       ];
@@ -59,9 +63,9 @@ export default function FacultyPortal() {
       return [];
     }
   });
-
   const [newLog, setNewLog] = useState({ student_id: '', student_name: '', course_code: '', topic: '', action: '' });
   const [showLogModal, setShowLogModal] = useState(false);
+  const [selectedStudentForWarning, setSelectedStudentForWarning] = useState(null);
 
   useEffect(() => {
     if (!isDean && user?.department_id) {
@@ -96,54 +100,32 @@ export default function FacultyPortal() {
   const activeCourse = handledCourses[selectedCourseIndex] || handledCourses[0] || {};
   const enrolledStudents = activeCourse.students || [];
 
-  // Attendance Distribution Buckets (90-100%, 75-89%, 60-74%, <60%)
-  const bucket90_100 = enrolledStudents.filter(s => s.attendance_percentage >= 90).length;
-  const bucket75_89 = enrolledStudents.filter(s => s.attendance_percentage >= 75 && s.attendance_percentage < 90).length;
-  const bucket60_74 = enrolledStudents.filter(s => s.attendance_percentage >= 60 && s.attendance_percentage < 75).length;
-  const bucketBelow60 = enrolledStudents.filter(s => s.attendance_percentage < 60).length;
-
-  // Risk Distribution Buckets
-  const highRiskStudents = enrolledStudents.filter(s => s.risk_level === 'HIGH' || s.attendance_percentage < 65);
-  const medRiskStudents = enrolledStudents.filter(s => s.risk_level === 'MEDIUM' || (s.attendance_percentage >= 65 && s.attendance_percentage < 75));
-  const lowRiskStudents = enrolledStudents.filter(s => s.risk_level === 'LOW' && s.attendance_percentage >= 75);
-
-  // Initialize What-If target when active course changes
+  // Initialize Maps when course changes
   useEffect(() => {
     if (enrolledStudents.length > 0) {
-      const firstTarget = highRiskStudents[0] || enrolledStudents[0];
-      setWhatIfStudent(firstTarget);
-      setSimAttendance(firstTarget.attendance_percentage || 58);
-      setSimInternals(firstTarget.internal_marks || 14);
-      setSimBacklogs(firstTarget.is_shortage ? 1 : 0);
-
       const initialMap = {};
       const marksMap = {};
       enrolledStudents.forEach(s => {
         initialMap[s.student_id] = 'PRESENT';
-        marksMap[s.student_id] = s.internal_marks;
+        marksMap[s.student_id] = s.internal_marks || 22;
       });
       setDailyAttendanceMap(initialMap);
       setEditingMarks(marksMap);
+      setMarksErrors({});
     }
   }, [selectedCourseIndex, selectedFacultyId, facultySummary]);
 
-  // Recalculate What-If Simulation
-  useEffect(() => {
-    let score = 0;
-    if (simAttendance < 65) score += 40;
-    else if (simAttendance < 75) score += 20;
+  // Today's Lectures Schedule for this Faculty Member
+  const facultyTodaySchedule = useMemo(() => [
+    { time: '09:00 AM - 10:00 AM', course: activeCourse.course_code || 'CS501', title: activeCourse.course_title || 'Operating Systems', section: activeCourse.section || 'Section A', room: activeCourse.classroom || 'Hall 204', status: 'COMPLETED' },
+    { time: '11:15 AM - 12:45 PM', course: handledCourses[1]?.course_code || 'CS401', title: handledCourses[1]?.course_title || 'Database Systems', section: 'Section B', room: 'Lab 102', status: 'IN_PROGRESS' },
+    { time: '02:00 PM - 03:30 PM', course: activeCourse.course_code || 'CS501', title: 'Tutorial & Doubts Remedial', section: 'Section A', room: 'Hall 204', status: 'UPCOMING' }
+  ], [activeCourse, handledCourses]);
 
-    if (simInternals < 15) score += 35;
-    else if (simInternals < 20) score += 15;
+  const atRiskStudents = enrolledStudents.filter(s => s.is_shortage || s.attendance_percentage < 75.0);
 
-    if (simBacklogs > 0) score += 25;
-
-    if (score >= 50) setSimulatedRisk('HIGH');
-    else if (score >= 25) setSimulatedRisk('MEDIUM');
-    else setSimulatedRisk('LOW');
-  }, [simAttendance, simInternals, simBacklogs]);
-
-  const handleMarkAll = (status) => {
+  // Mark all present / absent
+  const handleBulkAttendance = (status) => {
     const updated = {};
     enrolledStudents.forEach(s => {
       updated[s.student_id] = status;
@@ -152,26 +134,65 @@ export default function FacultyPortal() {
     addToast(`Marked all ${enrolledStudents.length} students as ${status}`, 'info');
   };
 
+  // Submit attendance with duplicate submission prevention
   const handleSaveDailyAttendance = () => {
+    const sessionKey = `${activeCourse.course_code}_${activeCourse.section}_${attendanceDate}`;
+    if (submittedAttendanceSessions[sessionKey]) {
+      const confirmed = window.confirm(`Attendance for ${activeCourse.course_code} on ${attendanceDate} was already submitted earlier today. Do you wish to overwrite and update this record?`);
+      if (!confirmed) return;
+    }
+
     const presentCount = Object.values(dailyAttendanceMap).filter(v => v === 'PRESENT').length;
-    addToast(`Saved attendance for ${presentCount}/${enrolledStudents.length} students on ${attendanceDate}`, 'success');
-    setActiveTab('ROSTER');
+    const updatedSessions = { ...submittedAttendanceSessions, [sessionKey]: { date: attendanceDate, presentCount, total: enrolledStudents.length, timestamp: new Date().toISOString() } };
+    setSubmittedAttendanceSessions(updatedSessions);
+    localStorage.setItem('SAVED_ATTENDANCE_SESSIONS', JSON.stringify(updatedSessions));
+
+    addToast(`Saved attendance session: ${presentCount}/${enrolledStudents.length} Present on ${attendanceDate} for ${activeCourse.course_code}`, 'success');
+    setActiveTab('roster');
+  };
+
+  // Mark entry validation (Max Marks: 30)
+  const MAX_MARKS = 30;
+  const handleMarkChange = (studentId, valueStr) => {
+    const num = parseInt(valueStr, 10);
+    const newErrors = { ...marksErrors };
+
+    if (isNaN(num)) {
+      setEditingMarks({ ...editingMarks, [studentId]: 0 });
+      delete newErrors[studentId];
+    } else if (num > MAX_MARKS) {
+      newErrors[studentId] = `Marks cannot exceed ${MAX_MARKS}`;
+      setEditingMarks({ ...editingMarks, [studentId]: num });
+    } else if (num < 0) {
+      newErrors[studentId] = `Marks cannot be negative`;
+      setEditingMarks({ ...editingMarks, [studentId]: 0 });
+    } else {
+      delete newErrors[studentId];
+      setEditingMarks({ ...editingMarks, [studentId]: num });
+    }
+    setMarksErrors(newErrors);
   };
 
   const handleSaveMarks = () => {
-    addToast(`Updated internal assessment scores for ${activeCourse.course_code} (${activeCourse.section})`, 'success');
-    setActiveTab('ROSTER');
+    if (Object.keys(marksErrors).length > 0) {
+      addToast(`Please correct the marked errors before submitting. Marks cannot exceed ${MAX_MARKS}.`, 'danger');
+      return;
+    }
+    addToast(`Internal assessment marks successfully recorded for ${activeCourse.course_code} (${activeCourse.section})`, 'success');
+    setActiveTab('roster');
   };
 
+  // Dispatch Warning Notice to At-Risk Student
   const handleDispatchWarning = (stu) => {
-    addToast(`Official Attendance Notice dispatched to ${stu.student_name} (${stu.email}) for ${activeCourse.course_code}`, 'success');
+    addToast(`Official Attendance Shortage Notice dispatched to ${stu.student_name} (${stu.email}) for ${activeCourse.course_code}`, 'success');
     setSelectedStudentForWarning(null);
   };
 
+  // Mentorship Session Logger
   const handleSaveLog = (e) => {
-    e.preventDefault();
+    if (e) e.preventDefault();
     if (!newLog.student_id || !newLog.topic) {
-      addToast('Please fill in required student ID and topic', 'warning');
+      addToast('Please provide Student ID and Counseling Topic', 'warning');
       return;
     }
 
@@ -180,17 +201,17 @@ export default function FacultyPortal() {
       faculty_name: currentFaculty.faculty_name || user?.name || 'Faculty Member',
       student_id: newLog.student_id,
       student_name: newLog.student_name || 'Advisee Student',
-      course_code: newLog.course_code || activeCourse.course_code || 'GEN101',
+      course_code: newLog.course_code || activeCourse.course_code || 'CS501',
       date: new Date().toISOString().split('T')[0],
       topic: newLog.topic,
-      action: newLog.action || 'Counseling notes recorded.',
+      action: newLog.action || 'Remedial academic action plan agreed upon.',
       status: 'OPEN'
     };
 
     const updated = [entry, ...mentorshipLogs];
     setMentorshipLogs(updated);
     localStorage.setItem('FACULTY_MENTORSHIP_LOGS', JSON.stringify(updated));
-    addToast(`Counseling note recorded for ${entry.student_name}`, 'success');
+    addToast(`Mentorship session recorded for ${entry.student_name}`, 'success');
     setNewLog({ student_id: '', student_name: '', course_code: '', topic: '', action: '' });
     setShowLogModal(false);
   };
@@ -204,586 +225,499 @@ export default function FacultyPortal() {
     );
   }
 
+  // Calculate live class average for marks
+  const markValues = Object.values(editingMarks).filter(v => typeof v === 'number' && v <= MAX_MARKS);
+  const classAvgMark = markValues.length ? Number((markValues.reduce((a, b) => a + b, 0) / markValues.length).toFixed(1)) : 22.4;
+
   return (
-    <div className="p-3 p-md-4">
-      {/* 1. Header Banner */}
-      <div className="p-4 rounded-4 text-white mb-4 shadow-sm" style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)' }}>
+    <div className="p-2 p-md-4">
+      {/* 1. DEAN INSPECTION BAR (Visible if Dean/Admin) */}
+      {isDean && (
+        <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center p-3 mb-3 rounded-3 bg-primary text-white shadow-sm gap-2">
+          <div className="d-flex align-items-center gap-2">
+            <i className="bi bi-shield-check fs-5"></i>
+            <span className="small">
+              Dean Directorate: Inspecting Teaching Portfolio of <strong>{currentFaculty.faculty_name}</strong>
+            </span>
+          </div>
+          <div className="d-flex gap-2">
+            <select
+              className="form-select form-select-sm"
+              value={selectedFacultyId}
+              onChange={e => { setSelectedFacultyId(e.target.value); setSelectedCourseIndex(0); }}
+              style={{ width: '220px' }}
+            >
+              {facultyList.map(f => (
+                <option key={f.faculty_id} value={f.faculty_id}>
+                  {f.faculty_name} ({f.department_name ? f.department_name.split(' ')[0] : 'Engg'})
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+      )}
+
+      {/* 2. FACULTY GREETING & WORKSPACE HEADER */}
+      <div className="erp-card p-4 mb-4">
         <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
           <div>
-            <span className="badge bg-info text-dark mb-2 fw-semibold">
-              <i className="bi bi-people-fill me-1"></i> Department Academic Portal ("How Are My Students Doing?")
-            </span>
-            <h3 className="fw-bold mb-1">Welcome, {currentFaculty.faculty_name || 'Dr. Sunita Rao'}</h3>
-            <div className="d-flex flex-wrap gap-2 text-white-50 small mt-2">
-              <span><strong>Department:</strong> <span className="text-white">{currentFaculty.department_name}</span></span>
+            <div className="d-flex align-items-center gap-2 mb-1">
+              <span className="badge bg-primary-subtle text-primary border border-primary-subtle px-2 py-1">
+                <i className="bi bi-person-workspace me-1"></i> Faculty Academic Workspace
+              </span>
+              <span className="text-muted small">•</span>
+              <span className="text-muted small font-mono">{currentFaculty.faculty_id || 'FAC102'}</span>
+            </div>
+            <h4 className="fw-bold mb-1" style={{ color: 'var(--text-primary)' }}>
+              {currentFaculty.faculty_name || 'Dr. Sunita Deshmukh'}
+            </h4>
+            <div className="d-flex flex-wrap gap-2 text-muted small">
+              <span><strong>Department:</strong> {currentFaculty.department_name || 'Computer Science & Engineering'}</span>
               <span>•</span>
-              <span><strong>Assigned Courses:</strong> <span className="text-white">{handledCourses.map(c => c.course_code).join(', ')}</span></span>
+              <span><strong>Designation:</strong> {currentFaculty.designation || 'Professor & HOD'}</span>
               <span>•</span>
-              <span><strong>Total Students:</strong> <span className="text-white">{enrolledStudents.length * handledCourses.length || 120}</span></span>
-              <span>•</span>
-              <span><strong>Average Attendance:</strong> <span className="text-white">{activeCourse.average_attendance || 78.4}%</span></span>
-              <span>•</span>
-              <span><strong>Below 75%:</strong> <span className="badge badge-risk-high">{activeCourse.shortage_alerts_count || 12} Students</span></span>
+              <span><strong>Handled Courses:</strong> {handledCourses.map(c => c.course_code).join(', ')}</span>
             </div>
           </div>
 
           <div className="d-flex gap-2">
-            <button className="btn btn-light btn-sm fw-semibold shadow-sm" onClick={() => setShowLogModal(true)}>
-              <i className="bi bi-journal-plus text-primary me-1"></i> Log Mentoring Session
+            <button
+              type="button"
+              className="btn btn-sm btn-outline-primary d-flex align-items-center gap-1"
+              onClick={() => setShowLogModal(true)}
+            >
+              <i className="bi bi-journal-plus"></i>
+              <span>Log Mentoring Session</span>
+            </button>
+            <button
+              type="button"
+              className="btn btn-sm btn-primary d-flex align-items-center gap-1"
+              onClick={() => setActiveTab('attendance')}
+            >
+              <i className="bi bi-check2-square"></i>
+              <span>Take Attendance Now</span>
             </button>
           </div>
         </div>
       </div>
 
-      {/* Dean Faculty Switcher (If logged in as Dean/Admin) */}
-      {isDean && (
-        <div className="metric-card mb-4 bg-white border-primary shadow-sm">
-          <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
-            <div>
-              <span className="badge bg-primary text-white mb-1"><i className="bi bi-shield-lock-fill me-1"></i> Dean Inspection View</span>
-              <h6 className="fw-bold mb-0">Select Department & Faculty to Inspect Assigned Courses</h6>
-            </div>
-
-            <div className="d-flex gap-2">
-              <select
-                className="form-select form-select-sm"
-                value={deptFilter}
-                onChange={(e) => { setDeptFilter(e.target.value); setSelectedCourseIndex(0); }}
-              >
-                <option value="">All Departments ({facultySummary?.total_faculty || 30} Faculty)</option>
-                <option value="DEPT_CSE">Computer Science (CSE)</option>
-                <option value="DEPT_ECE">Electronics (ECE)</option>
-                <option value="DEPT_MECH">Mechanical (MECH)</option>
-                <option value="DEPT_CIVIL">Civil (CIVIL)</option>
-                <option value="DEPT_AIDS">AI & Data Science (AIDS)</option>
-              </select>
-
-              <select
-                className="form-select form-select-sm"
-                value={selectedFacultyId}
-                onChange={(e) => { setSelectedFacultyId(e.target.value); setSelectedCourseIndex(0); }}
-              >
-                {facultyList.map(f => (
-                  <option key={f.faculty_id} value={f.faculty_id}>
-                    {f.faculty_name} ({f.designation})
-                  </option>
-                ))}
-              </select>
-            </div>
+      {/* 3. CORE STAT CARDS & WHAT TO DO TODAY */}
+      <div className="row g-3 mb-4">
+        <div className="col-12 col-sm-6 col-xl-3">
+          <div className="erp-stat-card h-100">
+            <span className="text-muted small fw-semibold">Today's Lectures</span>
+            <h3 className="fw-bold my-1 text-primary">{facultyTodaySchedule.length}</h3>
+            <span className="badge bg-primary-subtle text-primary border border-primary-subtle">
+              Next: 11:15 AM (Lab 102)
+            </span>
           </div>
         </div>
-      )}
 
-      {/* 2. Course Selector Tabs */}
-      <div className="metric-card mb-4">
-        <div className="d-flex align-items-center justify-content-between mb-3">
-          <h6 className="fw-bold mb-0"><i className="bi bi-book-half text-primary me-2"></i> Handled Teaching Courses</h6>
-          <span className="badge bg-light text-dark border">{handledCourses.length} Courses Assigned</span>
+        <div className="col-12 col-sm-6 col-xl-3">
+          <div className="erp-stat-card h-100">
+            <span className="text-muted small fw-semibold">Assigned Courses & Sections</span>
+            <h3 className="fw-bold my-1" style={{ color: 'var(--text-primary)' }}>{handledCourses.length}</h3>
+            <span className="badge bg-light text-muted border">Term 2024–2025</span>
+          </div>
         </div>
 
-        <div className="row g-3">
-          {handledCourses.map((course, idx) => {
-            const isSelected = selectedCourseIndex === idx;
-            return (
-              <div key={course.course_code} className="col-12 col-md-6">
-                <div
-                  className={`p-3 rounded-4 border transition-all ${
-                    isSelected ? 'border-primary bg-white shadow-sm ring-2' : 'bg-light hover-shadow'
-                  }`}
-                  style={{
-                    cursor: 'pointer',
-                    borderColor: isSelected ? '#4f46e5' : '#e2e8f0',
-                    borderWidth: isSelected ? '2px' : '1px'
-                  }}
-                  onClick={() => setSelectedCourseIndex(idx)}
-                >
-                  <div className="d-flex justify-content-between align-items-start mb-2">
-                    <div>
-                      <span className="badge bg-primary text-white font-mono me-2">{course.course_code}</span>
-                      <span className="badge bg-light text-dark border">{course.section}</span>
-                    </div>
-                    <span className="badge bg-light text-success border">Sem {course.semester} ({course.credits} Credits)</span>
-                  </div>
-
-                  <h6 className="fw-bold mb-1 text-dark">{course.course_title}</h6>
-
-                  <div className="small text-muted mb-2">
-                    <div><i className="bi bi-calendar-event me-1 text-primary"></i> <strong>Schedule:</strong> {course.class_schedule}</div>
-                    <div><i className="bi bi-geo-alt me-1 text-danger"></i> <strong>Room:</strong> {course.classroom}</div>
-                  </div>
-
-                  <div className="d-flex justify-content-between align-items-center pt-2 border-top small">
-                    <span>Enrolled: <strong>{course.total_enrolled} Students</strong></span>
-                    <span>Avg Attendance: <strong className="text-success">{course.average_attendance}%</strong></span>
-                    {course.shortage_alerts_count > 0 && (
-                      <span className="badge badge-risk-high">{course.shortage_alerts_count} Below 75%</span>
-                    )}
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+        <div className="col-12 col-sm-6 col-xl-3">
+          <div className="erp-stat-card h-100">
+            <span className="text-muted small fw-semibold">Total Students Enrolled</span>
+            <h3 className="fw-bold my-1 text-success">{enrolledStudents.length}</h3>
+            <span className="badge bg-success-subtle text-success border border-success-subtle">
+              Avg Attendance: {activeCourse.average_attendance || 78.4}%
+            </span>
+          </div>
         </div>
-      </div>
 
-      {/* 3. Section: Course Attendance Monitoring & Distribution Buckets */}
-      <div className="metric-card mb-4">
-        <h6 className="fw-bold mb-3">
-          <i className="bi bi-bar-chart-fill text-primary me-2"></i>
-          Attendance Monitoring & Distribution: <span className="text-primary font-mono">{activeCourse.course_code}</span> ({enrolledStudents.length} Students)
-        </h6>
-
-        <div className="row g-3 text-center small mb-3">
-          <div className="col-6 col-md-3">
-            <div className="p-3 bg-light rounded-3 border border-success">
-              <div className="text-success fw-bold">90% – 100%</div>
-              <h4 className="fw-bold text-dark my-1">{bucket90_100}</h4>
-              <span className="text-muted" style={{ fontSize: '0.72rem' }}>Optimal Attendance</span>
-            </div>
-          </div>
-          <div className="col-6 col-md-3">
-            <div className="p-3 bg-light rounded-3 border border-primary">
-              <div className="text-primary fw-bold">75% – 89%</div>
-              <h4 className="fw-bold text-dark my-1">{bucket75_89}</h4>
-              <span className="text-muted" style={{ fontSize: '0.72rem' }}>Compliant Range</span>
-            </div>
-          </div>
-          <div className="col-6 col-md-3">
-            <div className="p-3 bg-light rounded-3 border border-warning">
-              <div className="text-warning fw-bold">60% – 74%</div>
-              <h4 className="fw-bold text-dark my-1">{bucket60_74}</h4>
-              <span className="text-muted" style={{ fontSize: '0.72rem' }}>Warning Shortage</span>
-            </div>
-          </div>
-          <div className="col-6 col-md-3">
-            <div className="p-3 bg-light rounded-3 border border-danger">
-              <div className="text-danger fw-bold">&lt; 60%</div>
-              <h4 className="fw-bold text-dark my-1">{bucketBelow60}</h4>
-              <span className="text-muted" style={{ fontSize: '0.72rem' }}>Critical Debarment</span>
-            </div>
+        <div className="col-12 col-sm-6 col-xl-3">
+          <div className="erp-stat-card h-100">
+            <span className="text-muted small fw-semibold">At-Risk Debarment Alerts</span>
+            <h3 className="fw-bold my-1 text-danger">{atRiskStudents.length}</h3>
+            <span className="badge bg-danger-subtle text-danger border border-danger-subtle">
+              &lt; 75% Attendance
+            </span>
           </div>
         </div>
       </div>
 
-      {/* 4. Section: Faculty Early Warning System (ML Risk Breakdown) */}
-      <div className="metric-card mb-4 border-primary">
-        <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3 gap-2">
+      {/* 4. NAVIGATION TABS */}
+      <div className="d-flex flex-wrap gap-1 mb-4 pb-2 border-bottom" style={{ borderColor: 'var(--border-color)' }}>
+        {[
+          { key: 'roster', label: 'Course Roster & Schedule', icon: 'bi-grid-fill' },
+          { key: 'attendance', label: 'Take Attendance (Marker Tool)', icon: 'bi-check2-square' },
+          { key: 'marks', label: 'Enter Internal Marks (Grading Sheet)', icon: 'bi-pencil-square' },
+          { key: 'warnings', label: `Low Attendance Warnings (${atRiskStudents.length})`, icon: 'bi-exclamation-triangle-fill' },
+          { key: 'mentoring', label: 'Mentorship & Counseling Log', icon: 'bi-chat-left-text-fill' }
+        ].map(tab => (
+          <button
+            key={tab.key}
+            type="button"
+            className={`btn btn-sm d-flex align-items-center gap-2 px-3 py-2 rounded-pill fw-semibold transition-all ${
+              activeTab === tab.key ? 'btn-primary text-white shadow-sm' : 'btn-light border'
+            }`}
+            style={{
+              fontSize: '0.82rem',
+              backgroundColor: activeTab === tab.key ? '#4f46e5' : 'var(--surface-elevated)',
+              borderColor: activeTab === tab.key ? '#4f46e5' : 'var(--border-color)',
+              color: activeTab === tab.key ? '#ffffff' : 'var(--text-secondary)'
+            }}
+            onClick={() => setActiveTab(tab.key)}
+          >
+            <i className={`bi ${tab.icon}`}></i>
+            <span>{tab.label}</span>
+          </button>
+        ))}
+      </div>
+
+      {/* =================================================================== */}
+      {/* SUB-VIEW 1: COURSE ROSTER & TODAY'S SCHEDULE */}
+      {/* =================================================================== */}
+      {activeTab === 'roster' && (
+        <div className="d-flex flex-column gap-4">
+          {/* Handled Course Selector Cards */}
           <div>
-            <h6 className="fw-bold mb-0 text-primary">
-              <i className="bi bi-shield-exclamation text-danger me-2"></i>
-              Faculty Early Warning ML System
+            <h6 className="fw-bold mb-3" style={{ color: 'var(--text-primary)' }}>
+              Assigned Teaching Courses (Select to Switch Active Roster)
             </h6>
-            <span className="text-muted small">AI-assisted identification of students requiring immediate academic intervention</span>
-          </div>
-
-          <div className="d-flex gap-2">
-            <span className="badge badge-risk-high p-2">🔴 {highRiskStudents.length} High Risk</span>
-            <span className="badge badge-risk-med p-2">🟠 {medRiskStudents.length} Medium Risk</span>
-            <span className="badge badge-risk-low p-2">🟢 {lowRiskStudents.length} Low Risk</span>
-          </div>
-        </div>
-
-        {/* At-Risk Student Cards */}
-        <div className="row g-3">
-          {highRiskStudents.slice(0, 3).map(stu => (
-            <div key={stu.student_id} className="col-12 col-md-4">
-              <div className="p-3 bg-light rounded-3 border border-danger h-100">
-                <div className="d-flex justify-content-between align-items-start mb-2">
-                  <div>
-                    <h6 className="fw-bold mb-0 text-dark">{stu.student_name}</h6>
-                    <span className="text-muted font-mono" style={{ fontSize: '0.72rem' }}>{stu.student_id}</span>
+            <div className="row g-3">
+              {handledCourses.map((c, idx) => {
+                const isSelected = selectedCourseIndex === idx;
+                return (
+                  <div key={c.course_code} className="col-12 col-md-6">
+                    <div
+                      className={`erp-card p-3 transition-all ${isSelected ? 'border-primary ring-2' : ''}`}
+                      style={{
+                        cursor: 'pointer',
+                        borderWidth: isSelected ? '2px' : '1px',
+                        borderColor: isSelected ? '#4f46e5' : 'var(--border-color)'
+                      }}
+                      onClick={() => setSelectedCourseIndex(idx)}
+                    >
+                      <div className="d-flex justify-content-between align-items-start mb-2">
+                        <div>
+                          <span className="badge bg-light text-dark border font-mono">{c.course_code}</span>
+                          <h6 className="fw-bold my-1" style={{ color: 'var(--text-primary)' }}>{c.course_title}</h6>
+                          <span className="text-muted small">{c.section} • Semester {c.semester}</span>
+                        </div>
+                        <span className={`badge ${isSelected ? 'bg-primary' : 'bg-light text-muted border'}`}>
+                          {isSelected ? 'Active Selection' : 'Select'}
+                        </span>
+                      </div>
+                      <div className="d-flex justify-content-between text-muted small pt-2 border-top" style={{ borderColor: 'var(--border-color)' }}>
+                        <span>Schedule: <strong>{c.schedule}</strong></span>
+                        <span>Hall: <strong>{c.classroom}</strong></span>
+                      </div>
+                    </div>
                   </div>
-                  <span className="badge badge-risk-high">HIGH RISK</span>
-                </div>
+                );
+              })}
+            </div>
+          </div>
 
-                <div className="small text-danger mb-2">
-                  <div>• Attendance: <strong>{stu.attendance_percentage}%</strong> (Shortage)</div>
-                  <div>• Internal Marks: <strong>{stu.internal_marks} / 30</strong></div>
-                  <div>• Status: Exam Debarment Risk</div>
+          {/* Today's Lectures Timeline */}
+          <div className="erp-card p-4">
+            <h6 className="fw-bold mb-3" style={{ color: 'var(--text-primary)' }}>
+              <i className="bi bi-clock-history text-primary me-2"></i> Today's Lecture Schedule
+            </h6>
+            <div className="row g-3">
+              {facultyTodaySchedule.map((cls, idx) => (
+                <div key={idx} className="col-12 col-md-4">
+                  <div className="p-3 rounded-3 border bg-light h-100 d-flex flex-column justify-content-between">
+                    <div>
+                      <div className="d-flex justify-content-between align-items-center mb-2">
+                        <span className="badge bg-secondary font-mono">{cls.course}</span>
+                        <span className={`badge ${cls.status === 'COMPLETED' ? 'bg-secondary' : cls.status === 'IN_PROGRESS' ? 'bg-primary' : 'bg-light text-dark border'}`}>
+                          {cls.status}
+                        </span>
+                      </div>
+                      <div className="fw-bold small mb-1">{cls.title}</div>
+                      <div className="text-muted small"><i className="bi bi-geo-alt me-1"></i> {cls.room} ({cls.section})</div>
+                    </div>
+                    <div className="mt-3 pt-2 border-top text-muted small fw-semibold font-mono">
+                      <i className="bi bi-clock me-1"></i> {cls.time}
+                    </div>
+                  </div>
                 </div>
+              ))}
+            </div>
+          </div>
 
-                <div className="p-2 bg-white rounded border small text-muted mb-2" style={{ fontSize: '0.75rem' }}>
-                  <strong>Recommended Action:</strong> Schedule urgent 1-on-1 mentoring meeting.
-                </div>
-
-                <div className="d-flex gap-2">
-                  <button
-                    className="btn btn-sm btn-outline-danger flex-grow-1"
-                    style={{ fontSize: '0.72rem' }}
-                    onClick={() => setSelectedStudentForWarning(stu)}
-                  >
-                    <i className="bi bi-envelope me-1"></i> Send Notice
-                  </button>
-                  <button
-                    className="btn btn-sm btn-outline-primary flex-grow-1"
-                    style={{ fontSize: '0.72rem' }}
-                    onClick={() => {
-                      setWhatIfStudent(stu);
-                      setSimAttendance(stu.attendance_percentage);
-                      setSimInternals(stu.internal_marks);
-                      setActiveTab('WHAT_IF');
-                    }}
-                  >
-                    <i className="bi bi-sliders me-1"></i> What-If
-                  </button>
-                </div>
+          {/* Enrolled Student Roster Table */}
+          <div className="erp-card p-4">
+            <div className="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom" style={{ borderColor: 'var(--border-color)' }}>
+              <div>
+                <h6 className="fw-bold mb-0" style={{ color: 'var(--text-primary)' }}>
+                  Enrolled Students — {activeCourse.course_title} ({enrolledStudents.length} Students)
+                </h6>
+                <span className="text-muted small">Course section roster with aggregate attendance and internal marks</span>
+              </div>
+              <div className="d-flex gap-2">
+                <button
+                  type="button"
+                  className="btn btn-sm btn-outline-primary"
+                  onClick={() => setActiveTab('attendance')}
+                >
+                  <i className="bi bi-check2-square me-1"></i> Mark Attendance
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-sm btn-outline-info"
+                  onClick={() => setActiveTab('marks')}
+                >
+                  <i className="bi bi-pencil-square me-1"></i> Enter Marks
+                </button>
               </div>
             </div>
-          ))}
-        </div>
-      </div>
 
-      {/* 5. Workflow Mode Switcher Bar */}
-      <div className="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
-        <div className="btn-group btn-group-sm shadow-sm">
-          <button
-            className={`btn ${activeTab === 'ROSTER' ? 'btn-primary' : 'btn-light border'}`}
-            style={activeTab === 'ROSTER' ? { background: '#4f46e5', borderColor: '#4f46e5' } : {}}
-            onClick={() => setActiveTab('ROSTER')}
-          >
-            <i className="bi bi-table me-1"></i> Enrolled Student Roster
-          </button>
-          <button
-            className={`btn ${activeTab === 'WHAT_IF' ? 'btn-primary' : 'btn-light border'}`}
-            style={activeTab === 'WHAT_IF' ? { background: '#4f46e5', borderColor: '#4f46e5' } : {}}
-            onClick={() => setActiveTab('WHAT_IF')}
-          >
-            <i className="bi bi-sliders me-1"></i> Faculty What-If Simulator
-          </button>
-          <button
-            className={`btn ${activeTab === 'ATTENDANCE_TAKER' ? 'btn-primary' : 'btn-light border'}`}
-            style={activeTab === 'ATTENDANCE_TAKER' ? { background: '#4f46e5', borderColor: '#4f46e5' } : {}}
-            onClick={() => setActiveTab('ATTENDANCE_TAKER')}
-          >
-            <i className="bi bi-check2-square me-1"></i> Mark Daily Roll Call
-          </button>
-          <button
-            className={`btn ${activeTab === 'GRADING' ? 'btn-primary' : 'btn-light border'}`}
-            style={activeTab === 'GRADING' ? { background: '#4f46e5', borderColor: '#4f46e5' } : {}}
-            onClick={() => setActiveTab('GRADING')}
-          >
-            <i className="bi bi-input-cursor-text me-1"></i> Grade Sheet Editor
-          </button>
-        </div>
-      </div>
-
-      {/* MODE 1: ENROLLED STUDENT ROSTER TABLE */}
-      {activeTab === 'ROSTER' && (
-        <div className="metric-card mb-4">
-          <div className="d-flex justify-content-between align-items-center mb-3">
-            <h6 className="fw-bold mb-0">Enrolled Student Roster & Shortage Tracker</h6>
-            <span className="badge bg-light text-dark border">Managing {enrolledStudents.length} Students</span>
-          </div>
-
-          <div className="table-responsive">
-            <table className="table table-hover align-middle mb-0 small">
-              <thead className="table-light">
-                <tr>
-                  <th>Student ID</th>
-                  <th>Student Name</th>
-                  <th>Attendance Rate</th>
-                  <th>Status</th>
-                  <th>Internal Marks (30)</th>
-                  <th>Projected Grade</th>
-                  <th className="text-end">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {enrolledStudents.map(s => {
-                  const isCritical = s.attendance_percentage < 60;
-                  const isWarning = s.attendance_percentage >= 60 && s.attendance_percentage < 75;
-                  const isGood = s.attendance_percentage >= 75;
-                  return (
-                    <tr key={s.student_id}>
-                      <td className="font-mono fw-bold text-primary">{s.student_id}</td>
-                      <td>
-                        <div className="fw-semibold text-dark">{s.student_name}</div>
-                        <div className="text-muted" style={{ fontSize: '0.72rem' }}>{s.email}</div>
-                      </td>
-                      <td>
-                        <div className="d-flex align-items-center gap-2">
-                          <div className="progress flex-grow-1" style={{ height: '6px', minWidth: '60px' }}>
-                            <div
-                              className={`progress-bar ${isGood ? 'bg-success' : isWarning ? 'bg-warning' : 'bg-danger'}`}
-                              style={{ width: `${Math.min(100, s.attendance_percentage)}%` }}
-                            ></div>
-                          </div>
-                          <span className="fw-bold">{s.attendance_percentage}%</span>
-                        </div>
-                      </td>
-                      <td>
-                        <span className={`badge ${isGood ? 'bg-light text-success border' : isWarning ? 'bg-warning text-dark' : 'bg-danger text-white'}`}>
-                          {isGood ? 'Good' : isWarning ? 'Warning' : 'Critical'}
-                        </span>
-                      </td>
-                      <td>
-                        <strong>{editingMarks[s.student_id] ?? s.internal_marks}</strong> / 30
-                      </td>
-                      <td><span className="badge bg-light text-dark border font-mono">{s.grade_letter}</span></td>
-                      <td className="text-end">
-                        <div className="d-flex gap-1 justify-content-end">
-                          {s.is_shortage && (
+            <div className="table-responsive">
+              <table className="table table-hover align-middle mb-0 small">
+                <thead className="table-light">
+                  <tr>
+                    <th>Student ID</th>
+                    <th>Full Name</th>
+                    <th>Section</th>
+                    <th className="text-center">Attended / Total</th>
+                    <th className="text-center">Attendance %</th>
+                    <th className="text-center">Internal Score (30)</th>
+                    <th className="text-center">Compliance</th>
+                    <th className="text-center">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {enrolledStudents.map(s => {
+                    const isShort = s.is_shortage || s.attendance_percentage < 75.0;
+                    return (
+                      <tr key={s.student_id}>
+                        <td className="font-mono fw-bold text-primary">{s.student_id}</td>
+                        <td className="fw-semibold" style={{ color: 'var(--text-primary)' }}>{s.student_name}</td>
+                        <td>{s.section}</td>
+                        <td className="text-center font-mono">{s.classes_attended} / {s.total_classes}</td>
+                        <td className="text-center">
+                          <span className={`fw-bold font-mono ${isShort ? 'text-danger' : 'text-success'}`}>
+                            {s.attendance_percentage}%
+                          </span>
+                        </td>
+                        <td className="text-center font-mono fw-bold">{s.internal_marks} / 30</td>
+                        <td className="text-center">
+                          <span className={!isShort ? 'status-badge-healthy' : 'status-badge-critical'}>
+                            {!isShort ? 'Satisfied' : 'Debarment Risk'}
+                          </span>
+                        </td>
+                        <td className="text-center">
+                          {isShort && (
                             <button
-                              className="btn btn-sm btn-outline-danger py-0 px-2 rounded-pill"
+                              type="button"
+                              className="btn btn-sm btn-outline-danger py-0 px-2"
                               style={{ fontSize: '0.72rem' }}
                               onClick={() => setSelectedStudentForWarning(s)}
                             >
-                              <i className="bi bi-exclamation-triangle me-1"></i> Warning
+                              Dispatch Notice
                             </button>
                           )}
-                          <button
-                            className="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill"
-                            style={{ fontSize: '0.72rem' }}
-                            onClick={() => {
-                              setWhatIfStudent(s);
-                              setSimAttendance(s.attendance_percentage);
-                              setSimInternals(s.internal_marks);
-                              setActiveTab('WHAT_IF');
-                            }}
-                          >
-                            <i className="bi bi-sliders me-1"></i> What-If
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       )}
 
-      {/* MODE 2: FACULTY WHAT-IF SCENARIO ANALYZER */}
-      {activeTab === 'WHAT_IF' && whatIfStudent && (
-        <div className="metric-card mb-4 border-primary">
-          <div className="d-flex justify-content-between align-items-center mb-3">
+      {/* =================================================================== */}
+      {/* SUB-VIEW 2: DAILY ATTENDANCE MARKER TOOL */}
+      {/* =================================================================== */}
+      {activeTab === 'attendance' && (
+        <div className="erp-card p-4">
+          <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4 pb-3 border-bottom" style={{ borderColor: 'var(--border-color)' }}>
             <div>
-              <h5 className="fw-bold mb-0 text-primary"><i className="bi bi-sliders me-2"></i> Faculty Scenario Analysis (What-If Simulation)</h5>
-              <span className="text-muted small">Test academic remediation interventions for advisee candidate</span>
-            </div>
-            <button className="btn btn-sm btn-outline-secondary" onClick={() => setActiveTab('ROSTER')}>
-              ← Back to Roster
-            </button>
-          </div>
-
-          <div className="bg-light p-3 rounded-3 border mb-4">
-            <div className="d-flex justify-content-between align-items-center">
-              <div>
-                <h6 className="fw-bold mb-1">{whatIfStudent.student_name} ({whatIfStudent.student_id})</h6>
-                <div className="text-muted small">Course: {activeCourse.course_code} - {activeCourse.course_title}</div>
-              </div>
-              <div className="text-end">
-                <div className="small text-muted">Current Risk Standing</div>
-                <span className={`badge fs-6 ${whatIfStudent.risk_level === 'HIGH' ? 'badge-risk-high' : 'badge-risk-low'}`}>
-                  {whatIfStudent.risk_level || 'HIGH'} RISK
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div className="row g-4 mb-4">
-            <div className="col-12 col-md-6">
-              <label className="form-label small fw-semibold">
-                Simulated Attendance Rate: <strong className="text-primary">{simAttendance}%</strong>
-              </label>
-              <input
-                type="range"
-                className="form-range"
-                min="40"
-                max="95"
-                step="1"
-                value={simAttendance}
-                onChange={(e) => setSimAttendance(parseInt(e.target.value))}
-              />
-              <div className="d-flex justify-content-between text-muted" style={{ fontSize: '0.72rem' }}>
-                <span>40% (Debarred)</span>
-                <span>75% (Eligibility)</span>
-                <span>95% (Distinction)</span>
-              </div>
-            </div>
-
-            <div className="col-12 col-md-6">
-              <label className="form-label small fw-semibold">
-                Simulated Internal Assessment Marks: <strong className="text-primary">{simInternals} / 30</strong>
-              </label>
-              <input
-                type="range"
-                className="form-range"
-                min="5"
-                max="30"
-                step="1"
-                value={simInternals}
-                onChange={(e) => setSimInternals(parseInt(e.target.value))}
-              />
-              <div className="d-flex justify-content-between text-muted" style={{ fontSize: '0.72rem' }}>
-                <span>5 / 30 (Fail)</span>
-                <span>15 / 30 (Pass)</span>
-                <span>30 / 30 (Centum)</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Simulation Outcome Card */}
-          <div className="p-4 bg-white rounded-3 border text-center">
-            <div className="text-muted small mb-1">Scenario Outcome Impact:</div>
-            <div className="d-flex justify-content-center align-items-center gap-3 my-2">
-              <span className="badge badge-risk-high fs-6 p-2">Current Risk: {whatIfStudent.risk_level || 'HIGH'}</span>
-              <i className="bi bi-arrow-right fs-4 text-muted"></i>
-              <span className={`badge fs-6 p-2 ${simulatedRisk === 'LOW' ? 'bg-success text-white' : simulatedRisk === 'MEDIUM' ? 'bg-warning text-dark' : 'bg-danger text-white'}`}>
-                Simulated Risk: {simulatedRisk} RISK
-              </span>
-            </div>
-            <p className="text-muted small mb-0">
-              {simulatedRisk === 'LOW'
-                ? '✓ Reaching 75% attendance and 20+ internal marks successfully restores the student to safe standing.'
-                : '⚠ Remedial tutoring and mandatory laboratory attendance required to further mitigate academic risk.'}
-            </p>
-          </div>
-        </div>
-      )}
-
-      {/* MODE 3: DAILY ATTENDANCE MARKER TOOL */}
-      {activeTab === 'ATTENDANCE_TAKER' && (
-        <div className="metric-card mb-4 border-primary">
-          <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3 gap-2">
-            <div>
-              <h5 className="fw-bold mb-0 text-primary">
-                <i className="bi bi-calendar2-check-fill me-2"></i>
-                Daily Roll Call Marker: {activeCourse.course_code} ({activeCourse.section})
+              <h5 className="fw-bold mb-1" style={{ color: 'var(--text-primary)' }}>
+                <i className="bi bi-check2-square text-primary me-2"></i> Daily Class Attendance Marker
               </h5>
-              <span className="text-muted small">Record today's lecture roll call and save to warehouse.</span>
+              <span className="text-muted small">Select class, date, and toggle attendance records for {activeCourse.course_title}</span>
             </div>
 
-            <div className="d-flex gap-2 align-items-center">
-              <input
-                type="date"
-                className="form-control form-control-sm"
-                value={attendanceDate}
-                onChange={(e) => setAttendanceDate(e.target.value)}
-              />
-              <button className="btn btn-sm btn-outline-success" onClick={() => handleMarkAll('PRESENT')}>
+            {/* Attendance Controls */}
+            <div className="d-flex flex-wrap align-items-center gap-2">
+              <div className="d-flex align-items-center gap-1">
+                <label className="text-muted small fw-semibold">Date:</label>
+                <input
+                  type="date"
+                  className="form-control form-control-sm font-mono"
+                  value={attendanceDate}
+                  onChange={e => setAttendanceDate(e.target.value)}
+                  style={{ width: '150px' }}
+                />
+              </div>
+              <button
+                type="button"
+                className="btn btn-sm btn-outline-success"
+                onClick={() => handleBulkAttendance('PRESENT')}
+              >
                 Mark All Present
               </button>
-              <button className="btn btn-sm btn-outline-secondary" onClick={() => handleMarkAll('ABSENT')}>
+              <button
+                type="button"
+                className="btn btn-sm btn-outline-danger"
+                onClick={() => handleBulkAttendance('ABSENT')}
+              >
                 Mark All Absent
               </button>
             </div>
           </div>
 
-          <div className="table-responsive mb-3">
-            <table className="table table-hover align-middle mb-0 small">
-              <thead className="table-light">
-                <tr>
-                  <th>Roll No</th>
-                  <th>Student Name</th>
-                  <th>Overall Attendance</th>
-                  <th>Session Status ({attendanceDate})</th>
-                </tr>
-              </thead>
-              <tbody>
-                {enrolledStudents.map(s => {
-                  const currentStatus = dailyAttendanceMap[s.student_id] || 'PRESENT';
-                  return (
-                    <tr key={s.student_id}>
-                      <td className="font-mono fw-bold">{s.student_id}</td>
-                      <td>{s.student_name}</td>
-                      <td>
-                        <span className={`fw-bold ${s.attendance_percentage >= 75 ? 'text-success' : 'text-danger'}`}>
-                          {s.attendance_percentage}%
-                        </span>
-                      </td>
-                      <td>
-                        <div className="btn-group btn-group-sm">
-                          <button
-                            type="button"
-                            className={`btn ${currentStatus === 'PRESENT' ? 'btn-success' : 'btn-outline-secondary'}`}
-                            onClick={() => setDailyAttendanceMap({ ...dailyAttendanceMap, [s.student_id]: 'PRESENT' })}
-                          >
-                            <i className="bi bi-check"></i> Present
-                          </button>
-                          <button
-                            type="button"
-                            className={`btn ${currentStatus === 'ABSENT' ? 'btn-danger' : 'btn-outline-secondary'}`}
-                            onClick={() => setDailyAttendanceMap({ ...dailyAttendanceMap, [s.student_id]: 'ABSENT' })}
-                          >
-                            <i className="bi bi-x"></i> Absent
-                          </button>
-                          <button
-                            type="button"
-                            className={`btn ${currentStatus === 'LATE' ? 'btn-warning' : 'btn-outline-secondary'}`}
-                            onClick={() => setDailyAttendanceMap({ ...dailyAttendanceMap, [s.student_id]: 'LATE' })}
-                          >
-                            Late
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+          {/* Student Search in Attendance */}
+          <div className="mb-3">
+            <input
+              type="text"
+              className="form-control form-control-sm"
+              placeholder="Filter student by name or ID..."
+              value={attendanceSearch}
+              onChange={e => setAttendanceSearch(e.target.value)}
+              style={{ maxWidth: '300px' }}
+            />
           </div>
 
-          <div className="d-flex justify-content-end gap-2">
-            <button className="btn btn-sm btn-secondary" onClick={() => setActiveTab('ROSTER')}>Cancel</button>
-            <button className="btn btn-sm btn-primary" onClick={handleSaveDailyAttendance} style={{ background: '#4f46e5', borderColor: '#4f46e5' }}>
-              <i className="bi bi-cloud-check-fill me-1"></i> Save Attendance Session
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* MODE 4: INTERNAL ASSESSMENT GRADING SHEET */}
-      {activeTab === 'GRADING' && (
-        <div className="metric-card mb-4 border-info">
-          <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3 gap-2">
-            <div>
-              <h5 className="fw-bold mb-0 text-info">
-                <i className="bi bi-card-checklist me-2"></i>
-                Internal Assessment Grading Sheet (Max: 30 Marks)
-              </h5>
-              <span className="text-muted small">Update mid-term scores and evaluate class performance.</span>
-            </div>
-          </div>
-
-          <div className="table-responsive mb-3">
+          {/* Student Toggle Table */}
+          <div className="table-responsive mb-4">
             <table className="table table-hover align-middle mb-0 small">
               <thead className="table-light">
                 <tr>
                   <th>Student ID</th>
                   <th>Student Name</th>
-                  <th>Current Marks (out of 30)</th>
-                  <th>Standing</th>
+                  <th>Current Aggregate %</th>
+                  <th className="text-center">Attendance for {attendanceDate}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {enrolledStudents
+                  .filter(s => !attendanceSearch || s.student_name.toLowerCase().includes(attendanceSearch.toLowerCase()) || s.student_id.toLowerCase().includes(attendanceSearch.toLowerCase()))
+                  .map(s => {
+                    const status = dailyAttendanceMap[s.student_id] || 'PRESENT';
+                    return (
+                      <tr key={s.student_id}>
+                        <td className="font-mono fw-bold text-primary">{s.student_id}</td>
+                        <td className="fw-semibold" style={{ color: 'var(--text-primary)' }}>{s.student_name}</td>
+                        <td className="font-mono">{s.attendance_percentage}%</td>
+                        <td className="text-center">
+                          <div className="btn-group btn-group-sm" role="group">
+                            <button
+                              type="button"
+                              className={`btn ${status === 'PRESENT' ? 'btn-success' : 'btn-outline-secondary'}`}
+                              onClick={() => setDailyAttendanceMap({ ...dailyAttendanceMap, [s.student_id]: 'PRESENT' })}
+                            >
+                              <i className="bi bi-check-lg me-1"></i> Present
+                            </button>
+                            <button
+                              type="button"
+                              className={`btn ${status === 'ABSENT' ? 'btn-danger' : 'btn-outline-secondary'}`}
+                              onClick={() => setDailyAttendanceMap({ ...dailyAttendanceMap, [s.student_id]: 'ABSENT' })}
+                            >
+                              <i className="bi bi-x-lg me-1"></i> Absent
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })}
+              </tbody>
+            </table>
+          </div>
+
+          <div className="d-flex justify-content-between align-items-center pt-3 border-top" style={{ borderColor: 'var(--border-color)' }}>
+            <span className="text-muted small">
+              Present: <strong>{Object.values(dailyAttendanceMap).filter(v => v === 'PRESENT').length}</strong> | Absent: <strong className="text-danger">{Object.values(dailyAttendanceMap).filter(v => v === 'ABSENT').length}</strong>
+            </span>
+            <div className="d-flex gap-2">
+              <button type="button" className="btn btn-sm btn-secondary" onClick={() => setActiveTab('roster')}>Cancel</button>
+              <button type="button" className="btn btn-sm btn-primary" onClick={handleSaveDailyAttendance}>
+                <i className="bi bi-cloud-check-fill me-1"></i> Save Attendance Session
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* =================================================================== */}
+      {/* SUB-VIEW 3: INTERNAL ASSESSMENT MARKS ENTRY MODULE */}
+      {/* =================================================================== */}
+      {activeTab === 'marks' && (
+        <div className="erp-card p-4">
+          <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4 pb-3 border-bottom" style={{ borderColor: 'var(--border-color)' }}>
+            <div>
+              <h5 className="fw-bold mb-1" style={{ color: 'var(--text-primary)' }}>
+                <i className="bi bi-pencil-square text-primary me-2"></i> Internal Assessment Grading Sheet
+              </h5>
+              <span className="text-muted small">Enter continuous internal assessment scores (Maximum Marks: {MAX_MARKS})</span>
+            </div>
+
+            {/* Assessment Type Selector & Class Average */}
+            <div className="d-flex align-items-center gap-3">
+              <select
+                className="form-select form-select-sm"
+                value={selectedAssessmentType}
+                onChange={e => setSelectedAssessmentType(e.target.value)}
+                style={{ width: '200px' }}
+              >
+                <option value="INTERNAL_1">Internal Assessment 1 (30 M)</option>
+                <option value="INTERNAL_2">Internal Assessment 2 (30 M)</option>
+                <option value="ASSIGNMENT">Assignment & Term Paper (10 M)</option>
+                <option value="LAB_PRACTICAL">Laboratory Continuous Eval (25 M)</option>
+              </select>
+              <div className="p-2 rounded bg-light border text-center font-mono small">
+                <span className="text-muted d-block" style={{ fontSize: '0.65rem' }}>Class Average</span>
+                <strong className="text-primary">{classAvgMark} / {MAX_MARKS}</strong>
+              </div>
+            </div>
+          </div>
+
+          {/* Student Marks Table with Live Max-Mark Validation */}
+          <div className="table-responsive mb-4">
+            <table className="table table-hover align-middle mb-0 small">
+              <thead className="table-light">
+                <tr>
+                  <th>Student ID</th>
+                  <th>Student Name</th>
+                  <th>Internal Score (out of {MAX_MARKS})</th>
+                  <th>Performance Standing</th>
                 </tr>
               </thead>
               <tbody>
                 {enrolledStudents.map(s => {
-                  const val = editingMarks[s.student_id] ?? s.internal_marks;
+                  const val = editingMarks[s.student_id] ?? s.internal_marks ?? 20;
+                  const err = marksErrors[s.student_id];
                   return (
                     <tr key={s.student_id}>
-                      <td className="font-mono fw-bold">{s.student_id}</td>
-                      <td>{s.student_name}</td>
-                      <td style={{ width: '150px' }}>
+                      <td className="font-mono fw-bold text-primary">{s.student_id}</td>
+                      <td className="fw-semibold" style={{ color: 'var(--text-primary)' }}>{s.student_name}</td>
+                      <td style={{ width: '220px' }}>
                         <div className="input-group input-group-sm">
                           <input
                             type="number"
-                            className="form-control form-control-sm font-mono"
+                            className={`form-control font-mono ${err ? 'is-invalid border-danger' : ''}`}
                             min="0"
-                            max="30"
+                            max={MAX_MARKS}
                             value={val}
-                            onChange={(e) => setEditingMarks({ ...editingMarks, [s.student_id]: parseInt(e.target.value) || 0 })}
+                            onChange={e => handleMarkChange(s.student_id, e.target.value)}
                           />
-                          <span className="input-group-text">/ 30</span>
+                          <span className="input-group-text">/ {MAX_MARKS}</span>
                         </div>
+                        {err && (
+                          <div className="text-danger small mt-1" style={{ fontSize: '0.72rem' }}>
+                            <i className="bi bi-exclamation-circle me-1"></i> {err}
+                          </div>
+                        )}
                       </td>
                       <td>
-                        {val < 15 ? (
-                          <span className="badge bg-danger">Remedial Required (&lt; 50%)</span>
-                        ) : val >= 25 ? (
-                          <span className="badge bg-success">Distinction</span>
+                        {val >= 25 ? (
+                          <span className="badge bg-success-subtle text-success border border-success-subtle">Distinction (&ge; 85%)</span>
+                        ) : val >= 15 ? (
+                          <span className="badge bg-primary-subtle text-primary border border-primary-subtle">Good Standing</span>
                         ) : (
-                          <span className="badge bg-light text-dark border">Passing</span>
+                          <span className="badge bg-danger-subtle text-danger border border-danger-subtle">Remedial Support (&lt; 50%)</span>
                         )}
                       </td>
                     </tr>
@@ -793,133 +727,223 @@ export default function FacultyPortal() {
             </table>
           </div>
 
-          <div className="d-flex justify-content-end gap-2">
-            <button className="btn btn-sm btn-secondary" onClick={() => setActiveTab('ROSTER')}>Cancel</button>
-            <button className="btn btn-sm btn-info text-white" onClick={handleSaveMarks} style={{ background: '#0ea5e9', borderColor: '#0ea5e9' }}>
-              <i className="bi bi-save me-1"></i> Save Grade Sheet
+          <div className="d-flex justify-content-end gap-2 pt-3 border-top" style={{ borderColor: 'var(--border-color)' }}>
+            <button type="button" className="btn btn-sm btn-secondary" onClick={() => setActiveTab('roster')}>Cancel</button>
+            <button type="button" className="btn btn-sm btn-primary" onClick={handleSaveMarks}>
+              <i className="bi bi-save-fill me-1"></i> Submit Grade Sheet
             </button>
           </div>
         </div>
       )}
 
-      {/* Warning Notice Dispatch Modal */}
-      {selectedStudentForWarning && (
+      {/* =================================================================== */}
+      {/* SUB-VIEW 4: AT-RISK ATTENDANCE WARNINGS */}
+      {/* =================================================================== */}
+      {activeTab === 'warnings' && (
+        <div className="erp-card p-4">
+          <div className="mb-4 pb-2 border-bottom" style={{ borderColor: 'var(--border-color)' }}>
+            <h5 className="fw-bold mb-1" style={{ color: 'var(--text-primary)' }}>
+              <i className="bi bi-exclamation-triangle-fill text-danger me-2"></i> Attendance Shortage & Debarment Warnings
+            </h5>
+            <span className="text-muted small">
+              Students in {activeCourse.course_code} ({activeCourse.section}) with aggregate attendance below the statutory 75% threshold
+            </span>
+          </div>
+
+          <div className="table-responsive">
+            <table className="table table-hover align-middle mb-0 small">
+              <thead className="table-light">
+                <tr>
+                  <th>Student ID</th>
+                  <th>Student Name</th>
+                  <th>Classes Attended</th>
+                  <th>Classes Missed</th>
+                  <th className="text-center">Current %</th>
+                  <th className="text-center">Classes Needed to Reach 75%</th>
+                  <th className="text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {atRiskStudents.map(s => {
+                  const needed = Math.max(0, Math.ceil((0.75 * s.total_classes - s.classes_attended) / 0.25));
+                  return (
+                    <tr key={s.student_id}>
+                      <td className="font-mono fw-bold text-primary">{s.student_id}</td>
+                      <td className="fw-semibold" style={{ color: 'var(--text-primary)' }}>{s.student_name}</td>
+                      <td className="font-mono text-center">{s.classes_attended}</td>
+                      <td className="font-mono text-center text-danger">{s.total_classes - s.classes_attended}</td>
+                      <td className="text-center font-mono fw-bold text-danger">{s.attendance_percentage}%</td>
+                      <td className="text-center">
+                        <span className="badge bg-danger-subtle text-danger border border-danger-subtle">
+                          Must attend {needed} consecutive classes
+                        </span>
+                      </td>
+                      <td className="text-center">
+                        <button
+                          type="button"
+                          className="btn btn-sm btn-danger py-1 px-2"
+                          style={{ fontSize: '0.75rem' }}
+                          onClick={() => handleDispatchWarning(s)}
+                        >
+                          <i className="bi bi-send-fill me-1"></i> Dispatch Notice
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
+      {/* =================================================================== */}
+      {/* SUB-VIEW 5: MENTORSHIP & COUNSELING LOGS */}
+      {/* =================================================================== */}
+      {activeTab === 'mentoring' && (
+        <div className="erp-card p-4">
+          <div className="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom" style={{ borderColor: 'var(--border-color)' }}>
+            <div>
+              <h5 className="fw-bold mb-1" style={{ color: 'var(--text-primary)' }}>
+                <i className="bi bi-chat-left-text-fill text-primary me-2"></i> Faculty Advisee Mentorship & Counseling Log
+              </h5>
+              <span className="text-muted small">Record and track academic guidance sessions and remediation plans</span>
+            </div>
+            <button
+              type="button"
+              className="btn btn-sm btn-primary"
+              onClick={() => setShowLogModal(true)}
+            >
+              <i className="bi bi-plus-lg me-1"></i> New Counseling Entry
+            </button>
+          </div>
+
+          <div className="table-responsive">
+            <table className="table table-hover align-middle mb-0 small">
+              <thead className="table-light">
+                <tr>
+                  <th>Date</th>
+                  <th>Student ID</th>
+                  <th>Student Name</th>
+                  <th>Course</th>
+                  <th>Discussion Topic</th>
+                  <th>Agreed Remedial Action</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {mentorshipLogs.map(log => (
+                  <tr key={log.id}>
+                    <td>{log.date}</td>
+                    <td className="font-mono fw-bold text-primary">{log.student_id}</td>
+                    <td className="fw-semibold" style={{ color: 'var(--text-primary)' }}>{log.student_name}</td>
+                    <td><span className="badge bg-light text-dark border font-mono">{log.course_code}</span></td>
+                    <td className="fw-semibold">{log.topic}</td>
+                    <td className="text-muted">{log.action}</td>
+                    <td>
+                      <span className="badge bg-warning-subtle text-warning border border-warning-subtle">
+                        {log.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
+      {/* MODAL: LOG COUNSELING SESSION */}
+      {showLogModal && (
         <div className="modal show d-block" style={{ backgroundColor: 'rgba(15,23,42,0.65)', backdropFilter: 'blur(6px)' }} tabIndex="-1">
           <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
-              <div className="modal-header bg-danger text-white p-3 px-4 d-print-none">
-                <h5 className="modal-title fs-6"><i className="bi bi-exclamation-triangle-fill me-2"></i> Official Attendance Warning Notice</h5>
-                <button type="button" className="btn-close btn-close-white" onClick={() => setSelectedStudentForWarning(null)}></button>
+              <div className="modal-header bg-dark text-white p-3 px-4">
+                <h6 className="modal-title fw-bold">Log Advisee Counseling Session</h6>
+                <button type="button" className="btn-close btn-close-white" onClick={() => setShowLogModal(false)}></button>
               </div>
-              <div className="modal-body p-4 bg-light">
-                <div className="border p-4 rounded-3 bg-white font-mono small mb-3 printable-area">
-                  <div className="text-center fw-bold border-bottom pb-2 mb-3">
-                    <div className="fs-5">OFFICIAL COURSE DEBARMENT ADVISORY</div>
-                    <div className="text-muted fw-normal" style={{ fontSize: '0.75rem' }}>Department of {currentFaculty.department_name}</div>
+              <form onSubmit={handleSaveLog}>
+                <div className="modal-body p-4 bg-light small">
+                  <div className="mb-3">
+                    <label className="form-label fw-semibold">Student ID & Name</label>
+                    <select
+                      className="form-select form-select-sm"
+                      value={newLog.student_id}
+                      onChange={e => {
+                        const s = enrolledStudents.find(stu => stu.student_id === e.target.value);
+                        setNewLog({ ...newLog, student_id: e.target.value, student_name: s ? s.student_name : '' });
+                      }}
+                      required
+                    >
+                      <option value="">Select Enrolled Advisee Student...</option>
+                      {enrolledStudents.map(s => (
+                        <option key={s.student_id} value={s.student_id}>
+                          {s.student_id} — {s.student_name} ({s.attendance_percentage}%)
+                        </option>
+                      ))}
+                    </select>
                   </div>
-                  <div><strong>Student Name:</strong> {selectedStudentForWarning.student_name}</div>
-                  <div><strong>Student ID:</strong> {selectedStudentForWarning.student_id}</div>
-                  <div><strong>Course Code:</strong> {activeCourse.course_code} - {activeCourse.course_title}</div>
-                  <div><strong>Faculty In-Charge:</strong> {currentFaculty.faculty_name}</div>
-                  <div><strong>Current Attendance:</strong> <span className="text-danger fw-bold">{selectedStudentForWarning.attendance_percentage}%</span></div>
-                  <hr />
-                  <p className="mb-0 text-muted" style={{ fontSize: '0.8rem' }}>
-                    You are hereby advised that your course attendance is strictly below the mandatory 75.0% requirement. Failure to attend remaining scheduled classes will lead to end-semester examination debarment.
-                  </p>
+                  <div className="mb-3">
+                    <label className="form-label fw-semibold">Counseling Topic</label>
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      placeholder="e.g. Attendance Shortage & Remedial Makeup Plan"
+                      value={newLog.topic}
+                      onChange={e => setNewLog({ ...newLog, topic: e.target.value })}
+                      required
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label className="form-label fw-semibold">Agreed Action Plan</label>
+                    <textarea
+                      className="form-control form-control-sm"
+                      rows="3"
+                      placeholder="e.g. Student agreed to attend Saturday lab sessions and submit assignments by Friday."
+                      value={newLog.action}
+                      onChange={e => setNewLog({ ...newLog, action: e.target.value })}
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className="modal-footer bg-white p-3 d-print-none">
-                <button type="button" className="btn btn-secondary btn-sm" onClick={() => setSelectedStudentForWarning(null)}>Cancel</button>
-                <button type="button" className="btn btn-outline-dark btn-sm" onClick={() => window.print()}>
-                  <i className="bi bi-printer me-1"></i> Print Warning Notice
-                </button>
-                <button type="button" className="btn btn-danger btn-sm" onClick={() => handleDispatchWarning(selectedStudentForWarning)}>
-                  <i className="bi bi-send me-1"></i> Dispatch Notice
-                </button>
-              </div>
+                <div className="modal-footer bg-white p-3">
+                  <button type="button" className="btn btn-sm btn-secondary" onClick={() => setShowLogModal(false)}>Cancel</button>
+                  <button type="submit" className="btn btn-sm btn-primary">Save Session Record</button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
       )}
 
-      {/* Record Counseling Session Modal */}
-      {showLogModal && (
+      {/* MODAL: DISPATCH ATTENDANCE WARNING */}
+      {selectedStudentForWarning && (
         <div className="modal show d-block" style={{ backgroundColor: 'rgba(15,23,42,0.65)', backdropFilter: 'blur(6px)' }} tabIndex="-1">
           <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
-              <div className="modal-header bg-primary text-white p-3 px-4" style={{ background: '#4f46e5' }}>
-                <h5 className="modal-title fs-6"><i className="bi bi-journal-plus me-2"></i> Log Advisee Mentorship Session</h5>
-                <button type="button" className="btn-close btn-close-white" onClick={() => setShowLogModal(false)}></button>
+              <div className="modal-header bg-danger text-white p-3 px-4">
+                <h6 className="modal-title fw-bold">Official Statutory Attendance Warning</h6>
+                <button type="button" className="btn-close btn-close-white" onClick={() => setSelectedStudentForWarning(null)}></button>
               </div>
-              <form onSubmit={handleSaveLog}>
-                <div className="modal-body p-4 bg-light">
-                  <div className="mb-3">
-                    <label className="form-label small fw-semibold">Select {currentFaculty.department_name?.split(' ')[0]} Student</label>
-                    <select
-                      className="form-select form-select-sm"
-                      value={newLog.student_id}
-                      onChange={(e) => {
-                        const sId = e.target.value;
-                        const match = enrolledStudents.find(s => s.student_id === sId);
-                        setNewLog({
-                          ...newLog,
-                          student_id: sId,
-                          student_name: match ? match.student_name : '',
-                          course_code: activeCourse.course_code
-                        });
-                      }}
-                      required
-                    >
-                      <option value="">-- Choose Enrolled Student --</option>
-                      {enrolledStudents.map(s => (
-                        <option key={s.student_id} value={s.student_id}>
-                          {s.student_name} ({s.student_id}) - {s.attendance_percentage}% Att
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  <div className="mb-3">
-                    <label className="form-label small fw-semibold">Course Code</label>
-                    <input
-                      type="text"
-                      className="form-control form-control-sm font-mono"
-                      value={newLog.course_code || activeCourse.course_code || ''}
-                      onChange={(e) => setNewLog({ ...newLog, course_code: e.target.value.toUpperCase() })}
-                    />
-                  </div>
-
-                  <div className="mb-3">
-                    <label className="form-label small fw-semibold">Discussion Topic</label>
-                    <input
-                      type="text"
-                      className="form-control form-control-sm"
-                      placeholder="e.g. Mid-term remedial classes / Backlog clearing strategy"
-                      value={newLog.topic}
-                      onChange={(e) => setNewLog({ ...newLog, topic: e.target.value })}
-                      required
-                    />
-                  </div>
-
-                  <div className="mb-3">
-                    <label className="form-label small fw-semibold">Agreed Action Items / Next Steps</label>
-                    <textarea
-                      className="form-control form-control-sm"
-                      rows="3"
-                      placeholder="e.g. Advisee agreed to submit 2 pending lab assignments and attend peer tutoring."
-                      value={newLog.action}
-                      onChange={(e) => setNewLog({ ...newLog, action: e.target.value })}
-                    ></textarea>
-                  </div>
+              <div className="modal-body p-4 bg-light small">
+                <p>
+                  You are preparing to dispatch a formal <strong>Statutory Debarment Warning</strong> to:
+                </p>
+                <div className="p-3 bg-white rounded-3 border mb-3">
+                  <div><strong>Student Name:</strong> {selectedStudentForWarning.student_name}</div>
+                  <div><strong>Student ID:</strong> <span className="font-mono">{selectedStudentForWarning.student_id}</span></div>
+                  <div><strong>Course Code:</strong> {activeCourse.course_code} - {activeCourse.course_title}</div>
+                  <div><strong>Current Attendance:</strong> <span className="text-danger fw-bold">{selectedStudentForWarning.attendance_percentage}%</span> (Minimum 75% required)</div>
                 </div>
-
-                <div className="modal-footer bg-white p-3">
-                  <button type="button" className="btn btn-secondary btn-sm" onClick={() => setShowLogModal(false)}>Cancel</button>
-                  <button type="submit" className="btn btn-primary btn-sm" style={{ background: '#4f46e5', borderColor: '#4f46e5' }}>
-                    Save Session Note
-                  </button>
-                </div>
-              </form>
+                <p className="text-muted mb-0">
+                  This notice will be recorded on the student's institutional dashboard and dispatched to their registered email address.
+                </p>
+              </div>
+              <div className="modal-footer bg-white p-3">
+                <button type="button" className="btn btn-sm btn-secondary" onClick={() => setSelectedStudentForWarning(null)}>Cancel</button>
+                <button type="button" className="btn btn-sm btn-danger" onClick={() => handleDispatchWarning(selectedStudentForWarning)}>
+                  Confirm & Dispatch Notice
+                </button>
+              </div>
             </div>
           </div>
         </div>
