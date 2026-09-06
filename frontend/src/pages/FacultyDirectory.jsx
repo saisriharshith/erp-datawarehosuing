@@ -29,12 +29,20 @@ export default function FacultyDirectory() {
   }
 
   const list = data.faculty_list || [];
-  const filteredList = list.filter(f =>
-    f.faculty_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    f.faculty_id.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    f.department_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    f.designation.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredList = list.filter(f => {
+    const fName = (f.faculty_name || f.name || '').toLowerCase();
+    const fId = (f.faculty_id || f._id || '').toLowerCase();
+    const deptName = (f.department_name || f.department || '').toLowerCase();
+    const desig = (f.designation || '').toLowerCase();
+    const term = (searchTerm || '').toLowerCase();
+
+    return (
+      fName.includes(term) ||
+      fId.includes(term) ||
+      deptName.includes(term) ||
+      desig.includes(term)
+    );
+  });
 
   return (
     <div className="p-3 p-md-4">
@@ -127,7 +135,7 @@ export default function FacultyDirectory() {
                 <tr key={f.faculty_id} style={{ cursor: 'pointer' }} onClick={() => setSelectedFacultyModal(f)}>
                   <td className="font-mono fw-bold text-primary">{f.faculty_id}</td>
                   <td>
-                    <div className="fw-semibold" style={{ color: 'var(--erp-text)' }}>{f.faculty_name}</div>
+                    <div className="fw-semibold" style={{ color: 'var(--erp-text)' }}>{f.faculty_name || f.name || 'Faculty Member'}</div>
                     <div className="text-muted" style={{ fontSize: '0.72rem' }}>{f.email}</div>
                   </td>
                   <td><span className="badge bg-body-secondary text-body border">{f.department_name}</span></td>
@@ -167,7 +175,7 @@ export default function FacultyDirectory() {
                 <div>
                   <h5 className="modal-title fs-6 fw-bold mb-0">
                     <i className="bi bi-person-video3 text-warning me-2"></i>
-                    {selectedFacultyModal.faculty_name} ({selectedFacultyModal.department_name})
+                    {selectedFacultyModal.faculty_name || selectedFacultyModal.name || 'Faculty Member'} ({selectedFacultyModal.department_name})
                   </h5>
                   <span className="text-white-50 small">{selectedFacultyModal.designation} | ID: {selectedFacultyModal.faculty_id}</span>
                 </div>

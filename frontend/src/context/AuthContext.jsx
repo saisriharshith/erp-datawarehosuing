@@ -220,7 +220,13 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(() => {
     try {
       const saved = localStorage.getItem('ERP_USER_PROFILE');
-      return saved ? JSON.parse(saved) : null;
+      if (!saved) return null;
+      const parsed = JSON.parse(saved);
+      if (parsed && (parsed.role === 'ADMIN' || parsed.email?.includes('admin') || parsed.email?.includes('provost'))) {
+        parsed.name = 'Admin';
+        localStorage.setItem('ERP_USER_PROFILE', JSON.stringify(parsed));
+      }
+      return parsed;
     } catch {
       return null;
     }
@@ -256,6 +262,9 @@ export function AuthProvider({ children }) {
           role: data.role || 'STUDENT',
           name: email.split('@')[0],
         };
+        if (authedUser.role === 'ADMIN' || authedUser.email?.includes('admin') || authedUser.email?.includes('provost')) {
+          authedUser.name = 'Admin';
+        }
         const authToken = data.accessToken || data.token || 'jwt_active_session';
 
         setUser(authedUser);

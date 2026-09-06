@@ -14,7 +14,16 @@ const api = axios.create({
   timeout: 15000
 });
 
-// Fetch API helper (normalizes /api path, attaches JWT Bearer, unwraps data envelope)
+// Helper to clear invalid credentials and navigate to login
+function clearAuthAndRedirect() {
+  localStorage.removeItem('ERP_AUTH_TOKEN');
+  localStorage.removeItem('ERP_USER_PROFILE');
+  if (typeof window !== 'undefined' && !window.location.pathname.includes('/login')) {
+    window.location.href = '/login?expired=true';
+  }
+}
+
+// Fetch API helper (normalizes /api path, attaches JWT Bearer, handles 401 auto-refresh, unwraps data envelope)
 export const fetchAPI = async (url, options = {}) => {
   let targetUrl = url;
   if (!targetUrl.startsWith('http')) {
@@ -23,21 +32,54 @@ export const fetchAPI = async (url, options = {}) => {
     }
   }
 
-  const token = localStorage.getItem('ERP_AUTH_TOKEN');
+  let token = localStorage.getItem('ERP_AUTH_TOKEN');
   const headers = {
     'Content-Type': 'application/json',
     ...(token ? { Authorization: `Bearer ${token}` } : {}),
     ...(options.headers || {})
   };
 
-  const response = await fetch(targetUrl, {
+  let response = await fetch(targetUrl, {
     credentials: 'include',
     ...options,
     headers
   });
 
+  // Handle 401 Unauthorized: Attempt token refresh first, then graceful redirect
+  if (response.status === 401 && !options._retry && !targetUrl.includes('/auth/')) {
+    try {
+      const refreshRes = await fetch('/api/auth/refresh', {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' }
+      });
+
+      if (refreshRes.ok) {
+        const refreshBody = await refreshRes.json();
+        const newToken = refreshBody?.data?.accessToken || refreshBody?.accessToken;
+        if (newToken) {
+          localStorage.setItem('ERP_AUTH_TOKEN', newToken);
+          headers.Authorization = `Bearer ${newToken}`;
+          response = await fetch(targetUrl, {
+            credentials: 'include',
+            ...options,
+            _retry: true,
+            headers
+          });
+        }
+      } else {
+        clearAuthAndRedirect();
+      }
+    } catch (e) {
+      clearAuthAndRedirect();
+    }
+  }
+
   const data = await response.json().catch(() => ({}));
   if (!response.ok) {
+    if (response.status === 401 && !targetUrl.includes('/auth/')) {
+      clearAuthAndRedirect();
+    }
     const errorMsg = data.message || data.error || `Request failed (${response.status})`;
     throw new Error(errorMsg);
   }
@@ -112,8 +154,7 @@ api.interceptors.response.use(
 
 // Automatic logout helper
 async function logoutAutomatic() {
-  localStorage.removeItem('ERP_AUTH_TOKEN');
-  localStorage.removeItem('ERP_USER_PROFILE');
+  clearAuthAndRedirect();
   // Call server logout
   try {
     await axios.post('/api/auth/logout', {}, { withCredentials: true });

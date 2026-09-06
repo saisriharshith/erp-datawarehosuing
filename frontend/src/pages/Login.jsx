@@ -43,8 +43,9 @@ export default function Login() {
         setError(result.message || 'Invalid institutional credentials. Please try again.');
         if (addToast) addToast(result.message || 'Authentication failed', 'danger');
       } else {
-        if (addToast) addToast(`Welcome back, ${result.user?.name || 'User'}!`, 'success');
         const role = result.user?.role || result.role;
+        const displayName = role === 'ADMIN' ? 'Admin' : (result.user?.name || 'User');
+        if (addToast) addToast(`Welcome back, ${displayName}!`, 'success');
         if (role === 'STUDENT') navigate('/student-portal');
         else if (role === 'FACULTY') navigate('/faculty-portal');
         else if (role === 'ACCOUNTS') navigate('/accounts');

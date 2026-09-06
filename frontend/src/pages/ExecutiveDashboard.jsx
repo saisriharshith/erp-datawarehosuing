@@ -159,11 +159,15 @@ export default function ExecutiveDashboard() {
           <h4 className="fw-bold mb-1" style={{ color: 'var(--text-primary)' }}>Admin Dashboard</h4>
           <p className="text-muted small mb-0">Overview of institutional attendance, academic performance, department rosters, and tuition fee collections.</p>
         </div>
-
-        <div className="d-flex gap-2">
-          <button className="btn btn-sm btn-outline-primary d-flex align-items-center gap-1 shadow-sm" onClick={() => setShowUsersModal(true)}>
+        <div>
+          <button
+            type="button"
+            className="btn btn-primary d-flex align-items-center gap-2 px-3 py-2 fw-semibold shadow-sm"
+            onClick={() => setShowUsersModal(true)}
+            style={{ borderRadius: '10px', fontSize: '0.85rem' }}
+          >
             <i className="bi bi-people-fill"></i>
-            <span>User Accounts</span>
+            <span>User Management & Provisioning</span>
           </button>
         </div>
       </div>
@@ -372,7 +376,7 @@ export default function ExecutiveDashboard() {
                 <h5 className="fw-bold mb-0">Department Enrollment & Performance Profile</h5>
                 <span className="text-muted small">Cross-department comparison of total enrollments vs average student marks</span>
               </div>
-              <span className="badge bg-light text-dark border font-mono">dim_departments</span>
+              <span className="badge bg-light text-dark border">Institutional Divisions</span>
             </div>
             <div style={{ height: '300px' }}>
               <Bar data={deptChartData} options={{ responsive: true, maintainAspectRatio: false }} />
@@ -381,7 +385,7 @@ export default function ExecutiveDashboard() {
 
           <div className="card border-0 shadow-sm rounded-3 bg-white overflow-hidden">
             <div className="p-3 bg-light border-bottom d-flex justify-content-between align-items-center">
-              <h6 className="fw-bold mb-0 text-dark">Department Star Schema Dimension Roster</h6>
+              <h6 className="fw-bold mb-0 text-dark">Department Academic Roster</h6>
               <span className="badge bg-white text-dark border">5 Engineering Divisions</span>
             </div>
             <div className="table-responsive">
@@ -486,9 +490,9 @@ export default function ExecutiveDashboard() {
                 <h5 className="fw-bold mb-0">
                   <i className="bi bi-mortarboard-fill text-primary me-2"></i> Grade Distribution & CGPA Quartiles
                 </h5>
-                <span className="text-muted small">Cross-semester examination evaluation from fact_examinations</span>
+                <span className="text-muted small">Cross-semester institutional examination evaluation</span>
               </div>
-              <span className="badge bg-light text-muted border font-mono">fact_examinations</span>
+              <span className="badge bg-light text-muted border">Examination Records</span>
             </div>
 
             <div className="row g-3 text-center">

@@ -20,7 +20,7 @@ export const auth = async (req, res, next) => {
     if (!payload) return res.status(401).json({ message: 'Invalid or expired access token' });
 
     // Attach full user document to req.user
-    const user = await User.findByEmail(payload.email);
+    const user = await User.findByEmail(payload.email || payload.userId);
     if (!user) return res.status(401).json({ message: 'User not found' });
 
     // Check lockout
@@ -52,7 +52,7 @@ export const optionalAuth = async (req, res, next) => {
     if (token) {
       const payload = verifyAccessToken(token);
       if (payload) {
-        const user = await User.findByEmail(payload.email);
+        const user = await User.findByEmail(payload.email || payload.userId);
         if (user) {
           req.user = user;
         }

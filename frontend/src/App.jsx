@@ -4,7 +4,6 @@ import { useAuth } from './context/AuthContext';
 import RoleGuard from './components/guards/RoleGuard';
 
 import Navbar from './components/Navbar';
-import Sidebar from './components/Sidebar';
 
 import Login from './pages/Login';
 import ExecutiveDashboard from './pages/ExecutiveDashboard';
@@ -13,8 +12,7 @@ import FacultyPortal from './pages/FacultyPortal';
 import AccountsPortal from './pages/AccountsPortal';
 import StudentsDirectory from './pages/StudentsDirectory';
 import FacultyDirectory from './pages/FacultyDirectory';
-import RiskAnalysis from './pages/RiskAnalysis';
-import DataQuality from './pages/DataQuality';
+import FacultyWorkspace from './pages/FacultyWorkspace';
 import Forbidden from './pages/auth/Forbidden';
 import NotFound from './pages/auth/NotFound';
 
@@ -38,7 +36,6 @@ const RoleHomeRedirect = () => {
 
 function ProtectedLayout({ children }) {
   const { isAuth } = useAuth();
-  const [mobileSidebarOpen, setMobileSidebarOpen] = React.useState(false);
 
   if (!isAuth) {
     return <Navigate to="/login" replace />;
@@ -46,15 +43,12 @@ function ProtectedLayout({ children }) {
 
   return (
     <div className="d-flex flex-column min-vh-100" style={{ backgroundColor: 'var(--bg-canvas, #f8fafc)' }}>
-      <Navbar onToggleMobileSidebar={() => setMobileSidebarOpen(prev => !prev)} />
-      <div className="d-flex flex-grow-1 w-100 position-relative">
-        <Sidebar mobileOpen={mobileSidebarOpen} onCloseMobile={() => setMobileSidebarOpen(false)} />
-        <main className="flex-grow-1 p-2 p-sm-3 p-md-4 overflow-auto" style={{ minWidth: 0 }}>
-          <div className="container-fluid py-1 px-1 px-sm-2 px-md-3" style={{ maxWidth: '1440px' }}>
-            {children}
-          </div>
-        </main>
-      </div>
+      <Navbar />
+      <main className="flex-grow-1 p-2 p-sm-3 p-md-4 overflow-auto">
+        <div className="container-fluid py-2 px-2 px-md-4" style={{ maxWidth: '1600px' }}>
+          {children}
+        </div>
+      </main>
     </div>
   );
 }
@@ -148,29 +142,163 @@ export default function App() {
             element={
               <ProtectedLayout>
                 <RoleGuard roles={['ADMIN']}>
-                  <FacultyDirectory />
+                  <FacultyWorkspace />
                 </RoleGuard>
               </ProtectedLayout>
             }
           />
 
           <Route
-            path="/risk-analysis"
-            element={
-              <ProtectedLayout>
-                <RoleGuard roles={['ADMIN', 'FACULTY', 'HOD']}>
-                  <RiskAnalysis />
-                </RoleGuard>
-              </ProtectedLayout>
-            }
-          />
-
-          <Route
-            path="/data-quality"
+            path="/faculty-workspace"
             element={
               <ProtectedLayout>
                 <RoleGuard roles={['ADMIN']}>
-                  <DataQuality />
+                  <FacultyWorkspace />
+                </RoleGuard>
+              </ProtectedLayout>
+            }
+          />
+
+          {/* Student Dedicated Module Routes */}
+          <Route
+            path="/attendance"
+            element={
+              <ProtectedLayout>
+                <RoleGuard roles={['STUDENT', 'FACULTY', 'HOD', 'ADMIN']}>
+                  <StudentPortal defaultTab="attendance" />
+                </RoleGuard>
+              </ProtectedLayout>
+            }
+          />
+
+          <Route
+            path="/marks"
+            element={
+              <ProtectedLayout>
+                <RoleGuard roles={['STUDENT', 'FACULTY', 'HOD', 'ADMIN']}>
+                  <StudentPortal defaultTab="marks" />
+                </RoleGuard>
+              </ProtectedLayout>
+            }
+          />
+
+          <Route
+            path="/cgpa"
+            element={
+              <ProtectedLayout>
+                <RoleGuard roles={['STUDENT', 'FACULTY', 'HOD', 'ADMIN']}>
+                  <StudentPortal defaultTab="cgpa" />
+                </RoleGuard>
+              </ProtectedLayout>
+            }
+          />
+
+          <Route
+            path="/subjects"
+            element={
+              <ProtectedLayout>
+                <RoleGuard roles={['STUDENT', 'FACULTY', 'HOD', 'ADMIN']}>
+                  <StudentPortal defaultTab="subjects" />
+                </RoleGuard>
+              </ProtectedLayout>
+            }
+          />
+
+          <Route
+            path="/timetable"
+            element={
+              <ProtectedLayout>
+                <RoleGuard roles={['STUDENT', 'FACULTY', 'HOD', 'ADMIN']}>
+                  <StudentPortal defaultTab="schedule" />
+                </RoleGuard>
+              </ProtectedLayout>
+            }
+          />
+
+          <Route
+            path="/schedule"
+            element={
+              <ProtectedLayout>
+                <RoleGuard roles={['STUDENT', 'FACULTY', 'HOD', 'ADMIN']}>
+                  <StudentPortal defaultTab="schedule" />
+                </RoleGuard>
+              </ProtectedLayout>
+            }
+          />
+
+          <Route
+            path="/fees"
+            element={
+              <ProtectedLayout>
+                <RoleGuard roles={['STUDENT', 'ACCOUNTS', 'ADMIN']}>
+                  <StudentPortal defaultTab="fees" />
+                </RoleGuard>
+              </ProtectedLayout>
+            }
+          />
+
+          <Route
+            path="/notices"
+            element={
+              <ProtectedLayout>
+                <RoleGuard roles={['STUDENT', 'FACULTY', 'HOD', 'ACCOUNTS', 'ADMIN']}>
+                  <StudentPortal defaultTab="notices" />
+                </RoleGuard>
+              </ProtectedLayout>
+            }
+          />
+
+          <Route
+            path="/documents"
+            element={
+              <ProtectedLayout>
+                <RoleGuard roles={['STUDENT', 'ADMIN']}>
+                  <StudentPortal defaultTab="documents" />
+                </RoleGuard>
+              </ProtectedLayout>
+            }
+          />
+
+          {/* Faculty Dedicated Module Routes */}
+          <Route
+            path="/faculty-attendance"
+            element={
+              <ProtectedLayout>
+                <RoleGuard roles={['FACULTY', 'HOD', 'ADMIN']}>
+                  <FacultyPortal defaultTab="attendance" />
+                </RoleGuard>
+              </ProtectedLayout>
+            }
+          />
+
+          <Route
+            path="/faculty-marks"
+            element={
+              <ProtectedLayout>
+                <RoleGuard roles={['FACULTY', 'HOD', 'ADMIN']}>
+                  <FacultyPortal defaultTab="marks" />
+                </RoleGuard>
+              </ProtectedLayout>
+            }
+          />
+
+          <Route
+            path="/faculty-alerts"
+            element={
+              <ProtectedLayout>
+                <RoleGuard roles={['FACULTY', 'HOD', 'ADMIN']}>
+                  <FacultyPortal defaultTab="warnings" />
+                </RoleGuard>
+              </ProtectedLayout>
+            }
+          />
+
+          <Route
+            path="/faculty-mentoring"
+            element={
+              <ProtectedLayout>
+                <RoleGuard roles={['FACULTY', 'HOD', 'ADMIN']}>
+                  <FacultyPortal defaultTab="mentoring" />
                 </RoleGuard>
               </ProtectedLayout>
             }

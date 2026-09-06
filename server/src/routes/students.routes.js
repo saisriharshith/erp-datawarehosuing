@@ -8,6 +8,7 @@
 
 import express from 'express';
 import { dbManager } from '../config/db.js';
+import { User } from '../models/User.js';
 import { successResponse, errorResponse } from '../utils/helpers.js';
 import { requireRole, requireDepartmentScope, requirePermission } from '../middleware/rbac.js';
 
@@ -24,6 +25,31 @@ router.get('/', requireRole('ADMIN', 'HOD', 'ACCOUNTS'), async (req, res) => {
 
   try {
     let students = await dbManager.getCollectionData('dim_students');
+
+    // Also include any provisioned students from User accounts if not yet in dim_students
+    try {
+      const allUsers = await User.findAll();
+      allUsers.forEach(u => {
+        if (u.role === 'STUDENT' && u.student_id) {
+          const exists = students.some(s => s.student_id === u.student_id);
+          if (!exists) {
+            students.unshift({
+              student_id: u.student_id,
+              full_name: u.name,
+              name: u.name,
+              email: u.email,
+              department_id: u.department_id || u.departmentId || 'DEPT_CSE',
+              department_name: u.department_name || u.departmentName || 'Computer Science & Engineering',
+              current_semester: 1,
+              batch_year: `${new Date().getFullYear()}-${new Date().getFullYear() + 4}`
+            });
+          }
+        }
+      });
+    } catch (e) {
+      // Non-fatal
+    }
+
     const attendance = await dbManager.getCollectionData('fact_attendance');
     const exams = await dbManager.getCollectionData('fact_examinations');
     const fees = await dbManager.getCollectionData('fact_fees');
@@ -66,25 +92,34 @@ router.get('/', requireRole('ADMIN', 'HOD', 'ACCOUNTS'), async (req, res) => {
     // Enriched list
     let enriched = students.map(s => {
       const attList = attMap[s.student_id] || [];
-      const avgAtt = attList.length ? Number((attList.reduce((a, b) => a + b, 0) / attList.length).toFixed(1)) : 80.0;
+      const hasAttendance = attList.length > 0;
+      const avgAtt = hasAttendance ? Number((attList.reduce((a, b) => a + b, 0) / attList.length).toFixed(1)) : 0.0;
 
       const gpaList = cgpaMap[s.student_id] || [];
-      const cgpa = gpaList.length ? Number((gpaList.reduce((a, b) => a + b, 0) / gpaList.length).toFixed(2)) : 8.10;
+      const hasExams = gpaList.length > 0;
+      const cgpa = hasExams ? Number((gpaList.reduce((a, b) => a + b, 0) / gpaList.length).toFixed(2)) : 0.00;
 
-      const fInfo = feeMap[s.student_id] || { due: 85000, paid: 85000 };
+      const fInfo = feeMap[s.student_id] || { due: 85000, paid: 0 };
       const out = Math.max(0, fInfo.due - fInfo.paid);
-      const feeStatus = out === 0 ? 'PAID' : (fInfo.paid > 0 ? 'PARTIAL' : 'OVERDUE');
+      const feeStatus = out === 0 ? 'PAID' : (fInfo.paid > 0 ? 'PARTIAL' : 'PENDING');
 
       let rLevel = riskMap[s.student_id];
       if (!rLevel || rLevel === 'LOW') {
-        if (avgAtt < 65 || cgpa < 6.0) rLevel = 'HIGH';
-        else if (avgAtt < 75 || cgpa < 7.0) rLevel = 'MEDIUM';
-        else rLevel = 'LOW';
+        if (!hasAttendance && !hasExams) {
+          rLevel = 'LOW';
+        } else if (avgAtt < 65 || cgpa < 6.0) {
+          rLevel = 'HIGH';
+        } else if (avgAtt < 75 || cgpa < 7.0) {
+          rLevel = 'MEDIUM';
+        } else {
+          rLevel = 'LOW';
+        }
       }
 
       return {
         student_id: s.student_id,
-        full_name: s.full_name,
+        full_name: s.full_name || s.name || 'Student',
+        name: s.name || s.full_name || 'Student',
         email: s.email,
         department_id: s.department_id,
         department_name: s.department_name,
@@ -276,6 +311,30 @@ async function getStudentProfile(studentId) {
   if (!student) {
     student = students.find(s => s.student_id && s.student_id.toUpperCase() === studentId.toUpperCase());
   }
+  if (!student) {
+    try {
+      const allUsers = await User.findAll();
+      const u = allUsers.find(usr =>
+        (usr.student_id && usr.student_id.toUpperCase() === studentId.toUpperCase()) ||
+        (usr.studentId && usr.studentId.toUpperCase() === studentId.toUpperCase()) ||
+        (usr.email && usr.email.toLowerCase() === studentId.toLowerCase())
+      );
+      if (u) {
+        student = {
+          student_id: u.student_id || u.studentId || studentId,
+          full_name: u.name,
+          name: u.name,
+          email: u.email,
+          department_id: u.department_id || u.departmentId || 'DEPT_CSE',
+          department_name: u.department_name || u.departmentName || 'Computer Science & Engineering',
+          current_semester: 1,
+          batch_year: `${new Date().getFullYear()}-${new Date().getFullYear() + 4}`
+        };
+      }
+    } catch (e) {
+      // non-fatal
+    }
+  }
   if (!student) return null;
 
   studentId = student.student_id;
@@ -303,132 +362,182 @@ async function getStudentProfile(studentId) {
   const rawAttendance = allAttendance.filter(a => a.student_id === studentId);
   const rawExams = allExams.filter(e => e.student_id === studentId);
   const fees = allFees.filter(f => f.student_id === studentId);
-  const library = allLibrary.find(l => l.student_id === studentId) || {
-    total_books_borrowed: 8,
-    active_borrowed_count: 2,
+  
+  const hasRealAttendance = rawAttendance.length > 0;
+  const hasRealExams = rawExams.length > 0;
+  const hasRealFees = fees.length > 0;
+  const hasRealLib = allLibrary.some(l => l.student_id === studentId);
+  const libRecord = hasRealLib ? allLibrary.find(l => l.student_id === studentId) : null;
+  const library = libRecord || {
+    total_books_borrowed: 0,
+    active_borrowed_count: 0,
     overdue_books_count: 0,
     unpaid_fines: 0
   };
-  const risk = allRisk.find(r => r.student_id === studentId) || {
+
+  const hasRealRisk = allRisk.some(r => r.student_id === studentId);
+  const risk = hasRealRisk ? allRisk.find(r => r.student_id === studentId) : {
     risk_level: 'LOW',
-    risk_score: 0.15,
-    risk_factors: ['Satisfactory academic standing', 'Consistent attendance record']
+    risk_score: 0.0,
+    risk_factors: ['New student profile - Awaiting first term evaluation']
   };
 
-  // Enrich Examinations with unique subject names and standardized marks
-  const exams = rawExams.map(e => {
-    const subInfo = subjectMap[e.subject_id] || SUBJECT_CATALOG[e.subject_id] || {};
-    const subTitle = subInfo.subject_name || subInfo.title || `${student.department_name || 'Engineering'} Subject (${e.subject_id})`;
-    const credits = subInfo.credits || 4;
-    const internal = e.internal_marks_scored ?? e.internal_marks ?? 25;
-    const external = e.end_semester_marks_scored ?? e.external_marks ?? 55;
-    const total = e.total_marks ?? (internal + external);
-    const gradeLetter = e.grade_letter || (total >= 80 ? 'A+' : total >= 70 ? 'A' : total >= 60 ? 'B+' : 'B');
-    const gradePoint = e.grade_point ?? e.grade_points ?? (total >= 90 ? 10.0 : total >= 80 ? 9.0 : total >= 70 ? 8.0 : 7.0);
+  // Find department / semester subjects for roster enrollment
+  const deptSubjects = (allSubjects || []).filter(s =>
+    s.department_id === student.department_id &&
+    (!s.semester || s.semester === (student.current_semester || 1))
+  );
+  const enrolledSubs = deptSubjects.length > 0
+    ? deptSubjects
+    : (allSubjects || []).filter(s => s.semester === 1 || !s.semester).slice(0, 6);
 
-    return {
-      ...e,
-      subject_id: e.subject_id,
-      subject_name: subTitle,
-      credits: credits,
-      internal_marks: internal,
-      internal_marks_scored: internal,
-      external_marks: external,
-      end_semester_marks_scored: external,
-      total_marks: total,
-      grade_letter: gradeLetter,
-      grade_point: gradePoint,
-      grade_points: gradePoint,
-      is_passed: e.is_passed !== undefined ? e.is_passed : total >= 40
-    };
-  });
+  // Enrich Examinations with unique subject names and standardized marks
+  let exams = [];
+  let cgpa = 0.00;
+  let backlogs = 0;
+
+  if (hasRealExams) {
+    exams = rawExams.map(e => {
+      const subInfo = subjectMap[e.subject_id] || SUBJECT_CATALOG[e.subject_id] || {};
+      const subTitle = subInfo.subject_name || subInfo.title || `${student.department_name || 'Engineering'} Subject (${e.subject_id})`;
+      const credits = subInfo.credits || 4;
+      const internal = e.internal_marks_scored ?? e.internal_marks ?? 0;
+      const external = e.end_semester_marks_scored ?? e.external_marks ?? 0;
+      const total = e.total_marks ?? (internal + external);
+      const gradeLetter = e.grade_letter || (total >= 80 ? 'A+' : total >= 70 ? 'A' : total >= 60 ? 'B+' : total >= 40 ? 'B' : 'F');
+      const gradePoint = e.grade_point ?? e.grade_points ?? (total >= 90 ? 10.0 : total >= 80 ? 9.0 : total >= 70 ? 8.0 : total >= 60 ? 7.0 : 6.0);
+
+      return {
+        ...e,
+        subject_id: e.subject_id,
+        subject_name: subTitle,
+        credits: credits,
+        internal_marks: internal,
+        internal_marks_scored: internal,
+        external_marks: external,
+        end_semester_marks_scored: external,
+        total_marks: total,
+        grade_letter: gradeLetter,
+        grade_point: gradePoint,
+        grade_points: gradePoint,
+        is_passed: e.is_passed !== undefined ? e.is_passed : (external > 0 ? total >= 40 : (internal >= 12 || internal === 0))
+      };
+    });
+
+    const gpas = exams.map(e => e.grade_point || 0);
+    cgpa = gpas.length ? Number((gpas.reduce((a, b) => a + b, 0) / gpas.length).toFixed(2)) : 0.00;
+    backlogs = exams.filter(e => !e.is_passed).length;
+  } else {
+    // New student: registered subjects with pending evaluation and 0 marks
+    exams = enrolledSubs.map(sub => ({
+      student_id: studentId,
+      subject_id: sub.subject_id,
+      subject_name: sub.subject_name || sub.title || `Course (${sub.subject_id})`,
+      credits: sub.credits || 4,
+      semester: sub.semester || student.current_semester || 1,
+      internal_marks: 0,
+      internal_marks_scored: 0,
+      midterm_marks: 0,
+      assignment_marks: 0,
+      external_marks: 0,
+      end_semester_marks_scored: 0,
+      total_marks: 0,
+      grade_letter: '-',
+      grade_point: 0.0,
+      grade_points: 0.0,
+      is_passed: true,
+      status: 'PENDING_EVALUATION'
+    }));
+    cgpa = 0.00;
+    backlogs = 0;
+  }
 
   // Enrich Attendance with unique subject names
-  const attendance = rawAttendance.map(a => {
-    const subInfo = subjectMap[a.subject_id] || SUBJECT_CATALOG[a.subject_id] || {};
-    const subTitle = subInfo.subject_name || subInfo.title || `${student.department_name || 'Core'} Course (${a.subject_id})`;
-    return {
-      ...a,
-      subject_name: subTitle,
-      credits: subInfo.credits || 4
-    };
-  });
+  let attendance = [];
+  let totalClasses = 0;
+  let classesAttended = 0;
+  let avgAtt = 0.0;
 
-  const attPcts = attendance.map(a => a.attendance_percentage || 0);
-  const totalClasses = attendance.reduce((s, a) => s + (a.total_classes || 0), 0);
-  const classesAttended = attendance.reduce((s, a) => s + (a.classes_attended || 0), 0);
-  const avgAtt = attPcts.length ? Number((attPcts.reduce((a, b) => a + b, 0) / attPcts.length).toFixed(1)) : 80.0;
+  if (hasRealAttendance) {
+    attendance = rawAttendance.map(a => {
+      const subInfo = subjectMap[a.subject_id] || SUBJECT_CATALOG[a.subject_id] || {};
+      const subTitle = subInfo.subject_name || subInfo.title || `${student.department_name || 'Core'} Course (${a.subject_id})`;
+      return {
+        ...a,
+        subject_name: subTitle,
+        credits: subInfo.credits || 4
+      };
+    });
 
-  const gpas = exams.map(e => e.grade_point || 0);
-  const cgpa = gpas.length ? Number((gpas.reduce((a, b) => a + b, 0) / gpas.length).toFixed(2)) : 8.10;
-  const backlogs = exams.filter(e => !e.is_passed).length;
+    const attPcts = attendance.map(a => a.attendance_percentage || 0);
+    totalClasses = attendance.reduce((s, a) => s + (a.total_classes || 0), 0);
+    classesAttended = attendance.reduce((s, a) => s + (a.classes_attended || 0), 0);
+    avgAtt = totalClasses > 0 ? Number(((classesAttended / totalClasses) * 100).toFixed(1)) : (attPcts.length ? Number((attPcts.reduce((a, b) => a + b, 0) / attPcts.length).toFixed(1)) : 0.0);
+  } else {
+    // New student: registered course subjects with 0 sessions conducted
+    attendance = enrolledSubs.map(sub => ({
+      student_id: studentId,
+      subject_id: sub.subject_id,
+      subject_name: sub.subject_name || sub.title || `Course (${sub.subject_id})`,
+      credits: sub.credits || 4,
+      semester: sub.semester || student.current_semester || 1,
+      department_id: student.department_id,
+      total_classes: 0,
+      classes_attended: 0,
+      attendance_percentage: 0.0,
+      status: 'NOT_COMMENCED'
+    }));
+    totalClasses = 0;
+    classesAttended = 0;
+    avgAtt = 0.0;
+  }
 
-  const totalDue = fees.reduce((s, f) => s + (f.total_due || 0), 0) || 85000;
-  const totalPaid = fees.reduce((s, f) => s + (f.total_paid || 0), 0) || 85000;
+  const totalDue = hasRealFees ? fees.reduce((s, f) => s + (f.total_due || 0), 0) : 85000;
+  const totalPaid = hasRealFees ? fees.reduce((s, f) => s + (f.total_paid || 0), 0) : 0;
   const outstanding = Math.max(0, totalDue - totalPaid);
-  const feeStatus = outstanding === 0 ? 'PAID' : (totalPaid > 0 ? 'PARTIAL' : 'OVERDUE');
+  const feeStatus = outstanding === 0 ? 'PAID' : (totalPaid > 0 ? 'PARTIAL' : 'PENDING');
 
   // Dynamic fee transaction history records
-  const dynamicTransactions = fees.length > 0
+  const dynamicTransactions = hasRealFees
     ? fees.map((f, idx) => ({
         txn_id: f.transaction_id || `TXN_${studentId.slice(3)}_${idx + 1}`,
-        payment_date: f.payment_date || `2025-0${8 + idx}-10`,
+        payment_date: f.payment_date || `2026-0${8 + idx}-10`,
         description: `Semester ${f.semester || idx + 1} Tuition Fee Installment`,
         amount: f.total_paid || 42500,
         status: f.payment_status || 'SUCCESS'
       }))
-    : [
-        {
-          txn_id: `TXN_${studentId.slice(3)}_1`,
-          payment_date: '2025-08-10',
-          description: 'Semester Tuition Fee Installment 1',
-          amount: 40000,
-          status: 'SUCCESS'
-        },
-        {
-          txn_id: `TXN_${studentId.slice(3)}_2`,
-          payment_date: '2025-09-10',
-          description: 'Semester Tuition Fee Installment 2',
-          amount: 45000,
-          status: 'SUCCESS'
-        }
-      ];
+    : [];
 
   // Dynamic library circulation records
-  const dynamicIssuedBooks = [
-    {
-      accession_no: `LIB_${student.department_id?.replace('DEPT_', '') || 'ENG'}_042`,
-      title: `${student.department_name || 'Core'} Technical Handbook & Principles`,
-      issue_date: '2026-08-14',
-      due_date: '2026-08-28',
-      status: 'Active Loan'
-    },
-    {
-      accession_no: `LIB_${student.department_id?.replace('DEPT_', '') || 'ENG'}_108`,
-      title: 'Advanced Computer Systems & Engineering Architecture',
-      issue_date: '2026-08-18',
-      due_date: '2026-09-01',
-      status: 'Active Loan'
-    }
-  ];
+  const dynamicIssuedBooks = (hasRealLib && libRecord && libRecord.active_borrowed_count > 0)
+    ? [
+        {
+          accession_no: `LIB_${student.department_id?.replace('DEPT_', '') || 'ENG'}_042`,
+          title: `${student.department_name || 'Core'} Technical Handbook & Principles`,
+          issue_date: '2026-08-14',
+          due_date: '2026-08-28',
+          status: 'Active Loan'
+        }
+      ]
+    : [];
 
   return {
     student: {
       ...student,
-      admission_year: student.admission_year || String(student.batch_year || '2021').split('-')[0],
+      admission_year: student.admission_year || String(student.batch_year || '2026').split('-')[0],
       admission_quota: student.admission_quota || (student.student_id?.charCodeAt(6) % 2 === 0 ? 'State CET Merit Quota' : 'Institutional Merit Quota')
     },
     attendance: {
       overall_percentage: avgAtt,
-      total_classes: totalClasses || 240,
-      classes_attended: classesAttended || 192,
-      is_eligible: avgAtt >= 75.0,
+      total_classes: totalClasses,
+      classes_attended: classesAttended,
+      is_eligible: totalClasses === 0 ? true : (avgAtt >= 75.0),
       subject_records: attendance
     },
     examinations: {
       cgpa,
       backlogs,
-      total_exams_taken: exams.length,
+      total_exams_taken: rawExams.length,
       exam_records: exams
     },
     fees: {
@@ -439,8 +548,8 @@ async function getStudentProfile(studentId) {
       transactions: dynamicTransactions
     },
     library: {
-      total_books_borrowed: library.total_books_borrowed || 12,
-      active_borrowed_count: library.active_borrowed_count || 2,
+      total_books_borrowed: library.total_books_borrowed || 0,
+      active_borrowed_count: library.active_borrowed_count || 0,
       overdue_books_count: library.overdue_books_count || 0,
       unpaid_fines: library.unpaid_fines || 0,
       issued_books: dynamicIssuedBooks

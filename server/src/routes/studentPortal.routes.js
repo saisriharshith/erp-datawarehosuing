@@ -31,15 +31,16 @@ router.get('/student/portal-summary', async (req, res) => {
     const shortageAlerts = [];
 
     (att.subject_records || []).forEach(rec => {
-      const pct = rec.attendance_percentage || 0;
-      const total = rec.total_classes || 60;
-      const attended = rec.classes_attended || 45;
+      const total = rec.total_classes !== undefined ? rec.total_classes : 0;
+      const attended = rec.classes_attended !== undefined ? rec.classes_attended : 0;
+      const pct = total > 0 ? Number(((attended / total) * 100).toFixed(1)) : (rec.attendance_percentage || 0);
 
       let needed = 0;
-      if (pct < 75.0) {
+      if (total > 0 && pct < 75.0) {
         needed = Math.max(0, Math.ceil((0.75 * total - attended) / 0.25));
         shortageAlerts.push({
           subject_id: rec.subject_id,
+          subject_name: rec.subject_name,
           current_percentage: pct,
           classes_needed: needed
         });
@@ -47,6 +48,7 @@ router.get('/student/portal-summary', async (req, res) => {
 
       subjectDetails.push({
         subject_id: rec.subject_id,
+        subject_name: rec.subject_name,
         semester: rec.semester,
         total_classes: total,
         classes_attended: attended,
@@ -59,9 +61,11 @@ router.get('/student/portal-summary', async (req, res) => {
     // SGPA trend by semester
     const semGpas = {};
     (exams.exam_records || []).forEach(ex => {
-      const s = ex.semester || 1;
-      if (!semGpas[s]) semGpas[s] = [];
-      semGpas[s].push(ex.grade_point || 7.0);
+      if (ex.grade_point !== undefined && ex.grade_point > 0) {
+        const s = ex.semester || 1;
+        if (!semGpas[s]) semGpas[s] = [];
+        semGpas[s].push(ex.grade_point);
+      }
     });
 
     const sgpaTrend = Object.keys(semGpas).sort((a, b) => Number(a) - Number(b)).map(s => {
@@ -72,9 +76,13 @@ router.get('/student/portal-summary', async (req, res) => {
       };
     });
 
+    const isNewStudent = (att.total_classes === 0 || (att.subject_records || []).every(s => (s.total_classes || 0) === 0));
+
     // Personalized Recommendations
     const recs = [];
-    if (att.overall_percentage < 75.0) {
+    if (isNewStudent) {
+      recs.push("Welcome! Your semester course roster is active. Attendance and marks will reflect here once faculty record sessions.");
+    } else if (att.overall_percentage < 75.0) {
       recs.push("Urgent: Attend all upcoming lectures to meet the mandatory 75% end-semester exam threshold.");
     } else {
       recs.push("Good job! Your attendance satisfies institutional exam eligibility criteria.");
@@ -93,7 +101,9 @@ router.get('/student/portal-summary', async (req, res) => {
     }
 
     let evaluatedRisk = risk.risk_level;
-    if (!evaluatedRisk || evaluatedRisk === 'LOW') {
+    if (isNewStudent) {
+      evaluatedRisk = 'LOW';
+    } else if (!evaluatedRisk || evaluatedRisk === 'LOW') {
       if (att.overall_percentage < 65 || exams.backlogs >= 2 || exams.cgpa < 6.0) {
         evaluatedRisk = 'HIGH';
       } else if (att.overall_percentage < 75 || exams.backlogs === 1 || exams.cgpa < 7.0) {
@@ -106,7 +116,8 @@ router.get('/student/portal-summary', async (req, res) => {
     return successResponse(res, {
       student: {
         student_id: st.student_id,
-        full_name: st.full_name,
+        full_name: st.full_name || st.name,
+        name: st.full_name || st.name,
         department_id: st.department_id,
         department_name: st.department_name,
         semester: st.current_semester,
@@ -115,9 +126,13 @@ router.get('/student/portal-summary', async (req, res) => {
         admission_year: st.admission_year,
         admission_quota: st.admission_quota
       },
+      attendance: att,
+      examinations: exams,
+      fees: fees,
+      library: lib,
       summary_cards: {
         attendance_percentage: att.overall_percentage,
-        is_exam_eligible: att.overall_percentage >= 75.0,
+        is_exam_eligible: att.total_classes === 0 ? true : (att.overall_percentage >= 75.0),
         cgpa: exams.cgpa,
         backlogs_count: exams.backlogs,
         fee_status: fees.status,

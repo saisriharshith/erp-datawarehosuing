@@ -124,6 +124,14 @@ class DatabaseManager {
     return data;
   }
 
+  invalidateCache(collectionName) {
+    if (collectionName) {
+      this._memoryCache.delete(collectionName);
+    } else {
+      this._memoryCache.clear();
+    }
+  }
+
   getHealth() {
     return {
       mongodb_connected: this.isConnected,

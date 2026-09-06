@@ -8,29 +8,39 @@ export function ThemeToggle() {
   });
 
   useEffect(() => {
-    const stored = localStorage.getItem('theme');
-    if (stored === 'dark' || (stored !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.documentElement.setAttribute('data-theme', 'dark');
-    } else {
-      document.documentElement.removeAttribute('data-theme');
-    }
+    const applyTheme = (t) => {
+      let active = t;
+      if (t === 'system' || !t) {
+        active = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', active);
+      document.documentElement.setAttribute('data-bs-theme', active);
+    };
+
+    const stored = localStorage.getItem('theme') || 'system';
+    applyTheme(stored);
+
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = () => {
+      if (!localStorage.getItem('theme') || localStorage.getItem('theme') === 'system') {
+        applyTheme('system');
+      }
+    };
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
 
   const toggleTheme = (newTheme) => {
     setTheme(newTheme);
     if (newTheme === 'system') {
       localStorage.removeItem('theme');
-      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-      } else {
-        document.documentElement.removeAttribute('data-theme');
-      }
-    } else if (newTheme === 'dark') {
-      localStorage.setItem('theme', 'dark');
-      document.documentElement.setAttribute('data-theme', 'dark');
+      const active = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', active);
+      document.documentElement.setAttribute('data-bs-theme', active);
     } else {
-      localStorage.setItem('theme', 'light');
-      document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('theme', newTheme);
+      document.documentElement.setAttribute('data-theme', newTheme);
+      document.documentElement.setAttribute('data-bs-theme', newTheme);
     }
   };
 

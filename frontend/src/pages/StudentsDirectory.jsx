@@ -84,7 +84,7 @@ export default function StudentsDirectory() {
       {/* Header */}
       <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
         <div>
-          <h4 className="fw-bold mb-1">Students Master Directory (dim_students)</h4>
+          <h4 className="fw-bold mb-1">Students Master Directory</h4>
           <p className="text-muted small mb-0">Unified institutional registry with real-time academic 360 drilldown and debounced search.</p>
         </div>
 
@@ -183,14 +183,14 @@ export default function StudentsDirectory() {
                     <td><span className="badge bg-body-secondary text-body border">{s.department_name}</span></td>
                     <td>Sem {s.current_semester}</td>
                     <td>
-                      <span className={`fw-bold ${s.attendance_percentage >= 75 ? 'text-success' : 'text-danger'}`}>
+                      <span className={`fw-bold ${s.attendance_percentage >= 75 ? 'text-success' : s.attendance_percentage === 0 ? 'text-muted' : 'text-danger'}`}>
                         {s.attendance_percentage}%
                       </span>
                     </td>
                     <td className="fw-bold font-mono">{s.cgpa}</td>
                     <td>
-                      <span className={`badge ${s.attendance_percentage >= 75 ? 'bg-success' : 'badge-risk-high'}`}>
-                        {s.attendance_percentage >= 75 ? 'ELIGIBLE' : 'SHORTAGE'}
+                      <span className={`badge ${s.attendance_percentage >= 75 ? 'bg-success' : s.attendance_percentage === 0 ? 'bg-secondary' : 'badge-risk-high'}`}>
+                        {s.attendance_percentage >= 75 ? 'ELIGIBLE' : s.attendance_percentage === 0 ? 'NEW' : 'SHORTAGE'}
                       </span>
                     </td>
                     <td className="text-end">

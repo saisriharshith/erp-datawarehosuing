@@ -4,14 +4,14 @@ import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
 import { fetchAPI } from '../services/api';
 
-export default function FacultyPortal() {
+export default function FacultyPortal({ defaultTab = 'roster' }) {
   const { user } = useAuth();
   const { addToast } = useToast();
   const [searchParams, setSearchParams] = useSearchParams();
   const isDean = user?.role === 'ADMIN';
 
-  // Sub-tab: 'roster' | 'attendance' | 'marks' | 'warnings' | 'mentoring'
-  const activeTab = searchParams.get('tab') || 'roster';
+  // Sub-tab from URL or route default
+  const activeTab = searchParams.get('tab') || defaultTab || 'roster';
   const setActiveTab = (tabName) => {
     setSearchParams({ tab: tabName });
   };
@@ -49,7 +49,7 @@ export default function FacultyPortal() {
       return saved ? JSON.parse(saved) : [
         {
           id: 1,
-          faculty_name: 'Dr. Sunita Deshmukh',
+          faculty_name: 'Course Instructor',
           student_id: 'STU20220001',
           student_name: 'Sai Gupta',
           course_code: 'CS501',
@@ -134,8 +134,16 @@ export default function FacultyPortal() {
     addToast(`Marked all ${enrolledStudents.length} students as ${status}`, 'info');
   };
 
+  const refreshFacultyData = () => {
+    let url = '/faculty/summary?';
+    if (deptFilter) url += `department_id=${deptFilter}&`;
+    return fetchAPI(url)
+      .then(res => setFacultySummary(res))
+      .catch(err => console.error('Failed to reload faculty data:', err));
+  };
+
   // Submit attendance with duplicate submission prevention
-  const handleSaveDailyAttendance = () => {
+  const handleSaveDailyAttendance = async () => {
     const sessionKey = `${activeCourse.course_code}_${activeCourse.section}_${attendanceDate}`;
     if (submittedAttendanceSessions[sessionKey]) {
       const confirmed = window.confirm(`Attendance for ${activeCourse.course_code} on ${attendanceDate} was already submitted earlier today. Do you wish to overwrite and update this record?`);
@@ -143,12 +151,32 @@ export default function FacultyPortal() {
     }
 
     const presentCount = Object.values(dailyAttendanceMap).filter(v => v === 'PRESENT').length;
-    const updatedSessions = { ...submittedAttendanceSessions, [sessionKey]: { date: attendanceDate, presentCount, total: enrolledStudents.length, timestamp: new Date().toISOString() } };
-    setSubmittedAttendanceSessions(updatedSessions);
-    localStorage.setItem('SAVED_ATTENDANCE_SESSIONS', JSON.stringify(updatedSessions));
+    const records = enrolledStudents.map(s => ({
+      student_id: s.student_id,
+      status: dailyAttendanceMap[s.student_id] || 'PRESENT'
+    }));
 
-    addToast(`Saved attendance session: ${presentCount}/${enrolledStudents.length} Present on ${attendanceDate} for ${activeCourse.course_code}`, 'success');
-    setActiveTab('roster');
+    try {
+      await fetchAPI('/faculty/attendance', {
+        method: 'POST',
+        body: JSON.stringify({
+          course_code: activeCourse.course_code,
+          section: activeCourse.section,
+          date: attendanceDate,
+          attendance_records: records
+        })
+      });
+
+      const updatedSessions = { ...submittedAttendanceSessions, [sessionKey]: { date: attendanceDate, presentCount, total: enrolledStudents.length, timestamp: new Date().toISOString() } };
+      setSubmittedAttendanceSessions(updatedSessions);
+      localStorage.setItem('SAVED_ATTENDANCE_SESSIONS', JSON.stringify(updatedSessions));
+
+      addToast(`Recorded attendance session: ${presentCount}/${enrolledStudents.length} Present on ${attendanceDate} for ${activeCourse.course_code}`, 'success');
+      await refreshFacultyData();
+      setActiveTab('roster');
+    } catch (err) {
+      addToast(`Failed to record attendance: ${err.message}`, 'danger');
+    }
   };
 
   // Mark entry validation (Max Marks: 30)
@@ -173,13 +201,33 @@ export default function FacultyPortal() {
     setMarksErrors(newErrors);
   };
 
-  const handleSaveMarks = () => {
+  const handleSaveMarks = async () => {
     if (Object.keys(marksErrors).length > 0) {
       addToast(`Please correct the marked errors before submitting. Marks cannot exceed ${MAX_MARKS}.`, 'danger');
       return;
     }
-    addToast(`Internal assessment marks successfully recorded for ${activeCourse.course_code} (${activeCourse.section})`, 'success');
-    setActiveTab('roster');
+
+    const marksRecords = enrolledStudents.map(s => ({
+      student_id: s.student_id,
+      marks_scored: editingMarks[s.student_id] !== undefined ? editingMarks[s.student_id] : (s.internal_marks || 0)
+    }));
+
+    try {
+      await fetchAPI('/faculty/marks', {
+        method: 'POST',
+        body: JSON.stringify({
+          course_code: activeCourse.course_code,
+          assessment_type: selectedAssessmentType,
+          marks_records: marksRecords
+        })
+      });
+
+      addToast(`Internal assessment marks successfully recorded for ${activeCourse.course_code} (${activeCourse.section})`, 'success');
+      await refreshFacultyData();
+      setActiveTab('roster');
+    } catch (err) {
+      addToast(`Failed to record marks: ${err.message}`, 'danger');
+    }
   };
 
   // Dispatch Warning Notice to At-Risk Student
@@ -269,7 +317,7 @@ export default function FacultyPortal() {
               <span className="text-muted small font-mono">{currentFaculty.faculty_id || 'FAC102'}</span>
             </div>
             <h4 className="fw-bold mb-1" style={{ color: 'var(--text-primary)' }}>
-              {currentFaculty.faculty_name || 'Dr. Sunita Deshmukh'}
+              {currentFaculty.faculty_name || (user?.role === 'ADMIN' ? 'Faculty Academic Workspace' : (user?.name || 'Faculty Member'))}
             </h4>
             <div className="d-flex flex-wrap gap-2 text-muted small">
               <span><strong>Department:</strong> {currentFaculty.department_name || 'Computer Science & Engineering'}</span>
@@ -487,23 +535,28 @@ export default function FacultyPortal() {
                 </thead>
                 <tbody>
                   {enrolledStudents.map(s => {
-                    const isShort = s.is_shortage || s.attendance_percentage < 75.0;
+                    const isZero = s.total_classes === 0;
+                    const isShort = !isZero && (s.is_shortage || s.attendance_percentage < 75.0);
                     return (
                       <tr key={s.student_id}>
                         <td className="font-mono fw-bold text-primary">{s.student_id}</td>
-                        <td className="fw-semibold" style={{ color: 'var(--text-primary)' }}>{s.student_name}</td>
+                        <td className="fw-semibold" style={{ color: 'var(--text-primary)' }}>{s.student_name || s.full_name || s.name || 'Student'}</td>
                         <td>{s.section}</td>
                         <td className="text-center font-mono">{s.classes_attended} / {s.total_classes}</td>
                         <td className="text-center">
-                          <span className={`fw-bold font-mono ${isShort ? 'text-danger' : 'text-success'}`}>
-                            {s.attendance_percentage}%
+                          <span className={`fw-bold font-mono ${isZero ? 'text-muted' : (isShort ? 'text-danger' : 'text-success')}`}>
+                            {isZero ? '0.0%' : `${s.attendance_percentage}%`}
                           </span>
                         </td>
-                        <td className="text-center font-mono fw-bold">{s.internal_marks} / 30</td>
+                        <td className="text-center font-mono fw-bold">{s.internal_marks || 0} / 30</td>
                         <td className="text-center">
-                          <span className={!isShort ? 'status-badge-healthy' : 'status-badge-critical'}>
-                            {!isShort ? 'Satisfied' : 'Debarment Risk'}
-                          </span>
+                          {isZero ? (
+                            <span className="badge bg-secondary-subtle text-secondary border">Classes Pending</span>
+                          ) : (
+                            <span className={!isShort ? 'status-badge-healthy' : 'status-badge-critical'}>
+                              {!isShort ? 'Satisfied' : 'Debarment Risk'}
+                            </span>
+                          )}
                         </td>
                         <td className="text-center">
                           {isShort && (
@@ -600,8 +653,8 @@ export default function FacultyPortal() {
                     return (
                       <tr key={s.student_id}>
                         <td className="font-mono fw-bold text-primary">{s.student_id}</td>
-                        <td className="fw-semibold" style={{ color: 'var(--text-primary)' }}>{s.student_name}</td>
-                        <td className="font-mono">{s.attendance_percentage}%</td>
+                        <td className="fw-semibold" style={{ color: 'var(--text-primary)' }}>{s.student_name || s.full_name || s.name || 'Student'}</td>
+                        <td className="font-mono">{s.total_classes === 0 ? <span className="text-muted">0.0% (Pending)</span> : `${s.attendance_percentage}%`}</td>
                         <td className="text-center">
                           <div className="btn-group btn-group-sm" role="group">
                             <button
@@ -687,12 +740,12 @@ export default function FacultyPortal() {
               </thead>
               <tbody>
                 {enrolledStudents.map(s => {
-                  const val = editingMarks[s.student_id] ?? s.internal_marks ?? 20;
+                  const val = editingMarks[s.student_id] ?? s.internal_marks ?? 0;
                   const err = marksErrors[s.student_id];
                   return (
                     <tr key={s.student_id}>
                       <td className="font-mono fw-bold text-primary">{s.student_id}</td>
-                      <td className="fw-semibold" style={{ color: 'var(--text-primary)' }}>{s.student_name}</td>
+                      <td className="fw-semibold" style={{ color: 'var(--text-primary)' }}>{s.student_name || s.full_name || s.name || 'Student'}</td>
                       <td style={{ width: '220px' }}>
                         <div className="input-group input-group-sm">
                           <input
@@ -712,7 +765,9 @@ export default function FacultyPortal() {
                         )}
                       </td>
                       <td>
-                        {val >= 25 ? (
+                        {val === 0 ? (
+                          <span className="badge bg-secondary-subtle text-secondary border">Awaiting Evaluation</span>
+                        ) : val >= 25 ? (
                           <span className="badge bg-success-subtle text-success border border-success-subtle">Distinction (&ge; 85%)</span>
                         ) : val >= 15 ? (
                           <span className="badge bg-primary-subtle text-primary border border-primary-subtle">Good Standing</span>

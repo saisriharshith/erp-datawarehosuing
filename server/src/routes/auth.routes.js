@@ -14,6 +14,7 @@ import crypto from 'crypto';
 import bcrypt from 'bcryptjs';
 import { successResponse, errorResponse } from '../utils/helpers.js';
 import { User } from '../models/User.js';
+import { dbManager } from '../config/db.js';
 import { signAccessToken, signRefreshToken, generateMfaSecret } from '../utils/jwt.js';
 import { loginLimiter, refreshLimiter } from '../middleware/rateLimit.js';
 import { audit } from '../middleware/audit.js';
@@ -87,7 +88,7 @@ router.post('/login', loginLimiter, async (req, res) => {
   return successResponse(res, {
     user: {
       user_id: user.user_id,
-      name: user.name,
+      name: user.role === 'ADMIN' ? 'Admin' : user.name,
       email: user.email,
       role: user.role,
       department_id: user.departmentId,
@@ -152,17 +153,17 @@ router.post('/refresh', refreshLimiter, async (req, res) => {
     // Revoke old token by clearing it on server side (or blacklist)
     // For simplicity, we just issue new tokens if the old one validates
 
-    const user = await User.findByEmail(payload.userId);
+    const user = await User.findByEmail(payload.email || payload.userId);
     if (!user || user.isLocked()) return errorResponse(res, 'User not found or locked', 401);
 
-    const { accessToken, refreshToken: newRefreshToken } = user.getAuthTokens();
+    const { accessToken, refreshToken: newRefreshToken } = await user.getAuthTokens();
 
     // Set new httpOnly cookie
     res.cookie('refreshToken', newRefreshToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
-      path: '/api/auth/refresh',
+      sameSite: 'lax',
+      path: '/',
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
 
@@ -308,18 +309,95 @@ router.post('/users', async (req, res) => {
 
     const initialPassword = password || 'Welcome@123';
     const userRole = (role || 'STUDENT').toUpperCase();
+    const deptId = departmentId || 'DEPT_CSE';
+
+    // Department short code map for roll number prefix
+    const deptShortCodes = {
+      DEPT_CSE: 'CSE',
+      DEPT_ECE: 'ECE',
+      DEPT_MECH: 'MECH',
+      DEPT_CIVIL: 'CIVIL',
+      DEPT_AIDS: 'AIDS'
+    };
+    const deptShort = deptShortCodes[deptId] || 'ENG';
+    const year = new Date().getFullYear();
+
+    // Auto-generate sequential Student Roll Number: STU{YEAR}{DEPT}{SEQ}
+    let autoStudentId = studentId || null;
+    if (userRole === 'STUDENT' && !autoStudentId) {
+      const prefix = `STU${year}${deptShort}`;
+      let maxSeq = 0;
+
+      // Check dim_students collection for existing roll numbers with this prefix
+      try {
+        const allStudents = await dbManager.getCollectionData('dim_students', true);
+        const allUsers = await User.findAll();
+        const allIds = [
+          ...allStudents.map(s => s.student_id),
+          ...allUsers.filter(u => u.student_id).map(u => u.student_id)
+        ];
+
+        allIds.forEach(id => {
+          if (id && id.startsWith(prefix)) {
+            const seqPart = id.slice(prefix.length);
+            const seqNum = parseInt(seqPart, 10);
+            if (!isNaN(seqNum) && seqNum > maxSeq) {
+              maxSeq = seqNum;
+            }
+          }
+        });
+      } catch (e) {
+        // Non-fatal — fallback to seq 0
+      }
+
+      const nextSeq = String(maxSeq + 1).padStart(3, '0');
+      autoStudentId = `${prefix}${nextSeq}`;
+    }
+
+    // Auto-generate sequential Faculty ID: FAC_{DEPT}_{SEQ}
+    let autoFacultyId = facultyId || null;
+    if (userRole === 'FACULTY' && !autoFacultyId) {
+      const facPrefix = `FAC_${deptShort}_`;
+      let maxFacSeq = 0;
+
+      try {
+        const allFaculty = await dbManager.getCollectionData('dim_faculty', true);
+        const allUsers = await User.findAll();
+        const allFacIds = [
+          ...allFaculty.map(f => f.faculty_id),
+          ...allUsers.filter(u => u.faculty_id).map(u => u.faculty_id)
+        ];
+
+        allFacIds.forEach(id => {
+          if (id && id.startsWith(facPrefix)) {
+            const seqPart = id.slice(facPrefix.length);
+            const seqNum = parseInt(seqPart, 10);
+            if (!isNaN(seqNum) && seqNum > maxFacSeq) {
+              maxFacSeq = seqNum;
+            }
+          }
+        });
+      } catch (e) {
+        // Non-fatal
+      }
+
+      const nextFacSeq = String(maxFacSeq + 1).padStart(2, '0');
+      autoFacultyId = `${facPrefix}${nextFacSeq}`;
+    }
 
     const newUser = await User.create({
       name,
       email: cleanEmail,
       role: userRole,
-      departmentId: departmentId || 'DEPT_CSE',
+      departmentId: deptId,
       departmentName: departmentName || 'Computer Science & Engineering',
-      studentId: userRole === 'STUDENT' ? (studentId || `STU${Date.now().toString().slice(-6)}`) : null,
-      facultyId: userRole === 'FACULTY' ? (facultyId || `FAC${Date.now().toString().slice(-4)}`) : null,
+      studentId: autoStudentId,
+      facultyId: autoFacultyId,
       password: initialPassword,
       permissions: userRole === 'ADMIN' ? ['admin:all'] : userRole === 'FACULTY' ? ['faculty:read', 'faculty:write'] : userRole === 'ACCOUNTS' ? ['accounts:read', 'accounts:write'] : ['self:read']
     });
+
+    console.log(`[USER PROVISION] Created ${userRole} account: ${newUser.email} → ${autoStudentId || autoFacultyId || newUser.user_id}`);
 
     return successResponse(res, {
       user_id: newUser.user_id,
