@@ -16,8 +16,13 @@ RUN npm run build
 FROM node:20-alpine
 WORKDIR /app
 
+# Copy package manifests for root and server
 COPY package*.json ./
-RUN npm install --production
+COPY server/package*.json ./server/
+
+# Install production dependencies for both root and server
+RUN npm install --omit=dev && \
+    cd server && npm install --omit=dev && cd ..
 
 # Copy server code, database seeds, and entry points
 COPY server/ ./server/

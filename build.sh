@@ -2,13 +2,16 @@
 # Exit on error
 set -o errexit
 
-echo "📦 1/3 Installing root backend dependencies..."
+echo "📦 1/4 Installing root backend dependencies..."
 npm install
 
-echo "📦 2/3 Installing frontend dependencies..."
+echo "📦 2/4 Installing server dependencies..."
+npm install --prefix server
+
+echo "📦 3/4 Installing frontend dependencies..."
 npm install --prefix frontend
 
-echo "⚡ 3/3 Building Vite React client..."
+echo "⚡ 4/4 Building Vite React client..."
 npm run build --prefix frontend
 
 echo "✅ Build completed successfully! Assets compiled into frontend/dist."
