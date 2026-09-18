@@ -3,11 +3,12 @@ Authentication API Endpoints
 """
 
 from datetime import datetime, timezone
+from bson import ObjectId
 from fastapi import APIRouter, Depends, HTTPException, status
 from motor.motor_asyncio import AsyncIOMotorDatabase
-from ...core.security import create_access_token, verify_password
+from ...core.security import create_access_token, get_password_hash, verify_password
 from ...models.user import UserModel, UserRole
-from ...schemas.auth import LoginRequest, TokenResponse, UserResponse
+from ...schemas.auth import ChangePasswordRequest, LoginRequest, TokenResponse, UserResponse
 from ..deps import get_current_user, get_db
 
 router = APIRouter(prefix="/auth", tags=["Authentication"])
@@ -83,3 +84,55 @@ async def get_my_profile(
         is_active=current_user.is_active,
         avatar_url=current_user.avatar_url
     )
+
+
+@router.post("/change-password", status_code=status.HTTP_200_OK)
+async def change_password(
+    data: ChangePasswordRequest,
+    db: AsyncIOMotorDatabase = Depends(get_db),
+    current_user: UserModel = Depends(get_current_user)
+):
+    """Allows any authenticated user (e.g. admin) to securely change their password."""
+    query = {"_id": ObjectId(current_user.id)} if ObjectId.is_valid(current_user.id) else {"_id": current_user.id}
+    user = await db.users.find_one(query)
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="User account not found."
+        )
+
+    if not verify_password(data.old_password, user.get("hashed_password", "")):
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Current password is incorrect."
+        )
+
+    if len(data.new_password) < 6:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="New password must be at least 6 characters."
+        )
+
+    hashed_new = get_password_hash(data.new_password)
+    now = datetime.now(timezone.utc)
+
+    await db.users.update_one(
+        {"_id": user["_id"]},
+        {"$set": {"hashed_password": hashed_new, "updated_at": now}}
+    )
+
+    # Record audit log
+    await db.audit_logs.insert_one({
+        "user_id": current_user.id,
+        "user_email": current_user.email,
+        "user_role": current_user.role,
+        "action": "CHANGE_PASSWORD",
+        "resource_type": "user",
+        "resource_id": current_user.id,
+        "details": {"timestamp": now.isoformat()},
+        "created_at": now,
+        "updated_at": now
+    })
+
+    return {"message": "Password changed successfully."}
+

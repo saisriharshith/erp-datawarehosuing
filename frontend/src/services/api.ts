@@ -65,6 +65,13 @@ class ApiClient {
     return this.request<any>('/auth/me');
   }
 
+  async changePassword(data: { old_password: string; new_password: string }) {
+    return this.request<{ message: string }>('/auth/change-password', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+  }
+
   // Students
   async getStudents(params: { page?: number; page_size?: number; search?: string; course_id?: string; enrollment_status?: string } = {}) {
     const query = new URLSearchParams();
