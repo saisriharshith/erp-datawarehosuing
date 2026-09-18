@@ -79,7 +79,31 @@ export const StudentProfile: React.FC = () => {
     );
   }
 
-  const isEnrolled = student.enrollment_status === 'ENROLLED';
+  const sampleCount =
+    student.enrolled_samples_count ??
+    student.embedding_count ??
+    (enrollmentInfo?.enrolled_samples_count || 0);
+  const isEnrolled =
+    student.face_enrollment_status === 'ENROLLED' ||
+    student.enrollment_status === 'ENROLLED' ||
+    enrollmentInfo?.face_enrollment_status === 'ENROLLED' ||
+    sampleCount >= 3;
+  const regNo = student.student_id || student.registration_number || 'N/A';
+  const fullName =
+    student.full_name ||
+    `${student.first_name || ''} ${student.last_name || ''}`.trim() ||
+    'Student';
+  const initials = fullName
+    .split(' ')
+    .filter(Boolean)
+    .map((n: string) => n[0])
+    .join('')
+    .slice(0, 2)
+    .toUpperCase() || 'ST';
+  const photoUrls: string[] =
+    (enrollmentInfo?.photo_urls && enrollmentInfo.photo_urls.length > 0)
+      ? enrollmentInfo.photo_urls
+      : (student.enrolled_photos || []);
 
   return (
     <div className="space-y-8">
@@ -94,26 +118,25 @@ export const StudentProfile: React.FC = () => {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-center space-x-4">
             <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-brand-600 to-indigo-600 flex items-center justify-center text-white text-xl font-bold shadow-lg shadow-brand-500/20">
-              {student.first_name?.[0]}
-              {student.last_name?.[0]}
+              {initials}
             </div>
             <div>
               <div className="flex items-center space-x-3">
                 <h1 className="text-2xl font-bold text-slate-900 dark:text-white">
-                  {student.first_name} {student.last_name}
+                  {fullName}
                 </h1>
                 {isEnrolled ? (
                   <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400">
-                    <CheckCircle2 className="w-3 h-3 mr-1" /> Biometrics Enrolled
+                    <CheckCircle2 className="w-3 h-3 mr-1" /> Biometrics Enrolled ({sampleCount} vectors)
                   </span>
                 ) : (
                   <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400">
-                    <Clock className="w-3 h-3 mr-1" /> Pending Enrollment
+                    <Clock className="w-3 h-3 mr-1" /> Pending Enrollment {sampleCount > 0 ? `(${sampleCount}/5)` : ''}
                   </span>
                 )}
               </div>
-              <p className="text-xs font-mono text-slate-400 mt-1">
-                ID: {student.registration_number}
+              <p className="text-xs font-mono text-slate-400 mt-1 font-semibold">
+                Reg. Number: {regNo}
               </p>
             </div>
           </div>
@@ -147,13 +170,13 @@ export const StudentProfile: React.FC = () => {
             <div>
               <span className="text-xs text-slate-400">Program / Course</span>
               <p className="font-semibold text-slate-900 dark:text-white">
-                {student.course?.course_name || 'Enrolled Course'} ({student.course?.course_code || 'ID'})
+                {student.course_title || student.course?.course_name || 'Enrolled Course'} ({student.course_code || student.course?.course_code || 'N/A'})
               </p>
             </div>
             <div>
               <span className="text-xs text-slate-400">Academic Standing</span>
               <p className="font-medium text-slate-700 dark:text-slate-300">
-                Year {student.academic_year}, Semester {student.semester}
+                Year {student.year || student.academic_year || 1}, Semester {student.semester || 1}
               </p>
             </div>
           </div>
@@ -173,7 +196,7 @@ export const StudentProfile: React.FC = () => {
             <div className="flex items-center space-x-2">
               <Phone className="w-4 h-4 text-slate-400" />
               <span className="text-slate-700 dark:text-slate-300">
-                {student.phone_number || 'No phone number'}
+                {student.phone || student.phone_number || 'No phone number'}
               </span>
             </div>
           </div>
@@ -187,7 +210,7 @@ export const StudentProfile: React.FC = () => {
             <div className="flex items-center justify-between">
               <span className="text-xs text-slate-400">Vectors in Index</span>
               <span className="font-mono font-bold text-slate-900 dark:text-white">
-                {student.embedding_count} / 5
+                {sampleCount} / 5
               </span>
             </div>
             <div className="flex items-center justify-between">
@@ -213,27 +236,24 @@ export const StudentProfile: React.FC = () => {
           High-resolution 112×112 cropped face crops ingested into ImageKit CDN and the vector recognition matrix.
         </p>
 
-        {enrollmentInfo?.samples && enrollmentInfo.samples.length > 0 ? (
+        {photoUrls.length > 0 ? (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-            {enrollmentInfo.samples.map((sample: any, idx: number) => (
+            {photoUrls.map((url: string, idx: number) => (
               <div
                 key={idx}
                 className="relative group rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 aspect-square flex flex-col items-center justify-center p-2"
               >
-                {sample.image_url ? (
-                  <img
-                    src={sample.image_url}
-                    alt={`Sample ${sample.sample_index}`}
-                    className="w-full h-full object-cover rounded-lg"
-                  />
-                ) : (
-                  <div className="text-center">
-                    <ShieldCheck className="w-8 h-8 mx-auto text-brand-500 mb-1" />
-                    <span className="text-[10px] text-slate-400">Vector #{sample.sample_index}</span>
-                  </div>
-                )}
+                <img
+                  src={url}
+                  alt={`Sample ${idx + 1}`}
+                  className="w-full h-full object-cover rounded-lg"
+                  onError={(e) => {
+                    // Fallback if simulated url or error
+                    (e.target as HTMLElement).style.display = 'none';
+                  }}
+                />
                 <div className="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-black/70 text-[9px] font-mono text-white">
-                  #{sample.sample_index}
+                  #{idx + 1}
                 </div>
               </div>
             ))}
@@ -249,9 +269,9 @@ export const StudentProfile: React.FC = () => {
             </p>
             <button
               onClick={() => setIsEnrollModalOpen(true)}
-              className="mt-4 px-3 py-1.5 bg-brand-600 text-white rounded-lg text-xs font-semibold hover:bg-brand-700"
+              className="mt-4 inline-flex items-center px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white text-xs font-semibold rounded-xl transition"
             >
-              Start Biometric Enrollment
+              <Camera className="w-4 h-4 mr-2" /> Start Enrollment
             </button>
           </div>
         )}

@@ -12,18 +12,27 @@ export interface User {
 export interface Student {
   id: string;
   student_id: string;
+  registration_number?: string;
   full_name: string;
+  first_name?: string;
+  last_name?: string;
   email: string;
   phone?: string;
+  phone_number?: string;
   gender?: string;
   course_id: string;
   course_code?: string;
   course_title?: string;
+  course?: { id?: string; course_code?: string; course_name?: string; title?: string };
   year: number;
+  academic_year?: number;
   section: string;
+  semester?: number;
   status: string;
   face_enrollment_status: 'PENDING' | 'ENROLLED';
+  enrollment_status?: 'PENDING' | 'ENROLLED';
   enrolled_samples_count: number;
+  embedding_count?: number;
   primary_photo_url?: string;
   created_at: string;
 }

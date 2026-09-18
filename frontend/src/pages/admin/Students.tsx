@@ -220,7 +220,23 @@ export const StudentsPage: React.FC = () => {
               ) : (
                 students.map((student) => {
                   const course = courses.find((c) => c.id === student.course_id);
-                  const isEnrolled = student.enrollment_status === 'ENROLLED';
+                  const sampleCount = student.enrolled_samples_count ?? student.embedding_count ?? 0;
+                  const isEnrolled =
+                    student.face_enrollment_status === 'ENROLLED' ||
+                    student.enrollment_status === 'ENROLLED' ||
+                    sampleCount >= 3;
+                  const regNo = student.student_id || student.registration_number || 'N/A';
+                  const fullName =
+                    student.full_name ||
+                    `${student.first_name || ''} ${student.last_name || ''}`.trim() ||
+                    'Student';
+                  const initials = fullName
+                    .split(' ')
+                    .filter(Boolean)
+                    .map((n: string) => n[0])
+                    .join('')
+                    .slice(0, 2)
+                    .toUpperCase() || 'ST';
 
                   return (
                     <tr
@@ -230,38 +246,37 @@ export const StudentsPage: React.FC = () => {
                       <td className="px-6 py-4">
                         <div className="flex items-center space-x-3">
                           <div className="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center font-bold text-xs text-brand-600 dark:text-brand-400">
-                            {student.first_name?.[0]}
-                            {student.last_name?.[0]}
+                            {initials}
                           </div>
                           <div>
                             <p className="font-semibold text-slate-900 dark:text-white">
-                              {student.first_name} {student.last_name}
+                              {fullName}
                             </p>
                             <p className="text-xs text-slate-400">{student.email || 'No email'}</p>
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4 font-mono text-xs text-slate-700 dark:text-slate-300">
-                        {student.registration_number}
+                      <td className="px-6 py-4 font-mono text-xs text-slate-700 dark:text-slate-300 font-semibold">
+                        {regNo}
                       </td>
                       <td className="px-6 py-4">
                         <span className="text-xs font-medium text-slate-900 dark:text-white">
-                          {course ? course.course_code : 'N/A'}
+                          {course ? course.course_code : student.course_code || 'N/A'}
                         </span>
                         <p className="text-[11px] text-slate-400">
-                          Year {student.academic_year}, Sem {student.semester}
+                          Year {student.year || student.academic_year || 1}, Sec {student.section || 'A'}
                         </p>
                       </td>
                       <td className="px-6 py-4">
                         {isEnrolled ? (
                           <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400">
                             <CheckCircle2 className="w-3.5 h-3.5 mr-1" />
-                            Enrolled ({student.embedding_count} vectors)
+                            Enrolled ({sampleCount} vectors)
                           </span>
                         ) : (
                           <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400">
                             <Clock className="w-3.5 h-3.5 mr-1" />
-                            Pending Capture
+                            Pending Capture {sampleCount > 0 ? `(${sampleCount}/5)` : ''}
                           </span>
                         )}
                       </td>
@@ -288,7 +303,7 @@ export const StudentsPage: React.FC = () => {
                           </Link>
                           <button
                             onClick={() =>
-                              handleDelete(student.id, `${student.first_name} ${student.last_name}`)
+                              handleDelete(student.id, fullName)
                             }
                             className="p-1.5 text-slate-400 hover:text-rose-600 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800"
                             title="Delete Student"
