@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: vision_mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - attendance_net
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: vision_backend
+    restart: unless-stopped
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+    environment:
+      - ENVIRONMENT=production
+      - MONGODB_URI=mongodb://mongodb:27017/college_attendance
+      - DATABASE_NAME=college_attendance
+      - JWT_SECRET=production_super_secret_jwt_key_vision_attend_2026
+      - CORS_ORIGINS=["http://localhost","http://localhost:3000","http://localhost:80"]
+      - FACE_SIMILARITY_THRESHOLD=0.45
+      - MIN_ENROLLMENT_SAMPLES=3
+      - MAX_ENROLLMENT_SAMPLES=5
+      - LIVENESS_ENABLED=True
+    networks:
+      - attendance_net
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: vision_frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
+    networks:
+      - attendance_net
+
+networks:
+  attendance_net:
+    driver: bridge
+
+volumes:
+  mongo_data:
+    driver: local
