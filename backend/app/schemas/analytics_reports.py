@@ -10,40 +10,62 @@ from pydantic import BaseModel, Field
 # Analytics Schemas
 class DailyTrendPoint(BaseModel):
     date: str
-    present: int
-    total_sessions: int
-    attendance_rate: float
+    present: int = 0
+    present_count: int = 0
+    total_sessions: int = 0
+    attendance_rate: float = 0.0
 
 
 class CourseAttendanceStat(BaseModel):
     course_code: str
     course_title: str
-    total_enrolled: int
-    attendance_rate: float
+    course_name: str = ""
+    total_enrolled: int = 0
+    attendance_rate: float = 0.0
+
+
+class AtRiskStudent(BaseModel):
+    student_id: str
+    student_name: str
+    student_reg_no: str
+    course_name: str
+    course_code: str = ""
+    attended_sessions: int = 0
+    total_sessions: int = 0
+    attendance_rate: float = 0.0
 
 
 class AdminDashboardMetrics(BaseModel):
     total_students: int
+    enrolled_students: int = 0
     total_lecturers: int
     total_courses: int
     total_units: int
+    total_sessions: int = 0
     active_sessions_now: int
     today_sessions_count: int
     today_attendance_percentage: float
+    overall_attendance_rate: float = 0.0
     today_present_count: int
     today_absent_count: int
-    attendance_trends: List[DailyTrendPoint]
-    course_stats: List[CourseAttendanceStat]
+    attendance_trends: List[DailyTrendPoint] = []
+    attendance_by_day: List[DailyTrendPoint] = []
+    course_stats: List[CourseAttendanceStat] = []
+    course_attendance: List[CourseAttendanceStat] = []
+    at_risk_students: List[AtRiskStudent] = []
 
 
 class LecturerDashboardMetrics(BaseModel):
     assigned_courses_count: int
     assigned_units_count: int
     total_sessions_conducted: int
+    total_sessions: int = 0
     active_session_id: Optional[str] = None
     average_attendance_percentage: float
-    recent_sessions: List[Dict[str, Any]]
-    unit_attendance_stats: List[Dict[str, Any]]
+    average_turnout_rate: float = 0.0
+    total_present_marked: int = 0
+    recent_sessions: List[Dict[str, Any]] = []
+    unit_attendance_stats: List[Dict[str, Any]] = []
 
 
 # Reporting Schemas

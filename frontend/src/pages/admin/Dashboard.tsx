@@ -111,7 +111,7 @@ export const AdminDashboard: React.FC = () => {
         <StatCard
           title="Face Recognition Ready"
           value={`${
-            data?.total_students
+            data?.total_students && data?.enrolled_students
               ? Math.round((data.enrolled_students / data.total_students) * 100)
               : 0
           }%`}
@@ -161,7 +161,7 @@ export const AdminDashboard: React.FC = () => {
           </div>
           <div className="h-72 w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={data?.attendance_by_day || []} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+              <AreaChart data={data?.attendance_by_day || data?.attendance_trends || []} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                 <defs>
                   <linearGradient id="attendanceGradient" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="5%" stopColor="#0c8de6" stopOpacity={0.3} />
@@ -207,7 +207,7 @@ export const AdminDashboard: React.FC = () => {
           <div className="h-72 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart
-                data={data?.course_attendance || []}
+                data={data?.course_attendance || data?.course_stats || []}
                 layout="vertical"
                 margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
               >
