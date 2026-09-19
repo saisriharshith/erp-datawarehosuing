@@ -1,3 +1,13 @@
+---
+title: VisionAttend AI Face Recognition System
+emoji: 🎓
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # VisionAttend: AI-Powered Face Recognition College Attendance System
 
 [![Python](https://img.shields.io/badge/Python-3.11%20%7C%203.14-blue.svg)](https://python.org)
