@@ -24,6 +24,16 @@ from .imagekit_service import imagekit_service
 
 
 class FaceEnrollmentService:
+    async def _get_sample_thresholds(self, db: AsyncIOMotorDatabase) -> tuple[int, int]:
+        try:
+            db_min = await db.system_settings.find_one({"key": "min_enrollment_samples"})
+            min_s = int(db_min["value"]) if db_min else settings.MIN_ENROLLMENT_SAMPLES
+            db_max = await db.system_settings.find_one({"key": "max_enrollment_samples"})
+            max_s = int(db_max["value"]) if db_max else settings.MAX_ENROLLMENT_SAMPLES
+            return min_s, max_s
+        except Exception:
+            return settings.MIN_ENROLLMENT_SAMPLES, settings.MAX_ENROLLMENT_SAMPLES
+
     async def _find_student(self, db: AsyncIOMotorDatabase, student_id: str):
         filter_q = {"$or": [{"student_id": student_id}]}
         if ObjectId.is_valid(student_id):
@@ -43,6 +53,8 @@ class FaceEnrollmentService:
         saves to MongoDB face_embeddings, and updates student enrollment status.
         Supports lookup by MongoDB ObjectId or registration number (student_id).
         """
+        min_required, target_required = await self._get_sample_thresholds(db)
+
         student = await self._find_student(db, student_id)
         if not student:
             raise ValueError(f"Student with ID '{student_id}' does not exist.")
@@ -57,11 +69,12 @@ class FaceEnrollmentService:
                 success=False,
                 sample_index=sample_index,
                 total_enrolled=student.get("enrolled_samples_count", 0),
-                target_samples=settings.MAX_ENROLLMENT_SAMPLES,
+                target_samples=target_required,
                 quality_score=0.0,
                 feedback_message="Invalid image format. Could not decode base64 stream.",
                 face_enrollment_status=student.get("face_enrollment_status", EnrollmentStatus.PENDING)
             )
+
 
         # Detect face & extract embedding
         detected_faces = face_engine.detect_and_extract(img_bgr)
@@ -123,7 +136,7 @@ class FaceEnrollmentService:
         })
         new_status = (
             EnrollmentStatus.ENROLLED
-            if total_samples >= settings.MIN_ENROLLMENT_SAMPLES
+            if total_samples >= min_required
             else EnrollmentStatus.PENDING
         )
 
@@ -163,7 +176,7 @@ class FaceEnrollmentService:
             success=True,
             sample_index=sample_index,
             total_enrolled=total_samples,
-            target_samples=settings.MAX_ENROLLMENT_SAMPLES,
+            target_samples=target_required,
             quality_score=quality.sharpness_score,
             feedback_message=f"Sample {sample_index} captured and enrolled successfully.",
             face_enrollment_status=new_status,
@@ -176,6 +189,8 @@ class FaceEnrollmentService:
         student_id: str
     ) -> StudentEnrollmentInfoResponse:
         """Retrieves enrollment status and photo references for a student."""
+        min_required, target_required = await self._get_sample_thresholds(db)
+
         student = await self._find_student(db, student_id)
         if not student:
             raise ValueError(f"Student with ID '{student_id}' does not exist.")
@@ -197,10 +212,11 @@ class FaceEnrollmentService:
             full_name=student.get("full_name", ""),
             face_enrollment_status=student.get("face_enrollment_status", EnrollmentStatus.PENDING),
             enrolled_samples_count=len(samples),
-            min_required=settings.MIN_ENROLLMENT_SAMPLES,
-            target_required=settings.MAX_ENROLLMENT_SAMPLES,
+            min_required=min_required,
+            target_required=target_required,
             photo_urls=photo_urls
         )
+
 
     async def delete_student_enrollment(
         self,

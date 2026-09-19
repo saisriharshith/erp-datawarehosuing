@@ -27,15 +27,22 @@ async def get_system_settings(
     db_live = await db.system_settings.find_one({"key": "liveness_enabled"})
     liveness_enabled = bool(db_live["value"]) if db_live else settings.LIVENESS_ENABLED
 
+    db_min = await db.system_settings.find_one({"key": "min_enrollment_samples"})
+    min_samples = int(db_min["value"]) if db_min else settings.MIN_ENROLLMENT_SAMPLES
+
+    db_max = await db.system_settings.find_one({"key": "max_enrollment_samples"})
+    max_samples = int(db_max["value"]) if db_max else settings.MAX_ENROLLMENT_SAMPLES
+
     return SystemSettingsResponse(
         face_similarity_threshold=threshold,
-        min_enrollment_samples=settings.MIN_ENROLLMENT_SAMPLES,
-        max_enrollment_samples=settings.MAX_ENROLLMENT_SAMPLES,
+        min_enrollment_samples=min_samples,
+        max_enrollment_samples=max_samples,
         liveness_enabled=liveness_enabled,
         liveness_threshold=settings.LIVENESS_THRESHOLD,
         model_name=settings.MODEL_NAME,
         environment=settings.ENVIRONMENT
     )
+
 
 
 @router.put("/settings", response_model=SystemSettingsResponse)

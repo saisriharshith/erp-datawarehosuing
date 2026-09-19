@@ -33,8 +33,8 @@ class Settings(BaseSettings):
 
     # Computer Vision & Face Recognition
     FACE_SIMILARITY_THRESHOLD: float = 0.60
-    MIN_ENROLLMENT_SAMPLES: int = 5
-    MAX_ENROLLMENT_SAMPLES: int = 10
+    MIN_ENROLLMENT_SAMPLES: int = 3
+    MAX_ENROLLMENT_SAMPLES: int = 5
     LIVENESS_ENABLED: bool = True
     LIVENESS_THRESHOLD: float = 0.80
     DETECTION_THRESHOLD: float = 0.50
