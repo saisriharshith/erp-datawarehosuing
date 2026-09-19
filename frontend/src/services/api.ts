@@ -3,7 +3,10 @@
  * Handles authentication header injection, error handling, and typed API endpoints.
  */
 
-const rawApiUrl = (import.meta.env.VITE_API_URL as string | undefined)?.replace(/\/+$/, '') || '';
+let rawApiUrl = (import.meta.env.VITE_API_URL as string | undefined)?.replace(/\/+$/, '') || '';
+if (rawApiUrl && !rawApiUrl.startsWith('http://') && !rawApiUrl.startsWith('https://')) {
+  rawApiUrl = `https://${rawApiUrl}`;
+}
 const API_BASE = rawApiUrl ? `${rawApiUrl}/api/v1` : '/api/v1';
 
 class ApiClient {
