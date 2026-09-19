@@ -114,6 +114,26 @@ async def general_exception_handler(request: Request, exc: Exception):
 app.include_router(api_v1_router, prefix=settings.API_V1_STR)
 
 
+@app.get("/api/health", tags=["Health"])
+async def health_check():
+    db_healthy = False
+    try:
+        db = get_database()
+        db_healthy = db is not None
+    except Exception:
+        db_healthy = False
+
+    return {
+        "status": "healthy" if db_healthy else "degraded",
+        "database": "connected" if db_healthy else "disconnected",
+        "database_storage": "live_mongodb_atlas" if not db_manager.is_mock else "in_memory_mock",
+        "database_name": settings.MONGODB_DATABASE,
+        "imagekit_storage": "live_imagekit" if imagekit_service.is_configured else "simulated_mock",
+        "face_engine_ready": recognition_index is not None,
+        "environment": settings.ENVIRONMENT
+    }
+
+
 import os
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
@@ -121,9 +141,16 @@ from fastapi.staticfiles import StaticFiles
 # Check for built frontend static distribution
 frontend_dist = os.getenv("FRONTEND_DIST_PATH", "/app/frontend_dist")
 if not os.path.exists(frontend_dist):
-    local_dist = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "frontend", "dist"))
-    if os.path.exists(local_dist):
-        frontend_dist = local_dist
+    candidates = [
+        os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "frontend", "dist")),
+        os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "frontend_dist")),
+        os.path.abspath(os.path.join(os.getcwd(), "frontend_dist")),
+        os.path.abspath(os.path.join(os.getcwd(), "frontend", "dist")),
+    ]
+    for c in candidates:
+        if os.path.exists(c):
+            frontend_dist = c
+            break
 
 if os.path.exists(frontend_dist):
     assets_path = os.path.join(frontend_dist, "assets")
@@ -151,22 +178,3 @@ else:
             "docs": "/docs"
         }
 
-
-@app.get("/api/health", tags=["Health"])
-async def health_check():
-    db_healthy = False
-    try:
-        db = get_database()
-        db_healthy = db is not None
-    except Exception:
-        db_healthy = False
-
-    return {
-        "status": "healthy" if db_healthy else "degraded",
-        "database": "connected" if db_healthy else "disconnected",
-        "database_storage": "live_mongodb_atlas" if not db_manager.is_mock else "in_memory_mock",
-        "database_name": settings.MONGODB_DATABASE,
-        "imagekit_storage": "live_imagekit" if imagekit_service.is_configured else "simulated_mock",
-        "face_engine_ready": recognition_index is not None,
-        "environment": settings.ENVIRONMENT
-    }
