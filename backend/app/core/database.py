@@ -81,7 +81,7 @@ async def ensure_seed_data_if_empty(db: AsyncIOMotorDatabase):
         admin_doc = {
             "email": "admin@college.edu",
             "hashed_password": get_password_hash("Admin@12345"),
-            "full_name": "Dr. Alan Turing (Admin)",
+            "full_name": "Admin",
             "role": UserRole.ADMIN,
             "is_active": True,
             "avatar_url": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150",
