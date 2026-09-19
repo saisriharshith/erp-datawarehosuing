@@ -8,10 +8,11 @@ a practical demonstration of active challenge-response protocols and
 passive RGB feature validation.
 """
 
+from __future__ import annotations
 import math
 import random
 import time
-from typing import Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 import numpy as np
 from ..core.config import settings
 from ..core.logging import logger
