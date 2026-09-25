@@ -10,6 +10,7 @@ interface CameraViewfinderProps {
   showOverlay?: boolean;
   className?: string;
   overlayText?: string;
+  isMirrored?: boolean;
 }
 
 export const CameraViewfinder: React.FC<CameraViewfinderProps> = ({
@@ -20,6 +21,7 @@ export const CameraViewfinder: React.FC<CameraViewfinderProps> = ({
   showOverlay = true,
   className = '',
   overlayText,
+  isMirrored = true,
 }) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -27,6 +29,39 @@ export const CameraViewfinder: React.FC<CameraViewfinderProps> = ({
   const [permissionError, setPermissionError] = useState<string | null>(null);
   const [fps, setFps] = useState<number>(0);
   const [cameraActive, setCameraActive] = useState<boolean>(false);
+  const [videoDimensions, setVideoDimensions] = useState<{ width: number; height: number }>({
+    width: 640,
+    height: 480,
+  });
+
+  // Smooth persistence for detected faces so boxes don't flicker on frame drops
+  const [persistedFaces, setPersistedFaces] = useState<DetectedFace[]>([]);
+  const lastFacesTimeRef = useRef<number>(0);
+
+  useEffect(() => {
+    if (detectedFaces && detectedFaces.length > 0) {
+      setPersistedFaces(detectedFaces);
+      lastFacesTimeRef.current = Date.now();
+    } else {
+      // Clear faces after 1000ms if no new faces are detected
+      const timer = setTimeout(() => {
+        if (Date.now() - lastFacesTimeRef.current >= 950) {
+          setPersistedFaces([]);
+        }
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [detectedFaces]);
+
+  // Sync video dimensions
+  const updateVideoDimensions = () => {
+    if (videoRef.current && videoRef.current.videoWidth > 0) {
+      setVideoDimensions({
+        width: videoRef.current.videoWidth,
+        height: videoRef.current.videoHeight,
+      });
+    }
+  };
 
   // Initialize camera
   useEffect(() => {
@@ -57,7 +92,10 @@ export const CameraViewfinder: React.FC<CameraViewfinderProps> = ({
           videoRef.current
             .play()
             .then(() => {
-              if (!isCancelled) setCameraActive(true);
+              if (!isCancelled) {
+                setCameraActive(true);
+                updateVideoDimensions();
+              }
             })
             .catch((err) => {
               if (err.name !== 'AbortError') {
@@ -93,6 +131,7 @@ export const CameraViewfinder: React.FC<CameraViewfinderProps> = ({
         activeStream.getTracks().forEach((track) => track.stop());
       }
       setCameraActive(false);
+      setPersistedFaces([]);
     };
   }, [isStreaming]);
 
@@ -100,7 +139,6 @@ export const CameraViewfinder: React.FC<CameraViewfinderProps> = ({
   useEffect(() => {
     if (!cameraActive || !onFrameCapture || !isStreaming) return;
 
-    let lastTime = performance.now();
     let frameCount = 0;
     let fpsTimer = setInterval(() => {
       setFps(frameCount);
@@ -113,6 +151,13 @@ export const CameraViewfinder: React.FC<CameraViewfinderProps> = ({
       const canvas = canvasRef.current;
 
       if (video.readyState < 2) return; // HAVE_CURRENT_DATA
+
+      if (video.videoWidth && (video.videoWidth !== videoDimensions.width || video.videoHeight !== videoDimensions.height)) {
+        setVideoDimensions({
+          width: video.videoWidth,
+          height: video.videoHeight,
+        });
+      }
 
       canvas.width = video.videoWidth || 640;
       canvas.height = video.videoHeight || 480;
@@ -130,7 +175,12 @@ export const CameraViewfinder: React.FC<CameraViewfinderProps> = ({
       clearInterval(interval);
       clearInterval(fpsTimer);
     };
-  }, [cameraActive, isStreaming, onFrameCapture, captureIntervalMs]);
+  }, [cameraActive, isStreaming, onFrameCapture, captureIntervalMs, videoDimensions]);
+
+  const activeFaces = persistedFaces.length > 0 ? persistedFaces : detectedFaces;
+  const vw = videoDimensions.width || 640;
+  const vh = videoDimensions.height || 480;
+  const scale = Math.max(0.6, vw / 640);
 
   return (
     <div
@@ -159,70 +209,272 @@ export const CameraViewfinder: React.FC<CameraViewfinderProps> = ({
             autoPlay
             playsInline
             muted
-            className="w-full h-full object-cover transform -scale-x-100"
+            onLoadedMetadata={updateVideoDimensions}
+            onPlay={updateVideoDimensions}
+            className={`w-full h-full object-cover ${isMirrored ? 'transform -scale-x-100' : ''}`}
           />
 
           {/* Hidden Canvas for JPEG snapshot extraction */}
           <canvas ref={canvasRef} className="hidden" />
 
-          {/* SVG Bounding Box Overlays */}
+          {/* SVG Bounding Box Overlays with Names on the Boxes */}
           {showOverlay && videoRef.current && (
             <svg
-              className="absolute inset-0 w-full h-full pointer-events-none transform -scale-x-100"
-              viewBox={`0 0 ${videoRef.current.videoWidth || 640} ${
-                videoRef.current.videoHeight || 480
-              }`}
+              className="absolute inset-0 w-full h-full pointer-events-none"
+              viewBox={`0 0 ${vw} ${vh}`}
+              preserveAspectRatio="xMidYMid slice"
             >
-              {detectedFaces.map((face, index) => {
-                const [x1, y1, x2, y2] = face.box;
-                const width = x2 - x1;
-                const height = y2 - y1;
+              <defs>
+                {/* Emerald Glow for Verified Faces */}
+                <filter id="box-glow-emerald" x="-20%" y="-20%" width="140%" height="140%">
+                  <feDropShadow dx="0" dy="0" stdDeviation={4 * scale} floodColor="#22c55e" floodOpacity="0.45" />
+                </filter>
+                {/* Amber Glow for Unrecognized Faces */}
+                <filter id="box-glow-amber" x="-20%" y="-20%" width="140%" height="140%">
+                  <feDropShadow dx="0" dy="0" stdDeviation={4 * scale} floodColor="#f59e0b" floodOpacity="0.45" />
+                </filter>
+                {/* Biometric Scanning Laser Gradients */}
+                <linearGradient id="scan-laser-emerald" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stopColor="#22c55e" stopOpacity="0" />
+                  <stop offset="25%" stopColor="#22c55e" stopOpacity="0.8" />
+                  <stop offset="50%" stopColor="#86efac" stopOpacity="1" />
+                  <stop offset="75%" stopColor="#22c55e" stopOpacity="0.8" />
+                  <stop offset="100%" stopColor="#22c55e" stopOpacity="0" />
+                </linearGradient>
+                <linearGradient id="scan-laser-amber" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stopColor="#f59e0b" stopOpacity="0" />
+                  <stop offset="25%" stopColor="#f59e0b" stopOpacity="0.8" />
+                  <stop offset="50%" stopColor="#fde68a" stopOpacity="1" />
+                  <stop offset="75%" stopColor="#f59e0b" stopOpacity="0.8" />
+                  <stop offset="100%" stopColor="#f59e0b" stopOpacity="0" />
+                </linearGradient>
+              </defs>
+
+              {activeFaces.map((face, index) => {
+                // Ensure valid coordinates
+                const xMin = Math.min(face.box[0], face.box[2]);
+                const xMax = Math.max(face.box[0], face.box[2]);
+                const yMin = Math.min(face.box[1], face.box[3]);
+                const yMax = Math.max(face.box[1], face.box[3]);
+
+                const width = Math.max(12 * scale, xMax - xMin);
+                const height = Math.max(12 * scale, yMax - yMin);
+
+                // If mirrored, raw frame x appears at (vw - x) on screen.
+                // Left screen coordinate is (vw - xMax), width is unchanged.
+                const boxX = isMirrored ? vw - xMax : xMin;
+                const boxY = yMin;
+                const boxW = width;
+                const boxH = height;
 
                 const isRecognized = face.status !== 'UNKNOWN';
                 const strokeColor = isRecognized ? '#22c55e' : '#f59e0b';
                 const fillColor = isRecognized
-                  ? 'rgba(34, 197, 94, 0.15)'
-                  : 'rgba(245, 158, 11, 0.15)';
+                  ? 'rgba(34, 197, 94, 0.12)'
+                  : 'rgba(245, 158, 11, 0.12)';
+                const laserGradientId = isRecognized ? 'url(#scan-laser-emerald)' : 'url(#scan-laser-amber)';
+                const glowFilterId = isRecognized ? 'url(#box-glow-emerald)' : 'url(#box-glow-amber)';
+
+                // Reticle corner bracket dimensions
+                const reticleLen = Math.min(22 * scale, boxW / 3.2, boxH / 3.2);
+
+                // Extract human-readable student name
+                const rawName = face.student_name?.trim();
+                const isUnknownName = !rawName || rawName.toUpperCase() === 'UNKNOWN STUDENT' || rawName.toUpperCase() === 'UNKNOWN';
+                const displayName = !isUnknownName ? rawName : (isRecognized ? 'Verified Student' : 'Unknown Face');
+
+                // Status banner details
+                let statusText = 'SCANNING...';
+                if (face.status === 'NEW_PRESENT') {
+                  statusText = '✓ PRESENT';
+                } else if (face.status === 'ALREADY_MARKED') {
+                  statusText = '✓ MARKED';
+                } else if (face.status === 'UNKNOWN') {
+                  statusText = 'UNRECOGNIZED';
+                }
+
+                const confidenceText = face.similarity_score > 0
+                  ? `${(face.similarity_score * 100).toFixed(0)}%`
+                  : '';
+                const regNumText = face.registration_number ? ` • ${face.registration_number}` : '';
+
+                // Label typography & dimensions
+                const nameFontSize = Math.round(13.5 * scale);
+                const subFontSize = Math.round(10 * scale);
+                const labelPaddingX = Math.round(12 * scale);
+                const labelHeight = Math.round(42 * scale);
+
+                // Estimate content width to fit name and sub-badge neatly
+                const estNameW = displayName.length * (8.5 * scale);
+                const estSubW = (statusText.length + confidenceText.length + regNumText.length) * (6.5 * scale);
+                const minLabelW = Math.max(estNameW, estSubW) + 36 * scale;
+                const labelWidth = Math.min(vw - 16 * scale, Math.max(boxW * 0.9, minLabelW + labelPaddingX * 2));
+
+                // Center the label over the face box, clamped inside video viewport
+                let labelX = boxX + (boxW - labelWidth) / 2;
+                labelX = Math.max(8 * scale, Math.min(vw - labelWidth - 8 * scale, labelX));
+
+                // Position above box if space permits; otherwise attach inside top edge
+                const placeAbove = boxY >= labelHeight + 10 * scale;
+                const labelY = placeAbove ? boxY - labelHeight - 5 * scale : boxY + 6 * scale;
 
                 return (
-                  <g key={index}>
-                    {/* Bounding Rectangle */}
+                  <g key={index} className="transition-all duration-150">
+                    {/* Main Bounding Box Rectangle */}
                     <rect
-                      x={x1}
-                      y={y1}
-                      width={width}
-                      height={height}
+                      x={boxX}
+                      y={boxY}
+                      width={boxW}
+                      height={boxH}
                       fill={fillColor}
                       stroke={strokeColor}
-                      strokeWidth="3"
-                      rx="8"
+                      strokeWidth={2.5 * scale}
+                      rx={8 * scale}
+                      filter={glowFilterId}
                     />
 
+                    {/* Biometric Scanning Laser Animation */}
+                    <line
+                      x1={boxX + 3 * scale}
+                      x2={boxX + boxW - 3 * scale}
+                      y1={boxY + 6 * scale}
+                      y2={boxY + 6 * scale}
+                      stroke={laserGradientId}
+                      strokeWidth={2.5 * scale}
+                    >
+                      <animate
+                        attributeName="y1"
+                        values={`${boxY + 6 * scale};${boxY + boxH - 6 * scale};${boxY + 6 * scale}`}
+                        dur="2.4s"
+                        repeatCount="indefinite"
+                      />
+                      <animate
+                        attributeName="y2"
+                        values={`${boxY + 6 * scale};${boxY + boxH - 6 * scale};${boxY + 6 * scale}`}
+                        dur="2.4s"
+                        repeatCount="indefinite"
+                      />
+                      <animate
+                        attributeName="opacity"
+                        values="0.3;0.95;0.3"
+                        dur="2.4s"
+                        repeatCount="indefinite"
+                      />
+                    </line>
+
                     {/* Corner Reticles */}
+                    {/* Top-Left */}
                     <path
-                      d={`M ${x1} ${y1 + 15} L ${x1} ${y1} L ${x1 + 15} ${y1}`}
+                      d={`M ${boxX} ${boxY + reticleLen} L ${boxX} ${boxY} L ${boxX + reticleLen} ${boxY}`}
                       fill="none"
                       stroke={strokeColor}
-                      strokeWidth="4"
+                      strokeWidth={4 * scale}
+                      strokeLinecap="round"
                     />
+                    {/* Top-Right */}
                     <path
-                      d={`M ${x2 - 15} ${y1} L ${x2} ${y1} L ${x2} ${y1 + 15}`}
+                      d={`M ${boxX + boxW - reticleLen} ${boxY} L ${boxX + boxW} ${boxY} L ${boxX + boxW} ${boxY + reticleLen}`}
                       fill="none"
                       stroke={strokeColor}
-                      strokeWidth="4"
+                      strokeWidth={4 * scale}
+                      strokeLinecap="round"
                     />
+                    {/* Bottom-Left */}
                     <path
-                      d={`M ${x1} ${y2 - 15} L ${x1} ${y2} L ${x1 + 15} ${y2}`}
+                      d={`M ${boxX} ${boxY + boxH - reticleLen} L ${boxX} ${boxY + boxH} L ${boxX + reticleLen} ${boxY + boxH}`}
                       fill="none"
                       stroke={strokeColor}
-                      strokeWidth="4"
+                      strokeWidth={4 * scale}
+                      strokeLinecap="round"
                     />
+                    {/* Bottom-Right */}
                     <path
-                      d={`M ${x2 - 15} ${y2} L ${x2} ${y2} L ${x2 - 15} ${y2}`}
+                      d={`M ${boxX + boxW - reticleLen} ${boxY + boxH} L ${boxX + boxW} ${boxY + boxH} L ${boxX + boxW} ${boxY + boxH - reticleLen}`}
                       fill="none"
                       stroke={strokeColor}
-                      strokeWidth="4"
+                      strokeWidth={4 * scale}
+                      strokeLinecap="round"
                     />
+
+                    {/* Connecting Notch when Label is Positioned Above Box */}
+                    {placeAbove && (
+                      <line
+                        x1={boxX + boxW / 2}
+                        y1={labelY + labelHeight}
+                        x2={boxX + boxW / 2}
+                        y2={boxY}
+                        stroke={strokeColor}
+                        strokeWidth={1.5 * scale}
+                        strokeDasharray={`${3 * scale},${2 * scale}`}
+                        opacity="0.8"
+                      />
+                    )}
+
+                    {/* Name Tag on the Face Rectangle */}
+                    {/* Background Pill */}
+                    <rect
+                      x={labelX}
+                      y={labelY}
+                      width={labelWidth}
+                      height={labelHeight}
+                      rx={6 * scale}
+                      fill="#090d16"
+                      fillOpacity="0.94"
+                      stroke={strokeColor}
+                      strokeWidth={1.5 * scale}
+                      filter={glowFilterId}
+                    />
+
+                    {/* Pulsing Status Dot */}
+                    <circle
+                      cx={labelX + 16 * scale}
+                      cy={labelY + 16 * scale}
+                      r={4.5 * scale}
+                      fill={strokeColor}
+                    >
+                      <animate
+                        attributeName="opacity"
+                        values="1;0.4;1"
+                        dur="1.5s"
+                        repeatCount="indefinite"
+                      />
+                    </circle>
+
+                    {/* Person's Name */}
+                    <text
+                      x={labelX + 27 * scale}
+                      y={labelY + 20 * scale}
+                      fill="#ffffff"
+                      fontSize={nameFontSize}
+                      fontWeight="700"
+                      fontFamily="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+                      letterSpacing="0.02em"
+                    >
+                      {displayName}
+                    </text>
+
+                    {/* Status & Confidence Sub-Label */}
+                    <text
+                      x={labelX + 27 * scale}
+                      y={labelY + 34 * scale}
+                      fill={isRecognized ? '#34d399' : '#fbbf24'}
+                      fontSize={subFontSize}
+                      fontWeight="600"
+                      fontFamily="ui-monospace, SFMono-Regular, Menlo, monospace"
+                      letterSpacing="0.03em"
+                    >
+                      {statusText}
+                      {confidenceText && (
+                        <tspan fill="#94a3b8" fontWeight="400">
+                          {' '}| {confidenceText}
+                        </tspan>
+                      )}
+                      {regNumText && (
+                        <tspan fill="#cbd5e1" fontWeight="400">
+                          {regNumText}
+                        </tspan>
+                      )}
+                    </text>
                   </g>
                 );
               })}
@@ -247,9 +499,9 @@ export const CameraViewfinder: React.FC<CameraViewfinderProps> = ({
           </div>
 
           {/* Bottom HUD: Detected Faces Summary */}
-          {detectedFaces.length > 0 && (
+          {activeFaces.length > 0 && (
             <div className="absolute bottom-3 left-3 right-3 flex flex-wrap gap-2 pointer-events-none">
-              {detectedFaces.map((face, i) => (
+              {activeFaces.map((face, i) => (
                 <div
                   key={i}
                   className={`px-3 py-1.5 rounded-lg backdrop-blur-md text-xs font-semibold border flex items-center space-x-2 ${
